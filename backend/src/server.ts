@@ -4,17 +4,23 @@ import cors from 'cors';
 
 dotenv.config();
 
-const { PORT = 9000 } = process.env;
+const { APP_HOST, APP_PORT, CLIENT_HOST, CLIENT_PORT } = process.env;
 
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
+app.use(
+  cors({
+    origin: `http://${CLIENT_HOST ?? 'localhost'}:${CLIENT_PORT ?? 5173}`,
+  })
+);
 
 app.get('/', (req, res) => {
   res.status(200).send({ message: 'Server is running yay!' });
 });
 
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+app.listen(APP_PORT, () => {
+  console.log(
+    `Server is running on http://${APP_HOST ?? 'localhost'}:${APP_PORT ?? 9000}`
+  );
 });
