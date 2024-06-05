@@ -7,6 +7,8 @@ dotenv.config();
 const { APP_HOST, APP_PORT, CLIENT_HOST, CLIENT_PORT } = process.env;
 
 const app = express();
+
+// ----- middlewares ----- \\
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
