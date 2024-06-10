@@ -5,14 +5,17 @@
   "main": "dist/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "concurrently \"tsc --watch\" \"tsnd --respawn src/server.ts\""
+    "build": "tsc",
+    "dev": "concurrently \"tsc --watch\" \"tsnd --respawn server.ts\"",
+    "prod": "set NODE_ENV=production && node dist/server.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
-    "express": "^4.19.2"
+    "express": "^4.19.2",
+    "mongoose": "^8.4.1"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",
