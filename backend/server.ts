@@ -3,6 +3,7 @@ import * as dotenv from 'dotenv';
 import cors from 'cors';
 import path from 'path';
 import mongoose from 'mongoose';
+import authRouter from './src/routers/auth.router';
 
 dotenv.config();
 
@@ -16,6 +17,7 @@ const {
   PROD_DB_URI,
 } = process.env;
 
+// define db uri depending on mode (dev or prod)
 const MONGO_URI = NODE_ENV === 'development' ? DEV_DB_URI : PROD_DB_URI;
 
 if (!MONGO_URI) {
@@ -25,10 +27,7 @@ if (!MONGO_URI) {
 const init = async () => {
   const app = express();
 
-  // ============================= \\
-  // ======== Middlewares ======== \\
-  // ============================= \\
-
+  // middlewares
   app.use(express.static(path.join(__dirname, 'public')));
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
@@ -38,6 +37,9 @@ const init = async () => {
     })
   );
 
+  app.use('/', authRouter);
+
+  // start server
   app.listen(APP_PORT, () => {
     console.log(
       `Server is running on http://${APP_HOST ?? 'localhost'}:${
@@ -47,7 +49,7 @@ const init = async () => {
   });
 };
 
-// Connection to database
+// connect to database
 mongoose
   .connect(MONGO_URI)
   .then(() => console.log('Connection to DB successful'))
