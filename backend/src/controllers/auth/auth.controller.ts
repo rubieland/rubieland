@@ -1,11 +1,15 @@
 import { Request, Response } from 'express';
 import User, { UserInput } from '../../models/User.model';
-import { isEmpty } from 'validator';
 import { trimData } from '../../utils/string.utils';
 
 export const register = async (req: Request, res: Response) => {
   try {
     const { firstName, lastName, email, password, phone } = trimData(req.body);
+
+    /**
+     * TODO:
+     * add input validations
+     */
 
     const user: UserInput = {
       firstName,
