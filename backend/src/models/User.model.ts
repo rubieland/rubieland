@@ -3,6 +3,8 @@ import { regexes } from './validators/validators';
 import { isEmail } from 'validator';
 import { isValidFrenchPhoneNumber } from '../utils/validation.utils';
 import { UserDocument } from './types/User.types';
+import bcrypt from 'bcrypt';
+import { formatName } from '../utils/string.utils';
 
 /**
  * TODO:
@@ -78,6 +80,49 @@ const userSchema = new Schema<UserDocument>(
   },
   { timestamps: true }
 );
+
+userSchema.pre(
+  'save',
+  async function (this: UserDocument, next: (err?: Error) => void) {
+    try {
+      // check if the password is modified
+      if (this.isModified('password')) {
+        // hash the password only if it is modified
+        const salt = await bcrypt.genSalt(10);
+        const hash = bcrypt.hashSync(this.password, salt);
+        this.password = hash;
+      }
+
+      // format user firstName and lastName
+      if (this.isModified('firstName')) {
+        this.firstName = formatName(this.firstName);
+      }
+
+      if (this.isModified('lastName')) {
+        this.lastName = formatName(this.lastName);
+      }
+
+      next();
+    } catch (error: any) {
+      if (error instanceof Error) {
+        next(error);
+      } else {
+        next(new Error('An unexpected error occurred.'));
+      }
+    }
+  }
+);
+
+userSchema.methods.comparePassword = async function (
+  candidatePassword: string
+): Promise<boolean> {
+  const user = this as UserDocument;
+  try {
+    return await bcrypt.compare(candidatePassword, user.password);
+  } catch (error) {
+    throw new Error('An error occurred while comparing passwords.');
+  }
+};
 
 const User = model('User', userSchema);
 
