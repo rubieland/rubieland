@@ -1,5 +1,4 @@
 // capitalize the first letter of a string
-// TODO: add check if str is undefined ?
 export const capitalize = (str: string) => {
   return str.replace(str[0], str[0].toUpperCase());
 };
@@ -10,4 +9,18 @@ export const trimData = (data: any) => {
     if (typeof data[key] === 'string') data[key] = data[key]?.trim() ?? '';
   }
   return data;
+};
+
+/**
+ * format names with the first letter capitalized,
+ * including the first letters after hyphens, apostrophes, and spaces
+ *
+ * @param {string} name - the name to be formatted
+ * @return {string} - the formatted name
+ */
+
+export const formatName = (name: string): string => {
+  return name
+    .toLowerCase()
+    .replace(/(^\w|[-' ]\w)/g, (match) => match.toUpperCase());
 };
