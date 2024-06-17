@@ -1,4 +1,4 @@
-import i18next from '../config/i18next';
+import i18n from './i18n.loader';
 import { handle as i18nextMiddleware } from 'i18next-express-middleware';
 import cors from 'cors';
 import path from 'path';
@@ -13,7 +13,7 @@ const { CLIENT_HOST, CLIENT_PORT } = process.env;
 export const loadExpress = async ({ server }: { server: Express }) => {
   try {
     // middlewares
-    server.use(i18nextMiddleware(i18next));
+    server.use(i18nextMiddleware(i18n));
     server.use(express.static(path.join(__dirname, 'public')));
     server.use(express.json());
     server.use(express.urlencoded({ extended: true }));

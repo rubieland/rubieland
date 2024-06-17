@@ -1,11 +1,11 @@
-import i18next from 'i18next';
+import i18n from 'i18next';
 import Backend from 'i18next-fs-backend';
 import { LanguageDetector } from 'i18next-http-middleware';
 import path from 'path';
 
-export const initI18next = () =>
+export const initI18n = () =>
   new Promise<void>((resolve, reject) => {
-    i18next
+    i18n
       .use(Backend)
       .use(LanguageDetector)
       .init(
@@ -28,5 +28,5 @@ export const initI18next = () =>
       );
   });
 
-export const t = i18next.t.bind(i18next);
-export default i18next;
+export const t = i18n.t.bind(i18n);
+export default i18n;

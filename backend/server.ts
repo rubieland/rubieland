@@ -1,8 +1,8 @@
-import { initI18next } from './src/config/i18next';
+import { initI18n } from './src/loaders/i18n.loader';
 import express from 'express';
 import * as dotenv from 'dotenv';
 import { loadExpress } from './src/loaders/express.loader';
-import { connectToDatabase } from './src/loaders/db.loader';
+import { loadDatabaseConnection } from './src/loaders/db.loader';
 
 dotenv.config();
 
@@ -11,11 +11,11 @@ const server = express();
 
 const startServer = async () => {
   try {
-    // load translation files
-    await initI18next();
+    // initialize i18n
+    await initI18n();
 
     // connect to database
-    await connectToDatabase();
+    await loadDatabaseConnection();
 
     // load express
     await loadExpress({ server });

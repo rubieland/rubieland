@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import i18next, { t } from '../config/i18next';
+import { t } from './i18n.loader';
 import * as dotenv from 'dotenv';
 
 dotenv.config();
@@ -9,7 +9,7 @@ const { NODE_ENV, DEV_DB_URI, PROD_DB_URI } = process.env;
 // define db uri depending on mode (dev or prod)
 const MONGO_URI = NODE_ENV === 'development' ? DEV_DB_URI : PROD_DB_URI;
 
-export const connectToDatabase = async () => {
+export const loadDatabaseConnection = async () => {
   try {
     if (!MONGO_URI || MONGO_URI === '') {
       throw new Error(
