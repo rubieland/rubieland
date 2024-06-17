@@ -1,57 +1,39 @@
+import { initI18n } from './src/loaders/i18n.loader';
 import express from 'express';
 import * as dotenv from 'dotenv';
-import cors from 'cors';
-import path from 'path';
-import mongoose from 'mongoose';
-import authRouter from './src/routers/auth.router';
+import { loadExpress } from './src/loaders/express.loader';
+import { loadDatabaseConnection } from './src/loaders/db.loader';
 
 dotenv.config();
 
-const {
-  APP_HOST,
-  APP_PORT,
-  CLIENT_HOST,
-  CLIENT_PORT,
-  NODE_ENV,
-  DEV_DB_URI,
-  PROD_DB_URI,
-} = process.env;
+const { APP_HOST, APP_PORT } = process.env;
+const server = express();
 
-// define db uri depending on mode (dev or prod)
-const MONGO_URI = NODE_ENV === 'development' ? DEV_DB_URI : PROD_DB_URI;
+const startServer = async () => {
+  try {
+    // initialize i18n
+    await initI18n();
 
-if (!MONGO_URI) {
-  throw new Error('MONGO_URI must be defined');
-}
+    // connect to database
+    await loadDatabaseConnection();
 
-const init = async () => {
-  const app = express();
-
-  // middlewares
-  app.use(express.static(path.join(__dirname, 'public')));
-  app.use(express.json());
-  app.use(express.urlencoded({ extended: true }));
-  app.use(
-    cors({
-      origin: `http://${CLIENT_HOST ?? 'localhost'}:${CLIENT_PORT ?? 5173}`,
-    })
-  );
-
-  app.use('/', authRouter);
+    // load express
+    await loadExpress({ server });
+  } catch (error) {
+    console.error(error);
+    process.exit(1);
+  }
 
   // start server
-  app.listen(APP_PORT, () => {
-    console.log(
-      `Server is running on http://${APP_HOST ?? 'localhost'}:${
-        APP_PORT ?? 9000
-      }`
-    );
-  });
+  server
+    .listen(APP_PORT, () => {
+      const link = `http://${APP_HOST ?? 'localhost'}:${APP_PORT ?? 9000}`;
+      console.log(`Server is running on ${link}`);
+    })
+    .on('error', (error) => {
+      console.error(error);
+      process.exit(1);
+    });
 };
 
-// connect to database
-mongoose
-  .connect(MONGO_URI)
-  .then(() => console.log('Connection to DB successful'))
-  .then(init)
-  .catch((err) => console.log(err));
+startServer();
