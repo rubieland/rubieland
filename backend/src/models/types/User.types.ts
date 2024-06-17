@@ -11,4 +11,6 @@ export interface IUser {
 
 export interface UserDocument extends IUser, Document {
   isAdmin: boolean;
+  comparePassword(candidatePassword: string): Promise<boolean>;
+  createJWT(): string;
 }
