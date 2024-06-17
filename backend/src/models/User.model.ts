@@ -5,6 +5,18 @@ import { isValidFrenchPhoneNumber } from '../utils/validation.utils';
 import { UserDocument } from './types/User.types';
 import bcrypt from 'bcrypt';
 import { formatName } from '../utils/string.utils';
+import jwt from 'jsonwebtoken';
+import * as dotenv from 'dotenv';
+
+dotenv.config();
+
+const { JWT_SECRET, JWT_EXPIRATION } = process.env;
+
+if (!JWT_SECRET || JWT_SECRET === '') {
+  throw new Error('JWT_SECRET is undefined!');
+} else if (!JWT_EXPIRATION || JWT_EXPIRATION === '') {
+  throw new Error('JWT_EXPIRATION is undefined!');
+}
 
 /**
  * TODO:
@@ -122,6 +134,16 @@ userSchema.methods.comparePassword = async function (
   } catch (error) {
     throw new Error('An error occurred while comparing passwords.');
   }
+};
+
+userSchema.methods.createJWT = function () {
+  return jwt.sign(
+    {
+      id: this._id,
+    },
+    JWT_SECRET,
+    { expiresIn: JWT_EXPIRATION }
+  );
 };
 
 const User = model('User', userSchema);
