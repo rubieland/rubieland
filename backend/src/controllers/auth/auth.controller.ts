@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
-import User, { UserInput } from '../../models/User.model';
+import User from '../../models/User.model';
 import { trimData } from '../../utils/string.utils';
+import { IUser } from '../../models/types/User.types';
 
 export const register = async (req: Request, res: Response) => {
   try {
@@ -11,7 +12,7 @@ export const register = async (req: Request, res: Response) => {
      * add input validations
      */
 
-    const user: UserInput = {
+    const user: IUser = {
       firstName,
       lastName,
       email,
@@ -19,8 +20,8 @@ export const register = async (req: Request, res: Response) => {
       phone,
     };
 
-    console.log('new user', user);
     const newUser = await User.create(user);
+
     await newUser.save();
     res.status(201).json({ message: 'Nouvel utilisateur créé !', newUser });
   } catch (error: any) {

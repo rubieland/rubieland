@@ -1,16 +1,8 @@
-import { Document, Schema, model } from 'mongoose';
+import { Schema, model } from 'mongoose';
 import { regexes } from './validators/validators';
 import { isEmail } from 'validator';
 import { isValidFrenchPhoneNumber } from '../utils/validation.utils';
-
-export interface UserInput {
-  firstName: string;
-  lastName: string;
-  email: string;
-  password: string;
-  phone?: string;
-  avatar?: string;
-}
+import { UserDocument } from './types/User.types';
 
 /**
  * TODO:
@@ -18,7 +10,7 @@ export interface UserInput {
  * add pre('save') middleware to hash password, comparePasswords method, createJWT method
  */
 
-const userSchema = new Schema<UserInput, Document>(
+const userSchema = new Schema<UserDocument>(
   {
     firstName: {
       type: String,
@@ -78,6 +70,10 @@ const userSchema = new Schema<UserInput, Document>(
     avatar: {
       type: String,
       trim: true,
+    },
+    isAdmin: {
+      type: Boolean,
+      default: false,
     },
   },
   { timestamps: true }
