@@ -1,0 +1,8 @@
+{
+  "validation": {
+    "required": "{{fieldname}} is required",
+    "minLength": "{{fieldname}} must contain at least {{min}} characters",
+    "maxLength": "{{fieldname}} must not contain more than {{max}} characters",
+    "invalid": "{{fieldname}} is invalid. {{rule}}"
+  }
+}
