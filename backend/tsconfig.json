@@ -14,9 +14,12 @@
     "sourceMap": true // Generates source maps for the emitted JavaScript files.
   },
   "include": [
-    "./*.js", // Includes JavaScript files in the root directory.
+    "./*.js,.cjs,.mjs", // Includes .js, .cjs, .mjs files in the root directory.
     "src/**/*.ts", // Includes TypeScript files in the 'src' directory and its subdirectories.
     "server.ts", // Includes a specific TypeScript file 'server.ts'.
-    "jest.config.cjs"
+    ".prettier.cjs", // Includes a specific cjs file 'prettier.cjs'.
+    "eslint.config.mjs", // Includes a specific mjs file 'eslint.config.mjs'.
+    "jest.config.cjs", // Includes a specific cjs file 'jest.config.cjs'.
+    "tsconfig.jest.json"
   ]
 }
