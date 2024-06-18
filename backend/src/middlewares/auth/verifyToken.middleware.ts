@@ -3,7 +3,7 @@ import { NextFunction, Request, Response } from 'express';
 export const verifyToken = async (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) => {
   console.log('verifyToken');
   next();
