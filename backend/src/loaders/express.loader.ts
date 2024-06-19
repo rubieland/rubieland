@@ -20,7 +20,7 @@ export const loadExpress = async ({ server }: { server: Express }) => {
     server.use(
       cors({
         origin: `http://${CLIENT_HOST ?? 'localhost'}:${CLIENT_PORT ?? 5173}`,
-      })
+      }),
     );
 
     // routers

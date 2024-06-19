@@ -24,7 +24,7 @@ export const initI18n = () =>
             console.log('i18next initialized successfully!');
             resolve();
           }
-        }
+        },
       );
   });
 
