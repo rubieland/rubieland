@@ -1,5 +1,4 @@
 import mongoose from 'mongoose';
-import { t } from './i18n.loader';
 import * as dotenv from 'dotenv';
 
 dotenv.config();
