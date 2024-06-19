@@ -13,7 +13,7 @@ export const loadDatabaseConnection = async () => {
   try {
     if (!MONGO_URI || MONGO_URI === '') {
       throw new Error(
-        t('config.db.undefinedURI', { envVariable: 'MONGO_URI' })
+        t('config.db.undefinedURI', { envVariable: 'MONGO_URI' }),
       );
     }
 
