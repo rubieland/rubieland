@@ -1,5 +1,10 @@
 import { Document } from 'mongoose';
 
+export enum UserRole {
+  USER = 'user',
+  ADMIN = 'admin',
+}
+
 export interface IUser {
   firstName: string;
   lastName: string;
@@ -7,10 +12,10 @@ export interface IUser {
   password: string;
   phone?: string;
   avatar?: string;
+  role: UserRole;
 }
 
 export interface UserDocument extends IUser, Document {
-  isAdmin: boolean;
   comparePassword(candidatePassword: string): Promise<boolean>;
   createJWT(): string;
 }

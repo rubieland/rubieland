@@ -2,7 +2,7 @@ import { Schema, model } from 'mongoose';
 import { regexes } from './validators/validators';
 import { isEmail } from 'validator';
 import { isValidFrenchPhoneNumber } from '../utils/validation.utils';
-import { UserDocument } from './types/User.types';
+import { UserDocument, UserRole } from './types/User.types';
 import bcrypt from 'bcrypt';
 import { formatName } from '../utils/string.utils';
 import jwt from 'jsonwebtoken';
@@ -85,9 +85,10 @@ const userSchema = new Schema<UserDocument>(
       type: String,
       trim: true,
     },
-    isAdmin: {
-      type: Boolean,
-      default: false,
+    role: {
+      type: String,
+      enum: Object.values(UserRole),
+      default: UserRole.USER,
     },
   },
   { timestamps: true },
@@ -122,11 +123,11 @@ userSchema.pre(
         next(new Error('An unexpected error occurred.'));
       }
     }
-  }
+  },
 );
 
 userSchema.methods.comparePassword = async function (
-  candidatePassword: string
+  candidatePassword: string,
 ): Promise<boolean> {
   const user = this as UserDocument;
   try {
@@ -142,7 +143,7 @@ userSchema.methods.createJWT = function () {
       id: this._id,
     },
     JWT_SECRET,
-    { expiresIn: JWT_EXPIRATION }
+    { expiresIn: JWT_EXPIRATION },
   );
 };
 
