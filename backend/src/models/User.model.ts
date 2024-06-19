@@ -32,10 +32,10 @@ const userSchema = new Schema<UserDocument>(
       trim: true,
       maxlength: 30,
       minlength: 2,
-      validate: {
-        validator: (v: string) => regexes.nameField.test(v),
-        message: `Le prénom est invalide. Il ne peut contenir que des lettres, traits d'union, espaces et apostrophes.`,
-      },
+      validate: [
+        (v: string) => regexes.nameField.test(v),
+        `Le prénom est invalide. Il ne peut contenir que des lettres, traits d'union, espaces et apostrophes.`,
+      ],
     },
     lastName: {
       type: String,
@@ -43,10 +43,10 @@ const userSchema = new Schema<UserDocument>(
       trim: true,
       maxlength: 30,
       minlength: 2,
-      validate: {
-        validator: (v: string) => regexes.nameField.test(v),
-        message: `Le nom de famille est invalide. Il ne peut contenir que des lettres, traits d'union, espaces et apostrophes.`,
-      },
+      validate: [
+        (v: string) => regexes.nameField.test(v),
+        `Le nom de famille est invalide. Il ne peut contenir que des lettres, traits d'union, espaces et apostrophes.`,
+      ],
     },
     email: {
       type: String,
@@ -55,10 +55,10 @@ const userSchema = new Schema<UserDocument>(
       unique: true,
       lowercase: true,
       maxlength: 60,
-      validate: {
-        validator: (v: string) => isEmail(v),
-        message: `Email incorrect. Veuillez entrer un email valide (mon.adresse@email.com).`,
-      },
+      validate: [
+        isEmail,
+        `Email incorrect. Veuillez entrer un email valide (mon.adresse@email.com).`,
+      ],
     },
     password: {
       type: String,
@@ -66,20 +66,19 @@ const userSchema = new Schema<UserDocument>(
       trim: true,
       maxlength: 30,
       minlength: 8,
-      validate: {
-        validator: (v: string) => regexes.password.test(v),
-        message:
-          'Mot de passe invalide. Les caractères suivants ne sont pas acceptés: < > ( ) { } \\ et `',
-      },
+      validate: [
+        (v: string) => regexes.password.test(v),
+        'Mot de passe invalide. Les caractères suivants ne sont pas acceptés: < > ( ) { } \\ et `',
+      ],
     },
     phone: {
       type: String,
       trim: true,
       minlength: 10,
-      validate: {
-        validator: (v: string) => isValidFrenchPhoneNumber(v),
-        message: `Numéro de téléphone invalide. Veuillez entrer un numéro au format "0XXXXXXXXX" ou "+33XXXXXXXXX"`,
-      },
+      validate: [
+        (v: string) => isValidFrenchPhoneNumber(v),
+        `Numéro de téléphone invalide. Veuillez entrer un numéro au format "0XXXXXXXXX" ou "+33XXXXXXXXX"`,
+      ],
     },
     avatar: {
       type: String,
