@@ -23,11 +23,45 @@ export const register = async (req: Request, res: Response) => {
     const newUser = await User.create(user);
 
     await newUser.save();
+    // TODO: replace message with t(key)
     res.status(201).json({ message: 'Nouvel utilisateur créé !', newUser });
   } catch (error: any) {
     res.status(400).json({ error: error.message });
   }
 };
+
 export const login = async (req: Request, res: Response) => {
-  res.status(200).json({ route: '/login' });
+  try {
+    /**
+     * TODO:
+     * add input validations
+     */
+
+    const { email, password } = trimData(req.body);
+    const user = await User.findOne({ email: email.toLowerCase() });
+
+    if (!user) {
+      // TODO: replace error with t(key)
+      return res.status(400).json({
+        error: 'Invalid credentials',
+      });
+    }
+
+    const isPasswordMatch = await user.comparePassword(password);
+
+    if (!isPasswordMatch) {
+      // TODO: replace error with t(key)
+      return res.status(400).json({ error: 'Invalid credentials' });
+    }
+
+    const token = await user.createJWT();
+
+    res.status(200).json({
+      // TODO: replace message with t(key)
+      message: `Login successful! Welcome ${user.firstName} ${user.lastName}!`,
+      token,
+    });
+  } catch (error: any) {
+    res.status(400).json({ error: error.message });
+  }
 };
