@@ -30,7 +30,7 @@ const userSchema = new Schema<UserDocument>(
       type: String,
       required: true,
       trim: true,
-      maxLength: 50,
+      maxlength: 30,
       minlength: 2,
       validate: {
         validator: (v: string) => regexes.nameField.test(v),
@@ -41,7 +41,7 @@ const userSchema = new Schema<UserDocument>(
       type: String,
       required: true,
       trim: true,
-      maxLength: 50,
+      maxlength: 30,
       minlength: 2,
       validate: {
         validator: (v: string) => regexes.nameField.test(v),
@@ -54,7 +54,7 @@ const userSchema = new Schema<UserDocument>(
       trim: true,
       unique: true,
       lowercase: true,
-      maxLength: 254,
+      maxlength: 60,
       validate: {
         validator: (v: string) => isEmail(v),
         message: `Email incorrect. Veuillez entrer un email valide (mon.adresse@email.com).`,
@@ -64,8 +64,8 @@ const userSchema = new Schema<UserDocument>(
       type: String,
       required: true,
       trim: true,
-      maxLength: 128,
-      minLength: 8,
+      maxlength: 30,
+      minlength: 8,
       validate: {
         validator: (v: string) => regexes.password.test(v),
         message:
