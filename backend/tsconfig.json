@@ -16,10 +16,10 @@
   "include": [
     "./*.js,.cjs,.mjs", // Includes .js, .cjs, .mjs files in the root directory.
     "src/**/*.ts", // Includes TypeScript files in the 'src' directory and its subdirectories.
-    "server.ts", // Includes a specific TypeScript file 'server.ts'.
-    ".prettier.cjs", // Includes a specific cjs file 'prettier.cjs'.
-    "eslint.config.mjs", // Includes a specific mjs file 'eslint.config.mjs'.
-    "jest.config.cjs", // Includes a specific cjs file 'jest.config.cjs'.
+    "server.ts",
+    ".prettier.cjs",
+    "eslint.config.mjs",
+    "jest.config.cjs",
     "tsconfig.jest.json"
   ]
 }
