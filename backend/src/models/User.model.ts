@@ -90,7 +90,7 @@ const userSchema = new Schema<UserDocument>(
       default: false,
     },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 userSchema.pre(
