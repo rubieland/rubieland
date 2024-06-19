@@ -11,7 +11,7 @@ export default [
   {
     rules: {
       // TODO: add more rules
-      'object-shorthand': 'error',
+      'object-shorthand': 'error', // Expected property shorthand.
     },
   },
 ];
