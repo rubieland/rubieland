@@ -10,6 +10,8 @@ dotenv.config();
 
 const { CLIENT_HOST, CLIENT_PORT } = process.env;
 
+const __dirname = import.meta.dirname;
+
 export const loadExpress = async ({ server }: { server: Express }) => {
   try {
     // middlewares
