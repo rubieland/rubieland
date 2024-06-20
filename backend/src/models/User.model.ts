@@ -1,6 +1,6 @@
 import { Schema, model } from 'mongoose';
 import { regexes } from './validators/validators';
-import { isEmail } from 'validator';
+import validator from 'validator';
 import { isValidFrenchPhoneNumber } from '../utils/validation.utils';
 import { UserDocument, UserRole } from './types/User.types';
 import bcrypt from 'bcrypt';
@@ -56,7 +56,7 @@ const userSchema = new Schema<UserDocument>(
       lowercase: true,
       maxlength: 60,
       validate: [
-        isEmail,
+        validator.isEmail,
         `Email incorrect. Veuillez entrer un email valide (mon.adresse@email.com).`,
       ],
     },
