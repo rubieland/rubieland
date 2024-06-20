@@ -14,4 +14,9 @@ export default [
       'object-shorthand': 'error', // Expected property shorthand.
     },
   },
+  {
+    rules: {
+      '@typescript-eslint/no-explicit-any': 'off',
+    },
+  },
 ];

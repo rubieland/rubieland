@@ -1,8 +1,8 @@
 import { Schema, model } from 'mongoose';
 import { regexes } from './validators/validators';
-import { isEmail } from 'validator';
+import validator from 'validator';
 import { isValidFrenchPhoneNumber } from '../utils/validation.utils';
-import { UserDocument } from './types/User.types';
+import { UserDocument, UserRole } from './types/User.types';
 import bcrypt from 'bcrypt';
 import { formatName } from '../utils/string.utils';
 import jwt from 'jsonwebtoken';
@@ -30,23 +30,23 @@ const userSchema = new Schema<UserDocument>(
       type: String,
       required: true,
       trim: true,
-      maxLength: 50,
+      maxlength: 30,
       minlength: 2,
-      validate: {
-        validator: (v: string) => regexes.nameField.test(v),
-        message: `Le prénom est invalide. Il ne peut contenir que des lettres, traits d'union, espaces et apostrophes.`,
-      },
+      validate: [
+        (v: string) => regexes.nameField.test(v),
+        `Le prénom est invalide. Il ne peut contenir que des lettres, traits d'union, espaces et apostrophes.`,
+      ],
     },
     lastName: {
       type: String,
       required: true,
       trim: true,
-      maxLength: 50,
+      maxlength: 30,
       minlength: 2,
-      validate: {
-        validator: (v: string) => regexes.nameField.test(v),
-        message: `Le nom de famille est invalide. Il ne peut contenir que des lettres, traits d'union, espaces et apostrophes.`,
-      },
+      validate: [
+        (v: string) => regexes.nameField.test(v),
+        `Le nom de famille est invalide. Il ne peut contenir que des lettres, traits d'union, espaces et apostrophes.`,
+      ],
     },
     email: {
       type: String,
@@ -54,40 +54,40 @@ const userSchema = new Schema<UserDocument>(
       trim: true,
       unique: true,
       lowercase: true,
-      maxLength: 254,
-      validate: {
-        validator: (v: string) => isEmail(v),
-        message: `Email incorrect. Veuillez entrer un email valide (mon.adresse@email.com).`,
-      },
+      maxlength: 60,
+      validate: [
+        validator.isEmail,
+        `Email incorrect. Veuillez entrer un email valide (mon.adresse@email.com).`,
+      ],
     },
     password: {
       type: String,
       required: true,
       trim: true,
-      maxLength: 128,
-      minLength: 8,
-      validate: {
-        validator: (v: string) => regexes.password.test(v),
-        message:
-          'Mot de passe invalide. Les caractères suivants ne sont pas acceptés: < > ( ) { } \\ et `',
-      },
+      maxlength: 30,
+      minlength: 8,
+      validate: [
+        (v: string) => regexes.password.test(v),
+        'Mot de passe invalide. Les caractères suivants ne sont pas acceptés: < > ( ) { } \\ et `',
+      ],
     },
     phone: {
       type: String,
       trim: true,
       minlength: 10,
-      validate: {
-        validator: (v: string) => isValidFrenchPhoneNumber(v),
-        message: `Numéro de téléphone invalide. Veuillez entrer un numéro au format "0XXXXXXXXX" ou "+33XXXXXXXXX"`,
-      },
+      validate: [
+        (v: string) => isValidFrenchPhoneNumber(v),
+        `Numéro de téléphone invalide. Veuillez entrer un numéro au format "0XXXXXXXXX" ou "+33XXXXXXXXX"`,
+      ],
     },
     avatar: {
       type: String,
       trim: true,
     },
-    isAdmin: {
-      type: Boolean,
-      default: false,
+    role: {
+      type: String,
+      enum: Object.values(UserRole),
+      default: UserRole.USER,
     },
   },
   { timestamps: true },
@@ -122,11 +122,11 @@ userSchema.pre(
         next(new Error('An unexpected error occurred.'));
       }
     }
-  }
+  },
 );
 
 userSchema.methods.comparePassword = async function (
-  candidatePassword: string
+  candidatePassword: string,
 ): Promise<boolean> {
   const user = this as UserDocument;
   try {
@@ -142,7 +142,7 @@ userSchema.methods.createJWT = function () {
       id: this._id,
     },
     JWT_SECRET,
-    { expiresIn: JWT_EXPIRATION }
+    { expiresIn: JWT_EXPIRATION },
   );
 };
 

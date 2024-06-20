@@ -3,6 +3,8 @@ import Backend from 'i18next-fs-backend';
 import { LanguageDetector } from 'i18next-http-middleware';
 import path from 'path';
 
+const __dirname = import.meta.dirname;
+
 export const initI18n = () =>
   new Promise<void>((resolve, reject) => {
     i18n
