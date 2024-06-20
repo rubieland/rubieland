@@ -6,17 +6,9 @@ import { UserDocument, UserRole } from './types/User.types';
 import bcrypt from 'bcrypt';
 import { formatName } from '../utils/string.utils';
 import jwt from 'jsonwebtoken';
-import * as dotenv from 'dotenv';
+import { env } from '../loaders/env.loader';
 
-dotenv.config();
-
-const { JWT_SECRET, JWT_EXPIRATION } = process.env;
-
-if (!JWT_SECRET || JWT_SECRET === '') {
-  throw new Error('JWT_SECRET is undefined!');
-} else if (!JWT_EXPIRATION || JWT_EXPIRATION === '') {
-  throw new Error('JWT_EXPIRATION is undefined!');
-}
+const { JWT_SECRET, JWT_EXPIRATION } = env;
 
 /**
  * TODO:

@@ -1,14 +1,8 @@
 import { NextFunction, Request, Response } from 'express';
 import jwt, { JwtPayload } from 'jsonwebtoken';
+import { env } from '../../loaders/env.loader';
 
-// TODO: extract this in a dedicated file
-const { JWT_SECRET, JWT_EXPIRATION } = process.env;
-
-if (!JWT_SECRET || JWT_SECRET === '') {
-  throw new Error('JWT_SECRET is undefined!');
-} else if (!JWT_EXPIRATION || JWT_EXPIRATION === '') {
-  throw new Error('JWT_EXPIRATION is undefined!');
-}
+const { JWT_SECRET } = env;
 
 export interface CustomRequest extends Request {
   token: string | JwtPayload | undefined;
