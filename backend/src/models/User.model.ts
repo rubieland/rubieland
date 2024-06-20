@@ -64,7 +64,7 @@ const userSchema = new Schema<UserDocument>(
       type: String,
       required: true,
       trim: true,
-      maxlength: 30,
+      maxlength: 100,
       minlength: 8,
       validate: [
         (v: string) => regexes.password.test(v),
@@ -140,6 +140,7 @@ userSchema.methods.createJWT = function () {
   return jwt.sign(
     {
       id: this._id,
+      role: this.role,
     },
     JWT_SECRET,
     { expiresIn: JWT_EXPIRATION },
