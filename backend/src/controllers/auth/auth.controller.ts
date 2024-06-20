@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import User from '../../models/User.model';
 import { trimData } from '../../utils/string.utils';
-import { IUser } from '../../models/types/User.types';
+import { IUser, UserRole } from '../../models/types/User.types';
 
 export const register = async (req: Request, res: Response) => {
   try {
@@ -18,6 +18,7 @@ export const register = async (req: Request, res: Response) => {
       email,
       password,
       phone,
+      role: UserRole.USER,
     };
 
     const newUser = await User.create(user);
