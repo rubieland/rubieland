@@ -21,7 +21,7 @@ export const register = async (req: Request, res: Response) => {
       role: UserRole.USER,
     };
 
-    const newUser = await User.create(user);
+    const newUser = new User(user);
 
     await newUser.save();
     // TODO: replace message with t(key)
@@ -55,7 +55,7 @@ export const login = async (req: Request, res: Response) => {
       return res.status(400).json({ error: 'Invalid credentials' });
     }
 
-    const token = await user.createJWT();
+    const token = user.createJWT();
 
     res.status(200).json({
       // TODO: replace message with t(key)
@@ -65,4 +65,9 @@ export const login = async (req: Request, res: Response) => {
   } catch (error: any) {
     res.status(400).json({ error: error.message });
   }
+};
+
+// TODO: delete this mock route => used to test verifyToken
+export const protectedRoute = (req: Request, res: Response) => {
+  res.json({ message: 'Welcome on protected route!' });
 };
