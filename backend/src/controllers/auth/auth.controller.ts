@@ -60,10 +60,15 @@ export const login = async (req: Request, res: Response) => {
     res.status(200).json({
       // TODO: use i18n
       message: `Login successful! Welcome ${user.firstName} ${user.lastName}!`,
+      user,
       token,
     });
   } catch (error: any) {
     // TODO: use i18n
     res.status(400).json({ error: error.message });
   }
+};
+
+export const testVerifyToken = (req: Request, res: Response) => {
+  res.json({ message: 'Hello there!' });
 };
