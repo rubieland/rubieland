@@ -24,7 +24,7 @@ export const register = async (req: Request, res: Response) => {
     const newUser = new User(user);
 
     await newUser.save();
-    // TODO: replace message with t(key)
+    // TODO: use i18n
     res.status(201).json({ message: 'Nouvel utilisateur créé !', newUser });
   } catch (error: any) {
     res.status(400).json({ error: error.message });
@@ -42,7 +42,7 @@ export const login = async (req: Request, res: Response) => {
     const user = await User.findOne({ email: email.toLowerCase() });
 
     if (!user) {
-      // TODO: replace error with t(key)
+      // TODO: use i18n
       return res.status(400).json({
         error: 'Invalid credentials',
       });
@@ -51,23 +51,19 @@ export const login = async (req: Request, res: Response) => {
     const isPasswordMatch = await user.comparePassword(password);
 
     if (!isPasswordMatch) {
-      // TODO: replace error with t(key)
+      // TODO: use i18n
       return res.status(400).json({ error: 'Invalid credentials' });
     }
 
     const token = user.createJWT();
 
     res.status(200).json({
-      // TODO: replace message with t(key)
+      // TODO: use i18n
       message: `Login successful! Welcome ${user.firstName} ${user.lastName}!`,
       token,
     });
   } catch (error: any) {
+    // TODO: use i18n
     res.status(400).json({ error: error.message });
   }
-};
-
-// TODO: delete this mock route => used to test verifyToken
-export const protectedRoute = (req: Request, res: Response) => {
-  res.json({ message: 'Welcome on protected route!' });
 };
