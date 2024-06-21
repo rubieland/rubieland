@@ -6,17 +6,9 @@ import { UserDocument, UserRole } from './types/User.types';
 import bcrypt from 'bcrypt';
 import { formatName } from '../utils/string.utils';
 import jwt from 'jsonwebtoken';
-import * as dotenv from 'dotenv';
+import { env } from '../loaders/env.loader';
 
-dotenv.config();
-
-const { JWT_SECRET, JWT_EXPIRATION } = process.env;
-
-if (!JWT_SECRET || JWT_SECRET === '') {
-  throw new Error('JWT_SECRET is undefined!');
-} else if (!JWT_EXPIRATION || JWT_EXPIRATION === '') {
-  throw new Error('JWT_EXPIRATION is undefined!');
-}
+const { JWT_SECRET, JWT_EXPIRATION } = env;
 
 /**
  * TODO:
@@ -64,7 +56,7 @@ const userSchema = new Schema<UserDocument>(
       type: String,
       required: true,
       trim: true,
-      maxlength: 30,
+      maxlength: 100,
       minlength: 8,
       validate: [
         (v: string) => regexes.password.test(v),
@@ -140,6 +132,7 @@ userSchema.methods.createJWT = function () {
   return jwt.sign(
     {
       id: this._id,
+      role: this.role,
     },
     JWT_SECRET,
     { expiresIn: JWT_EXPIRATION },
