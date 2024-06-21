@@ -1,9 +1,8 @@
 import mongoose from 'mongoose';
-import * as dotenv from 'dotenv';
+import { env } from './env.loader';
 
-dotenv.config();
-
-const { NODE_ENV, DEV_DB_URI, PROD_DB_URI } = process.env;
+// destructure env to get env variables
+const { NODE_ENV, DEV_DB_URI, PROD_DB_URI } = env;
 
 // define db uri depending on mode (dev or prod)
 const MONGO_URI = NODE_ENV === 'development' ? DEV_DB_URI : PROD_DB_URI;
