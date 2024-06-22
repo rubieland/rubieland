@@ -9,14 +9,10 @@ const MONGO_URI = NODE_ENV === 'development' ? DEV_DB_URI : PROD_DB_URI;
 
 export const loadDatabaseConnection = async () => {
   try {
-    if (!MONGO_URI || MONGO_URI === '') {
-      throw new Error('MONGO_URI is undefined!');
-    }
-
     await mongoose.connect(MONGO_URI);
     console.log('Connection to database successful!');
-  } catch (err) {
-    console.error(`Connection to database failed : ${err}`);
+  } catch (error: unknown) {
+    console.error(`Connection to database failed : ${error}`);
     process.exit(1);
   }
 };
