@@ -72,3 +72,12 @@ export const login = async (req: Request, res: Response) => {
 export const testVerifyToken = (req: Request, res: Response) => {
   res.json({ message: 'Hello there!' });
 };
+
+// TODO: delete this controller => used for any kind of test
+export const getTest = async (
+  req: Request,
+  res: Response,
+  _next: NextFunction,
+) => {
+  res.status(200).json({ message: 'Test' });
+};
