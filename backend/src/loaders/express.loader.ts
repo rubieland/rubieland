@@ -6,6 +6,10 @@ import express, { Express } from 'express';
 import authRouter from '../routers/auth.router';
 import { fileURLToPath } from 'url';
 import { env } from './env.loader';
+import {
+  errorHandler,
+  notFoundHandler,
+} from '../middlewares/errorHandlers/errorHandlers.middleware';
 
 // destructure env to get env variables
 const { CLIENT_HOST, CLIENT_PORT } = env;
@@ -28,6 +32,10 @@ export const loadExpress = async ({ server }: { server: Express }) => {
 
     // routers
     server.use('/', authRouter);
+
+    // error handlers
+    server.use(notFoundHandler);
+    server.use(errorHandler);
   } catch (error) {
     console.error(error);
   }
