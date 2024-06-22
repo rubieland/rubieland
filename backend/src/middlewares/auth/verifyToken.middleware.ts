@@ -33,7 +33,7 @@ export const verifyToken = async (
       req.user = { id: decoded?.id, role: decoded?.role };
     }
     next();
-  } catch (error) {
+  } catch (error: unknown) {
     // TODO: use i18n
     return res
       .status(403)

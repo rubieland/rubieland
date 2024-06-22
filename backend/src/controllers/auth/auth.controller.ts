@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 import User from '../../models/User.model';
 import { trimData } from '../../utils/string.utils';
 import { IUser, UserRole } from '../../models/types/User.types';
-import { t } from '../../loaders/i18n.loader';
+import i18n from '../../config/i18n';
 
 export const register = async (
   req: Request,
@@ -31,11 +31,13 @@ export const register = async (
     const isUserInBase = await User.findOne({ email: newUser.email });
 
     if (isUserInBase) {
-      return res.status(400).json({ error: t('auth.error.userExistsInBase') });
+      return res
+        .status(400)
+        .json({ error: i18n.t('auth.error.userExistsInBase') });
     }
 
     await newUser.save();
-    res.status(201).json({ message: t('auth.success.register'), newUser });
+    res.status(201).json({ message: i18n.t('auth.success.register'), newUser });
   } catch (error: unknown) {
     next(error);
   }
@@ -57,7 +59,7 @@ export const login = async (
 
     if (!user) {
       return res.status(400).json({
-        error: t('auth.error.invalidCredentials'),
+        error: i18n.t('auth.error.invalidCredentials'),
       });
     }
 
@@ -66,13 +68,13 @@ export const login = async (
     if (!isPasswordMatch) {
       return res
         .status(400)
-        .json({ error: t('auth.error.invalidCredentials') });
+        .json({ error: i18n.t('auth.error.invalidCredentials') });
     }
 
     const token = user.createJWT();
 
     res.status(200).json({
-      message: t('auth.success.login', { firstName: user.firstName }),
+      message: i18n.t('auth.success.login', { firstName: user.firstName }),
       user,
       token,
     });
