@@ -7,7 +7,7 @@
   "scripts": {
     "test": "jest",
     "build": "tsc",
-    "dev": "tsc --noEmit && tsx watch server.ts",
+    "dev": "tsc && tsx watch server.ts",
     "prod": "set NODE_ENV=production && node dist/server.js",
     "format": "prettier --write .",
     "lint": "eslint ."
