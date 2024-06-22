@@ -1,4 +1,4 @@
-import i18n from './i18n.loader';
+import i18n from '../config/i18n';
 import { handle as i18nextMiddleware } from 'i18next-express-middleware';
 import cors from 'cors';
 import path from 'path';
@@ -14,8 +14,8 @@ import {
 // destructure env to get env variables
 const { CLIENT_HOST, CLIENT_PORT } = env;
 
-export const __filename = fileURLToPath(import.meta.url);
-export const __dirname = path.dirname(__filename);
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 export const loadExpress = async ({ server }: { server: Express }) => {
   try {
@@ -36,7 +36,8 @@ export const loadExpress = async ({ server }: { server: Express }) => {
     // error handlers
     server.use(notFoundHandler);
     server.use(errorHandler);
-  } catch (error) {
-    console.error(error);
+  } catch (error: unknown) {
+    console.error(`An error occured when loading Express: ${error}`);
+    process.exit(1);
   }
 };

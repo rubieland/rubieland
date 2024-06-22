@@ -15,8 +15,8 @@
     "minLength": "{{fieldname}} doit contenir {{min}} caractères minimum",
     "maxLength": "{{fieldname}} ne peut contenir que {{max}} caractères maximum",
     "invalid": "{{fieldname}} est invalide. {{rule}}",
-    "saveFailed": "Une erreur est survenue lors de la sauvegarde des données. Veuillez réessayer.",
-    "comparePasswordFailed": "Une erreur est survenue lors de la comparaison des mots de passe. Veuillez réessayer."
+    "saveFailed": "Une erreur est survenue lors de la sauvegarde des données. Veuillez réessayer",
+    "comparePasswordFailed": "Une erreur est survenue lors de la comparaison des mots de passe. Veuillez réessayer"
   },
   "auth": {
     "success": {
@@ -24,7 +24,7 @@
       "login": "Connexion réussie ! Bienvenue {{firstName}} !"
     },
     "error": {
-      "userExistsInBase": "Cet utilisateur existe déjà. Veuillez entrer un nouvel email.",
+      "userExistsInBase": "Cet utilisateur existe déjà. Veuillez entrer un nouvel email",
       "invalidCredentials": "Identifiants incorrects",
       "internalServerError": "Erreur interne du serveur",
       "invalidToken": "Accès refusé. Veuillez vous connecter",
