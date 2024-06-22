@@ -7,6 +7,7 @@ import bcrypt from 'bcrypt';
 import { formatName } from '../utils/string.utils';
 import jwt from 'jsonwebtoken';
 import { env } from '../loaders/env.loader';
+import { t } from '../loaders/i18n.loader';
 
 const { JWT_SECRET, JWT_EXPIRATION } = env;
 
@@ -107,12 +108,12 @@ userSchema.pre(
       }
 
       next();
-    } catch (error: any) {
-      if (error instanceof Error) {
-        next(error);
-      } else {
-        next(new Error('An unexpected error occurred.'));
-      }
+    } catch (error: unknown) {
+      next(
+        error instanceof Error
+          ? new Error(t('validation.saveFailed'))
+          : new Error(t('common.error.unknown')),
+      );
     }
   },
 );
@@ -123,8 +124,10 @@ userSchema.methods.comparePassword = async function (
   const user = this as UserDocument;
   try {
     return await bcrypt.compare(candidatePassword, user.password);
-  } catch (error) {
-    throw new Error('An error occurred while comparing passwords.');
+  } catch (error: unknown) {
+    throw error instanceof Error
+      ? new Error(t('validation.comparePasswordFailed'))
+      : new Error(t('common.error.unknown'));
   }
 };
 
