@@ -1,10 +1,17 @@
 import Router, { Express } from 'express';
-import { login, register } from '../controllers/auth/auth.controller';
+import {
+  getTest,
+  login,
+  register,
+  testVerifyToken,
+} from '../controllers/auth/auth.controller';
 import { verifyToken } from '../middlewares/auth/verifyToken.middleware';
 
 const router: Express = Router();
 
+router.get('/testVerifyToken', verifyToken, testVerifyToken);
 router.post('/login', login);
-router.post('/register', verifyToken, register);
+router.post('/register', register);
+router.get('/', getTest);
 
 export default router;

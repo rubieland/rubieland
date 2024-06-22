@@ -6,17 +6,10 @@ import { UserDocument, UserRole } from './types/User.types';
 import bcrypt from 'bcrypt';
 import { formatName } from '../utils/string.utils';
 import jwt from 'jsonwebtoken';
-import * as dotenv from 'dotenv';
+import { env } from '../loaders/env.loader';
+import { t } from '../loaders/i18n.loader';
 
-dotenv.config();
-
-const { JWT_SECRET, JWT_EXPIRATION } = process.env;
-
-if (!JWT_SECRET || JWT_SECRET === '') {
-  throw new Error('JWT_SECRET is undefined!');
-} else if (!JWT_EXPIRATION || JWT_EXPIRATION === '') {
-  throw new Error('JWT_EXPIRATION is undefined!');
-}
+const { JWT_SECRET, JWT_EXPIRATION } = env;
 
 /**
  * TODO:
@@ -64,7 +57,7 @@ const userSchema = new Schema<UserDocument>(
       type: String,
       required: true,
       trim: true,
-      maxlength: 30,
+      maxlength: 100,
       minlength: 8,
       validate: [
         (v: string) => regexes.password.test(v),
@@ -115,12 +108,12 @@ userSchema.pre(
       }
 
       next();
-    } catch (error: any) {
-      if (error instanceof Error) {
-        next(error);
-      } else {
-        next(new Error('An unexpected error occurred.'));
-      }
+    } catch (error: unknown) {
+      next(
+        error instanceof Error
+          ? new Error(t('validation.saveFailed'))
+          : new Error(t('common.error.unknown')),
+      );
     }
   },
 );
@@ -131,8 +124,10 @@ userSchema.methods.comparePassword = async function (
   const user = this as UserDocument;
   try {
     return await bcrypt.compare(candidatePassword, user.password);
-  } catch (error) {
-    throw new Error('An error occurred while comparing passwords.');
+  } catch (error: unknown) {
+    throw error instanceof Error
+      ? new Error(t('validation.comparePasswordFailed'))
+      : new Error(t('common.error.unknown'));
   }
 };
 
@@ -140,6 +135,7 @@ userSchema.methods.createJWT = function () {
   return jwt.sign(
     {
       id: this._id,
+      role: this.role,
     },
     JWT_SECRET,
     { expiresIn: JWT_EXPIRATION },

@@ -1,8 +1,34 @@
 {
+  "common": {
+    "error": {
+      "400": "Bad Request",
+      "401": "Unauthorized",
+      "403": "Forbidden",
+      "404": "Not Found",
+      "415": "Unsupported Media Type",
+      "500": "Internal server error",
+      "unknown": "An unexpected error occured",
+      "saveFailed": "An error occurred while saving the data. Please try again.",
+      "comparePasswordFailed": "An error occurred while comparing passwords. Please try again."
+    }
+  },
   "validation": {
     "required": "{{fieldname}} is required",
     "minLength": "{{fieldname}} must contain at least {{min}} characters",
     "maxLength": "{{fieldname}} must not contain more than {{max}} characters",
     "invalid": "{{fieldname}} is invalid. {{rule}}"
+  },
+  "auth": {
+    "success": {
+      "register": "Registration successful!",
+      "login": "Login successful! Welcome {{firstName}}!"
+    },
+    "error": {
+      "userExistsInBase": "This user already exists. Please enter a new email.",
+      "invalidCredentials": "Invalid credentials",
+      "internalServerError": "Internal server error",
+      "invalidToken": "Access denied. Please log in",
+      "tokenExpired": "Access denied. Please log in again"
+    }
   }
 }

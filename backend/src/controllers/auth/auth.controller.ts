@@ -1,9 +1,14 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import User from '../../models/User.model';
 import { trimData } from '../../utils/string.utils';
 import { IUser, UserRole } from '../../models/types/User.types';
+import { t } from '../../loaders/i18n.loader';
 
-export const register = async (req: Request, res: Response) => {
+export const register = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
   try {
     const { firstName, lastName, email, password, phone } = trimData(req.body);
 
@@ -21,17 +26,26 @@ export const register = async (req: Request, res: Response) => {
       role: UserRole.USER,
     };
 
-    const newUser = await User.create(user);
+    const newUser = new User(user);
+
+    const isUserInBase = await User.findOne({ email: newUser.email });
+
+    if (isUserInBase) {
+      return res.status(400).json({ error: t('auth.error.userExistsInBase') });
+    }
 
     await newUser.save();
-    // TODO: replace message with t(key)
-    res.status(201).json({ message: 'Nouvel utilisateur créé !', newUser });
-  } catch (error: any) {
-    res.status(400).json({ error: error.message });
+    res.status(201).json({ message: t('auth.success.register'), newUser });
+  } catch (error: unknown) {
+    next(error);
   }
 };
 
-export const login = async (req: Request, res: Response) => {
+export const login = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
   try {
     /**
      * TODO:
@@ -42,27 +56,41 @@ export const login = async (req: Request, res: Response) => {
     const user = await User.findOne({ email: email.toLowerCase() });
 
     if (!user) {
-      // TODO: replace error with t(key)
       return res.status(400).json({
-        error: 'Invalid credentials',
+        error: t('auth.error.invalidCredentials'),
       });
     }
 
     const isPasswordMatch = await user.comparePassword(password);
 
     if (!isPasswordMatch) {
-      // TODO: replace error with t(key)
-      return res.status(400).json({ error: 'Invalid credentials' });
+      return res
+        .status(400)
+        .json({ error: t('auth.error.invalidCredentials') });
     }
 
-    const token = await user.createJWT();
+    const token = user.createJWT();
 
     res.status(200).json({
-      // TODO: replace message with t(key)
-      message: `Login successful! Welcome ${user.firstName} ${user.lastName}!`,
+      message: t('auth.success.login', { firstName: user.firstName }),
+      user,
       token,
     });
-  } catch (error: any) {
-    res.status(400).json({ error: error.message });
+  } catch (error: unknown) {
+    next(error);
   }
+};
+
+// TODO: delete this controller => used for testing verifyToken middleware
+export const testVerifyToken = (req: Request, res: Response) => {
+  res.json({ message: 'Hello there!' });
+};
+
+// TODO: delete this controller => used for any kind of test
+export const getTest = async (
+  req: Request,
+  res: Response,
+  _next: NextFunction,
+) => {
+  res.status(200).json({ message: 'Test' });
 };

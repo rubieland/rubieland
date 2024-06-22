@@ -2,8 +2,18 @@ import i18n from 'i18next';
 import Backend from 'i18next-fs-backend';
 import { LanguageDetector } from 'i18next-http-middleware';
 import path from 'path';
+import { fileURLToPath } from 'url';
 
-const __dirname = import.meta.dirname;
+/**
+ * DOCS: check i18next crash course for a good implementation
+ * and use of the library features:
+ *  https://www.youtube.com/watch?v=SA_9i4TtxLQ
+ */
+
+export const __filename = fileURLToPath(import.meta.url);
+export const __dirname = path.dirname(__filename);
+const defaultLanguage = 'fr';
+const languages = ['fr', 'en'];
 
 export const initI18n = () =>
   new Promise<void>((resolve, reject) => {
@@ -12,10 +22,23 @@ export const initI18n = () =>
       .use(LanguageDetector)
       .init(
         {
-          lng: 'fr',
-          fallbackLng: 'en',
+          lng: defaultLanguage,
+          fallbackLng: defaultLanguage,
+          supportedLngs: languages,
+          preload: languages,
+          detection: {
+            order: ['cookie', 'queryString', 'header'],
+            caches: ['cookie'],
+            lookupQuerystring: 'lang',
+            lookupCookie: 'lang',
+            lookupHeader: 'Accept-Language',
+          },
           backend: {
-            loadPath: path.join(__dirname, '../locales/{{lng}}/{{lng}}.json'),
+            loadPath: path.join(
+              __dirname,
+              '..',
+              'locales/{{lng}}/{{lng}}.json',
+            ),
           },
         },
         (error) => {

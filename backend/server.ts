@@ -1,12 +1,12 @@
 import { initI18n } from './src/loaders/i18n.loader';
 import express from 'express';
-import * as dotenv from 'dotenv';
 import { loadExpress } from './src/loaders/express.loader';
 import { loadDatabaseConnection } from './src/loaders/db.loader';
+import { env } from './src/loaders/env.loader';
 
-dotenv.config();
+// destructure env to get env variables
+const { APP_PORT, APP_HOST } = env;
 
-const { APP_HOST, APP_PORT } = process.env;
 const server = express();
 
 const startServer = async () => {
