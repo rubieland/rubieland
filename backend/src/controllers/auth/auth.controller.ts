@@ -28,6 +28,12 @@ export const register = async (
 
     const newUser = new User(user);
 
+    const isUserInBase = await User.findOne({ email: newUser.email });
+
+    if (isUserInBase) {
+      return res.status(400).json({ error: t('auth.error.userExistsInBase') });
+    }
+
     await newUser.save();
     res.status(201).json({ message: t('auth.success.register'), newUser });
   } catch (error: unknown) {
