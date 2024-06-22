@@ -8,8 +8,8 @@
       "415": "Unsupported Media Type",
       "500": "Internal server error",
       "unknown": "An unexpected error occured",
-      "saveFailed": "An error occurred while saving the data. Please try again.",
-      "comparePasswordFailed": "An error occurred while comparing passwords. Please try again."
+      "saveFailed": "An error occurred while saving the data. Please try again",
+      "comparePasswordFailed": "An error occurred while comparing passwords. Please try again"
     }
   },
   "validation": {
@@ -24,7 +24,7 @@
       "login": "Login successful! Welcome {{firstName}}!"
     },
     "error": {
-      "userExistsInBase": "This user already exists. Please enter a new email.",
+      "userExistsInBase": "This user already exists. Please enter a new email",
       "invalidCredentials": "Invalid credentials",
       "internalServerError": "Internal server error",
       "invalidToken": "Access denied. Please log in",

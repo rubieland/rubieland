@@ -23,10 +23,9 @@ const loadEnvVariables = (): EnvVariables => {
 
   requiredEnvVariables.forEach((variable) => {
     const value = process.env[variable];
-    if (value === undefined || value === '') {
-      throw new Error(
-        `La variable d'environnement ${variable} est manquante ou vide.`,
-      );
+    if (!value || value === '') {
+      console.error(`The env variable "${variable}" is missing or undefined`);
+      process.exit(1);
     }
     env[variable] = value;
   });

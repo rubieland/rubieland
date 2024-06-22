@@ -7,7 +7,7 @@ import bcrypt from 'bcrypt';
 import { formatName } from '../utils/string.utils';
 import jwt from 'jsonwebtoken';
 import { env } from '../loaders/env.loader';
-import { t } from '../loaders/i18n.loader';
+import i18n from '../config/i18n';
 
 const { JWT_SECRET, JWT_EXPIRATION } = env;
 
@@ -111,8 +111,8 @@ userSchema.pre(
     } catch (error: unknown) {
       next(
         error instanceof Error
-          ? new Error(t('validation.saveFailed'))
-          : new Error(t('common.error.unknown')),
+          ? new Error(i18n.t('validation.saveFailed'))
+          : new Error(i18n.t('common.error.unknown')),
       );
     }
   },
@@ -126,8 +126,8 @@ userSchema.methods.comparePassword = async function (
     return await bcrypt.compare(candidatePassword, user.password);
   } catch (error: unknown) {
     throw error instanceof Error
-      ? new Error(t('validation.comparePasswordFailed'))
-      : new Error(t('common.error.unknown'));
+      ? new Error(i18n.t('validation.comparePasswordFailed'))
+      : new Error(i18n.t('common.error.unknown'));
   }
 };
 

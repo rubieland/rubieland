@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import { ErrorResponse } from '../../types/Error';
 import { env } from '../../loaders/env.loader';
-import { t } from '../../loaders/i18n.loader';
+import i18n from '../../config/i18n';
 
 const { NODE_ENV } = env;
 
@@ -12,7 +12,7 @@ export const notFoundHandler = (
   next: NextFunction,
 ) => {
   res.status(404);
-  const error = new Error(`${t('common.error.404')}: ${req.originalUrl}`);
+  const error = new Error(`${i18n.t('common.error.404')}: ${req.originalUrl}`);
   next(error);
 };
 
@@ -38,7 +38,7 @@ export const errorHandler = (
    */
   const message =
     statusCode !== 404
-      ? `${t(`common.error.${statusCode}`)}: ${err.message}`
+      ? `${i18n.t(`common.error.${statusCode}`)}: ${err.message}`
       : err.message;
 
   /**
