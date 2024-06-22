@@ -11,7 +11,8 @@
     "skipLibCheck": true, // Skips type checking of all declaration files (*.d.ts).
     "declaration": true, // Generates corresponding '.d.ts' files.
     "declarationMap": true, // Generates a map file for each corresponding '.d.ts' file.
-    "sourceMap": true // Generates source maps for the emitted JavaScript files.
+    "sourceMap": true, // Generates source maps for the emitted JavaScript files.
+    "noEmitOnError": true // Disable emitting files if any type checking errors are reported.
   },
   "include": [
     "src/**/*.ts", // Includes TypeScript files in the 'src' directory and its subdirectories.

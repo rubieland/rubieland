@@ -1,4 +1,4 @@
-import { initI18n } from './src/loaders/i18n.loader';
+import './src/config/i18n'; // initialize i18n
 import express from 'express';
 import { loadExpress } from './src/loaders/express.loader';
 import { loadDatabaseConnection } from './src/loaders/db.loader';
@@ -11,29 +11,26 @@ const server = express();
 
 const startServer = async () => {
   try {
-    // initialize i18n
-    await initI18n();
-
     // connect to database
     await loadDatabaseConnection();
 
     // load express
     await loadExpress({ server });
-  } catch (error) {
-    console.error(error);
+
+    // start server
+    server
+      .listen(APP_PORT, () => {
+        const link = `http://${APP_HOST ?? 'localhost'}:${APP_PORT ?? 9000}`;
+        console.log(`Server is running on ${link}`);
+      })
+      .on('error', (error: Error) => {
+        console.error(`An error occured when starting server: ${error}`);
+        process.exit(1);
+      });
+  } catch (error: unknown) {
+    console.error(`An error occured when initializing project: ${error}`);
     process.exit(1);
   }
-
-  // start server
-  server
-    .listen(APP_PORT, () => {
-      const link = `http://${APP_HOST ?? 'localhost'}:${APP_PORT ?? 9000}`;
-      console.log(`Server is running on ${link}`);
-    })
-    .on('error', (error) => {
-      console.error(error);
-      process.exit(1);
-    });
 };
 
 startServer();
