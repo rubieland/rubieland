@@ -27,7 +27,8 @@
       "password": "les caractères suivants ne sont pas acceptés: < > ( ) { } \\ et `",
       "phone": "veuillez entrer un numéro de téléphone au format international : +XX 0000000000 (remplacez XX par le code du pays)",
       "minLength": "{{field}} doit contenir {{min}} caractères minimum",
-      "maxLength": "{{field}} ne peut contenir que {{max}} caractères maximum"
+      "maxLength": "{{field}} ne peut contenir que {{max}} caractères maximum",
+      "required": "il ne doit pas être vide"
     },
     "messages": {
       "required": "Le champ {{field}} est requis",
