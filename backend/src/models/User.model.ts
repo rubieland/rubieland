@@ -24,7 +24,7 @@ const userSchema = new Schema<UserDocument>(
   {
     firstName: {
       type: String,
-      required: true,
+      required: [true, getValidationErrorMessage('firstName', 'required')],
       trim: true,
       maxlength: 30,
       minlength: 2,
@@ -35,7 +35,7 @@ const userSchema = new Schema<UserDocument>(
     },
     lastName: {
       type: String,
-      required: true,
+      required: [true, getValidationErrorMessage('lastName', 'required')],
       trim: true,
       maxlength: 30,
       minlength: 2,
@@ -46,7 +46,7 @@ const userSchema = new Schema<UserDocument>(
     },
     email: {
       type: String,
-      required: true,
+      required: [true, getValidationErrorMessage('email', 'required')],
       trim: true,
       unique: true,
       lowercase: true,
@@ -58,7 +58,7 @@ const userSchema = new Schema<UserDocument>(
     },
     password: {
       type: String,
-      required: true,
+      required: [true, getValidationErrorMessage('password', 'required')],
       trim: true,
       maxlength: 100,
       minlength: 8,
