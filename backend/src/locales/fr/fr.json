@@ -7,16 +7,32 @@
       "404": "Not Found",
       "415": "Unsupported Media Type",
       "500": "Internal server error",
-      "unknown": "Une erreur inconnue est survenue"
+      "unknown": "Une erreur inconnue est survenue",
+      "saveFailed": "Une erreur est survenue lors de la sauvegarde des données. Veuillez réessayer"
     }
   },
   "validation": {
-    "required": "{{fieldname}} est requis",
-    "minLength": "{{fieldname}} doit contenir {{min}} caractères minimum",
-    "maxLength": "{{fieldname}} ne peut contenir que {{max}} caractères maximum",
-    "invalid": "{{fieldname}} est invalide. {{rule}}",
-    "saveFailed": "Une erreur est survenue lors de la sauvegarde des données. Veuillez réessayer",
-    "comparePasswordFailed": "Une erreur est survenue lors de la comparaison des mots de passe. Veuillez réessayer"
+    "fields": {
+      "firstName": "Prénom",
+      "lastName": "Nom de famille",
+      "email": "E-mail",
+      "password": "Mot de passe",
+      "phone": "N° de téléphone",
+      "avatar": "Avatar"
+    },
+    "rules": {
+      "email": "veuillez saisir une adresse e-mail valide",
+      "firstName": "il ne peut contenir que des lettres, traits d'union, espaces et apostrophes",
+      "lastName": "il ne peut contenir que des lettres, traits d'union, espaces et apostrophes",
+      "password": "les caractères suivants ne sont pas acceptés: < > ( ) { } \\ et `",
+      "phone": "veuillez entrer un numéro de téléphone au format international : +XX 0000000000 (remplacez XX par le code du pays)",
+      "minLength": "{{field}} doit contenir {{min}} caractères minimum",
+      "maxLength": "{{field}} ne peut contenir que {{max}} caractères maximum"
+    },
+    "messages": {
+      "required": "Le champ {{field}} est requis",
+      "invalid": "Le champ {{field}} est invalide: {{rule}}"
+    }
   },
   "auth": {
     "success": {
@@ -28,7 +44,8 @@
       "invalidCredentials": "Identifiants incorrects",
       "internalServerError": "Erreur interne du serveur",
       "invalidToken": "Accès refusé. Veuillez vous connecter",
-      "tokenExpired": "Accès refusé. Veuillez vous reconnecter"
+      "tokenExpired": "Accès refusé. Veuillez vous reconnecter",
+      "comparePasswordFailed": "Une erreur est survenue lors de la comparaison des mots de passe. Veuillez réessayer"
     }
   }
 }

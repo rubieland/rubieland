@@ -8,16 +8,33 @@
       "415": "Unsupported Media Type",
       "500": "Internal server error",
       "unknown": "An unexpected error occured",
-      "saveFailed": "An error occurred while saving the data. Please try again",
-      "comparePasswordFailed": "An error occurred while comparing passwords. Please try again"
+      "saveFailed": "An error occurred while saving the data. Please try again"
     }
   },
   "validation": {
-    "required": "{{fieldname}} is required",
-    "minLength": "{{fieldname}} must contain at least {{min}} characters",
-    "maxLength": "{{fieldname}} must not contain more than {{max}} characters",
-    "invalid": "{{fieldname}} is invalid. {{rule}}"
+    "fields": {
+      "firstName": "First name",
+      "lastName": "Last name",
+      "email": "Email",
+      "password": "Password",
+      "phone": "Phone number",
+      "avatar": "Avatar"
+    },
+    "rules": {
+      "email": "please enter a valid email address",
+      "firstName": "it can only contain letters, hyphens, spaces and apostrophes",
+      "lastName": "it can only contain letters, hyphens, spaces and apostrophes",
+      "password": "the following special characters are not accepted: < > ( ) { } \\ and `",
+      "phone": "Please enter a phone number in the international format: +XX 0000000000 (replace XX with the country code)",
+      "minLength": "{{field}} must contain at least {{min}} characters",
+      "maxLength": "{{field}} must not contain more than {{max}} characters"
+    },
+    "messages": {
+      "required": "The field {{field}} is required",
+      "invalid": "The field {{field}} is invalid: {{rule}}"
+    }
   },
+
   "auth": {
     "success": {
       "register": "Registration successful!",
@@ -28,7 +45,8 @@
       "invalidCredentials": "Invalid credentials",
       "internalServerError": "Internal server error",
       "invalidToken": "Access denied. Please log in",
-      "tokenExpired": "Access denied. Please log in again"
+      "tokenExpired": "Access denied. Please log in again",
+      "comparePasswordFailed": "An error occurred while comparing passwords. Please try again"
     }
   }
 }

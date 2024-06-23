@@ -111,7 +111,7 @@ userSchema.pre(
     } catch (error: unknown) {
       next(
         error instanceof Error
-          ? new Error(i18n.t('validation.saveFailed'))
+          ? new Error(i18n.t('common.error.saveFailed'))
           : new Error(i18n.t('common.error.unknown')),
       );
     }
@@ -126,7 +126,7 @@ userSchema.methods.comparePassword = async function (
     return await bcrypt.compare(candidatePassword, user.password);
   } catch (error: unknown) {
     throw error instanceof Error
-      ? new Error(i18n.t('validation.comparePasswordFailed'))
+      ? new Error(i18n.t('auth.error.comparePasswordFailed'))
       : new Error(i18n.t('common.error.unknown'));
   }
 };
