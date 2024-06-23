@@ -63,7 +63,9 @@ const userSchema = new Schema<UserDocument>(
       maxlength: 100,
       minlength: 8,
       validate: [
-        (v: string) => regexes.password.test(v),
+        (v: string) =>
+          // TODO: maybe replace with regex + change message in translation files
+          validator.isStrongPassword(v),
         getValidationErrorMessage('password', 'password'),
       ],
     },
