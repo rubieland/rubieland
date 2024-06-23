@@ -52,3 +52,12 @@ export const getValidationErrorMessage = (
     .replace('{{field}}', fieldName)
     .replace('{{rule}}', ruleMessage);
 };
+
+// extract custom error message from mongoose validation error object
+export const extractValidationErrorMessages = (error: any) => {
+  if (error.name === 'ValidationError') {
+    const messages = Object.values(error.errors).map((err: any) => err.message);
+    return messages;
+  }
+  return [error.message];
+};
