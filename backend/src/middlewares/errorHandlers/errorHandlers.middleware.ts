@@ -24,7 +24,7 @@ export const errorHandler = (
   _next: NextFunction,
 ) => {
   // log error message in console
-  console.log(err, err.message);
+  console.error(err);
 
   // define status code to send back in response
   const statusCode =
