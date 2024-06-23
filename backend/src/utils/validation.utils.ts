@@ -5,9 +5,9 @@ import { parsePhoneNumberFromString } from 'libphonenumber-js';
  * @returns(boolean): returns true if the string is a valid French phone number
  */
 
-export const isValidFrenchPhoneNumber = (phoneNumber: string): boolean => {
   // remove spaces
   const normalizedPhoneNumber = phoneNumber.replace(/\s/g, '');
+export const validatePhoneNumber = (phoneNumber: string): boolean => {
 
   // parse phone number
   const parsedPhoneNumber = parsePhoneNumberFromString(

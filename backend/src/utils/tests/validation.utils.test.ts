@@ -1,6 +1,6 @@
-// TODO: add tests for isValidFrenchPhoneNumber(
+// TODO: add tests for isValidPhoneNumber(
 
-// import { isValidFrenchPhoneNumber } from '../validation.utils';
+// import { isValidPhoneNumber } from '../validation.utils';
 
 // const numbersToTest = [
 //   '0612121212',
