@@ -1,7 +1,10 @@
 import { Schema, model } from 'mongoose';
 import { regexes } from './validators/validators';
 import validator from 'validator';
-import { isValidFrenchPhoneNumber } from '../utils/validation.utils';
+import {
+  getValidationErrorMessage,
+  validatePhoneNumber,
+} from '../utils/validation.utils';
 import { UserDocument, UserRole } from './types/User.types';
 import bcrypt from 'bcrypt';
 import { formatName } from '../utils/string.utils';
@@ -27,7 +30,7 @@ const userSchema = new Schema<UserDocument>(
       minlength: 2,
       validate: [
         (v: string) => regexes.nameField.test(v),
-        `Le prénom est invalide. Il ne peut contenir que des lettres, traits d'union, espaces et apostrophes.`,
+        getValidationErrorMessage('firstName', 'firstName'),
       ],
     },
     lastName: {
@@ -38,7 +41,7 @@ const userSchema = new Schema<UserDocument>(
       minlength: 2,
       validate: [
         (v: string) => regexes.nameField.test(v),
-        `Le nom de famille est invalide. Il ne peut contenir que des lettres, traits d'union, espaces et apostrophes.`,
+        getValidationErrorMessage('lastName', 'lastName'),
       ],
     },
     email: {
@@ -50,7 +53,7 @@ const userSchema = new Schema<UserDocument>(
       maxlength: 60,
       validate: [
         validator.isEmail,
-        `Email incorrect. Veuillez entrer un email valide (mon.adresse@email.com).`,
+        getValidationErrorMessage('email', 'email'),
       ],
     },
     password: {
@@ -61,7 +64,7 @@ const userSchema = new Schema<UserDocument>(
       minlength: 8,
       validate: [
         (v: string) => regexes.password.test(v),
-        'Mot de passe invalide. Les caractères suivants ne sont pas acceptés: < > ( ) { } \\ et `',
+        getValidationErrorMessage('password', 'password'),
       ],
     },
     phone: {
@@ -69,8 +72,8 @@ const userSchema = new Schema<UserDocument>(
       trim: true,
       minlength: 10,
       validate: [
-        (v: string) => isValidFrenchPhoneNumber(v),
-        `Numéro de téléphone invalide. Veuillez entrer un numéro au format "0XXXXXXXXX" ou "+33XXXXXXXXX"`,
+        (v: string) => validatePhoneNumber(v),
+        getValidationErrorMessage('phone', 'phone'),
       ],
     },
     avatar: {
