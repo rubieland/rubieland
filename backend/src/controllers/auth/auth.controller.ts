@@ -3,6 +3,7 @@ import User from '../../models/User.model';
 import { trimData } from '../../utils/string.utils';
 import { IUser, UserRole } from '../../models/types/User.types';
 import i18n from '../../config/i18n';
+import { extractValidationErrorMessages } from '../../utils/validation.utils';
 
 export const register = async (
   req: Request,
@@ -39,7 +40,12 @@ export const register = async (
     await newUser.save();
     res.status(201).json({ message: i18n.t('auth.success.register'), newUser });
   } catch (error: unknown) {
-    next(error);
+    if (error instanceof Error) {
+      const messages = extractValidationErrorMessages(error);
+      res.status(400).json({ errors: messages });
+    } else {
+      next(error);
+    }
   }
 };
 
