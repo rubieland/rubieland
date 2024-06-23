@@ -16,7 +16,6 @@ export const validatePhoneNumber = (phoneNumber: string): boolean => {
     const parsedPhoneNumber = parsePhoneNumberWithError(phoneNumber);
 
     const formattedNb = parsedPhoneNumber.formatInternational();
-    console.log(formattedNb);
 
     // return true if parsed phone number is defined and valid
     return !!parsedPhoneNumber && isValidPhoneNumber(formattedNb);
