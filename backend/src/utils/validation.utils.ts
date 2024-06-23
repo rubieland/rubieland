@@ -24,12 +24,12 @@ export const validatePhoneNumber = (phoneNumber: string): boolean => {
       console.error(
         `An error occured when trying to parse phone number: ${error}`,
       );
-      process.exit(1);
+      return false;
     } else {
       console.error(
         `An error occured when trying to validate phone number: ${error}`,
       );
-      process.exit(1);
+      return false;
     }
   }
 };
