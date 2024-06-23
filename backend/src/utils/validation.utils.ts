@@ -35,4 +35,21 @@ export const validatePhoneNumber = (phoneNumber: string): boolean => {
   }
 };
 
+/**
+ *
+ * @param field : the field name
+ * @param rule : the validation rule for this field
+ * @returns : the validation error message from the translation files to send if the field is not valid
+ */
+export const getValidationErrorMessage = (
+  field: string,
+  rule: string,
+): string => {
+  const fieldName = i18n.t(`validation.fields.${field}`);
+  const ruleMessage = i18n.t(`validation.rules.${rule}`);
+  const errorMessageTemplate = i18n.t('validation.messages.invalid');
+
+  return errorMessageTemplate
+    .replace('{{field}}', fieldName)
+    .replace('{{rule}}', ruleMessage);
 };
