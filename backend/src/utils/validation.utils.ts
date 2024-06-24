@@ -4,6 +4,7 @@ import {
   parsePhoneNumberWithError,
 } from 'libphonenumber-js';
 import i18n from '../config/i18n';
+import { Reason } from '../validation/types/validation.types';
 
 /**
  * @param phoneNumber(string): phone number to validate
@@ -43,7 +44,6 @@ interface GetValidationErrorMessageInterface {
 }
 
 // return a different validation error message from the translation files
-// depending on the params
 export const getValidationErrorMessage = ({
   field,
   rule,
@@ -80,8 +80,36 @@ export const getValidationErrorMessage = ({
   return result;
 };
 
+// return an array of missing or empty field names
+export const getMissingOrEmptyFields = (data: any): string[] => {
+  const invalidFields = [];
+  for (const [key, value] of Object.entries(data)) {
+    console.log(key, ': ', value);
+    if (!value || (typeof value === 'string' && value === '')) {
+      invalidFields.push(key);
+    }
+  }
+  return invalidFields;
+};
+
+// return an array validation error messages for all missing or empty fields
+export const getMissingOrEmptyFieldsErrorMessage = (
+  fields: string[],
+): string[] => {
+  const errors: string[] = [];
+  fields.forEach((field) => {
+    errors.push(
+      getValidationErrorMessage({
+        field,
+        reason: Reason.REQUIRED,
+      }),
+    );
+  });
+  return errors;
+};
+
 // extract custom error message from mongoose validation error object
-export const extractValidationErrorMessages = (error: any) => {
+export const extractValidationErrorMessagesFromError = (error: any) => {
   if (error.name === 'ValidationError') {
     const messages = Object.values(error.errors).map((err: any) => err.message);
     return messages;
