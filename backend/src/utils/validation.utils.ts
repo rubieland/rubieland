@@ -34,23 +34,58 @@ export const validatePhoneNumber = (phoneNumber: string): boolean => {
   }
 };
 
-/**
- *
- * @param field : the field name
- * @param rule : the validation rule for this field
- * @returns : the validation error message from the translation files to send if the field is not valid
- */
-export const getValidationErrorMessage = (
-  field: string,
-  rule: string,
-): string => {
+// enum for the reasons of a field validation fail
+export enum Reason {
+  INVALID = 'invalid',
+  REQUIRED = 'required',
+  MINLENGTH = 'minLength',
+  MAXLENGTH = 'maxLength',
+}
+
+interface GetValidationErrorMessageInterface {
+  field: string;
+  rule?: string;
+  minLength?: number;
+  maxLength?: number;
+  reason: Reason;
+}
+
+// return a different validation error message from the translation files
+// depending on the params
+export const getValidationErrorMessage = ({
+  field,
+  rule,
+  minLength,
+  maxLength,
+  reason,
+}: GetValidationErrorMessageInterface): string => {
   const fieldName = i18n.t(`validation.fields.${field}`);
   const ruleMessage = i18n.t(`validation.rules.${rule}`);
-  const errorMessageTemplate = i18n.t('validation.messages.invalid');
-
-  return errorMessageTemplate
-    .replace('{{field}}', fieldName)
-    .replace('{{rule}}', ruleMessage);
+  const errorMessageTemplate = i18n.t(`validation.messages.${reason}`);
+  let result = '';
+  switch (reason) {
+    case Reason.INVALID:
+      result = errorMessageTemplate
+        .replace('{{field}}', fieldName)
+        .replace('{{rule}}', ruleMessage);
+      break;
+    case Reason.REQUIRED:
+      result = errorMessageTemplate.replace('{{field}}', fieldName);
+      break;
+    case Reason.MINLENGTH:
+      result = errorMessageTemplate
+        .replace('{{field}}', fieldName)
+        .replace('{{minlength}}', String(minLength));
+      break;
+    case Reason.MAXLENGTH:
+      result = errorMessageTemplate
+        .replace('{{field}}', fieldName)
+        .replace('{{maxLength}}', String(maxLength));
+      break;
+    default:
+      result = '';
+  }
+  return result;
 };
 
 // extract custom error message from mongoose validation error object
