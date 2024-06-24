@@ -1,5 +1,5 @@
 import { Schema, model } from 'mongoose';
-import { regexes } from './validators/validators';
+import { regexes, strongPasswordOptions } from './validators/validators';
 import validator from 'validator';
 import {
   getValidationErrorMessage,
@@ -64,8 +64,10 @@ const userSchema = new Schema<UserDocument>(
       minlength: 8,
       validate: [
         (v: string) =>
-          // TODO: maybe replace with regex + change message in translation files
-          validator.isStrongPassword(v),
+          validator.isStrongPassword(v, {
+            ...strongPasswordOptions,
+            returnScore: false,
+          }),
         getValidationErrorMessage('password', 'password'),
       ],
     },
