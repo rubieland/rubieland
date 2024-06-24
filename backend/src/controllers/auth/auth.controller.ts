@@ -3,7 +3,11 @@ import User from '../../models/User.model';
 import { trimData } from '../../utils/string.utils';
 import { IUser, UserRole } from '../../models/types/User.types';
 import i18n from '../../config/i18n';
-import { extractValidationErrorMessages } from '../../utils/validation.utils';
+import {
+  extractValidationErrorMessagesFromError,
+  getMissingOrEmptyFields,
+  getMissingOrEmptyFieldsErrorMessage,
+} from '../../utils/validation.utils';
 
 export const register = async (
   req: Request,
@@ -28,7 +32,6 @@ export const register = async (
     };
 
     const newUser = new User(user);
-
     const isUserInBase = await User.findOne({ email: newUser.email });
 
     if (isUserInBase) {
@@ -41,7 +44,7 @@ export const register = async (
     res.status(201).json({ message: i18n.t('auth.success.register'), newUser });
   } catch (error: unknown) {
     if (error instanceof Error) {
-      const messages = extractValidationErrorMessages(error);
+      const messages = extractValidationErrorMessagesFromError(error);
       res.status(400).json({ errors: messages });
     } else {
       next(error);
@@ -61,6 +64,14 @@ export const login = async (
      */
 
     const { email, password } = trimData(req.body);
+    const missingOrEmptyFields = getMissingOrEmptyFields({ email, password });
+
+    if (missingOrEmptyFields && missingOrEmptyFields.length > 0) {
+      const errors = getMissingOrEmptyFieldsErrorMessage(missingOrEmptyFields);
+
+      return res.status(400).json({ errors });
+    }
+
     const user = await User.findOne({ email: email.toLowerCase() });
 
     if (!user) {
