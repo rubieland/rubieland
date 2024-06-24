@@ -24,7 +24,7 @@
       "email": "please enter a valid email address",
       "firstName": "it can only contain letters, hyphens, spaces and apostrophes",
       "lastName": "it can only contain letters, hyphens, spaces and apostrophes",
-      "password": "the following special characters are not accepted: < > ( ) { } \\ and `",
+      "password": "the password must contain at least 8 characters with at least: 1 lowercase, 1 uppercase, 1 number and 1 special character ",
       "phone": "Please enter a phone number in the international format: +XX 0000000000 (replace XX with the country code)",
       "minLength": "{{field}} must contain at least {{min}} characters",
       "maxLength": "{{field}} must not contain more than {{max}} characters",

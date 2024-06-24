@@ -24,7 +24,7 @@
       "email": "veuillez saisir une adresse e-mail valide",
       "firstName": "il ne peut contenir que des lettres, traits d'union, espaces et apostrophes",
       "lastName": "il ne peut contenir que des lettres, traits d'union, espaces et apostrophes",
-      "password": "les caractères suivants ne sont pas acceptés: < > ( ) { } \\ et `",
+      "password": "le mot de passe doit contenir au moins 8 caractères dont au moins: 1 minuscule, 1 majuscule, 1 chiffre, 1 caractère spécial",
       "phone": "veuillez entrer un numéro de téléphone au format international : +XX 0000000000 (remplacez XX par le code du pays)",
       "minLength": "{{field}} doit contenir {{min}} caractères minimum",
       "maxLength": "{{field}} ne peut contenir que {{max}} caractères maximum",
