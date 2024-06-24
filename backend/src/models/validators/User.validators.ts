@@ -11,3 +11,26 @@ export const strongPasswordOptions: StrongPasswordOptions = {
   minNumbers: 1,
   minSymbols: 1,
 };
+
+export const userFieldsLengths = {
+  firstName: {
+    minLength: 2,
+    maxLength: 30,
+  },
+  lastName: {
+    minLength: 2,
+    maxLength: 30,
+  },
+  email: {
+    minLength: 5,
+    maxLength: 60,
+  },
+  password: {
+    minLength: 8,
+    maxLength: 100,
+  },
+  phone: {
+    minLength: 9,
+    maxLength: 15,
+  },
+};
