@@ -3,10 +3,9 @@ import {
   regexes,
   strongPasswordOptions,
   userFieldsLengths,
-} from './validators/User.validators';
+} from '../validation/User.validators';
 import validator from 'validator';
 import {
-  Reason,
   getValidationErrorMessage,
   validatePhoneNumber,
 } from '../utils/validation.utils';
@@ -16,6 +15,7 @@ import { formatName } from '../utils/string.utils';
 import jwt from 'jsonwebtoken';
 import { env } from '../loaders/env.loader';
 import i18n from '../config/i18n';
+import { Reason } from '../validation/types/validation.types';
 
 const { JWT_SECRET, JWT_EXPIRATION } = env;
 
