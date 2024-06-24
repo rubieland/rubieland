@@ -9,3 +9,5 @@ describe('capitalize', () => {
     expect(result).toEqual(expected);
   });
 });
+
+// TODO: add tests for trimData, formatName
