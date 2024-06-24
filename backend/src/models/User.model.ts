@@ -1,7 +1,12 @@
 import { Schema, model } from 'mongoose';
-import { regexes, strongPasswordOptions } from './validators/validators';
+import {
+  regexes,
+  strongPasswordOptions,
+  userFieldsLengths,
+} from './validators/User.validators';
 import validator from 'validator';
 import {
+  Reason,
   getValidationErrorMessage,
   validatePhoneNumber,
 } from '../utils/validation.utils';
@@ -17,67 +22,175 @@ const { JWT_SECRET, JWT_EXPIRATION } = env;
 /**
  * TODO:
  * add validators for avatar (define accepted file formats, sizes...)
- * add pre('save') middleware to hash password, comparePasswords method, createJWT method
+ * test validations
  */
 
 const userSchema = new Schema<UserDocument>(
   {
     firstName: {
       type: String,
-      required: [true, getValidationErrorMessage('firstName', 'required')],
+      required: [
+        true,
+        getValidationErrorMessage({
+          field: 'firstName',
+          reason: Reason.REQUIRED,
+        }),
+      ],
       trim: true,
-      maxlength: 30,
-      minlength: 2,
+      maxlength: [
+        userFieldsLengths.firstName.maxLength,
+        getValidationErrorMessage({
+          field: 'firstName',
+          maxLength: userFieldsLengths.firstName.maxLength,
+          reason: Reason.MAXLENGTH,
+        }),
+      ],
+      minlength: [
+        userFieldsLengths.firstName.minLength,
+        getValidationErrorMessage({
+          field: 'firstName',
+          minLength: userFieldsLengths.firstName.minLength,
+          reason: Reason.MINLENGTH,
+        }),
+      ],
       validate: [
         (v: string) => regexes.nameField.test(v),
-        getValidationErrorMessage('firstName', 'firstName'),
+        getValidationErrorMessage({
+          field: 'firstName',
+          rule: 'firstName',
+          reason: Reason.INVALID,
+        }),
       ],
     },
     lastName: {
       type: String,
-      required: [true, getValidationErrorMessage('lastName', 'required')],
+      required: [
+        true,
+        getValidationErrorMessage({
+          field: 'lastName',
+          reason: Reason.REQUIRED,
+        }),
+      ],
       trim: true,
-      maxlength: 30,
-      minlength: 2,
+      maxlength: [
+        userFieldsLengths.lastName.maxLength,
+        getValidationErrorMessage({
+          field: 'lastName',
+          maxLength: userFieldsLengths.lastName.maxLength,
+          reason: Reason.MAXLENGTH,
+        }),
+      ],
+      minlength: [
+        userFieldsLengths.lastName.minLength,
+        getValidationErrorMessage({
+          field: 'lastName',
+          minLength: userFieldsLengths.lastName.minLength,
+          reason: Reason.MINLENGTH,
+        }),
+      ],
       validate: [
         (v: string) => regexes.nameField.test(v),
-        getValidationErrorMessage('lastName', 'lastName'),
+        getValidationErrorMessage({
+          field: 'lastName',
+          rule: 'lastName',
+          reason: Reason.INVALID,
+        }),
       ],
     },
     email: {
       type: String,
-      required: [true, getValidationErrorMessage('email', 'required')],
+      required: [
+        true,
+        getValidationErrorMessage({
+          field: 'email',
+          reason: Reason.REQUIRED,
+        }),
+      ],
       trim: true,
       unique: true,
       lowercase: true,
-      maxlength: 60,
+      maxlength: [
+        userFieldsLengths.email.maxLength,
+        getValidationErrorMessage({
+          field: 'email',
+          maxLength: userFieldsLengths.email.maxLength,
+          reason: Reason.MAXLENGTH,
+        }),
+      ],
+      minlength: [
+        userFieldsLengths.email.minLength,
+        getValidationErrorMessage({
+          field: 'email',
+          minLength: userFieldsLengths.email.minLength,
+          reason: Reason.MINLENGTH,
+        }),
+      ],
       validate: [
         validator.isEmail,
-        getValidationErrorMessage('email', 'email'),
+        getValidationErrorMessage({
+          field: 'email',
+          rule: 'email',
+          reason: Reason.INVALID,
+        }),
       ],
     },
     password: {
       type: String,
-      required: [true, getValidationErrorMessage('password', 'required')],
+      required: [
+        true,
+        getValidationErrorMessage({
+          field: 'password',
+          reason: Reason.REQUIRED,
+        }),
+      ],
       trim: true,
-      maxlength: 100,
-      minlength: 8,
+      maxlength: [
+        userFieldsLengths.password.maxLength,
+        getValidationErrorMessage({
+          field: 'password',
+          maxLength: userFieldsLengths.password.maxLength,
+          reason: Reason.MAXLENGTH,
+        }),
+      ],
+      minlength: [
+        userFieldsLengths.password.minLength,
+        getValidationErrorMessage({
+          field: 'password',
+          minLength: userFieldsLengths.password.minLength,
+          reason: Reason.MINLENGTH,
+        }),
+      ],
       validate: [
         (v: string) =>
           validator.isStrongPassword(v, {
             ...strongPasswordOptions,
             returnScore: false,
           }),
-        getValidationErrorMessage('password', 'password'),
+        getValidationErrorMessage({
+          field: 'password',
+          rule: 'password',
+          reason: Reason.INVALID,
+        }),
       ],
     },
     phone: {
       type: String,
       trim: true,
-      minlength: 10,
+      minlength: [
+        userFieldsLengths.phone.minLength,
+        getValidationErrorMessage({
+          field: 'phone',
+          minLength: userFieldsLengths.phone.minLength,
+          reason: Reason.MINLENGTH,
+        }),
+      ],
       validate: [
         (v: string) => validatePhoneNumber(v),
-        getValidationErrorMessage('phone', 'phone'),
+        getValidationErrorMessage({
+          field: 'phone',
+          rule: 'phone',
+          reason: Reason.INVALID,
+        }),
       ],
     },
     avatar: {
