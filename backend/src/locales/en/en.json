@@ -25,14 +25,13 @@
       "firstName": "it can only contain letters, hyphens, spaces and apostrophes",
       "lastName": "it can only contain letters, hyphens, spaces and apostrophes",
       "password": "the password must contain at least 8 characters with at least: 1 lowercase, 1 uppercase, 1 number and 1 special character ",
-      "phone": "Please enter a phone number in the international format: +XX 0000000000 (replace XX with the country code)",
-      "minLength": "{{field}} must contain at least {{min}} characters",
-      "maxLength": "{{field}} must not contain more than {{max}} characters",
-      "required": "it must not be empty"
+      "phone": "Please enter a phone number in the international format: +XX 0000000000 (replace XX with the country code)"
     },
     "messages": {
       "required": "The field {{field}} is required",
-      "invalid": "The field {{field}} is invalid: {{rule}}"
+      "invalid": "The field {{field}} is invalid: {{rule}}",
+      "minLength": "The field {{field}} must contain at least {{min}} characters",
+      "maxLength": "The field {{field}} must not contain more than {{max}} characters"
     }
   },
 

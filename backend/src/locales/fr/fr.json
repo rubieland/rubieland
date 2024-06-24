@@ -25,14 +25,13 @@
       "firstName": "il ne peut contenir que des lettres, traits d'union, espaces et apostrophes",
       "lastName": "il ne peut contenir que des lettres, traits d'union, espaces et apostrophes",
       "password": "le mot de passe doit contenir au moins 8 caractères dont au moins: 1 minuscule, 1 majuscule, 1 chiffre, 1 caractère spécial",
-      "phone": "veuillez entrer un numéro de téléphone au format international : +XX 0000000000 (remplacez XX par le code du pays)",
-      "minLength": "{{field}} doit contenir {{min}} caractères minimum",
-      "maxLength": "{{field}} ne peut contenir que {{max}} caractères maximum",
-      "required": "il ne doit pas être vide"
+      "phone": "veuillez entrer un numéro de téléphone au format international : +XX 0000000000 (remplacez XX par le code du pays)"
     },
     "messages": {
       "required": "Le champ {{field}} est requis",
-      "invalid": "Le champ {{field}} est invalide: {{rule}}"
+      "invalid": "Le champ {{field}} est invalide: {{rule}}",
+      "minLength": "Le champ {{field}} doit contenir {{min}} caractères minimum",
+      "maxLength": "Le champ {{field}} ne peut contenir que {{max}} caractères maximum"
     }
   },
   "auth": {
