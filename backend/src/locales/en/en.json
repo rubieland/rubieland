@@ -30,8 +30,8 @@
     "messages": {
       "required": "The field {{field}} is required",
       "invalid": "The field {{field}} is invalid: {{rule}}",
-      "minLength": "The field {{field}} must contain at least {{min}} characters",
-      "maxLength": "The field {{field}} must not contain more than {{max}} characters"
+      "minLength": "The field {{field}} must contain at least {{minLength}} characters",
+      "maxLength": "The field {{field}} must not contain more than {{maxLength}} characters"
     }
   },
 

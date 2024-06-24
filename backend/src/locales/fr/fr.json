@@ -30,8 +30,8 @@
     "messages": {
       "required": "Le champ {{field}} est requis",
       "invalid": "Le champ {{field}} est invalide: {{rule}}",
-      "minLength": "Le champ {{field}} doit contenir {{min}} caractères minimum",
-      "maxLength": "Le champ {{field}} ne peut contenir que {{max}} caractères maximum"
+      "minLength": "Le champ {{field}} doit contenir {{minLength}} caractères minimum",
+      "maxLength": "Le champ {{field}} ne peut contenir que {{maxLength}} caractères maximum"
     }
   },
   "auth": {
