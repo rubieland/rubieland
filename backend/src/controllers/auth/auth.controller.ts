@@ -144,17 +144,3 @@ export const logout = (req: Request, res: Response, next: NextFunction) => {
     }
   });
 };
-
-// TODO: delete this controller => used for testing authMiddleware middleware
-export const testAuthMiddleware = (req: Request, res: Response) => {
-  res.json({ message: 'Hello there!' });
-};
-
-// TODO: delete this controller => used for any kind of test
-export const getTest = async (
-  req: Request,
-  res: Response,
-  _next: NextFunction,
-) => {
-  res.status(200).json({ message: 'Test' });
-};
