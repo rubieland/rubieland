@@ -6,7 +6,7 @@ import {
   register,
   testAuthMiddleware,
 } from '../controllers/auth/auth.controller';
-import { authMiddleware } from '../middlewares/auth/authMiddleware';
+import { authMiddleware } from '../middlewares/auth/auth.middleware';
 
 const router: Express = Router();
 
