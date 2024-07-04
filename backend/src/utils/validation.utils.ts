@@ -4,14 +4,26 @@ import {
   parsePhoneNumberWithError,
 } from 'libphonenumber-js';
 import i18n from '../config/i18n';
-import { Reason } from '../validation/types/validation.types';
+import {
+  FieldFormatValidatorFunction,
+  FieldLengthValidatorFunction,
+  GetMissingOrEmptyFieldsErrorMessageFunction,
+  GetMissingOrEmptyFieldsFunction,
+  GetValidationErrorMessageFunction,
+  Reason,
+  ValidatePhoneNumberFunction,
+} from '../validation/types/validation.types';
+import { regexes } from '../validation/User.validators';
+import { UserField } from '../models/types/User.types';
 
 /**
  * @param phoneNumber(string): phone number to validate
  * @returns(boolean): returns true if the string is a valid international phone number
  */
 
-export const validatePhoneNumber = (phoneNumber: string): boolean => {
+export const validatePhoneNumber: ValidatePhoneNumberFunction = (
+  phoneNumber: string,
+): boolean => {
   try {
     // parse phone number
     const parsedPhoneNumber = parsePhoneNumberWithError(phoneNumber);
@@ -35,22 +47,14 @@ export const validatePhoneNumber = (phoneNumber: string): boolean => {
   }
 };
 
-interface GetValidationErrorMessageInterface {
-  field: string;
-  rule?: string;
-  minLength?: number;
-  maxLength?: number;
-  reason: Reason;
-}
-
 // return a different validation error message from the translation files
-export const getValidationErrorMessage = ({
+export const getValidationErrorMessage: GetValidationErrorMessageFunction = ({
   field,
   rule,
   minLength,
   maxLength,
   reason,
-}: GetValidationErrorMessageInterface): string => {
+}): string => {
   const fieldName = i18n.t(`validation.fields.${field}`);
   const ruleMessage = i18n.t(`validation.rules.${rule}`);
   const errorMessageTemplate = i18n.t(`validation.messages.${reason}`);
@@ -81,10 +85,11 @@ export const getValidationErrorMessage = ({
 };
 
 // return an array of missing or empty field names
-export const getMissingOrEmptyFields = (data: any): string[] => {
+export const getMissingOrEmptyFields: GetMissingOrEmptyFieldsFunction = (
+  data: any,
+): string[] => {
   const invalidFields = [];
   for (const [key, value] of Object.entries(data)) {
-    console.log(key, ': ', value);
     if (!value || (typeof value === 'string' && value === '')) {
       invalidFields.push(key);
     }
@@ -93,20 +98,19 @@ export const getMissingOrEmptyFields = (data: any): string[] => {
 };
 
 // return an array validation error messages for all missing or empty fields
-export const getMissingOrEmptyFieldsErrorMessage = (
-  fields: string[],
-): string[] => {
-  const errors: string[] = [];
-  fields.forEach((field) => {
-    errors.push(
-      getValidationErrorMessage({
-        field,
-        reason: Reason.REQUIRED,
-      }),
-    );
-  });
-  return errors;
-};
+export const getMissingOrEmptyFieldsErrorMessage: GetMissingOrEmptyFieldsErrorMessageFunction =
+  (fields: string[]): string[] => {
+    const errors: string[] = [];
+    fields.forEach((field) => {
+      errors.push(
+        getValidationErrorMessage({
+          field,
+          reason: Reason.REQUIRED,
+        }),
+      );
+    });
+    return errors;
+  };
 
 // extract custom error message from mongoose validation error object
 export const extractValidationErrorMessagesFromError = (error: any) => {
