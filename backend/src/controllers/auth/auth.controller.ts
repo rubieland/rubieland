@@ -8,6 +8,7 @@ import {
   getMissingOrEmptyFields,
   getMissingOrEmptyFieldsErrorMessage,
 } from '../../utils/validation.utils';
+import { checkUserData } from '../../validation/User.validators';
 
 export const register = async (
   req: Request,
@@ -19,8 +20,34 @@ export const register = async (
 
     /**
      * TODO:
-     * add input validations
+     * add avatar + avatar validation
      */
+
+    // check for empty or missing fields
+    const missingOrEmptyFields = getMissingOrEmptyFields({
+      firstName,
+      lastName,
+      email,
+      password,
+      phone,
+    });
+
+    if (missingOrEmptyFields && missingOrEmptyFields.length > 0) {
+      const errors = getMissingOrEmptyFieldsErrorMessage(missingOrEmptyFields);
+
+      return res
+        .status(400)
+        .json({ message: i18n.t('auth.error.registerFailed'), errors });
+    }
+
+    // input validation
+    const userDataErrors = checkUserData(req.body);
+
+    if (userDataErrors && userDataErrors.length > 0) {
+      return res
+        .status(400)
+        .json({ message: i18n.t('auth.error.registerFailed'), userDataErrors });
+    }
 
     const user: IUser = {
       firstName,
