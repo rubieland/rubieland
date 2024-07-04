@@ -21,10 +21,10 @@
       "avatar": "Avatar"
     },
     "rules": {
-      "email": "veuillez saisir une adresse e-mail valide",
+      "email": "veuillez saisir une adresse e-mail valide (exemple@exemple.com)",
       "firstName": "il ne peut contenir que des lettres, traits d'union, espaces et apostrophes",
       "lastName": "il ne peut contenir que des lettres, traits d'union, espaces et apostrophes",
-      "password": "le mot de passe doit contenir au moins 8 caractères dont au moins: 1 minuscule, 1 majuscule, 1 chiffre, 1 caractère spécial",
+      "password": "il doit contenir au moins: 1 minuscule, 1 majuscule, 1 chiffre, 1 caractère spécial",
       "phone": "veuillez entrer un numéro de téléphone au format international : +XX 0000000000 (remplacez XX par le code du pays)"
     },
     "messages": {
@@ -40,6 +40,7 @@
       "login": "Connexion réussie ! Bienvenue {{firstName}} !"
     },
     "error": {
+      "registerFailed": "La création de compte a échouée",
       "userExistsInBase": "Cet utilisateur existe déjà. Veuillez entrer un nouvel email",
       "invalidCredentials": "Identifiants incorrects",
       "internalServerError": "Erreur interne du serveur",

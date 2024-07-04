@@ -21,10 +21,10 @@
       "avatar": "Avatar"
     },
     "rules": {
-      "email": "please enter a valid email address",
+      "email": "please enter a valid email address (example@example.com)",
       "firstName": "it can only contain letters, hyphens, spaces and apostrophes",
       "lastName": "it can only contain letters, hyphens, spaces and apostrophes",
-      "password": "the password must contain at least 8 characters with at least: 1 lowercase, 1 uppercase, 1 number and 1 special character ",
+      "password": "it must contain at least: 1 lowercase, 1 uppercase, 1 number and 1 special character ",
       "phone": "Please enter a phone number in the international format: +XX 0000000000 (replace XX with the country code)"
     },
     "messages": {
@@ -41,6 +41,7 @@
       "login": "Login successful! Welcome {{firstName}}!"
     },
     "error": {
+      "registerFailed": "Registration failed",
       "userExistsInBase": "This user already exists. Please enter a new email",
       "invalidCredentials": "Invalid credentials",
       "internalServerError": "Internal server error",
