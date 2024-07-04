@@ -116,6 +116,7 @@ export const login = async (
     }
 
     const token = user.createJWT();
+    req.session.token = token;
 
     res.status(200).json({
       message: i18n.t('auth.success.login', { firstName: user.firstName }),
