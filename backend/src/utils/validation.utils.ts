@@ -71,7 +71,7 @@ export const getValidationErrorMessage: GetValidationErrorMessageFunction = ({
     case Reason.MINLENGTH:
       result = errorMessageTemplate
         .replace('{{field}}', fieldName)
-        .replace('{{minlength}}', String(minLength));
+        .replace('{{minLength}}', String(minLength));
       break;
     case Reason.MAXLENGTH:
       result = errorMessageTemplate
