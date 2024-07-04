@@ -38,7 +38,9 @@
   "auth": {
     "success": {
       "register": "Registration successful!",
-      "login": "Login successful! Welcome {{firstName}}!"
+      "login": "Login successful! Welcome {{firstName}}!",
+      "logout": "Logout successful!",
+      "sessionDestructionSuccess": "Session destroyed successfully!"
     },
     "error": {
       "registerFailed": "Registration failed",
@@ -47,7 +49,8 @@
       "internalServerError": "Internal server error",
       "invalidToken": "Access denied. Please log in",
       "tokenExpired": "Access denied. Please log in again",
-      "comparePasswordFailed": "An error occurred while comparing passwords. Please try again"
+      "comparePasswordFailed": "An error occurred while comparing passwords. Please try again",
+      "sessionDestructionFailed": "An error occurred while destroying session"
     }
   }
 }
