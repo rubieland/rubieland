@@ -59,9 +59,10 @@ export const register = async (
     };
 
     const newUser = new User(user);
-    const isUserInBase = await User.findOne({ email: newUser.email });
+    const userInBase = await User.findOne({ email: newUser.email });
 
-    if (isUserInBase) {
+    // if the email already exists in base, send error (as it must be unique)
+    if (userInBase) {
       return res
         .status(400)
         .json({ error: i18n.t('auth.error.userExistsInBase') });
