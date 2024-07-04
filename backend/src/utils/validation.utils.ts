@@ -120,3 +120,47 @@ export const extractValidationErrorMessagesFromError = (error: any) => {
   }
   return [error.message];
 };
+
+// check if the field value length is higher than the minLength limit
+export const checkMinLength: FieldLengthValidatorFunction = (
+  field: string,
+  value: string,
+  minLength: number,
+) => {
+  return value.length < minLength
+    ? getValidationErrorMessage({
+        field,
+        minLength,
+        reason: Reason.MINLENGTH,
+      })
+    : '';
+};
+
+// check if the field value length is lower than the maxLength limit
+export const checkMaxLength: FieldLengthValidatorFunction = (
+  field: string,
+  value: string,
+  maxLength: number,
+) => {
+  return value.length > maxLength
+    ? getValidationErrorMessage({
+        field,
+        maxLength,
+        reason: Reason.MAXLENGTH,
+      })
+    : '';
+};
+
+// check if the field value format corresponds to the regex
+export const checkFieldFormat: FieldFormatValidatorFunction = (
+  fieldType: UserField,
+  fieldValue: string,
+) => {
+  return !regexes.nameField.test(fieldValue)
+    ? getValidationErrorMessage({
+        field: fieldType,
+        rule: fieldType,
+        reason: Reason.INVALID,
+      })
+    : '';
+};
