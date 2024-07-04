@@ -12,7 +12,7 @@ export const strongPasswordOptions: StrongPasswordOptions = {
   minSymbols: 1,
 };
 
-export const userFieldsLengths = {
+export const userFieldsLengths: UserFieldLengths = {
   firstName: {
     minLength: 2,
     maxLength: 30,
