@@ -77,7 +77,12 @@ export const checkPhone = (phone: string) => {
     : '';
 };
 
-// TODO: refactor to avoid code repetition
+/**
+ *  TODO:
+ *  refactor to avoid code repetition
+ *  add avatar check
+ */
+
 export const checkUserData = (data: IUser) => {
   const errors: string[] = [];
 
@@ -130,6 +135,8 @@ export const checkUserData = (data: IUser) => {
 
         if (phoneError) errors.push(phoneError);
       }
+
+      // TODO: add avatar check
     }
   }
 
