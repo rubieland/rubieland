@@ -23,7 +23,10 @@ export const verifyToken = async (
      * or if we can type decoded / override its type
      */
     if (typeof decoded === 'object' && decoded?.id && decoded?.role) {
-      req.user = { id: decoded?.id, role: decoded?.role };
+      req.authUser = {
+        id: decoded.id,
+        role: decoded.role,
+      };
     }
     next();
   } catch (error: unknown) {
