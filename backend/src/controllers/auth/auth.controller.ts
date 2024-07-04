@@ -128,8 +128,23 @@ export const login = async (
   }
 };
 
-// TODO: delete this controller => used for testing verifyToken middleware
-export const testVerifyToken = (req: Request, res: Response) => {
+export const logout = (req: Request, res: Response, next: NextFunction) => {
+  // destroy session for logout
+  req.session.destroy((error: unknown) => {
+    if (error) {
+      console.error(
+        `${i18n.t('auth.error.sessionDestructionFailed')}: ${error}`,
+      );
+      next(error);
+    } else {
+      console.log(i18n.t('auth.success.sessionDestructionSuccess'));
+      res
+        .status(200)
+        .json({ message: i18n.t('auth.success.sessionDestructionSuccess') });
+    }
+  });
+};
+
 // TODO: delete this controller => used for testing authMiddleware middleware
 export const testAuthMiddleware = (req: Request, res: Response) => {
   res.json({ message: 'Hello there!' });
