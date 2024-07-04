@@ -129,6 +129,8 @@ export const login = async (
 
 // TODO: delete this controller => used for testing verifyToken middleware
 export const testVerifyToken = (req: Request, res: Response) => {
+// TODO: delete this controller => used for testing authMiddleware middleware
+export const testAuthMiddleware = (req: Request, res: Response) => {
   res.json({ message: 'Hello there!' });
 };
 

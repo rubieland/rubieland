@@ -2,14 +2,15 @@ import Router, { Express } from 'express';
 import {
   getTest,
   login,
+  logout,
   register,
-  testVerifyToken,
+  testAuthMiddleware,
 } from '../controllers/auth/auth.controller';
-import { verifyToken } from '../middlewares/auth/verifyToken.middleware';
+import { authMiddleware } from '../middlewares/auth/authMiddleware';
 
 const router: Express = Router();
 
-router.get('/testVerifyToken', verifyToken, testVerifyToken);
+router.get('/testAuthMiddleware', authMiddleware, testAuthMiddleware);
 router.post('/login', login);
 router.post('/register', register);
 router.get('/', getTest);
