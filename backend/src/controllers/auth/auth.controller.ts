@@ -40,7 +40,7 @@ export const register = async (
         .json({ message: i18n.t('auth.error.registerFailed'), errors });
     }
 
-    // input validation
+    // data validation
     const userDataErrors = checkUserData(req.body);
 
     if (userDataErrors && userDataErrors.length > 0) {
