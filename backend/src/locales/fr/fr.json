@@ -59,5 +59,10 @@
       "wrongFileType": "Fichier invalide. Seuls les fichiers de type {{types}} sont acceptés",
       "unexpectedFile": "Un fichier non prévu a été téléchargé. Veuillez n'utiliser que les champs de téléchargement prévus."
     }
+  },
+  "profile": {
+    "error": {
+      "userNotFound": "Utilisateur introuvable"
+    }
   }
 }

@@ -60,5 +60,10 @@
       "wrongFileType": "Invalid file. Only files of type {{types}} are allowed",
       "unexpectedFile": "An unexpected file was uploaded. Please use only the designated upload fields."
     }
+  },
+  "profile": {
+    "error": {
+      "userNotFound": "User not found"
+    }
   }
 }
