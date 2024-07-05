@@ -5,12 +5,12 @@ import i18n from '../../config/i18n';
 
 const { JWT_SECRET } = env;
 
-export const verifyToken = async (
+export const authMiddleware = async (
   req: Request,
   res: Response,
   next: NextFunction,
 ) => {
-  const token = req.headers.authorization?.split(' ')[1];
+  const token = req.session.token;
 
   if (!token) {
     return res.status(401).json({ error: i18n.t('auth.error.invalidToken') });
@@ -23,7 +23,10 @@ export const verifyToken = async (
      * or if we can type decoded / override its type
      */
     if (typeof decoded === 'object' && decoded?.id && decoded?.role) {
-      req.user = { id: decoded?.id, role: decoded?.role };
+      req.session.authUser = {
+        id: decoded.id,
+        role: decoded.role,
+      };
     }
     next();
   } catch (error: unknown) {

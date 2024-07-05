@@ -10,9 +10,10 @@ import {
   errorHandler,
   notFoundHandler,
 } from '../middlewares/errorHandlers/errorHandlers.middleware';
+import session from 'express-session';
 
 // destructure env to get env variables
-const { CLIENT_HOST, CLIENT_PORT } = env;
+const { CLIENT_HOST, CLIENT_PORT, SESSION_SECRET, COOKIE_MAX_AGE } = env;
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -20,6 +21,17 @@ const __dirname = path.dirname(__filename);
 export const loadExpress = async ({ server }: { server: Express }) => {
   try {
     // middlewares
+    server.use(
+      session({
+        secret: SESSION_SECRET,
+        resave: false,
+        saveUninitialized: false,
+        cookie: {
+          httpOnly: true,
+          maxAge: Number(COOKIE_MAX_AGE), // 1h
+        },
+      }),
+    );
     server.use(i18nextMiddleware(i18n));
     server.use(express.static(path.join(__dirname, '../..', 'public')));
     server.use(express.json());

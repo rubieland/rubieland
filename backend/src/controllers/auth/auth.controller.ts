@@ -3,6 +3,12 @@ import User from '../../models/User.model';
 import { trimData } from '../../utils/string.utils';
 import { IUser, UserRole } from '../../models/types/User.types';
 import i18n from '../../config/i18n';
+import {
+  extractValidationErrorMessagesFromError,
+  getMissingOrEmptyFields,
+  getMissingOrEmptyFieldsErrorMessage,
+} from '../../utils/validation.utils';
+import { checkUserData } from '../../validation/User.validators';
 
 export const register = async (
   req: Request,
@@ -14,8 +20,34 @@ export const register = async (
 
     /**
      * TODO:
-     * add input validations
+     * add avatar + avatar validation
      */
+
+    // check for empty or missing fields
+    const missingOrEmptyFields = getMissingOrEmptyFields({
+      firstName,
+      lastName,
+      email,
+      password,
+      phone,
+    });
+
+    if (missingOrEmptyFields && missingOrEmptyFields.length > 0) {
+      const errors = getMissingOrEmptyFieldsErrorMessage(missingOrEmptyFields);
+
+      return res
+        .status(400)
+        .json({ message: i18n.t('auth.error.registerFailed'), errors });
+    }
+
+    // data validation
+    const userDataErrors = checkUserData(req.body);
+
+    if (userDataErrors && userDataErrors.length > 0) {
+      return res
+        .status(400)
+        .json({ message: i18n.t('auth.error.registerFailed'), userDataErrors });
+    }
 
     const user: IUser = {
       firstName,
@@ -27,10 +59,10 @@ export const register = async (
     };
 
     const newUser = new User(user);
+    const userInBase = await User.findOne({ email: newUser.email });
 
-    const isUserInBase = await User.findOne({ email: newUser.email });
-
-    if (isUserInBase) {
+    // if the email already exists in base, send error (as it must be unique)
+    if (userInBase) {
       return res
         .status(400)
         .json({ error: i18n.t('auth.error.userExistsInBase') });
@@ -39,7 +71,12 @@ export const register = async (
     await newUser.save();
     res.status(201).json({ message: i18n.t('auth.success.register'), newUser });
   } catch (error: unknown) {
-    next(error);
+    if (error instanceof Error) {
+      const messages = extractValidationErrorMessagesFromError(error);
+      res.status(400).json({ errors: messages });
+    } else {
+      next(error);
+    }
   }
 };
 
@@ -55,6 +92,14 @@ export const login = async (
      */
 
     const { email, password } = trimData(req.body);
+    const missingOrEmptyFields = getMissingOrEmptyFields({ email, password });
+
+    if (missingOrEmptyFields && missingOrEmptyFields.length > 0) {
+      const errors = getMissingOrEmptyFieldsErrorMessage(missingOrEmptyFields);
+
+      return res.status(400).json({ errors });
+    }
+
     const user = await User.findOne({ email: email.toLowerCase() });
 
     if (!user) {
@@ -72,6 +117,7 @@ export const login = async (
     }
 
     const token = user.createJWT();
+    req.session.token = token;
 
     res.status(200).json({
       message: i18n.t('auth.success.login', { firstName: user.firstName }),
@@ -83,16 +129,19 @@ export const login = async (
   }
 };
 
-// TODO: delete this controller => used for testing verifyToken middleware
-export const testVerifyToken = (req: Request, res: Response) => {
-  res.json({ message: 'Hello there!' });
-};
-
-// TODO: delete this controller => used for any kind of test
-export const getTest = async (
-  req: Request,
-  res: Response,
-  _next: NextFunction,
-) => {
-  res.status(200).json({ message: 'Test' });
+export const logout = (req: Request, res: Response, next: NextFunction) => {
+  // destroy session for logout
+  req.session.destroy((error: unknown) => {
+    if (error) {
+      console.error(
+        `${i18n.t('auth.error.sessionDestructionFailed')}: ${error}`,
+      );
+      next(error);
+    } else {
+      console.log(i18n.t('auth.success.sessionDestructionSuccess'));
+      res
+        .status(200)
+        .json({ message: i18n.t('auth.success.sessionDestructionSuccess') });
+    }
+  });
 };

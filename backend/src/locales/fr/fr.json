@@ -7,28 +7,50 @@
       "404": "Not Found",
       "415": "Unsupported Media Type",
       "500": "Internal server error",
-      "unknown": "Une erreur inconnue est survenue"
+      "unknown": "Une erreur inconnue est survenue",
+      "saveFailed": "Une erreur est survenue lors de la sauvegarde des données. Veuillez réessayer",
+      "unauthorized": "Vous n'avez pas les droits nécessaires pour accéder à cette route"
     }
   },
   "validation": {
-    "required": "{{fieldname}} est requis",
-    "minLength": "{{fieldname}} doit contenir {{min}} caractères minimum",
-    "maxLength": "{{fieldname}} ne peut contenir que {{max}} caractères maximum",
-    "invalid": "{{fieldname}} est invalide. {{rule}}",
-    "saveFailed": "Une erreur est survenue lors de la sauvegarde des données. Veuillez réessayer",
-    "comparePasswordFailed": "Une erreur est survenue lors de la comparaison des mots de passe. Veuillez réessayer"
+    "fields": {
+      "firstName": "Prénom",
+      "lastName": "Nom de famille",
+      "email": "E-mail",
+      "password": "Mot de passe",
+      "phone": "N° de téléphone",
+      "avatar": "Avatar"
+    },
+    "rules": {
+      "email": "veuillez saisir une adresse e-mail valide (exemple@exemple.com)",
+      "firstName": "il ne peut contenir que des lettres, traits d'union, espaces et apostrophes",
+      "lastName": "il ne peut contenir que des lettres, traits d'union, espaces et apostrophes",
+      "password": "il doit contenir au moins: 1 minuscule, 1 majuscule, 1 chiffre, 1 caractère spécial",
+      "phone": "veuillez entrer un numéro de téléphone au format international : +XX 0000000000 (remplacez XX par le code du pays)"
+    },
+    "messages": {
+      "required": "Le champ {{field}} est requis",
+      "invalid": "Le champ {{field}} est invalide: {{rule}}",
+      "minLength": "Le champ {{field}} doit contenir {{minLength}} caractères minimum",
+      "maxLength": "Le champ {{field}} ne peut contenir que {{maxLength}} caractères maximum"
+    }
   },
   "auth": {
     "success": {
       "register": "Inscription réussie !",
-      "login": "Connexion réussie ! Bienvenue {{firstName}} !"
+      "login": "Connexion réussie ! Bienvenue {{firstName}} !",
+      "logout": "Déconnexion réussie !",
+      "sessionDestructionSuccess": "Session détruite avec succès !"
     },
     "error": {
+      "registerFailed": "La création de compte a échouée",
       "userExistsInBase": "Cet utilisateur existe déjà. Veuillez entrer un nouvel email",
       "invalidCredentials": "Identifiants incorrects",
       "internalServerError": "Erreur interne du serveur",
       "invalidToken": "Accès refusé. Veuillez vous connecter",
-      "tokenExpired": "Accès refusé. Veuillez vous reconnecter"
+      "tokenExpired": "Accès refusé. Veuillez vous reconnecter",
+      "comparePasswordFailed": "Une erreur est survenue lors de la comparaison des mots de passe. Veuillez réessayer",
+      "sessionDestructionFailed": "Une erreur est survenue lors de la destruction de la session"
     }
   }
 }

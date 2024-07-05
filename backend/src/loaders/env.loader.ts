@@ -11,6 +11,8 @@ const requiredEnvVariables = [
   'NODE_ENV',
   'JWT_SECRET',
   'JWT_EXPIRATION',
+  'SESSION_SECRET',
+  'COOKIE_MAX_AGE',
 ] as const;
 
 type EnvVariables = {

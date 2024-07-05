@@ -15,7 +15,7 @@ const __dirname = path.dirname(__filename);
 const defaultLanguage = 'fr';
 const languages = ['fr', 'en'];
 
-i18n
+await i18n
   .use(Backend)
   .use(LanguageDetector)
   .init(

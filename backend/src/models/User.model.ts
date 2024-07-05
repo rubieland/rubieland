@@ -1,76 +1,196 @@
 import { Schema, model } from 'mongoose';
-import { regexes } from './validators/validators';
+import {
+  regexes,
+  strongPasswordOptions,
+  userFieldsLengths,
+} from '../validation/User.validators';
 import validator from 'validator';
-import { isValidFrenchPhoneNumber } from '../utils/validation.utils';
+import {
+  getValidationErrorMessage,
+  validatePhoneNumber,
+} from '../utils/validation.utils';
 import { UserDocument, UserRole } from './types/User.types';
 import bcrypt from 'bcrypt';
 import { formatName } from '../utils/string.utils';
 import jwt from 'jsonwebtoken';
 import { env } from '../loaders/env.loader';
 import i18n from '../config/i18n';
+import { Reason } from '../validation/types/validation.types';
 
 const { JWT_SECRET, JWT_EXPIRATION } = env;
 
 /**
  * TODO:
  * add validators for avatar (define accepted file formats, sizes...)
- * add pre('save') middleware to hash password, comparePasswords method, createJWT method
+ * test validations
  */
 
 const userSchema = new Schema<UserDocument>(
   {
     firstName: {
       type: String,
-      required: true,
+      required: [
+        true,
+        getValidationErrorMessage({
+          field: 'firstName',
+          reason: Reason.REQUIRED,
+        }),
+      ],
       trim: true,
-      maxlength: 30,
-      minlength: 2,
+      maxlength: [
+        userFieldsLengths.firstName.maxLength,
+        getValidationErrorMessage({
+          field: 'firstName',
+          maxLength: userFieldsLengths.firstName.maxLength,
+          reason: Reason.MAXLENGTH,
+        }),
+      ],
+      minlength: [
+        userFieldsLengths.firstName.minLength,
+        getValidationErrorMessage({
+          field: 'firstName',
+          minLength: userFieldsLengths.firstName.minLength,
+          reason: Reason.MINLENGTH,
+        }),
+      ],
       validate: [
         (v: string) => regexes.nameField.test(v),
-        `Le prénom est invalide. Il ne peut contenir que des lettres, traits d'union, espaces et apostrophes.`,
+        getValidationErrorMessage({
+          field: 'firstName',
+          rule: 'firstName',
+          reason: Reason.INVALID,
+        }),
       ],
     },
     lastName: {
       type: String,
-      required: true,
+      required: [
+        true,
+        getValidationErrorMessage({
+          field: 'lastName',
+          reason: Reason.REQUIRED,
+        }),
+      ],
       trim: true,
-      maxlength: 30,
-      minlength: 2,
+      maxlength: [
+        userFieldsLengths.lastName.maxLength,
+        getValidationErrorMessage({
+          field: 'lastName',
+          maxLength: userFieldsLengths.lastName.maxLength,
+          reason: Reason.MAXLENGTH,
+        }),
+      ],
+      minlength: [
+        userFieldsLengths.lastName.minLength,
+        getValidationErrorMessage({
+          field: 'lastName',
+          minLength: userFieldsLengths.lastName.minLength,
+          reason: Reason.MINLENGTH,
+        }),
+      ],
       validate: [
         (v: string) => regexes.nameField.test(v),
-        `Le nom de famille est invalide. Il ne peut contenir que des lettres, traits d'union, espaces et apostrophes.`,
+        getValidationErrorMessage({
+          field: 'lastName',
+          rule: 'lastName',
+          reason: Reason.INVALID,
+        }),
       ],
     },
     email: {
       type: String,
-      required: true,
+      required: [
+        true,
+        getValidationErrorMessage({
+          field: 'email',
+          reason: Reason.REQUIRED,
+        }),
+      ],
       trim: true,
       unique: true,
       lowercase: true,
-      maxlength: 60,
+      maxlength: [
+        userFieldsLengths.email.maxLength,
+        getValidationErrorMessage({
+          field: 'email',
+          maxLength: userFieldsLengths.email.maxLength,
+          reason: Reason.MAXLENGTH,
+        }),
+      ],
+      minlength: [
+        userFieldsLengths.email.minLength,
+        getValidationErrorMessage({
+          field: 'email',
+          minLength: userFieldsLengths.email.minLength,
+          reason: Reason.MINLENGTH,
+        }),
+      ],
       validate: [
         validator.isEmail,
-        `Email incorrect. Veuillez entrer un email valide (mon.adresse@email.com).`,
+        getValidationErrorMessage({
+          field: 'email',
+          rule: 'email',
+          reason: Reason.INVALID,
+        }),
       ],
     },
     password: {
       type: String,
-      required: true,
+      required: [
+        true,
+        getValidationErrorMessage({
+          field: 'password',
+          reason: Reason.REQUIRED,
+        }),
+      ],
       trim: true,
-      maxlength: 100,
-      minlength: 8,
+      maxlength: [
+        userFieldsLengths.password.maxLength,
+        getValidationErrorMessage({
+          field: 'password',
+          maxLength: userFieldsLengths.password.maxLength,
+          reason: Reason.MAXLENGTH,
+        }),
+      ],
+      minlength: [
+        userFieldsLengths.password.minLength,
+        getValidationErrorMessage({
+          field: 'password',
+          minLength: userFieldsLengths.password.minLength,
+          reason: Reason.MINLENGTH,
+        }),
+      ],
       validate: [
-        (v: string) => regexes.password.test(v),
-        'Mot de passe invalide. Les caractères suivants ne sont pas acceptés: < > ( ) { } \\ et `',
+        (v: string) =>
+          validator.isStrongPassword(v, {
+            ...strongPasswordOptions,
+            returnScore: false,
+          }),
+        getValidationErrorMessage({
+          field: 'password',
+          rule: 'password',
+          reason: Reason.INVALID,
+        }),
       ],
     },
     phone: {
       type: String,
       trim: true,
-      minlength: 10,
+      minlength: [
+        userFieldsLengths.phone.minLength,
+        getValidationErrorMessage({
+          field: 'phone',
+          minLength: userFieldsLengths.phone.minLength,
+          reason: Reason.MINLENGTH,
+        }),
+      ],
       validate: [
-        (v: string) => isValidFrenchPhoneNumber(v),
-        `Numéro de téléphone invalide. Veuillez entrer un numéro au format "0XXXXXXXXX" ou "+33XXXXXXXXX"`,
+        (v: string) => validatePhoneNumber(v),
+        getValidationErrorMessage({
+          field: 'phone',
+          rule: 'phone',
+          reason: Reason.INVALID,
+        }),
       ],
     },
     avatar: {
@@ -111,7 +231,7 @@ userSchema.pre(
     } catch (error: unknown) {
       next(
         error instanceof Error
-          ? new Error(i18n.t('validation.saveFailed'))
+          ? new Error(i18n.t('common.error.saveFailed'))
           : new Error(i18n.t('common.error.unknown')),
       );
     }
@@ -126,7 +246,7 @@ userSchema.methods.comparePassword = async function (
     return await bcrypt.compare(candidatePassword, user.password);
   } catch (error: unknown) {
     throw error instanceof Error
-      ? new Error(i18n.t('validation.comparePasswordFailed'))
+      ? new Error(i18n.t('auth.error.comparePasswordFailed'))
       : new Error(i18n.t('common.error.unknown'));
   }
 };
