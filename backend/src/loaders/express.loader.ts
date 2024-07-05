@@ -43,7 +43,7 @@ export const loadExpress = async ({ server }: { server: Express }) => {
     );
 
     // routers
-    server.use('/', authRouter);
+    server.use('/auth', authRouter);
 
     // error handlers
     server.use(notFoundHandler);
