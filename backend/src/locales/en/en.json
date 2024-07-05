@@ -53,5 +53,13 @@
       "comparePasswordFailed": "An error occurred while comparing passwords. Please try again",
       "sessionDestructionFailed": "An error occurred while destroying session"
     }
+  },
+  "uploads": {
+    "error": {
+      "fileTooLarge": "File too large. Max: {{limit}}MB",
+      "oneFileLimit": "You must send only one file",
+      "wrongFileType": "Invalid file. Only files of type {{types}} are allowed",
+      "unexpectedFile": "An unexpected file was uploaded. Please use only the designated upload fields."
+    }
   }
 }

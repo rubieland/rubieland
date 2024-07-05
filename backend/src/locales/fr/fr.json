@@ -52,5 +52,13 @@
       "comparePasswordFailed": "Une erreur est survenue lors de la comparaison des mots de passe. Veuillez réessayer",
       "sessionDestructionFailed": "Une erreur est survenue lors de la destruction de la session"
     }
+  },
+  "uploads": {
+    "error": {
+      "fileTooLarge": "Fichier trop lourd. Max: {{limit}}MB",
+      "oneFileLimit": "Vous ne devez envoyer qu'un fichier",
+      "wrongFileType": "Fichier invalide. Seuls les fichiers de type {{types}} sont acceptés",
+      "unexpectedFile": "Un fichier non prévu a été téléchargé. Veuillez n'utiliser que les champs de téléchargement prévus."
+    }
   }
 }
