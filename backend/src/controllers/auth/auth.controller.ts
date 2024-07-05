@@ -9,6 +9,11 @@ import {
   getMissingOrEmptyFieldsErrorMessage,
 } from '../../utils/validation.utils';
 import { checkUserData } from '../../validation/User.validators';
+import { fileURLToPath } from 'url';
+import path from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 export const register = async (
   req: Request,
@@ -18,19 +23,25 @@ export const register = async (
   try {
     const { firstName, lastName, email, password, phone } = trimData(req.body);
 
-    /**
-     * TODO:
-     * add avatar + avatar validation
-     */
+    // default avatar path
+    const defaultAvatar = path.join(
+      __dirname,
+      '../../',
+      'uploads/placeholders/user-default-avatar.jpg',
+    );
 
-    // check for empty or missing fields
-    const missingOrEmptyFields = getMissingOrEmptyFields({
+    const user: IUser = {
       firstName,
       lastName,
       email,
       password,
       phone,
-    });
+      avatar: defaultAvatar,
+      role: UserRole.USER,
+    };
+
+    // check for empty or missing fields
+    const missingOrEmptyFields = getMissingOrEmptyFields(user);
 
     if (missingOrEmptyFields && missingOrEmptyFields.length > 0) {
       const errors = getMissingOrEmptyFieldsErrorMessage(missingOrEmptyFields);
@@ -41,22 +52,13 @@ export const register = async (
     }
 
     // data validation
-    const userDataErrors = checkUserData(req.body);
+    const userDataErrors = checkUserData(user);
 
     if (userDataErrors && userDataErrors.length > 0) {
       return res
         .status(400)
         .json({ message: i18n.t('auth.error.registerFailed'), userDataErrors });
     }
-
-    const user: IUser = {
-      firstName,
-      lastName,
-      email,
-      password,
-      phone,
-      role: UserRole.USER,
-    };
 
     const newUser = new User(user);
     const userInBase = await User.findOne({ email: newUser.email });
@@ -86,11 +88,6 @@ export const login = async (
   next: NextFunction,
 ) => {
   try {
-    /**
-     * TODO:
-     * add input validations
-     */
-
     const { email, password } = trimData(req.body);
     const missingOrEmptyFields = getMissingOrEmptyFields({ email, password });
 

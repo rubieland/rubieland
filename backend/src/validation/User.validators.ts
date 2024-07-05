@@ -80,7 +80,6 @@ export const checkPhone = (phone: string) => {
 /**
  *  TODO:
  *  refactor to avoid code repetition
- *  add avatar check
  */
 
 export const checkUserData = (data: IUser) => {
@@ -135,8 +134,6 @@ export const checkUserData = (data: IUser) => {
 
         if (phoneError) errors.push(phoneError);
       }
-
-      // TODO: add avatar check
     }
   }
 
