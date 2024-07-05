@@ -164,5 +164,3 @@ export const checkFieldFormat: FieldFormatValidatorFunction = (
       })
     : '';
 };
-
-// TODO: add checkAvatar function

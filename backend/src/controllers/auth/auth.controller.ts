@@ -23,10 +23,6 @@ export const register = async (
   try {
     const { firstName, lastName, email, password, phone } = trimData(req.body);
 
-    /**
-     * TODO:
-     * add avatar + avatar validation
-     */
     // default avatar path
     const defaultAvatar = path.join(
       __dirname,
@@ -92,11 +88,6 @@ export const login = async (
   next: NextFunction,
 ) => {
   try {
-    /**
-     * TODO:
-     * add input validations
-     */
-
     const { email, password } = trimData(req.body);
     const missingOrEmptyFields = getMissingOrEmptyFields({ email, password });
 
