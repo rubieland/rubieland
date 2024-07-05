@@ -145,3 +145,49 @@ export const logout = (req: Request, res: Response, next: NextFunction) => {
     }
   });
 };
+
+export const uploadFilesTest = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    const { firstName, lastName, email, password, phone } = trimData(req.body);
+
+    const avatar = req.file?.filename;
+
+    const user: IUser = {
+      firstName,
+      lastName,
+      email,
+      password,
+      phone,
+      avatar: avatar ?? '',
+      role: UserRole.USER,
+    };
+
+    // check for empty or missing fields
+    const missingOrEmptyFields = getMissingOrEmptyFields(user);
+
+    if (missingOrEmptyFields && missingOrEmptyFields.length > 0) {
+      const errors = getMissingOrEmptyFieldsErrorMessage(missingOrEmptyFields);
+
+      return res
+        .status(400)
+        .json({ message: i18n.t('auth.error.registerFailed'), errors });
+    }
+
+    // data validation
+    const userDataErrors = checkUserData(user);
+
+    if (userDataErrors && userDataErrors.length > 0) {
+      return res
+        .status(400)
+        .json({ message: i18n.t('auth.error.registerFailed'), userDataErrors });
+    }
+
+    res.status(200).json({ message: 'Upload successful!', user });
+  } catch (error) {
+    next(error);
+  }
+};
