@@ -5,12 +5,12 @@ import {
   register,
   uploadFilesTest,
 } from '../controllers/auth/auth.controller';
-import { uploadAvatarMiddleware } from '../middlewares/uploads/uploadAvatar.middleware';
+import { avatarUploader } from '../middlewares/uploads/uploadAvatar.middleware';
 
 const router: Express = Router();
 router.post('/login', login);
 router.post('/register', register);
 router.get('/logout', logout);
-router.post('/uploadFilesTest', uploadAvatarMiddleware, uploadFilesTest);
+router.post('/uploadFilesTest', avatarUploader, uploadFilesTest);
 
 export default router;
