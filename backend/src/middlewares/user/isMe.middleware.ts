@@ -14,9 +14,7 @@ export const isMeMiddleware = async (
 
     // deny the access if a user tries to access the profile of another user
     if (sessionUserId !== paramsUserId) {
-      return res
-        .status(403)
-        .json({ error: i18n.t('common.error.unauthorized') });
+      return res.status(403).json({ error: i18n.t('auth.error.forbidden') });
     }
     next();
   } catch (error: unknown) {

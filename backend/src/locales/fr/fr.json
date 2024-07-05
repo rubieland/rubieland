@@ -8,8 +8,7 @@
       "415": "Unsupported Media Type",
       "500": "Internal server error",
       "unknown": "Une erreur inconnue est survenue",
-      "saveFailed": "Une erreur est survenue lors de la sauvegarde des données. Veuillez réessayer",
-      "unauthorized": "Vous n'avez pas les droits nécessaires pour accéder à cette route"
+      "saveFailed": "Une erreur est survenue lors de la sauvegarde des données. Veuillez réessayer"
     }
   },
   "validation": {
@@ -47,8 +46,8 @@
       "userExistsInBase": "Cet utilisateur existe déjà. Veuillez entrer un nouvel email",
       "invalidCredentials": "Identifiants incorrects",
       "internalServerError": "Erreur interne du serveur",
-      "invalidToken": "Accès refusé. Veuillez vous connecter",
-      "tokenExpired": "Accès refusé. Veuillez vous reconnecter",
+      "unauthorized": "Accès refusé. Veuillez vous connecter",
+      "forbidden": "Accès refusé. Veuillez vous reconnecter",
       "comparePasswordFailed": "Une erreur est survenue lors de la comparaison des mots de passe. Veuillez réessayer",
       "sessionDestructionFailed": "Une erreur est survenue lors de la destruction de la session"
     }

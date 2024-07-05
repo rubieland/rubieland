@@ -8,8 +8,7 @@
       "415": "Unsupported Media Type",
       "500": "Internal server error",
       "unknown": "An unexpected error occured",
-      "saveFailed": "An error occurred while saving the data. Please try again",
-      "unauthorized": "You are not authorized to access this route"
+      "saveFailed": "An error occurred while saving the data. Please try again"
     }
   },
   "validation": {
@@ -48,8 +47,8 @@
       "userExistsInBase": "This user already exists. Please enter a new email",
       "invalidCredentials": "Invalid credentials",
       "internalServerError": "Internal server error",
-      "invalidToken": "Access denied. Please log in",
-      "tokenExpired": "Access denied. Please log in again",
+      "unauthorized": "Access denied. Please log in",
+      "forbidden": "Access denied. Please log in again",
       "comparePasswordFailed": "An error occurred while comparing passwords. Please try again",
       "sessionDestructionFailed": "An error occurred while destroying session"
     }
