@@ -17,7 +17,7 @@ export interface IUser {
 
 // TODO: remove 'avatar' from Omit when file handling is ready
 export interface UserPayload extends IUser {
-  confirmPassword: string;
+  confirmPassword?: string;
 }
 
 export type UserField = keyof Omit<UserPayload, 'avatar' | 'role'>;

@@ -62,8 +62,6 @@ export const updateUser = async (
         .json({ error: i18n.t('profile.error.userNotFound') });
     }
 
-    console.log('USER :', userInBase);
-
     const userData: UserPayload = {
       firstName,
       lastName,

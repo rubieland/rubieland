@@ -8,7 +8,7 @@ export enum Reason {
   MAXLENGTH = 'maxLength',
 }
 
-export interface UserFieldLengths {
+export interface UserDataLengths {
   [key: string]: {
     maxLength: number;
     minLength: number;

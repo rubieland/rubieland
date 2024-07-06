@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import User from '../../models/User.model';
 import { trimData } from '../../utils/string.utils';
-import { IUser, UserRole } from '../../models/types/User.types';
+import { UserPayload, UserRole } from '../../models/types/User.types';
 import i18n from '../../config/i18n';
 import {
   extractValidationErrorMessagesFromError,
@@ -30,7 +30,7 @@ export const register = async (
       'uploads/placeholders/user-default-avatar.jpg',
     );
 
-    const userData: IUser = {
+    const userData: UserPayload = {
       firstName,
       lastName,
       email,

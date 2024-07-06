@@ -2,7 +2,7 @@ import { Schema, model } from 'mongoose';
 import {
   regexes,
   strongPasswordOptions,
-  userFieldsLengths,
+  userDataLengths,
 } from '../validation/User.validators';
 import validator from 'validator';
 import {
@@ -47,18 +47,18 @@ const userSchema = new Schema<UserDocument>(
       ],
       trim: true,
       maxlength: [
-        userFieldsLengths.firstName.maxLength,
+        userDataLengths.firstName.maxLength,
         getValidationErrorMessage({
           field: 'firstName',
-          maxLength: userFieldsLengths.firstName.maxLength,
+          maxLength: userDataLengths.firstName.maxLength,
           reason: Reason.MAXLENGTH,
         }),
       ],
       minlength: [
-        userFieldsLengths.firstName.minLength,
+        userDataLengths.firstName.minLength,
         getValidationErrorMessage({
           field: 'firstName',
-          minLength: userFieldsLengths.firstName.minLength,
+          minLength: userDataLengths.firstName.minLength,
           reason: Reason.MINLENGTH,
         }),
       ],
@@ -82,18 +82,18 @@ const userSchema = new Schema<UserDocument>(
       ],
       trim: true,
       maxlength: [
-        userFieldsLengths.lastName.maxLength,
+        userDataLengths.lastName.maxLength,
         getValidationErrorMessage({
           field: 'lastName',
-          maxLength: userFieldsLengths.lastName.maxLength,
+          maxLength: userDataLengths.lastName.maxLength,
           reason: Reason.MAXLENGTH,
         }),
       ],
       minlength: [
-        userFieldsLengths.lastName.minLength,
+        userDataLengths.lastName.minLength,
         getValidationErrorMessage({
           field: 'lastName',
-          minLength: userFieldsLengths.lastName.minLength,
+          minLength: userDataLengths.lastName.minLength,
           reason: Reason.MINLENGTH,
         }),
       ],
@@ -119,18 +119,18 @@ const userSchema = new Schema<UserDocument>(
       unique: true,
       lowercase: true,
       maxlength: [
-        userFieldsLengths.email.maxLength,
+        userDataLengths.email.maxLength,
         getValidationErrorMessage({
           field: 'email',
-          maxLength: userFieldsLengths.email.maxLength,
+          maxLength: userDataLengths.email.maxLength,
           reason: Reason.MAXLENGTH,
         }),
       ],
       minlength: [
-        userFieldsLengths.email.minLength,
+        userDataLengths.email.minLength,
         getValidationErrorMessage({
           field: 'email',
-          minLength: userFieldsLengths.email.minLength,
+          minLength: userDataLengths.email.minLength,
           reason: Reason.MINLENGTH,
         }),
       ],
@@ -154,18 +154,18 @@ const userSchema = new Schema<UserDocument>(
       ],
       trim: true,
       maxlength: [
-        userFieldsLengths.password.maxLength,
+        userDataLengths.password.maxLength,
         getValidationErrorMessage({
           field: 'password',
-          maxLength: userFieldsLengths.password.maxLength,
+          maxLength: userDataLengths.password.maxLength,
           reason: Reason.MAXLENGTH,
         }),
       ],
       minlength: [
-        userFieldsLengths.password.minLength,
+        userDataLengths.password.minLength,
         getValidationErrorMessage({
           field: 'password',
-          minLength: userFieldsLengths.password.minLength,
+          minLength: userDataLengths.password.minLength,
           reason: Reason.MINLENGTH,
         }),
       ],
@@ -186,10 +186,10 @@ const userSchema = new Schema<UserDocument>(
       type: String,
       trim: true,
       minlength: [
-        userFieldsLengths.phone.minLength,
+        userDataLengths.phone.minLength,
         getValidationErrorMessage({
           field: 'phone',
-          minLength: userFieldsLengths.phone.minLength,
+          minLength: userDataLengths.phone.minLength,
           reason: Reason.MINLENGTH,
         }),
       ],
