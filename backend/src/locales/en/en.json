@@ -8,7 +8,8 @@
       "415": "Unsupported Media Type",
       "500": "Internal server error",
       "unknown": "An unexpected error occured",
-      "saveFailed": "An error occurred while saving the data. Please try again"
+      "saveFailed": "An error occurred while saving the data. Please try again",
+      "deleteFileFailed": "Le fichier n'a pas pu être supprimé"
     }
   },
   "validation": {
@@ -17,6 +18,7 @@
       "lastName": "Last name",
       "email": "Email",
       "password": "Password",
+      "confirmPassword": "Confirm password",
       "phone": "Phone number",
       "avatar": "Avatar"
     },

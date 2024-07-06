@@ -44,8 +44,8 @@ export const userFieldsLengths: UserFieldLengths = {
   },
 };
 
-export const checkEmail = (email: string) => {
-  return !validator.isEmail(email)
+export const checkEmail = (email: string | undefined) => {
+  return email && !validator.isEmail(email)
     ? getValidationErrorMessage({
         field: 'email',
         rule: 'email',
@@ -54,11 +54,12 @@ export const checkEmail = (email: string) => {
     : '';
 };
 
-export const checkPassword = (password: string) => {
-  return !validator.isStrongPassword(password, {
-    ...strongPasswordOptions,
-    returnScore: false,
-  })
+export const checkPassword = (password: string | undefined) => {
+  return password &&
+    !validator.isStrongPassword(password, {
+      ...strongPasswordOptions,
+      returnScore: false,
+    })
     ? getValidationErrorMessage({
         field: 'password',
         rule: 'password',
@@ -67,8 +68,8 @@ export const checkPassword = (password: string) => {
     : '';
 };
 
-export const checkPhone = (phone: string) => {
-  return !validatePhoneNumber(phone)
+export const checkPhone = (phone: string | undefined) => {
+  return phone && !validatePhoneNumber(phone)
     ? getValidationErrorMessage({
         field: 'phone',
         rule: 'phone',

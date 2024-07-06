@@ -124,10 +124,10 @@ export const extractValidationErrorMessagesFromError = (error: any) => {
 // check if the field value length is higher than the minLength limit
 export const checkMinLength: FieldLengthValidatorFunction = (
   field: string,
-  value: string,
+  value: string | undefined,
   minLength: number,
 ) => {
-  return value.length < minLength
+  return value && value.length < minLength
     ? getValidationErrorMessage({
         field,
         minLength,
@@ -139,10 +139,10 @@ export const checkMinLength: FieldLengthValidatorFunction = (
 // check if the field value length is lower than the maxLength limit
 export const checkMaxLength: FieldLengthValidatorFunction = (
   field: string,
-  value: string,
+  value: string | undefined,
   maxLength: number,
 ) => {
-  return value.length > maxLength
+  return value && value.length > maxLength
     ? getValidationErrorMessage({
         field,
         maxLength,
@@ -154,9 +154,9 @@ export const checkMaxLength: FieldLengthValidatorFunction = (
 // check if the field value format corresponds to the regex
 export const checkFieldFormat: FieldFormatValidatorFunction = (
   fieldType: UserField,
-  fieldValue: string,
+  fieldValue: string | undefined,
 ) => {
-  return !regexes.nameField.test(fieldValue)
+  return fieldValue && !regexes.nameField.test(fieldValue)
     ? getValidationErrorMessage({
         field: fieldType,
         rule: fieldType,

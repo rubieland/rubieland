@@ -30,7 +30,7 @@ export const register = async (
       'uploads/placeholders/user-default-avatar.jpg',
     );
 
-    const user: IUser = {
+    const userData: IUser = {
       firstName,
       lastName,
       email,
@@ -41,7 +41,7 @@ export const register = async (
     };
 
     // check for empty or missing fields
-    const missingOrEmptyFields = getMissingOrEmptyFields(user);
+    const missingOrEmptyFields = getMissingOrEmptyFields(userData);
 
     if (missingOrEmptyFields && missingOrEmptyFields.length > 0) {
       const errors = getMissingOrEmptyFieldsErrorMessage(missingOrEmptyFields);
@@ -52,7 +52,7 @@ export const register = async (
     }
 
     // data validation
-    const userDataErrors = checkUserData(user);
+    const userDataErrors = checkUserData(userData);
 
     if (userDataErrors && userDataErrors.length > 0) {
       return res
@@ -60,7 +60,7 @@ export const register = async (
         .json({ message: i18n.t('auth.error.registerFailed'), userDataErrors });
     }
 
-    const newUser = new User(user);
+    const newUser = new User(userData);
     const userInBase = await User.findOne({ email: newUser.email });
 
     // if the email already exists in base, send error (as it must be unique)
