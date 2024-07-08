@@ -10,8 +10,8 @@ export interface IUser {
   lastName: string;
   email: string;
   password: string;
-  phone?: string;
-  avatar?: string;
+  phone: string;
+  avatar?: string | null;
   role?: UserRole;
 }
 
