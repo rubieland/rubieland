@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import i18n from '../../config/i18n';
 import User from '../../models/User.model';
 import { trimData } from '../../utils/string.utils';
-import { UserPayload } from '../../models/types/User.types';
+import { UserDocument, UserPayload } from '../../models/types/User.types';
 import { checkUserData } from '../../validation/User.validators';
 import { deleteFile } from '../../utils/file.utils';
 import { fileURLToPath } from 'url';
@@ -48,14 +48,23 @@ export const updateUser = async (
       trimData(req.body);
     const avatar = req.file?.filename;
     const userId = req.session?.authUser?.id;
-    const userInBase = await User.findById(userId);
+    const userInBase: UserDocument | null = await User.findById(userId);
+    const emailExists = await User.findOne({ email });
 
+    // if the user is not in base anymore, send error
     if (!userInBase) {
       if (req.file) await deleteFile(`${avatarsDir}/${req.file?.filename}`);
 
       return res
         .status(404)
         .json({ error: i18n.t('profile.error.userNotFound') });
+    }
+
+    // if user provides a new email, but this email already exists in base, send error
+    if (email !== userInBase.email && emailExists) {
+      return res
+        .status(400)
+        .json({ error: i18n.t('auth.error.userExistsInBase') });
     }
 
     const userData: UserPayload = {
@@ -79,62 +88,28 @@ export const updateUser = async (
       });
     }
 
-    /**
-     * TODO:
-     * check empty fields
-     * add data validation
-     * check password and confirmPassword => must be equivalent
-     * handle copyFile if new avatar is provided
-     * /!\ DO NOT DELETEFILE IF USER AVATAR IS DEFAULTAVATAR
-     * save newUser => if password is modified, pre('save') method should be called and hash new password
-     * create deleteFile function and call it if validations fail
-     */
+    // if user uploads a new avatar, delete the old one and replace it by the new
+    if (req.file) {
+      await deleteFile(`${avatarsDir}/${userInBase.avatar}`).then(async () => {
+        userInBase.avatar = req.file?.filename;
+      });
+    }
 
-    // ---------------------------- \\
+    // update user data
+    (
+      Object.keys(userData) as (keyof Omit<UserPayload, 'confirmPassword'>)[]
+    ).forEach(async (key) => {
+      if (userData[key] !== undefined) {
+        userInBase[key] = userData[key] as any;
+      }
+    });
 
-    //let userPassword = user.password;
-    // // check if a new password has been provided and if so, hash it
-    // if (password) {
-    //   const salt = await bcrypt.genSalt(10);
-    //   const hashedPassword = await bcrypt.hash(password, salt);
-    //   userPassword = hashedPassword;
-    // }
-
-    // let newAvatar;
-    // if (avatarFromField && avatarFromField !== '') {
-    //   fs.unlink(`src/uploads/user/avatar${user.avatar}`, (error) => {
-    //     if (error && error.code !== 'ENOENT') {
-    //       return res.status(500).json({
-    //         error: i18n.t('common.error.deleteFileFailed'),
-    //       });
-    //     }
-    //   });
-    //   newAvatar = await copyFile(
-    //     avatarFromField ?? '',
-    //     'src/uploads/user/avatar',
-    //     'images/avatars',
-    //   );
-    // }
-
-    // // update user data with new data if provided, or keep old data if not
-    // const updatedUser = await User.findByIdAndUpdate(
-    //   userId,
-    //   {
-    //     firstName: firstName || user.firstName,
-    //     lastName: lastName || user.lastName,
-    //     phone: phone || user.phone,
-    //     email: email || user.email,
-    //     password: userPassword,
-    //     avatar: newAvatar ? newAvatar[0] : user.avatar,
-    //   },
-    //   { new: true },
-    // );
-
-    // ---------------------------- \\
+    // save user with updated data
+    await userInBase.save();
 
     return res.status(200).json({
       message: `Votre profil a été modifié avec succès!`,
-      userData,
+      userInBase,
     });
   } catch (error) {
     console.log(error);
