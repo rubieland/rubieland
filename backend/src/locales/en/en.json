@@ -47,7 +47,7 @@
     },
     "error": {
       "registerFailed": "Registration failed",
-      "userExistsInBase": "This user already exists. Please enter a new email",
+      "userExistsInBase": "An account with this email already exists. Please enter a new email",
       "invalidCredentials": "Invalid credentials",
       "internalServerError": "Internal server error",
       "unauthorized": "Access denied. Please log in",

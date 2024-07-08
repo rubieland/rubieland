@@ -46,7 +46,7 @@
     },
     "error": {
       "registerFailed": "La création de compte a échouée",
-      "userExistsInBase": "Cet utilisateur existe déjà. Veuillez entrer un nouvel email",
+      "userExistsInBase": "Un compte avec cet email existe déjà. Veuillez entrer un nouvel email",
       "invalidCredentials": "Identifiants incorrects",
       "internalServerError": "Erreur interne du serveur",
       "unauthorized": "Accès refusé. Veuillez vous connecter",
