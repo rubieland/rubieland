@@ -57,7 +57,10 @@ export const register = async (
     if (userDataErrors && userDataErrors.length > 0) {
       return res
         .status(400)
-        .json({ message: i18n.t('auth.error.registerFailed'), userDataErrors });
+        .json({
+          message: i18n.t('auth.error.registerFailed'),
+          errors: userDataErrors,
+        });
     }
 
     const newUser = new User(userData);

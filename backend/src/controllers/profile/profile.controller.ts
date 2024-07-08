@@ -77,9 +77,10 @@ export const updateUser = async (
 
     if (userDataErrors && userDataErrors.length > 0) {
       if (req.file) await deleteFile(`${avatarsDir}/${req.file?.filename}`);
-      return res
-        .status(400)
-        .json({ message: i18n.t('auth.error.registerFailed'), userDataErrors });
+      return res.status(400).json({
+        message: i18n.t('auth.error.registerFailed'),
+        errors: userDataErrors,
+      });
     }
 
     /**
