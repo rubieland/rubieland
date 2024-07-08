@@ -9,11 +9,6 @@ import {
   getMissingOrEmptyFieldsErrorMessage,
 } from '../../utils/validation.utils';
 import { checkUserData } from '../../validation/User.validators';
-import { fileURLToPath } from 'url';
-import path from 'path';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 export const register = async (
   req: Request,
@@ -24,13 +19,6 @@ export const register = async (
     const { firstName, lastName, email, password, confirmPassword, phone } =
       trimData(req.body);
 
-    // default avatar path
-    const defaultAvatar = path.join(
-      __dirname,
-      '../../',
-      'uploads/placeholders/user-default-avatar.jpg',
-    );
-
     const userData: UserPayload = {
       firstName,
       lastName,
@@ -38,7 +26,7 @@ export const register = async (
       password,
       confirmPassword,
       phone,
-      avatar: defaultAvatar,
+      avatar: null,
       role: UserRole.USER,
     };
 

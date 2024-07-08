@@ -16,23 +16,8 @@ import jwt from 'jsonwebtoken';
 import { env } from '../loaders/env.loader';
 import i18n from '../config/i18n';
 import { Reason } from '../validation/types/validation.types';
-import { fileURLToPath } from 'url';
-import path from 'path';
 
 const { JWT_SECRET, JWT_EXPIRATION } = env;
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const defaultAvatar = path.join(
-  __dirname,
-  '..',
-  'uploads/placeholders/user-default-avatar.jpg',
-);
-
-/**
- * TODO:
- * add validators for avatar (define accepted file formats, sizes...)
- * test validations
- */
 
 const userSchema = new Schema<UserDocument>(
   {
@@ -205,7 +190,7 @@ const userSchema = new Schema<UserDocument>(
     avatar: {
       type: String,
       trim: true,
-      default: defaultAvatar,
+      default: null,
     },
     role: {
       type: String,
