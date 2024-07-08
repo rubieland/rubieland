@@ -21,7 +21,8 @@ export const register = async (
   next: NextFunction,
 ) => {
   try {
-    const { firstName, lastName, email, password, phone } = trimData(req.body);
+    const { firstName, lastName, email, password, confirmPassword, phone } =
+      trimData(req.body);
 
     // default avatar path
     const defaultAvatar = path.join(
@@ -35,6 +36,7 @@ export const register = async (
       lastName,
       email,
       password,
+      confirmPassword,
       phone,
       avatar: defaultAvatar,
       role: UserRole.USER,
@@ -55,12 +57,10 @@ export const register = async (
     const userDataErrors = checkUserData(userData);
 
     if (userDataErrors && userDataErrors.length > 0) {
-      return res
-        .status(400)
-        .json({
-          message: i18n.t('auth.error.registerFailed'),
-          errors: userDataErrors,
-        });
+      return res.status(400).json({
+        message: i18n.t('auth.error.registerFailed'),
+        errors: userDataErrors,
+      });
     }
 
     const newUser = new User(userData);
