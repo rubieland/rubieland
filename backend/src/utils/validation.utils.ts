@@ -14,8 +14,6 @@ import {
   ValidatePhoneNumberFunction,
 } from '../validation/types/validation.types';
 import { regexes } from '../validation/User.validators';
-import { UserField } from '../models/types/User.types';
-
 /**
  * @param phoneNumber(string): phone number to validate
  * @returns(boolean): returns true if the string is a valid international phone number

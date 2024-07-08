@@ -1,5 +1,3 @@
-import { UserField } from '../../models/types/User.types';
-
 // enum for the reasons of a field validation fail
 export enum Reason {
   INVALID = 'invalid',

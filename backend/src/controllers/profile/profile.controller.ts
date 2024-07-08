@@ -3,10 +3,6 @@ import i18n from '../../config/i18n';
 import User from '../../models/User.model';
 import { trimData } from '../../utils/string.utils';
 import { UserPayload } from '../../models/types/User.types';
-import {
-  getMissingOrEmptyFields,
-  getMissingOrEmptyFieldsErrorMessage,
-} from '../../utils/validation.utils';
 import { checkUserData } from '../../validation/User.validators';
 import { deleteFile } from '../../utils/file.utils';
 import { fileURLToPath } from 'url';
