@@ -15,8 +15,8 @@ export interface IUser {
   role?: UserRole;
 }
 
-// TODO: remove 'avatar' from Omit when file handling is ready
-export interface UserPayload extends IUser {
+export interface UserPayload extends Omit<IUser, 'password'> {
+  password?: string;
   confirmPassword?: string;
 }
 
