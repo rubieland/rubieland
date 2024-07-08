@@ -38,10 +38,6 @@ export const userDataLengths: UserDataLengths = {
     minLength: 8,
     maxLength: 20,
   },
-  confirmPassword: {
-    minLength: 8,
-    maxLength: 20,
-  },
   phone: {
     minLength: 9,
     maxLength: 15,
