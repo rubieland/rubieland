@@ -48,37 +48,26 @@ export const userDataLengths: UserDataLengths = {
   },
 };
 
-export const checkEmail = (email: string) => {
-  return !validator.isEmail(email)
-    ? getValidationErrorMessage({
-        field: 'email',
-        rule: 'email',
-        reason: Reason.INVALID,
-      })
-    : '';
+export const checkEmail = (email: string): boolean => {
+  return validator.isEmail(email);
 };
 
-export const checkPassword = (password: string) => {
-  return !validator.isStrongPassword(password, {
+export const checkPassword = (password: string): boolean => {
+  return validator.isStrongPassword(password, {
     ...strongPasswordOptions,
     returnScore: false,
-  })
-    ? getValidationErrorMessage({
-        field: 'password',
-        rule: 'password',
-        reason: Reason.INVALID,
-      })
-    : '';
+  });
 };
 
-export const checkPhone = (phone: string) => {
-  return !validatePhoneNumber(phone)
-    ? getValidationErrorMessage({
-        field: 'phone',
-        rule: 'phone',
-        reason: Reason.INVALID,
-      })
-    : '';
+export const checkPhone = (phone: string): boolean => {
+  return validatePhoneNumber(phone);
+};
+
+export const checkConfirmPassword = (
+  password: string,
+  confirmPassword: string,
+): boolean => {
+  return password === confirmPassword;
 };
 
 /**
@@ -94,50 +83,93 @@ export const checkUserData = (data: UserPayload) => {
       const fieldKey = key as UserField;
 
       // check maxLengths
-      const maxLengthError = checkMaxLength(
-        fieldKey,
-        value,
-        userDataLengths[fieldKey].maxLength,
-      );
-
-      if (maxLengthError) errors.push(maxLengthError);
+      if (!checkMaxLength(value, userDataLengths[fieldKey].maxLength)) {
+        errors.push(
+          getValidationErrorMessage({
+            field: fieldKey,
+            rule: fieldKey,
+            maxLength: userDataLengths[fieldKey].maxLength,
+            reason: Reason.MAXLENGTH,
+          }),
+        );
+      }
 
       // check minLengths
-      const minLengthError = checkMinLength(
-        fieldKey,
-        value,
-        userDataLengths[fieldKey].minLength,
-      );
-
-      if (minLengthError) errors.push(minLengthError);
+      if (!checkMinLength(value, userDataLengths[fieldKey].minLength)) {
+        errors.push(
+          getValidationErrorMessage({
+            field: fieldKey,
+            rule: fieldKey,
+            minLength: userDataLengths[fieldKey].minLength,
+            reason: Reason.MINLENGTH,
+          }),
+        );
+      }
 
       // check firstName and lastName fields
-      if (fieldKey === 'firstName' || fieldKey === 'lastName') {
-        const nameError = checkFieldFormat(fieldKey, value);
-
-        if (nameError) errors.push(nameError);
+      if (
+        (fieldKey === 'firstName' || fieldKey === 'lastName') &&
+        !checkFieldFormat(value)
+      ) {
+        errors.push(
+          getValidationErrorMessage({
+            field: fieldKey,
+            rule: fieldKey,
+            reason: Reason.INVALID,
+          }),
+        );
       }
 
       // check email
-      if (fieldKey === 'email') {
-        const emailError = checkEmail(value);
-
-        if (emailError) errors.push(emailError);
+      if (fieldKey === 'email' && !checkEmail(value)) {
+        errors.push(
+          getValidationErrorMessage({
+            field: fieldKey,
+            rule: fieldKey,
+            reason: Reason.INVALID,
+          }),
+        );
       }
 
-      //check password
-      if (fieldKey === 'password') {
-        const passwordError = checkPassword(value);
-
-        if (passwordError) errors.push(passwordError);
+      // check password
+      if (fieldKey === 'password' && !checkPassword(value)) {
+        errors.push(
+          getValidationErrorMessage({
+            field: fieldKey,
+            rule: fieldKey,
+            reason: Reason.INVALID,
+          }),
+        );
       }
 
       // check phone number
-      if (fieldKey === 'phone') {
-        const phoneError = checkPhone(value);
-
-        if (phoneError) errors.push(phoneError);
+      if (fieldKey === 'phone' && !checkPhone(value)) {
+        errors.push(
+          getValidationErrorMessage({
+            field: fieldKey,
+            rule: fieldKey,
+            reason: Reason.INVALID,
+          }),
+        );
       }
+    }
+  }
+
+  // check confirmPassword
+  if (
+    'password' in data &&
+    data.password != null &&
+    'confirmPassword' in data &&
+    data.confirmPassword != null
+  ) {
+    if (!checkConfirmPassword(data.password, data.confirmPassword)) {
+      errors.push(
+        getValidationErrorMessage({
+          field: 'confirmPassword',
+          rule: 'passwordsDontMatch',
+          reason: Reason.INVALID,
+        }),
+      );
     }
   }
 

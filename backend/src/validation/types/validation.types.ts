@@ -34,12 +34,8 @@ export type GetMissingOrEmptyFieldsErrorMessageFunction = (
 ) => string[];
 
 export type FieldLengthValidatorFunction = (
-  field: string,
   value: string,
   maxLength: number,
-) => string;
+) => boolean;
 
-export type FieldFormatValidatorFunction = (
-  fieldType: UserField,
-  fieldValue: string,
-) => string;
+export type FieldFormatValidatorFunction = (fieldValue: string) => boolean;
