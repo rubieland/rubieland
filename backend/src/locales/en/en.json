@@ -27,7 +27,8 @@
       "firstName": "it can only contain letters, hyphens, spaces and apostrophes",
       "lastName": "it can only contain letters, hyphens, spaces and apostrophes",
       "password": "it must contain at least: 1 lowercase, 1 uppercase, 1 number and 1 special character ",
-      "phone": "Please enter a phone number in the international format: +XX 0000000000 (replace XX with the country code)"
+      "phone": "Please enter a phone number in the international format: +XX 0000000000 (replace XX with the country code)",
+      "passwordsDontMatch": "Passwords don't match"
     },
     "messages": {
       "required": "The field {{field}} is required",

@@ -27,7 +27,8 @@
       "firstName": "il ne peut contenir que des lettres, traits d'union, espaces et apostrophes",
       "lastName": "il ne peut contenir que des lettres, traits d'union, espaces et apostrophes",
       "password": "il doit contenir au moins: 1 minuscule, 1 majuscule, 1 chiffre, 1 caractère spécial",
-      "phone": "veuillez entrer un numéro de téléphone au format international : +XX 0000000000 (remplacez XX par le code du pays)"
+      "phone": "veuillez entrer un numéro de téléphone au format international : +XX 0000000000 (remplacez XX par le code du pays)",
+      "passwordsDontMatch": "Les mot de passe ne correspondent pas"
     },
     "messages": {
       "required": "Le champ {{field}} est requis",
