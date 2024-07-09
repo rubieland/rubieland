@@ -26,7 +26,6 @@ export const register = async (
       password,
       confirmPassword,
       phone,
-      avatar: null,
       role: UserRole.USER,
     };
 
@@ -51,7 +50,7 @@ export const register = async (
       });
     }
 
-    const newUser = new User(userData);
+    const newUser = new User({ ...userData, avatar: null });
     const userInBase = await User.findOne({ email: newUser.email });
 
     // if the email already exists in base, send error (as it must be unique)
