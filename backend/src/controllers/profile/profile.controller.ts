@@ -44,8 +44,15 @@ export const updateUser = async (
   next: NextFunction,
 ) => {
   try {
-    const { firstName, lastName, email, password, confirmPassword, phone } =
-      trimData(req.body);
+    const {
+      firstName,
+      lastName,
+      email,
+      currentPassword,
+      newPassword,
+      confirmNewPassword,
+      phone,
+    } = trimData(req.body);
     const avatar = req.file?.filename;
     const userId = req.session?.authUser?.id;
     const userInBase: UserDocument | null = await User.findById(userId);
@@ -71,8 +78,9 @@ export const updateUser = async (
       firstName,
       lastName,
       email,
-      password,
-      confirmPassword,
+      currentPassword,
+      newPassword,
+      confirmNewPassword,
       phone,
       avatar,
     };
@@ -97,10 +105,17 @@ export const updateUser = async (
 
     // update user data
     (
-      Object.keys(userData) as (keyof Omit<UserPayload, 'confirmPassword'>)[]
+      Object.keys(userData) as (keyof Omit<
+        UserData,
+        | 'currentPassword'
+        | 'newPassword'
+        | 'confirmNewPassword'
+        | 'confirmPassword'
+      >)[]
     ).forEach(async (key) => {
       if (userData[key] !== undefined) {
         userInBase[key] = userData[key] as any;
+        userInBase.password = userData.newPassword as string;
       }
     });
 

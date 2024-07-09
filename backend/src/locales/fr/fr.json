@@ -18,7 +18,10 @@
       "lastName": "Nom de famille",
       "email": "E-mail",
       "password": "Mot de passe",
+      "currentPassword": "Mot de passe actuel",
       "confirmPassword": "Confirmer le mot de passe",
+      "newPassword": "Nouveau mot de passe",
+      "confirmNewPassword": "Confirmer le nouveau mot de passe",
       "phone": "N° de téléphone",
       "avatar": "Avatar"
     },
@@ -28,7 +31,9 @@
       "lastName": "il ne peut contenir que des lettres, traits d'union, espaces et apostrophes",
       "password": "il doit contenir au moins: 1 minuscule, 1 majuscule, 1 chiffre, 1 caractère spécial",
       "phone": "veuillez entrer un numéro de téléphone au format international : +XX 0000000000 (remplacez XX par le code du pays)",
-      "passwordsDontMatch": "Les mot de passe ne correspondent pas"
+      "currentPasswordDontMatch": "le mot de passe actuel saisi est incorrect",
+      "passwordsDontMatch": "les mots de passe ne correspondent pas",
+      "newPasswordsDontMatch": "le mot de passe saisi dans Confirmer le nouveau mot de passe ne correspond pas avec le mot de passe saisi dans le champ Nouveau mot de passe"
     },
     "messages": {
       "required": "Le champ {{field}} est requis",

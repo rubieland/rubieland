@@ -172,5 +172,52 @@ export const checkUserData = async (
     }
   }
 
+  // check currentPassword
+  if ('currentPassword' in data && data.currentPassword != null) {
+    const isMatch = await userInBase?.comparePassword(data.currentPassword);
+    if (!isMatch) {
+      errors.push(
+        getValidationErrorMessage({
+          field: 'currentPassword',
+          rule: 'currentPasswordDontMatch',
+          reason: Reason.INVALID,
+        }),
+      );
+    }
+  }
+
+  // check newPassword
+  if (
+    'newPassword' in data &&
+    data.newPassword != null &&
+    !checkPassword(data.newPassword)
+  ) {
+    errors.push(
+      getValidationErrorMessage({
+        field: 'newPassword',
+        rule: 'password',
+        reason: Reason.INVALID,
+      }),
+    );
+  }
+
+  // check confirmNewPassword
+  if (
+    'newPassword' in data &&
+    data.newPassword != null &&
+    'confirmNewPassword' in data &&
+    data.confirmNewPassword != null
+  ) {
+    if (!checkConfirmPassword(data.newPassword, data.confirmNewPassword)) {
+      errors.push(
+        getValidationErrorMessage({
+          field: 'confirmNewPassword',
+          rule: 'newPasswordsDontMatch',
+          reason: Reason.INVALID,
+        }),
+      );
+    }
+  }
+
   return errors;
 };
