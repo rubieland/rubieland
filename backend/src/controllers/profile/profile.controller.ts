@@ -139,3 +139,35 @@ export const updateUser = async (
     next(error);
   }
 };
+
+export const deleteAccount = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    const userId = req.session?.authUser?.id;
+
+    if (!userId) {
+      return res.status(401).json({ error: i18n.t('auth.error.unauthorized') });
+    }
+
+    const user = await User.findById(userId);
+
+    if (!user) {
+      return res
+        .status(404)
+        .json({ error: i18n.t('profile.error.userNotFound') });
+    }
+
+    await user.deleteOne().then(async () => {
+      if (user.avatar) await deleteAvatar(`${avatarsDir}/${user.avatar}`);
+    });
+
+    res
+      .status(200)
+      .json({ message: i18n.t('profile.success.deleteAccountSuccess') });
+  } catch (error) {
+    next(error);
+  }
+};

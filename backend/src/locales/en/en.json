@@ -72,6 +72,9 @@
   "profile": {
     "error": {
       "userNotFound": "User not found"
+    },
+    "success": {
+      "deleteAccountSuccess": "Your account has been deleted successfully!"
     }
   }
 }
