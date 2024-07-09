@@ -42,7 +42,7 @@ export const register = async (
     }
 
     // data validation
-    const userDataErrors = checkUserData(userData);
+    const userDataErrors = await checkUserData(userData);
 
     if (userDataErrors && userDataErrors.length > 0) {
       return res.status(400).json({

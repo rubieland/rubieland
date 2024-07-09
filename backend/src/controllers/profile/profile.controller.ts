@@ -78,7 +78,7 @@ export const updateUser = async (
     };
 
     // data validation
-    const userDataErrors = checkUserData(userData);
+    const userDataErrors = await checkUserData(userData, userInBase);
 
     if (userDataErrors && userDataErrors.length > 0) {
       if (req.file) await deleteFile(`${avatarsDir}/${req.file?.filename}`);
