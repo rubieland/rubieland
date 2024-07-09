@@ -1,5 +1,5 @@
 import validator, { StrongPasswordOptions } from 'validator';
-import { UserField, UserPayload } from '../models/types/User.types';
+import { UserDocument, UserField, UserData } from '../models/types/User.types';
 import {
   checkFieldFormat,
   checkMaxLength,
@@ -71,7 +71,10 @@ export const checkConfirmPassword = (
  *  refactor to avoid code repetition
  */
 
-export const checkUserData = (data: UserPayload) => {
+export const checkUserData = async (
+  data: UserData,
+  userInBase?: UserDocument,
+) => {
   const errors: string[] = [];
 
   for (const [key, value] of Object.entries(data)) {

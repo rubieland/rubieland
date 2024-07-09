@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import i18n from '../../config/i18n';
 import User from '../../models/User.model';
 import { trimData } from '../../utils/string.utils';
-import { UserDocument, UserPayload } from '../../models/types/User.types';
+import { UserData, UserDocument } from '../../models/types/User.types';
 import { checkUserData } from '../../validation/User.validators';
 import { deleteFile } from '../../utils/file.utils';
 import { fileURLToPath } from 'url';
@@ -67,7 +67,7 @@ export const updateUser = async (
         .json({ error: i18n.t('auth.error.userExistsInBase') });
     }
 
-    const userData: UserPayload = {
+    const userData: UserData = {
       firstName,
       lastName,
       email,

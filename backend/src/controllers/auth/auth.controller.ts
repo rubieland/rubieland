@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import User from '../../models/User.model';
 import { trimData } from '../../utils/string.utils';
-import { UserPayload, UserRole } from '../../models/types/User.types';
+import { UserData, UserRole } from '../../models/types/User.types';
 import i18n from '../../config/i18n';
 import {
   extractValidationErrorMessagesFromError,
@@ -19,7 +19,7 @@ export const register = async (
     const { firstName, lastName, email, password, confirmPassword, phone } =
       trimData(req.body);
 
-    const userData: UserPayload = {
+    const userData: UserData = {
       firstName,
       lastName,
       email,

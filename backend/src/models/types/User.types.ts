@@ -15,12 +15,15 @@ export interface IUser {
   role?: UserRole;
 }
 
-export interface UserPayload extends Omit<IUser, 'password'> {
+export interface UserData extends Omit<IUser, 'password'> {
   password?: string;
   confirmPassword?: string;
+  currentPassword?: string;
+  newPassword?: string;
+  confirmNewPassword?: string;
 }
 
-export type UserField = keyof Omit<UserPayload, 'avatar' | 'role'>;
+export type UserField = keyof Omit<UserData, 'avatar' | 'role'>;
 
 export interface UserDocument extends IUser, Document {
   comparePassword(candidatePassword: string): Promise<boolean>;
