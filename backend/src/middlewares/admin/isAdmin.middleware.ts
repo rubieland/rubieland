@@ -12,9 +12,7 @@ export const isAdminMiddleware = async (
 
     // if the user is not admin, he must not access the route...
     if (userRole !== 'admin') {
-      return res
-        .status(403)
-        .json({ error: i18n.t('common.error.unauthorized') });
+      return res.status(403).json({ error: i18n.t('auth.error.forbidden') });
     }
     // ... else, he can access the route
     next();

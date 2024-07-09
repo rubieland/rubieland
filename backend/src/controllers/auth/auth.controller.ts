@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import User from '../../models/User.model';
 import { trimData } from '../../utils/string.utils';
-import { IUser, UserRole } from '../../models/types/User.types';
+import { UserData, UserRole } from '../../models/types/User.types';
 import i18n from '../../config/i18n';
 import {
   extractValidationErrorMessagesFromError,
@@ -9,11 +9,6 @@ import {
   getMissingOrEmptyFieldsErrorMessage,
 } from '../../utils/validation.utils';
 import { checkUserData } from '../../validation/User.validators';
-import { fileURLToPath } from 'url';
-import path from 'path';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 export const register = async (
   req: Request,
@@ -21,27 +16,22 @@ export const register = async (
   next: NextFunction,
 ) => {
   try {
-    const { firstName, lastName, email, password, phone } = trimData(req.body);
+    const { firstName, lastName, email, password, confirmPassword, phone } =
+      trimData(req.body);
 
-    // default avatar path
-    const defaultAvatar = path.join(
-      __dirname,
-      '../../',
-      'uploads/placeholders/user-default-avatar.jpg',
-    );
-
-    const user: IUser = {
+    const userData: UserData = {
       firstName,
       lastName,
       email,
       password,
+      confirmPassword,
       phone,
-      avatar: defaultAvatar,
+      avatar: null,
       role: UserRole.USER,
     };
 
     // check for empty or missing fields
-    const missingOrEmptyFields = getMissingOrEmptyFields(user);
+    const missingOrEmptyFields = getMissingOrEmptyFields(userData);
 
     if (missingOrEmptyFields && missingOrEmptyFields.length > 0) {
       const errors = getMissingOrEmptyFieldsErrorMessage(missingOrEmptyFields);
@@ -52,15 +42,16 @@ export const register = async (
     }
 
     // data validation
-    const userDataErrors = checkUserData(user);
+    const userDataErrors = await checkUserData(userData);
 
     if (userDataErrors && userDataErrors.length > 0) {
-      return res
-        .status(400)
-        .json({ message: i18n.t('auth.error.registerFailed'), userDataErrors });
+      return res.status(400).json({
+        message: i18n.t('auth.error.registerFailed'),
+        errors: userDataErrors,
+      });
     }
 
-    const newUser = new User(user);
+    const newUser = new User(userData);
     const userInBase = await User.findOne({ email: newUser.email });
 
     // if the email already exists in base, send error (as it must be unique)

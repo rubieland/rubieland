@@ -9,7 +9,7 @@
       "500": "Internal server error",
       "unknown": "An unexpected error occured",
       "saveFailed": "An error occurred while saving the data. Please try again",
-      "unauthorized": "You are not authorized to access this route"
+      "deleteFileFailed": "Le fichier n'a pas pu être supprimé"
     }
   },
   "validation": {
@@ -18,6 +18,10 @@
       "lastName": "Last name",
       "email": "Email",
       "password": "Password",
+      "currentPassword": "Current password",
+      "confirmPassword": "Confirm password",
+      "newPassword": "New password",
+      "confirmNewPassword": "Confirm new password",
       "phone": "Phone number",
       "avatar": "Avatar"
     },
@@ -26,7 +30,10 @@
       "firstName": "it can only contain letters, hyphens, spaces and apostrophes",
       "lastName": "it can only contain letters, hyphens, spaces and apostrophes",
       "password": "it must contain at least: 1 lowercase, 1 uppercase, 1 number and 1 special character ",
-      "phone": "Please enter a phone number in the international format: +XX 0000000000 (replace XX with the country code)"
+      "phone": "Please enter a phone number in the international format: +XX 0000000000 (replace XX with the country code)",
+      "currentPasswordDontMatch": "the current password you entered is incorrect",
+      "passwordsDontMatch": "passwords don't match",
+      "newPasswordsDontMatch": "the password you entered in the field Confirm new password does not match with the password you entered in the field New password"
     },
     "messages": {
       "required": "The field {{field}} is required",
@@ -45,11 +52,11 @@
     },
     "error": {
       "registerFailed": "Registration failed",
-      "userExistsInBase": "This user already exists. Please enter a new email",
+      "userExistsInBase": "An account with this email already exists. Please enter a new email",
       "invalidCredentials": "Invalid credentials",
       "internalServerError": "Internal server error",
-      "invalidToken": "Access denied. Please log in",
-      "tokenExpired": "Access denied. Please log in again",
+      "unauthorized": "Access denied. Please log in",
+      "forbidden": "Access denied. Please log in again",
       "comparePasswordFailed": "An error occurred while comparing passwords. Please try again",
       "sessionDestructionFailed": "An error occurred while destroying session"
     }
@@ -60,6 +67,14 @@
       "oneFileLimit": "You must send only one file",
       "wrongFileType": "Invalid file. Only files of type {{types}} are allowed",
       "unexpectedFile": "An unexpected file was uploaded. Please use only the designated upload fields."
+    }
+  },
+  "profile": {
+    "error": {
+      "userNotFound": "User not found"
+    },
+    "success": {
+      "deleteAccountSuccess": "Your account has been deleted successfully!"
     }
   }
 }

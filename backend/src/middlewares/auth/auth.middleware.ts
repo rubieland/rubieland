@@ -13,7 +13,7 @@ export const authMiddleware = async (
   const token = req.session.token;
 
   if (!token) {
-    return res.status(401).json({ error: i18n.t('auth.error.invalidToken') });
+    return res.status(401).json({ error: i18n.t('auth.error.unauthorized') });
   }
 
   try {
@@ -30,6 +30,6 @@ export const authMiddleware = async (
     }
     next();
   } catch (error: unknown) {
-    return res.status(403).json({ error: i18n.t('auth.error.tokenExpired') });
+    return res.status(403).json({ error: i18n.t('auth.error.forbidden') });
   }
 };

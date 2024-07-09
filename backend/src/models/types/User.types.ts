@@ -10,13 +10,20 @@ export interface IUser {
   lastName: string;
   email: string;
   password: string;
-  phone?: string;
-  avatar?: string;
+  phone: string;
+  avatar?: string | null;
   role?: UserRole;
 }
 
-// TODO: remove 'avatar' from Omit when file handling is ready
-export type UserField = keyof Omit<IUser, 'avatar' | 'role'>;
+export interface UserData extends Omit<IUser, 'password'> {
+  password?: string;
+  confirmPassword?: string;
+  currentPassword?: string;
+  newPassword?: string;
+  confirmNewPassword?: string;
+}
+
+export type UserField = keyof Omit<UserData, 'avatar' | 'role'>;
 
 export interface UserDocument extends IUser, Document {
   comparePassword(candidatePassword: string): Promise<boolean>;
