@@ -4,7 +4,7 @@ import User from '../../models/User.model';
 import { trimData } from '../../utils/string.utils';
 import { UserData, UserDocument } from '../../models/types/User.types';
 import { checkUserData } from '../../validation/User.validators';
-import { deleteFile } from '../../utils/file.utils';
+import { deleteFile as deleteAvatar } from '../../utils/file.utils';
 import { fileURLToPath } from 'url';
 import path from 'path';
 
@@ -53,14 +53,15 @@ export const updateUser = async (
       confirmNewPassword,
       phone,
     } = trimData(req.body);
-    const avatar = req.file?.filename;
+    const avatarFile = req.file;
     const userId = req.session?.authUser?.id;
     const userInBase: UserDocument | null = await User.findById(userId);
     const emailExists = await User.findOne({ email });
 
     // if the user is not in base anymore, send error
     if (!userInBase) {
-      if (req.file) await deleteFile(`${avatarsDir}/${req.file?.filename}`);
+      if (avatarFile)
+        await deleteAvatar(`${avatarsDir}/${avatarFile?.filename}`);
 
       return res
         .status(404)
@@ -69,6 +70,9 @@ export const updateUser = async (
 
     // if user provides a new email, but this email already exists in base, send error
     if (email !== userInBase.email && emailExists) {
+      if (avatarFile)
+        await deleteAvatar(`${avatarsDir}/${avatarFile?.filename}`);
+
       return res
         .status(400)
         .json({ error: i18n.t('auth.error.userExistsInBase') });
@@ -82,14 +86,15 @@ export const updateUser = async (
       newPassword,
       confirmNewPassword,
       phone,
-      avatar,
+      avatar: avatarFile?.filename,
     };
 
     // data validation
     const userDataErrors = await checkUserData(userData, userInBase);
 
     if (userDataErrors && userDataErrors.length > 0) {
-      if (req.file) await deleteFile(`${avatarsDir}/${req.file?.filename}`);
+      if (avatarFile)
+        await deleteAvatar(`${avatarsDir}/${avatarFile?.filename}`);
       return res.status(400).json({
         message: i18n.t('auth.error.registerFailed'),
         errors: userDataErrors,
@@ -97,10 +102,13 @@ export const updateUser = async (
     }
 
     // if user uploads a new avatar, delete the old one and replace it by the new
-    if (req.file) {
-      await deleteFile(`${avatarsDir}/${userInBase.avatar}`).then(async () => {
-        userInBase.avatar = req.file?.filename;
-      });
+    if (avatarFile) {
+      if (userInBase.avatar)
+        await deleteAvatar(`${avatarsDir}/${userInBase.avatar}`).then(
+          async () => {
+            userInBase.avatar = avatarFile?.filename;
+          },
+        );
     }
 
     // update user data
