@@ -9,7 +9,7 @@
       "500": "Internal server error",
       "unknown": "Une erreur inconnue est survenue",
       "saveFailed": "Une erreur est survenue lors de la sauvegarde des données. Veuillez réessayer",
-      "unauthorized": "Vous n'avez pas les droits nécessaires pour accéder à cette route"
+      "deleteFileFailed": "Le fichier n'a pas pu être supprimé"
     }
   },
   "validation": {
@@ -18,6 +18,10 @@
       "lastName": "Nom de famille",
       "email": "E-mail",
       "password": "Mot de passe",
+      "currentPassword": "Mot de passe actuel",
+      "confirmPassword": "Confirmer le mot de passe",
+      "newPassword": "Nouveau mot de passe",
+      "confirmNewPassword": "Confirmer le nouveau mot de passe",
       "phone": "N° de téléphone",
       "avatar": "Avatar"
     },
@@ -26,7 +30,10 @@
       "firstName": "il ne peut contenir que des lettres, traits d'union, espaces et apostrophes",
       "lastName": "il ne peut contenir que des lettres, traits d'union, espaces et apostrophes",
       "password": "il doit contenir au moins: 1 minuscule, 1 majuscule, 1 chiffre, 1 caractère spécial",
-      "phone": "veuillez entrer un numéro de téléphone au format international : +XX 0000000000 (remplacez XX par le code du pays)"
+      "phone": "veuillez entrer un numéro de téléphone au format international : +XX 0000000000 (remplacez XX par le code du pays)",
+      "currentPasswordDontMatch": "le mot de passe actuel saisi est incorrect",
+      "passwordsDontMatch": "les mots de passe ne correspondent pas",
+      "newPasswordsDontMatch": "le mot de passe saisi dans Confirmer le nouveau mot de passe ne correspond pas avec le mot de passe saisi dans le champ Nouveau mot de passe"
     },
     "messages": {
       "required": "Le champ {{field}} est requis",
@@ -44,11 +51,11 @@
     },
     "error": {
       "registerFailed": "La création de compte a échouée",
-      "userExistsInBase": "Cet utilisateur existe déjà. Veuillez entrer un nouvel email",
+      "userExistsInBase": "Un compte avec cet email existe déjà. Veuillez entrer un nouvel email",
       "invalidCredentials": "Identifiants incorrects",
       "internalServerError": "Erreur interne du serveur",
-      "invalidToken": "Accès refusé. Veuillez vous connecter",
-      "tokenExpired": "Accès refusé. Veuillez vous reconnecter",
+      "unauthorized": "Accès refusé. Veuillez vous connecter",
+      "forbidden": "Accès refusé. Veuillez vous reconnecter",
       "comparePasswordFailed": "Une erreur est survenue lors de la comparaison des mots de passe. Veuillez réessayer",
       "sessionDestructionFailed": "Une erreur est survenue lors de la destruction de la session"
     }
@@ -59,6 +66,14 @@
       "oneFileLimit": "Vous ne devez envoyer qu'un fichier",
       "wrongFileType": "Fichier invalide. Seuls les fichiers de type {{types}} sont acceptés",
       "unexpectedFile": "Un fichier non prévu a été téléchargé. Veuillez n'utiliser que les champs de téléchargement prévus."
+    }
+  },
+  "profile": {
+    "error": {
+      "userNotFound": "Utilisateur introuvable"
+    },
+    "success": {
+      "deleteAccountSuccess": "Votre compte a été supprimé avec succès !"
     }
   }
 }

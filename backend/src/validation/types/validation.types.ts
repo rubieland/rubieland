@@ -1,5 +1,3 @@
-import { UserField } from '../../models/types/User.types';
-
 // enum for the reasons of a field validation fail
 export enum Reason {
   INVALID = 'invalid',
@@ -8,7 +6,7 @@ export enum Reason {
   MAXLENGTH = 'maxLength',
 }
 
-export interface UserFieldLengths {
+export interface UserDataLengths {
   [key: string]: {
     maxLength: number;
     minLength: number;
@@ -36,12 +34,8 @@ export type GetMissingOrEmptyFieldsErrorMessageFunction = (
 ) => string[];
 
 export type FieldLengthValidatorFunction = (
-  field: string,
   value: string,
   maxLength: number,
-) => string;
+) => boolean;
 
-export type FieldFormatValidatorFunction = (
-  fieldType: UserField,
-  fieldValue: string,
-) => string;
+export type FieldFormatValidatorFunction = (fieldValue: string) => boolean;
