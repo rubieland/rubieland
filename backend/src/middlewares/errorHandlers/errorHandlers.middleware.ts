@@ -26,6 +26,18 @@ export const errorHandler = (
   // log error message in console
   console.error(err);
 
+  if (
+    err instanceof Error &&
+    err?.name === 'CastError' &&
+    err.message.includes('Cast to ObjectId failed')
+  ) {
+    let message = i18n.t('common.error.resourceDoesNotExist');
+    if (err.message.includes('User')) {
+      message = i18n.t('common.error.userDoesNotExist', { count: 0 });
+    }
+    return res.status(404).json({ message });
+  }
+
   // define status code to send back in response
   const statusCode =
     res.statusCode && res.statusCode !== 200 ? res.statusCode : 500;
