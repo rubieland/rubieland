@@ -9,6 +9,7 @@ import {
   createBlogArticle,
   getAllBlogArticles,
   getBlogArticle,
+  updateBlogArticle,
 } from '../controllers/back-office/blogArticles.controller';
 import { blogArticlePictureUploader } from '../middlewares/uploads/uploadBlogArticlePicture.middleware';
 
@@ -37,6 +38,13 @@ router.post(
   isAdminMiddleware,
   blogArticlePictureUploader,
   createBlogArticle,
+);
+router.put(
+  '/blog-articles/:id/update',
+  authMiddleware,
+  isAdminMiddleware,
+  blogArticlePictureUploader,
+  updateBlogArticle,
 );
 
 export default router;

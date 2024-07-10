@@ -152,3 +152,78 @@ export const createBlogArticle = async (
     }
   }
 };
+
+export const updateBlogArticle = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    const id = req.params?.id;
+    const pictureFile = req.file;
+    const article: BlogArticleDocument | null = await BlogArticle.findById(id);
+    const { title, content, isPublished } = trimData(req.body);
+
+    if (!article) {
+      return res.status(404).json({
+        error: i18n.t('common.error.blogArticleDoesNotExist'),
+      });
+    }
+
+    const blogArticleData: BlogArticleData = {
+      title,
+      content,
+      isPublished,
+    };
+
+    // data validation
+    const blogArticleDataErrors = await checkBlogArticleData(blogArticleData);
+
+    if (blogArticleDataErrors && blogArticleDataErrors.length > 0) {
+      if (pictureFile)
+        await deletePicture(
+          `${blogArticlesPicturesDir}/${pictureFile?.filename}`,
+        );
+      return res.status(400).json({
+        message: i18n.t('blog.error.blogArticleCreationFailed'),
+        errors: blogArticleDataErrors,
+      });
+    }
+
+    if (pictureFile) {
+      if (article.picture)
+        await deletePicture(
+          `${blogArticlesPicturesDir}/${article.picture}`,
+        ).then(async () => {
+          article.picture = pictureFile?.filename;
+        });
+    }
+
+    (Object.keys(blogArticleData) as (keyof BlogArticleData)[]).forEach(
+      (key) => {
+        if (blogArticleData[key] !== undefined) {
+          (article[key] as keyof BlogArticleData) = blogArticleData[
+            key
+          ] as keyof BlogArticleData;
+          article.isPublished = convertStringToBoolean(
+            blogArticleData.isPublished,
+          );
+        }
+      },
+    );
+
+    await article.save();
+
+    res.status(200).json({
+      message: i18n.t('blog.success.blogArticleUpdateSuccess'),
+      article,
+    });
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      const messages = extractValidationErrorMessagesFromError(error);
+      res.status(400).json({ errors: messages });
+    } else {
+      next(error);
+    }
+  }
+};
