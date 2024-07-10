@@ -19,17 +19,12 @@ export const getUser = async (
 ) => {
   try {
     const userId = req.session?.authUser?.id;
-
-    if (!userId) {
-      return res.status(401).json({ error: i18n.t('auth.error.unauthorized') });
-    }
-
     const user = await User.findById(userId);
 
     if (!user) {
       return res
         .status(404)
-        .json({ error: i18n.t('profile.error.userNotFound') });
+        .json({ error: i18n.t('common.error.userFound_zero', { count: 0 }) });
     }
 
     res.status(200).json({ user });
@@ -65,7 +60,7 @@ export const updateUser = async (
 
       return res
         .status(404)
-        .json({ error: i18n.t('profile.error.userNotFound') });
+        .json({ error: i18n.t('common.error.userFound_zero', { count: 0 }) });
     }
 
     // if user provides a new email, but this email already exists in base, send error
@@ -134,8 +129,7 @@ export const updateUser = async (
       message: `Votre profil a été modifié avec succès!`,
       userInBase,
     });
-  } catch (error) {
-    console.log(error);
+  } catch (error: unknown) {
     next(error);
   }
 };
@@ -147,17 +141,12 @@ export const deleteAccount = async (
 ) => {
   try {
     const userId = req.session?.authUser?.id;
-
-    if (!userId) {
-      return res.status(401).json({ error: i18n.t('auth.error.unauthorized') });
-    }
-
     const user = await User.findById(userId);
 
     if (!user) {
       return res
         .status(404)
-        .json({ error: i18n.t('profile.error.userNotFound') });
+        .json({ error: i18n.t('common.error.userFound_zero', { count: 0 }) });
     }
 
     await user.deleteOne().then(async () => {
@@ -167,7 +156,7 @@ export const deleteAccount = async (
     res
       .status(200)
       .json({ message: i18n.t('profile.success.deleteAccountSuccess') });
-  } catch (error) {
+  } catch (error: unknown) {
     next(error);
   }
 };

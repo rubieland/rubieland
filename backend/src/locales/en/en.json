@@ -9,7 +9,14 @@
       "500": "Internal server error",
       "unknown": "An unexpected error occured",
       "saveFailed": "An error occurred while saving the data. Please try again",
-      "deleteFileFailed": "Le fichier n'a pas pu être supprimé"
+      "deleteFileFailed": "The file has not been deleted",
+      "resourceDoesNotExist": "This resource does not exist",
+      "userFound_zero": "No user was found",
+      "userDoesNotExist": "This user does not exist or does not exist anymore"
+    },
+    "success": {
+      "userFound_one": "{{count}} user found",
+      "userFound_other": "{{count}} users found"
     }
   },
   "validation": {
@@ -42,7 +49,6 @@
       "maxLength": "The field {{field}} must not contain more than {{maxLength}} characters"
     }
   },
-
   "auth": {
     "success": {
       "register": "Registration successful!",
@@ -70,9 +76,6 @@
     }
   },
   "profile": {
-    "error": {
-      "userNotFound": "User not found"
-    },
     "success": {
       "deleteAccountSuccess": "Your account has been deleted successfully!"
     }

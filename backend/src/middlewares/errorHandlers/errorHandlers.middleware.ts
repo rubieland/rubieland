@@ -26,6 +26,23 @@ export const errorHandler = (
   // log error message in console
   console.error(err);
 
+  /**
+   * check for invalid :id in routes
+   * (e.g.: /users/:userId) => if :userId does not belong to a user in base, send error like 'This user does not exist'
+   */
+  if (
+    err instanceof Error &&
+    err?.name === 'CastError' &&
+    err.message.includes('Cast to ObjectId failed')
+  ) {
+    let message = i18n.t('common.error.resourceDoesNotExist');
+    if (err.message.includes('User')) {
+      message = i18n.t('common.error.userDoesNotExist', { count: 0 });
+    }
+    // TODO: add cases for other models (blog article, animal...) when they're ready
+    return res.status(404).json({ message });
+  }
+
   // define status code to send back in response
   const statusCode =
     res.statusCode && res.statusCode !== 200 ? res.statusCode : 500;

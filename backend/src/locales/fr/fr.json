@@ -9,7 +9,14 @@
       "500": "Internal server error",
       "unknown": "Une erreur inconnue est survenue",
       "saveFailed": "Une erreur est survenue lors de la sauvegarde des données. Veuillez réessayer",
-      "deleteFileFailed": "Le fichier n'a pas pu être supprimé"
+      "deleteFileFailed": "Le fichier n'a pas pu être supprimé",
+      "resourceDoesNotExist": "Cette ressource n'existe pas ou n'existe plus",
+      "userFound_zero": "Aucun utilisateur trouvé",
+      "userDoesNotExist": "Cet utilisateur n'existe pas ou n'existe plus"
+    },
+    "success": {
+      "userFound_one": "{{count}} utilisateur trouvé",
+      "userFound_other": "{{count}} utilisateurs trouvés"
     }
   },
   "validation": {
@@ -69,9 +76,6 @@
     }
   },
   "profile": {
-    "error": {
-      "userNotFound": "Utilisateur introuvable"
-    },
     "success": {
       "deleteAccountSuccess": "Votre compte a été supprimé avec succès !"
     }
