@@ -9,6 +9,9 @@ import {
   getMissingOrEmptyFieldsErrorMessage,
 } from '../../utils/validation.utils';
 import { checkUserData } from '../../validation/User.validators';
+import { DataContext } from '../../validation/types/validation.types';
+
+const context: DataContext = DataContext.USER;
 
 export const register = async (
   req: Request,
@@ -33,7 +36,10 @@ export const register = async (
     const missingOrEmptyFields = getMissingOrEmptyFields(userData);
 
     if (missingOrEmptyFields && missingOrEmptyFields.length > 0) {
-      const errors = getMissingOrEmptyFieldsErrorMessage(missingOrEmptyFields);
+      const errors = getMissingOrEmptyFieldsErrorMessage(
+        context,
+        missingOrEmptyFields,
+      );
 
       return res
         .status(400)
@@ -82,7 +88,10 @@ export const login = async (
     const missingOrEmptyFields = getMissingOrEmptyFields({ email, password });
 
     if (missingOrEmptyFields && missingOrEmptyFields.length > 0) {
-      const errors = getMissingOrEmptyFieldsErrorMessage(missingOrEmptyFields);
+      const errors = getMissingOrEmptyFieldsErrorMessage(
+        context,
+        missingOrEmptyFields,
+      );
 
       return res.status(400).json({ errors });
     }

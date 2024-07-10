@@ -21,29 +21,35 @@
   },
   "validation": {
     "fields": {
-      "firstName": "First name",
-      "lastName": "Last name",
-      "email": "Email",
-      "password": "Password",
-      "currentPassword": "Current password",
-      "confirmPassword": "Confirm password",
-      "newPassword": "New password",
-      "confirmNewPassword": "Confirm new password",
-      "phone": "Phone number",
-      "avatar": "Avatar",
-      "blogArticleTitle": "Title of the article",
-      "blogArticleContent": "Content of the article",
-      "isPublished": "Publish this article ?"
+      "user": {
+        "firstName": "First name",
+        "lastName": "Last name",
+        "email": "Email",
+        "password": "Password",
+        "currentPassword": "Current password",
+        "confirmPassword": "Confirm password",
+        "newPassword": "New password",
+        "confirmNewPassword": "Confirm new password",
+        "phone": "Phone number",
+        "avatar": "Avatar"
+      },
+      "blogArticle": {
+        "title": "Title of the article",
+        "content": "Content of the article",
+        "isPublished": "Publish this article ?"
+      }
     },
     "rules": {
-      "email": "please enter a valid email address (example@example.com)",
-      "firstName": "it can only contain letters, hyphens, spaces and apostrophes",
-      "lastName": "it can only contain letters, hyphens, spaces and apostrophes",
-      "password": "it must contain at least: 1 lowercase, 1 uppercase, 1 number and 1 special character ",
-      "phone": "Please enter a phone number in the international format: +XX 0000000000 (replace XX with the country code)",
-      "currentPasswordDontMatch": "the current password you entered is incorrect",
-      "passwordsDontMatch": "passwords don't match",
-      "newPasswordsDontMatch": "the password you entered in the field Confirm new password does not match with the password you entered in the field New password"
+      "user": {
+        "email": "please enter a valid email address (example@example.com)",
+        "firstName": "it can only contain letters, hyphens, spaces and apostrophes",
+        "lastName": "it can only contain letters, hyphens, spaces and apostrophes",
+        "password": "it must contain at least: 1 lowercase, 1 uppercase, 1 number and 1 special character ",
+        "phone": "Please enter a phone number in the international format: +XX 0000000000 (replace XX with the country code)",
+        "currentPasswordDontMatch": "the current password you entered is incorrect",
+        "passwordsDontMatch": "passwords don't match",
+        "newPasswordsDontMatch": "the password you entered in the field Confirm new password does not match with the password you entered in the field New password"
+      }
     },
     "messages": {
       "required": "The field {{field}} is required",

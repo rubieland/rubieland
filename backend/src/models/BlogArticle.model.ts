@@ -1,8 +1,10 @@
 import { Schema, model } from 'mongoose';
 import { BlogArticleDocument } from './types/BlogArticle.types';
 import { getValidationErrorMessage } from '../utils/validation.utils';
-import { Reason } from '../validation/types/validation.types';
+import { DataContext, Reason } from '../validation/types/validation.types';
 import { blogArticleDataLengths } from '../validation/BlogArticle.validators';
+
+const context: DataContext = DataContext.BLOG_ARTICLE;
 
 const blogArticleSchema = new Schema<BlogArticleDocument>(
   {
@@ -12,14 +14,16 @@ const blogArticleSchema = new Schema<BlogArticleDocument>(
       required: [
         true,
         getValidationErrorMessage({
-          field: 'blogArticleTitle',
+          context,
+          field: 'title',
           reason: Reason.REQUIRED,
         }),
       ],
       maxlength: [
         blogArticleDataLengths.title.maxLength,
         getValidationErrorMessage({
-          field: 'blogArticleTitle',
+          context,
+          field: 'title',
           maxLength: blogArticleDataLengths.title.maxLength,
           reason: Reason.MAXLENGTH,
         }),
@@ -27,7 +31,8 @@ const blogArticleSchema = new Schema<BlogArticleDocument>(
       minlength: [
         blogArticleDataLengths.title.minLength,
         getValidationErrorMessage({
-          field: 'blogArticleTitle',
+          context,
+          field: 'title',
           minLength: blogArticleDataLengths.title.minLength,
           reason: Reason.MINLENGTH,
         }),
@@ -39,14 +44,16 @@ const blogArticleSchema = new Schema<BlogArticleDocument>(
       required: [
         true,
         getValidationErrorMessage({
-          field: 'blogArticleContent',
+          context,
+          field: 'content',
           reason: Reason.REQUIRED,
         }),
       ],
       maxlength: [
         blogArticleDataLengths.content.maxLength,
         getValidationErrorMessage({
-          field: 'blogArticleContent',
+          context,
+          field: 'content',
           maxLength: blogArticleDataLengths.content.maxLength,
           reason: Reason.MAXLENGTH,
         }),
@@ -54,7 +61,8 @@ const blogArticleSchema = new Schema<BlogArticleDocument>(
       minlength: [
         blogArticleDataLengths.content.minLength,
         getValidationErrorMessage({
-          field: 'blogArticleContent',
+          context,
+          field: 'content',
           minLength: blogArticleDataLengths.content.minLength,
           reason: Reason.MINLENGTH,
         }),
@@ -65,6 +73,7 @@ const blogArticleSchema = new Schema<BlogArticleDocument>(
       required: [
         true,
         getValidationErrorMessage({
+          context,
           field: 'isPublished',
           reason: Reason.REQUIRED,
         }),

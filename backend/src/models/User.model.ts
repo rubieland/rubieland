@@ -15,9 +15,10 @@ import { formatName } from '../utils/string.utils';
 import jwt from 'jsonwebtoken';
 import { env } from '../loaders/env.loader';
 import i18n from '../config/i18n';
-import { Reason } from '../validation/types/validation.types';
+import { DataContext, Reason } from '../validation/types/validation.types';
 
 const { JWT_SECRET, JWT_EXPIRATION } = env;
+const context: DataContext = DataContext.USER;
 
 const userSchema = new Schema<UserDocument>(
   {
@@ -26,6 +27,7 @@ const userSchema = new Schema<UserDocument>(
       required: [
         true,
         getValidationErrorMessage({
+          context,
           field: 'firstName',
           reason: Reason.REQUIRED,
         }),
@@ -34,6 +36,7 @@ const userSchema = new Schema<UserDocument>(
       maxlength: [
         userDataLengths.firstName.maxLength,
         getValidationErrorMessage({
+          context,
           field: 'firstName',
           maxLength: userDataLengths.firstName.maxLength,
           reason: Reason.MAXLENGTH,
@@ -42,6 +45,7 @@ const userSchema = new Schema<UserDocument>(
       minlength: [
         userDataLengths.firstName.minLength,
         getValidationErrorMessage({
+          context,
           field: 'firstName',
           minLength: userDataLengths.firstName.minLength,
           reason: Reason.MINLENGTH,
@@ -50,6 +54,7 @@ const userSchema = new Schema<UserDocument>(
       validate: [
         (v: string) => regexes.nameField.test(v),
         getValidationErrorMessage({
+          context,
           field: 'firstName',
           rule: 'firstName',
           reason: Reason.INVALID,
@@ -61,6 +66,7 @@ const userSchema = new Schema<UserDocument>(
       required: [
         true,
         getValidationErrorMessage({
+          context,
           field: 'lastName',
           reason: Reason.REQUIRED,
         }),
@@ -69,6 +75,7 @@ const userSchema = new Schema<UserDocument>(
       maxlength: [
         userDataLengths.lastName.maxLength,
         getValidationErrorMessage({
+          context,
           field: 'lastName',
           maxLength: userDataLengths.lastName.maxLength,
           reason: Reason.MAXLENGTH,
@@ -77,6 +84,7 @@ const userSchema = new Schema<UserDocument>(
       minlength: [
         userDataLengths.lastName.minLength,
         getValidationErrorMessage({
+          context,
           field: 'lastName',
           minLength: userDataLengths.lastName.minLength,
           reason: Reason.MINLENGTH,
@@ -85,6 +93,7 @@ const userSchema = new Schema<UserDocument>(
       validate: [
         (v: string) => regexes.nameField.test(v),
         getValidationErrorMessage({
+          context,
           field: 'lastName',
           rule: 'lastName',
           reason: Reason.INVALID,
@@ -96,6 +105,7 @@ const userSchema = new Schema<UserDocument>(
       required: [
         true,
         getValidationErrorMessage({
+          context,
           field: 'email',
           reason: Reason.REQUIRED,
         }),
@@ -106,6 +116,7 @@ const userSchema = new Schema<UserDocument>(
       maxlength: [
         userDataLengths.email.maxLength,
         getValidationErrorMessage({
+          context,
           field: 'email',
           maxLength: userDataLengths.email.maxLength,
           reason: Reason.MAXLENGTH,
@@ -114,6 +125,7 @@ const userSchema = new Schema<UserDocument>(
       minlength: [
         userDataLengths.email.minLength,
         getValidationErrorMessage({
+          context,
           field: 'email',
           minLength: userDataLengths.email.minLength,
           reason: Reason.MINLENGTH,
@@ -122,6 +134,7 @@ const userSchema = new Schema<UserDocument>(
       validate: [
         validator.isEmail,
         getValidationErrorMessage({
+          context,
           field: 'email',
           rule: 'email',
           reason: Reason.INVALID,
@@ -133,6 +146,7 @@ const userSchema = new Schema<UserDocument>(
       required: [
         true,
         getValidationErrorMessage({
+          context,
           field: 'password',
           reason: Reason.REQUIRED,
         }),
@@ -141,6 +155,7 @@ const userSchema = new Schema<UserDocument>(
       maxlength: [
         userDataLengths.password.maxLength,
         getValidationErrorMessage({
+          context,
           field: 'password',
           maxLength: userDataLengths.password.maxLength,
           reason: Reason.MAXLENGTH,
@@ -149,6 +164,7 @@ const userSchema = new Schema<UserDocument>(
       minlength: [
         userDataLengths.password.minLength,
         getValidationErrorMessage({
+          context,
           field: 'password',
           minLength: userDataLengths.password.minLength,
           reason: Reason.MINLENGTH,
@@ -161,6 +177,7 @@ const userSchema = new Schema<UserDocument>(
             returnScore: false,
           }),
         getValidationErrorMessage({
+          context,
           field: 'password',
           rule: 'password',
           reason: Reason.INVALID,
@@ -173,6 +190,7 @@ const userSchema = new Schema<UserDocument>(
       minlength: [
         userDataLengths.phone.minLength,
         getValidationErrorMessage({
+          context,
           field: 'phone',
           minLength: userDataLengths.phone.minLength,
           reason: Reason.MINLENGTH,
@@ -181,6 +199,7 @@ const userSchema = new Schema<UserDocument>(
       validate: [
         (v: string) => validatePhoneNumber(v),
         getValidationErrorMessage({
+          context,
           field: 'phone',
           rule: 'phone',
           reason: Reason.INVALID,
