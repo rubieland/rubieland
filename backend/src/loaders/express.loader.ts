@@ -5,6 +5,7 @@ import path from 'path';
 import express, { Express } from 'express';
 import authRouter from '../routers/auth.router';
 import profileRouter from '../routers/profile.router';
+import backOfficeRouter from '../routers/backOffice.router';
 import { fileURLToPath } from 'url';
 import { env } from './env.loader';
 import {
@@ -46,6 +47,7 @@ export const loadExpress = async ({ server }: { server: Express }) => {
     // routers
     server.use('/auth', authRouter);
     server.use('/profile', profileRouter);
+    server.use('/back-office', backOfficeRouter);
 
     // error handlers
     server.use(notFoundHandler);
