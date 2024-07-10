@@ -153,7 +153,7 @@ export const deleteAccount = async (
     if (!user) {
       return res
         .status(404)
-        .json({ error: i18n.t('common.error.userFound_zero', { count: 0 }) });
+        .json({ error: i18n.t('common.error.userDoesNotExist') });
     }
 
     await user.deleteOne().then(async () => {
