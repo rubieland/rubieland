@@ -39,6 +39,9 @@ export const errorHandler = (
     if (err.message.includes('User')) {
       message = i18n.t('common.error.userDoesNotExist', { count: 0 });
     }
+    if (err.message.includes('BlogArticle')) {
+      message = i18n.t('common.error.blogArticleDoesNotExist', { count: 0 });
+    }
     // TODO: add cases for other models (blog article, animal...) when they're ready
     return res.status(404).json({ message });
   }
