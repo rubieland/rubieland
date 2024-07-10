@@ -1,12 +1,77 @@
-import { DataLengths } from './types/validation.types';
+import {
+  BlogArticleData,
+  BlogArticleField,
+} from '../models/types/BlogArticle.types';
+import {
+  checkMaxLength,
+  checkMinLength,
+  getValidationErrorMessage,
+} from '../utils/validation.utils';
+import { DataContext, DataLengths, Reason } from './types/validation.types';
 
 export const blogArticleDataLengths: DataLengths = {
   title: {
-    minLength: 2,
-    maxLength: 30,
+    minLength: 5,
+    maxLength: 100,
   },
   content: {
-    minLength: 2,
-    maxLength: 30,
+    minLength: 100,
+    maxLength: Infinity,
   },
+};
+
+const checkIsPublished = (isPublished: string) => {
+  return (
+    typeof isPublished === 'string' &&
+    (isPublished === 'true' || isPublished === 'false')
+  );
+};
+
+export const checkBlogArticleData = async (data: BlogArticleData) => {
+  const errors: string[] = [];
+  const context: DataContext = DataContext.BLOG_ARTICLE;
+
+  for (const [key, value] of Object.entries(data)) {
+    if (key in blogArticleDataLengths) {
+      const fieldKey = key as BlogArticleField;
+
+      // check maxLengths
+      if (!checkMaxLength(value, blogArticleDataLengths[fieldKey].maxLength)) {
+        errors.push(
+          getValidationErrorMessage({
+            context,
+            field: fieldKey,
+            rule: fieldKey,
+            maxLength: blogArticleDataLengths[fieldKey].maxLength,
+            reason: Reason.MAXLENGTH,
+          }),
+        );
+      }
+
+      // check minLengths
+      if (!checkMinLength(value, blogArticleDataLengths[fieldKey].minLength)) {
+        errors.push(
+          getValidationErrorMessage({
+            context,
+            field: fieldKey,
+            rule: fieldKey,
+            minLength: blogArticleDataLengths[fieldKey].minLength,
+            reason: Reason.MINLENGTH,
+          }),
+        );
+      }
+    }
+  }
+
+  if (!checkIsPublished(data.isPublished)) {
+    errors.push(
+      getValidationErrorMessage({
+        context,
+        field: 'isPublished',
+        rule: 'isPublished',
+        reason: Reason.INVALID,
+      }),
+    );
+  }
+  return errors;
 };
