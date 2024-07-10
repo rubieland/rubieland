@@ -1,10 +1,15 @@
 import { Document } from 'mongoose';
 
-export interface BlogArticle {
+export interface IBlogArticle {
   title: string;
   content: string;
   isPublished: boolean;
-  picture: string;
+  picture?: string | null;
 }
 
-export interface BlogArticleDocument extends BlogArticle, Document {}
+export type BlogArticleData = Omit<IBlogArticle, 'isPublished' | 'picture'> & {
+  isPublished: string;
+};
+
+export type BlogArticleField = keyof Omit<IBlogArticle, 'picture'>;
+export interface BlogArticleDocument extends IBlogArticle, Document {}
