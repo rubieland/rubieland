@@ -30,7 +30,10 @@
       "newPassword": "New password",
       "confirmNewPassword": "Confirm new password",
       "phone": "Phone number",
-      "avatar": "Avatar"
+      "avatar": "Avatar",
+      "blogArticleTitle": "Title of the article",
+      "blogArticleContent": "Content of the article",
+      "isPublished": "Publish this article ?"
     },
     "rules": {
       "email": "please enter a valid email address (example@example.com)",
