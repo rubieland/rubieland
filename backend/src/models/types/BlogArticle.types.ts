@@ -7,7 +7,7 @@ export interface IBlogArticle {
   picture?: string | null;
 }
 
-export type BlogArticleData = Omit<IBlogArticle, 'isPublished' | 'picture'> & {
+export type BlogArticleData = Omit<IBlogArticle, 'isPublished'> & {
   isPublished: string;
 };
 
