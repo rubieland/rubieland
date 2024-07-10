@@ -36,7 +36,7 @@ export const userDataLengths: DataLengths = {
   },
   password: {
     minLength: 8,
-    maxLength: 20,
+    maxLength: 60,
   },
   phone: {
     minLength: 9,

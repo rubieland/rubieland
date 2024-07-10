@@ -81,7 +81,6 @@ export const updateUser = async (
       newPassword,
       confirmNewPassword,
       phone,
-      avatar: avatarFile?.filename,
     };
 
     // data validation
@@ -98,27 +97,35 @@ export const updateUser = async (
 
     // if user uploads a new avatar, delete the old one and replace it by the new
     if (avatarFile) {
-      if (userInBase.avatar)
+      if (userInBase.avatar) {
         await deleteAvatar(`${avatarsDir}/${userInBase.avatar}`).then(
           async () => {
             userInBase.avatar = avatarFile?.filename;
           },
         );
+      } else {
+        userInBase.avatar = avatarFile?.filename;
+      }
+    }
+
+    // update password if newPassword is provided
+    if (userData.newPassword) {
+      userInBase.password = userData.newPassword;
     }
 
     // update user data
     (
       Object.keys(userData) as (keyof Omit<
         UserData,
+        | 'password'
         | 'currentPassword'
         | 'newPassword'
         | 'confirmNewPassword'
         | 'confirmPassword'
       >)[]
-    ).forEach(async (key) => {
+    ).forEach((key) => {
       if (userData[key] !== undefined) {
         userInBase[key] = userData[key] as any;
-        userInBase.password = userData.newPassword as string;
       }
     });
 
