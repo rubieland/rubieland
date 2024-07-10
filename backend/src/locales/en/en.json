@@ -12,11 +12,15 @@
       "deleteFileFailed": "The file has not been deleted",
       "resourceDoesNotExist": "This resource does not exist",
       "userFound_zero": "No user was found",
-      "userDoesNotExist": "This user does not exist or does not exist anymore"
+      "userDoesNotExist": "This user does not exist or does not exist anymore",
+      "blogArticleFound_zero": "No blog article was found",
+      "blogArticleDoesNotExist": "This blog article does not exist or does not exist anymore"
     },
     "success": {
       "userFound_one": "{{count}} user found",
-      "userFound_other": "{{count}} users found"
+      "userFound_other": "{{count}} users found",
+      "blogArticleFound_one": "{{count}} blog article found",
+      "blogArticleFound_other": "{{count}} blog articles found"
     }
   },
   "validation": {
@@ -49,6 +53,9 @@
         "currentPasswordDontMatch": "the current password you entered is incorrect",
         "passwordsDontMatch": "passwords don't match",
         "newPasswordsDontMatch": "the password you entered in the field Confirm new password does not match with the password you entered in the field New password"
+      },
+      "blogArticle": {
+        "isPublished": "it must be of type Boolean, and so, be either true or false"
       }
     },
     "messages": {
@@ -87,6 +94,14 @@
   "profile": {
     "success": {
       "deleteAccountSuccess": "Your account has been deleted successfully!"
+    }
+  },
+  "blog": {
+    "success": {
+      "blogArticleCreationSuccess": "Article created successfully!"
+    },
+    "error": {
+      "blogArticleCreationFailed": "The creation of the blog article failed"
     }
   }
 }
