@@ -98,7 +98,8 @@
   },
   "blog": {
     "success": {
-      "blogArticleCreationSuccess": "Article created successfully!"
+      "blogArticleCreationSuccess": "Article created successfully!",
+      "blogArticleUpdateSuccess": "Article updated successfully!"
     },
     "error": {
       "blogArticleCreationFailed": "The creation of the blog article failed"
