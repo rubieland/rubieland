@@ -99,7 +99,8 @@
   "blog": {
     "success": {
       "blogArticleCreationSuccess": "Article créé avec succès !",
-      "blogArticleUpdateSuccess": "Article modifié avec succès!"
+      "blogArticleUpdateSuccess": "Article modifié avec succès!",
+      "blogArticleDeleteSuccess": "Article supprimé avec succès !"
     },
     "error": {
       "blogArticleCreationFailed": "La création de l'article a échouée"

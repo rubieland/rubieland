@@ -227,3 +227,31 @@ export const updateBlogArticle = async (
     }
   }
 };
+
+export const deleteBlogArticle = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    const id = req.params?.id;
+    const article = await BlogArticle.findById(id);
+
+    if (!article) {
+      return res
+        .status(404)
+        .json({ error: i18n.t('common.error.blogArticleDoesNotExist') });
+    }
+
+    await article.deleteOne().then(async () => {
+      if (article.picture)
+        await deletePicture(`${blogArticlesPicturesDir}/${article.picture}`);
+    });
+
+    res.status(200).json({
+      message: i18n.t('blog.success.blogArticleDeleteSuccess'),
+    });
+  } catch (error: unknown) {
+    next(error);
+  }
+};

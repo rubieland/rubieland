@@ -7,6 +7,7 @@ import {
 } from '../controllers/back-office/users.controller';
 import {
   createBlogArticle,
+  deleteBlogArticle,
   getAllBlogArticles,
   getBlogArticle,
   updateBlogArticle,
@@ -45,6 +46,12 @@ router.put(
   isAdminMiddleware,
   blogArticlePictureUploader,
   updateBlogArticle,
+);
+router.delete(
+  '/blog-articles/:id/delete',
+  authMiddleware,
+  isAdminMiddleware,
+  deleteBlogArticle,
 );
 
 export default router;
