@@ -13,7 +13,16 @@ import {
   getMissingOrEmptyFieldsErrorMessage,
 } from '../../utils/validation.utils';
 import { checkBlogArticleData } from '../../validation/BlogArticle.validators';
+import { fileURLToPath } from 'url';
+import path from 'path';
+import { deleteFile as deletePicture } from '../../utils/file.utils';
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const blogArticlesPicturesDir = path.join(
+  __dirname,
+  '../../uploads/blog/pictures',
+);
 const context: DataContext = DataContext.BLOG_ARTICLE;
 
 export const getAllBlogArticles = async (
@@ -80,8 +89,7 @@ export const createBlogArticle = async (
 ) => {
   try {
     const { title, content, isPublished } = trimData(req.body);
-
-    // TODO: add picture logic
+    const pictureFile = req.file;
 
     const blogArticleData: BlogArticleData = {
       title,
@@ -93,6 +101,10 @@ export const createBlogArticle = async (
     const missingOrEmptyFields = getMissingOrEmptyFields(blogArticleData);
 
     if (missingOrEmptyFields && missingOrEmptyFields.length > 0) {
+      if (pictureFile)
+        await deletePicture(
+          `${blogArticlesPicturesDir}/${pictureFile?.filename}`,
+        );
       const errors = getMissingOrEmptyFieldsErrorMessage(
         context,
         missingOrEmptyFields,
@@ -108,6 +120,10 @@ export const createBlogArticle = async (
     const blogArticleDataErrors = await checkBlogArticleData(blogArticleData);
 
     if (blogArticleDataErrors && blogArticleDataErrors.length > 0) {
+      if (pictureFile)
+        await deletePicture(
+          `${blogArticlesPicturesDir}/${pictureFile?.filename}`,
+        );
       return res.status(400).json({
         message: i18n.t('blog.error.blogArticleCreationFailed'),
         errors: blogArticleDataErrors,
@@ -118,6 +134,7 @@ export const createBlogArticle = async (
     const newBlogArticle = new BlogArticle({
       ...blogArticleData,
       isPublished: convertStringToBoolean(blogArticleData.isPublished),
+      picture: pictureFile?.filename,
     });
 
     // save new blog article in database

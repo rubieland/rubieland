@@ -10,6 +10,7 @@ import {
   getAllBlogArticles,
   getBlogArticle,
 } from '../controllers/back-office/blogArticles.controller';
+import { blogArticlePictureUploader } from '../middlewares/uploads/uploadBlogArticlePicture.middleware';
 
 const router: Express = Router();
 
@@ -34,6 +35,7 @@ router.post(
   '/blog-articles/create',
   authMiddleware,
   isAdminMiddleware,
+  blogArticlePictureUploader,
   createBlogArticle,
 );
 
