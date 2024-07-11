@@ -27,7 +27,9 @@ const checkIsPublished = (isPublished: string) => {
   );
 };
 
-export const checkBlogArticleData = async (data: BlogArticleData) => {
+export const checkBlogArticleData = async (
+  data: Omit<BlogArticleData, 'picture'>,
+) => {
   const errors: string[] = [];
   const context: DataContext = DataContext.BLOG_ARTICLE;
 
