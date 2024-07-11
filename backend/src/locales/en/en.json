@@ -14,13 +14,17 @@
       "userFound_zero": "No user was found",
       "userDoesNotExist": "This user does not exist or does not exist anymore",
       "blogArticleFound_zero": "No blog article was found",
-      "blogArticleDoesNotExist": "This blog article does not exist or does not exist anymore"
+      "blogArticleDoesNotExist": "This blog article does not exist or does not exist anymore",
+      "prestationsFound_zero": "No prestation was found",
+      "prestationDoesNotExist": "This prestation does not exist or does not exist anymore"
     },
     "success": {
       "userFound_one": "{{count}} user found",
       "userFound_other": "{{count}} users found",
       "blogArticleFound_one": "{{count}} blog article found",
-      "blogArticleFound_other": "{{count}} blog articles found"
+      "blogArticleFound_other": "{{count}} blog articles found",
+      "prestationsFound_one": "{{count}} prestation found",
+      "prestationsFound_other": "{{count}} prestations found"
     }
   },
   "validation": {
