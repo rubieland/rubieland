@@ -42,7 +42,10 @@ export const errorHandler = (
     if (err.message.includes('BlogArticle')) {
       message = i18n.t('common.error.blogArticleDoesNotExist', { count: 0 });
     }
-    // TODO: add cases for other models (blog article, animal...) when they're ready
+    if (err.message.includes('Prestation')) {
+      message = i18n.t('common.error.prestationDoesNotExist', { count: 0 });
+    }
+    // TODO: add cases for other models (animal...) when they're ready
     return res.status(404).json({ message });
   }
 
