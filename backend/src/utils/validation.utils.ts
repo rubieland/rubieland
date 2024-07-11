@@ -7,7 +7,7 @@ import i18n from '../config/i18n';
 import {
   DataContext,
   FieldFormatValidatorFunction,
-  FieldLengthValidatorFunction,
+  MinMaxValidatorFunction,
   GetMissingOrEmptyFieldsErrorMessageFunction,
   GetMissingOrEmptyFieldsFunction,
   GetValidationErrorMessageFunction,
@@ -52,6 +52,8 @@ export const getValidationErrorMessage: GetValidationErrorMessageFunction = ({
   rule,
   minLength,
   maxLength,
+  min,
+  max,
   reason,
   context,
 }): string => {
@@ -77,6 +79,16 @@ export const getValidationErrorMessage: GetValidationErrorMessageFunction = ({
       result = errorMessageTemplate
         .replace('{{field}}', fieldName)
         .replace('{{maxLength}}', String(maxLength));
+      break;
+    case Reason.MIN:
+      result = errorMessageTemplate
+        .replace('{{field}}', fieldName)
+        .replace('{{min}}', String(min));
+      break;
+    case Reason.MAX:
+      result = errorMessageTemplate
+        .replace('{{field}}', fieldName)
+        .replace('{{max}}', String(max));
       break;
     default:
       result = '';
@@ -123,19 +135,35 @@ export const extractValidationErrorMessagesFromError = (error: any) => {
 };
 
 // check if the field value length is higher than the minLength limit
-export const checkMinLength: FieldLengthValidatorFunction = (
-  value: string,
+export const checkMinLength: MinMaxValidatorFunction = (
+  fieldValue: string | number,
   minLength: number,
 ) => {
-  return value.length >= minLength;
+  return String(fieldValue).length >= minLength;
 };
 
 // check if the field value length is lower than the maxLength limit
-export const checkMaxLength: FieldLengthValidatorFunction = (
-  value: string,
+export const checkMaxLength: MinMaxValidatorFunction = (
+  fieldValue: string | number,
   maxLength: number,
 ) => {
-  return value.length <= maxLength;
+  return String(fieldValue).length <= maxLength;
+};
+
+// check if the field value is higher than the min limit
+export const checkMin: MinMaxValidatorFunction = (
+  fieldValue: string | number,
+  min: number,
+) => {
+  return Number(fieldValue) >= min;
+};
+
+// check if the field value is lower than the max limit
+export const checkMax: MinMaxValidatorFunction = (
+  fieldValue: string | number,
+  max: number,
+) => {
+  return Number(fieldValue) <= max;
 };
 
 // check if the field value format corresponds to the regex

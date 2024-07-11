@@ -13,6 +13,10 @@ import {
   updateBlogArticle,
 } from '../../../controllers/back-office/blogBackOffice.controller';
 import { blogArticlePictureUploader } from '../../../middlewares/uploads/uploadBlogArticlePicture.middleware';
+import {
+  getAllPrestations,
+  getPrestation,
+} from '../../../controllers/back-office/prestations.controller';
 
 const router: Express = Router();
 
@@ -52,6 +56,21 @@ router.delete(
   authMiddleware,
   isAdminMiddleware,
   deleteBlogArticle,
+);
+
+// prestation routes
+router.get(
+  '/prestations/all',
+  authMiddleware,
+  isAdminMiddleware,
+  getAllPrestations,
+);
+
+router.get(
+  '/prestations/:id',
+  authMiddleware,
+  isAdminMiddleware,
+  getPrestation,
 );
 
 export default router;
