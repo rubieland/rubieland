@@ -11,7 +11,7 @@ import {
   getAllBlogArticles,
   getBlogArticle,
   updateBlogArticle,
-} from '../../../controllers/back-office/blogArticles.controller';
+} from '../../../controllers/back-office/blogBackOffice.controller';
 import { blogArticlePictureUploader } from '../../../middlewares/uploads/uploadBlogArticlePicture.middleware';
 
 const router: Express = Router();
@@ -22,33 +22,33 @@ router.get('/users/all', authMiddleware, isAdminMiddleware, getAllUsers);
 
 // blog routes
 router.get(
-  '/blog-articles/all',
+  '/blog/articles/all',
   authMiddleware,
   isAdminMiddleware,
   getAllBlogArticles,
 );
 router.get(
-  '/blog-articles/:id',
+  '/blog/articles/:id',
   authMiddleware,
   isAdminMiddleware,
   getBlogArticle,
 );
 router.post(
-  '/blog-articles/create',
+  '/blog/articles/create',
   authMiddleware,
   isAdminMiddleware,
   blogArticlePictureUploader,
   createBlogArticle,
 );
 router.put(
-  '/blog-articles/:id/update',
+  '/blog/articles/:id/update',
   authMiddleware,
   isAdminMiddleware,
   blogArticlePictureUploader,
   updateBlogArticle,
 );
 router.delete(
-  '/blog-articles/:id/delete',
+  '/blog/articles/:id/delete',
   authMiddleware,
   isAdminMiddleware,
   deleteBlogArticle,
