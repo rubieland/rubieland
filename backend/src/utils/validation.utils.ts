@@ -5,6 +5,7 @@ import {
 } from 'libphonenumber-js';
 import i18n from '../config/i18n';
 import {
+  DataContext,
   FieldFormatValidatorFunction,
   FieldLengthValidatorFunction,
   GetMissingOrEmptyFieldsErrorMessageFunction,
@@ -52,9 +53,10 @@ export const getValidationErrorMessage: GetValidationErrorMessageFunction = ({
   minLength,
   maxLength,
   reason,
+  context,
 }): string => {
-  const fieldName = i18n.t(`validation.fields.${field}`);
-  const ruleMessage = i18n.t(`validation.rules.${rule}`);
+  const fieldName = i18n.t(`validation.fields.${context}.${field}`);
+  const ruleMessage = i18n.t(`validation.rules.${context}.${rule}`);
   const errorMessageTemplate = i18n.t(`validation.messages.${reason}`);
   let result = '';
   switch (reason) {
@@ -97,11 +99,12 @@ export const getMissingOrEmptyFields: GetMissingOrEmptyFieldsFunction = (
 
 // return an array validation error messages for all missing or empty fields
 export const getMissingOrEmptyFieldsErrorMessage: GetMissingOrEmptyFieldsErrorMessageFunction =
-  (fields: string[]): string[] => {
+  (context: DataContext, fields: string[]): string[] => {
     const errors: string[] = [];
     fields.forEach((field) => {
       errors.push(
         getValidationErrorMessage({
+          context,
           field,
           reason: Reason.REQUIRED,
         }),

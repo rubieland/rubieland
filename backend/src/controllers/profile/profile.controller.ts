@@ -12,7 +12,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const avatarsDir = path.join(__dirname, '../../uploads/user/avatars');
 
-export const getUser = async (
+export const getUserProfile = async (
   req: Request,
   res: Response,
   next: NextFunction,
@@ -81,7 +81,6 @@ export const updateUser = async (
       newPassword,
       confirmNewPassword,
       phone,
-      avatar: avatarFile?.filename,
     };
 
     // data validation
@@ -98,27 +97,35 @@ export const updateUser = async (
 
     // if user uploads a new avatar, delete the old one and replace it by the new
     if (avatarFile) {
-      if (userInBase.avatar)
+      if (userInBase.avatar) {
         await deleteAvatar(`${avatarsDir}/${userInBase.avatar}`).then(
           async () => {
             userInBase.avatar = avatarFile?.filename;
           },
         );
+      } else {
+        userInBase.avatar = avatarFile?.filename;
+      }
+    }
+
+    // update password if newPassword is provided
+    if (userData.newPassword) {
+      userInBase.password = userData.newPassword;
     }
 
     // update user data
     (
       Object.keys(userData) as (keyof Omit<
         UserData,
+        | 'password'
         | 'currentPassword'
         | 'newPassword'
         | 'confirmNewPassword'
         | 'confirmPassword'
       >)[]
-    ).forEach(async (key) => {
+    ).forEach((key) => {
       if (userData[key] !== undefined) {
         userInBase[key] = userData[key] as any;
-        userInBase.password = userData.newPassword as string;
       }
     });
 
@@ -146,7 +153,7 @@ export const deleteAccount = async (
     if (!user) {
       return res
         .status(404)
-        .json({ error: i18n.t('common.error.userFound_zero', { count: 0 }) });
+        .json({ error: i18n.t('common.error.userDoesNotExist') });
     }
 
     await user.deleteOne().then(async () => {

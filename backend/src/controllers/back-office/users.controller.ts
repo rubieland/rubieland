@@ -50,7 +50,7 @@ export const getUser = async (
     if (!user) {
       return res
         .status(404)
-        .json({ error: i18n.t('common.error.userFound_zero', { count: 0 }) });
+        .json({ error: i18n.t('common.error.userDoesNotExist') });
     }
 
     res.status(200).json({

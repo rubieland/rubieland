@@ -24,3 +24,7 @@ export const formatName = (name: string): string => {
     .toLowerCase()
     .replace(/(^\w|[-' ]\w)/g, (match) => match.toUpperCase());
 };
+
+export const convertStringToBoolean = (value: string) => {
+  return value === 'true';
+};

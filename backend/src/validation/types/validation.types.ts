@@ -6,7 +6,12 @@ export enum Reason {
   MAXLENGTH = 'maxLength',
 }
 
-export interface UserDataLengths {
+export enum DataContext {
+  USER = 'user',
+  BLOG_ARTICLE = 'blogArticle',
+}
+
+export interface DataLengths {
   [key: string]: {
     maxLength: number;
     minLength: number;
@@ -21,6 +26,7 @@ interface ValidationErrorMessageParams {
   minLength?: number;
   maxLength?: number;
   reason: Reason;
+  context: DataContext;
 }
 
 export type GetValidationErrorMessageFunction = (
@@ -30,6 +36,7 @@ export type GetValidationErrorMessageFunction = (
 export type GetMissingOrEmptyFieldsFunction = (data: any) => string[];
 
 export type GetMissingOrEmptyFieldsErrorMessageFunction = (
+  context: DataContext,
   fields: string[],
 ) => string[];
 

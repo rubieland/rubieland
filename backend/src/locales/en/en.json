@@ -12,35 +12,51 @@
       "deleteFileFailed": "The file has not been deleted",
       "resourceDoesNotExist": "This resource does not exist",
       "userFound_zero": "No user was found",
-      "userDoesNotExist": "This user does not exist or does not exist anymore"
+      "userDoesNotExist": "This user does not exist or does not exist anymore",
+      "blogArticleFound_zero": "No blog article was found",
+      "blogArticleDoesNotExist": "This blog article does not exist or does not exist anymore"
     },
     "success": {
       "userFound_one": "{{count}} user found",
-      "userFound_other": "{{count}} users found"
+      "userFound_other": "{{count}} users found",
+      "blogArticleFound_one": "{{count}} blog article found",
+      "blogArticleFound_other": "{{count}} blog articles found"
     }
   },
   "validation": {
     "fields": {
-      "firstName": "First name",
-      "lastName": "Last name",
-      "email": "Email",
-      "password": "Password",
-      "currentPassword": "Current password",
-      "confirmPassword": "Confirm password",
-      "newPassword": "New password",
-      "confirmNewPassword": "Confirm new password",
-      "phone": "Phone number",
-      "avatar": "Avatar"
+      "user": {
+        "firstName": "First name",
+        "lastName": "Last name",
+        "email": "Email",
+        "password": "Password",
+        "currentPassword": "Current password",
+        "confirmPassword": "Confirm password",
+        "newPassword": "New password",
+        "confirmNewPassword": "Confirm new password",
+        "phone": "Phone number",
+        "avatar": "Avatar"
+      },
+      "blogArticle": {
+        "title": "Title of the article",
+        "content": "Content of the article",
+        "isPublished": "Publish this article ?"
+      }
     },
     "rules": {
-      "email": "please enter a valid email address (example@example.com)",
-      "firstName": "it can only contain letters, hyphens, spaces and apostrophes",
-      "lastName": "it can only contain letters, hyphens, spaces and apostrophes",
-      "password": "it must contain at least: 1 lowercase, 1 uppercase, 1 number and 1 special character ",
-      "phone": "Please enter a phone number in the international format: +XX 0000000000 (replace XX with the country code)",
-      "currentPasswordDontMatch": "the current password you entered is incorrect",
-      "passwordsDontMatch": "passwords don't match",
-      "newPasswordsDontMatch": "the password you entered in the field Confirm new password does not match with the password you entered in the field New password"
+      "user": {
+        "email": "please enter a valid email address (example@example.com)",
+        "firstName": "it can only contain letters, hyphens, spaces and apostrophes",
+        "lastName": "it can only contain letters, hyphens, spaces and apostrophes",
+        "password": "it must contain at least: 1 lowercase, 1 uppercase, 1 number and 1 special character ",
+        "phone": "Please enter a phone number in the international format: +XX 0000000000 (replace XX with the country code)",
+        "currentPasswordDontMatch": "the current password you entered is incorrect",
+        "passwordsDontMatch": "passwords don't match",
+        "newPasswordsDontMatch": "the password you entered in the field Confirm new password does not match with the password you entered in the field New password"
+      },
+      "blogArticle": {
+        "isPublished": "it must be of type Boolean, and so, be either true or false"
+      }
     },
     "messages": {
       "required": "The field {{field}} is required",
@@ -78,6 +94,16 @@
   "profile": {
     "success": {
       "deleteAccountSuccess": "Your account has been deleted successfully!"
+    }
+  },
+  "blog": {
+    "success": {
+      "blogArticleCreationSuccess": "Article created successfully!",
+      "blogArticleUpdateSuccess": "Article updated successfully!",
+      "blogArticleDeleteSuccess": "Article deleted successfully!"
+    },
+    "error": {
+      "blogArticleCreationFailed": "The creation of the blog article failed"
     }
   }
 }

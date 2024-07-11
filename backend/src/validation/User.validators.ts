@@ -7,7 +7,7 @@ import {
   getValidationErrorMessage,
   validatePhoneNumber,
 } from '../utils/validation.utils';
-import { Reason, UserDataLengths } from './types/validation.types';
+import { Reason, DataLengths, DataContext } from './types/validation.types';
 
 export const regexes = {
   nameField: /^[a-zA-ZÀ-ÖØ-öø-ÿ' -]+$/i, // accepts only letters, hyphens, spaces, and apostrophes
@@ -21,7 +21,7 @@ export const strongPasswordOptions: StrongPasswordOptions = {
   minSymbols: 1,
 };
 
-export const userDataLengths: UserDataLengths = {
+export const userDataLengths: DataLengths = {
   firstName: {
     minLength: 2,
     maxLength: 30,
@@ -36,7 +36,7 @@ export const userDataLengths: UserDataLengths = {
   },
   password: {
     minLength: 8,
-    maxLength: 20,
+    maxLength: 60,
   },
   phone: {
     minLength: 9,
@@ -76,6 +76,7 @@ export const checkUserData = async (
   userInBase?: UserDocument,
 ) => {
   const errors: string[] = [];
+  const context: DataContext = DataContext.USER;
 
   for (const [key, value] of Object.entries(data)) {
     if (key in userDataLengths) {
@@ -85,6 +86,7 @@ export const checkUserData = async (
       if (!checkMaxLength(value, userDataLengths[fieldKey].maxLength)) {
         errors.push(
           getValidationErrorMessage({
+            context,
             field: fieldKey,
             rule: fieldKey,
             maxLength: userDataLengths[fieldKey].maxLength,
@@ -97,6 +99,7 @@ export const checkUserData = async (
       if (!checkMinLength(value, userDataLengths[fieldKey].minLength)) {
         errors.push(
           getValidationErrorMessage({
+            context,
             field: fieldKey,
             rule: fieldKey,
             minLength: userDataLengths[fieldKey].minLength,
@@ -112,6 +115,7 @@ export const checkUserData = async (
       ) {
         errors.push(
           getValidationErrorMessage({
+            context,
             field: fieldKey,
             rule: fieldKey,
             reason: Reason.INVALID,
@@ -123,6 +127,7 @@ export const checkUserData = async (
       if (fieldKey === 'email' && !checkEmail(value)) {
         errors.push(
           getValidationErrorMessage({
+            context,
             field: fieldKey,
             rule: fieldKey,
             reason: Reason.INVALID,
@@ -134,6 +139,7 @@ export const checkUserData = async (
       if (fieldKey === 'password' && !checkPassword(value)) {
         errors.push(
           getValidationErrorMessage({
+            context,
             field: fieldKey,
             rule: fieldKey,
             reason: Reason.INVALID,
@@ -145,6 +151,7 @@ export const checkUserData = async (
       if (fieldKey === 'phone' && !checkPhone(value)) {
         errors.push(
           getValidationErrorMessage({
+            context,
             field: fieldKey,
             rule: fieldKey,
             reason: Reason.INVALID,
@@ -164,6 +171,7 @@ export const checkUserData = async (
     if (!checkConfirmPassword(data.password, data.confirmPassword)) {
       errors.push(
         getValidationErrorMessage({
+          context,
           field: 'confirmPassword',
           rule: 'passwordsDontMatch',
           reason: Reason.INVALID,
@@ -178,6 +186,7 @@ export const checkUserData = async (
     if (!isMatch) {
       errors.push(
         getValidationErrorMessage({
+          context,
           field: 'currentPassword',
           rule: 'currentPasswordDontMatch',
           reason: Reason.INVALID,
@@ -194,6 +203,7 @@ export const checkUserData = async (
   ) {
     errors.push(
       getValidationErrorMessage({
+        context,
         field: 'newPassword',
         rule: 'password',
         reason: Reason.INVALID,
@@ -211,6 +221,7 @@ export const checkUserData = async (
     if (!checkConfirmPassword(data.newPassword, data.confirmNewPassword)) {
       errors.push(
         getValidationErrorMessage({
+          context,
           field: 'confirmNewPassword',
           rule: 'newPasswordsDontMatch',
           reason: Reason.INVALID,

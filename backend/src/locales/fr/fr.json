@@ -12,35 +12,51 @@
       "deleteFileFailed": "Le fichier n'a pas pu être supprimé",
       "resourceDoesNotExist": "Cette ressource n'existe pas ou n'existe plus",
       "userFound_zero": "Aucun utilisateur trouvé",
-      "userDoesNotExist": "Cet utilisateur n'existe pas ou n'existe plus"
+      "userDoesNotExist": "Cet utilisateur n'existe pas ou n'existe plus",
+      "blogArticleFound_zero": "Aucun article de blog trouvé",
+      "blogArticleDoesNotExist": "Cet article de blog n'existe pas ou n'existe plus"
     },
     "success": {
       "userFound_one": "{{count}} utilisateur trouvé",
-      "userFound_other": "{{count}} utilisateurs trouvés"
+      "userFound_other": "{{count}} utilisateurs trouvés",
+      "blogArticleFound_one": "{{count}} article de blog trouvé",
+      "blogArticleFound_other": "{{count}} articles de blog trouvés"
     }
   },
   "validation": {
     "fields": {
-      "firstName": "Prénom",
-      "lastName": "Nom de famille",
-      "email": "E-mail",
-      "password": "Mot de passe",
-      "currentPassword": "Mot de passe actuel",
-      "confirmPassword": "Confirmer le mot de passe",
-      "newPassword": "Nouveau mot de passe",
-      "confirmNewPassword": "Confirmer le nouveau mot de passe",
-      "phone": "N° de téléphone",
-      "avatar": "Avatar"
+      "user": {
+        "firstName": "Prénom",
+        "lastName": "Nom de famille",
+        "email": "E-mail",
+        "password": "Mot de passe",
+        "currentPassword": "Mot de passe actuel",
+        "confirmPassword": "Confirmer le mot de passe",
+        "newPassword": "Nouveau mot de passe",
+        "confirmNewPassword": "Confirmer le nouveau mot de passe",
+        "phone": "N° de téléphone",
+        "avatar": "Avatar"
+      },
+      "blogArticle": {
+        "title": "Titre de l'article",
+        "content": "Contenu de l'article",
+        "isPublished": "Publier cet article ?"
+      }
     },
     "rules": {
-      "email": "veuillez saisir une adresse e-mail valide (exemple@exemple.com)",
-      "firstName": "il ne peut contenir que des lettres, traits d'union, espaces et apostrophes",
-      "lastName": "il ne peut contenir que des lettres, traits d'union, espaces et apostrophes",
-      "password": "il doit contenir au moins: 1 minuscule, 1 majuscule, 1 chiffre, 1 caractère spécial",
-      "phone": "veuillez entrer un numéro de téléphone au format international : +XX 0000000000 (remplacez XX par le code du pays)",
-      "currentPasswordDontMatch": "le mot de passe actuel saisi est incorrect",
-      "passwordsDontMatch": "les mots de passe ne correspondent pas",
-      "newPasswordsDontMatch": "le mot de passe saisi dans Confirmer le nouveau mot de passe ne correspond pas avec le mot de passe saisi dans le champ Nouveau mot de passe"
+      "user": {
+        "email": "veuillez saisir une adresse e-mail valide (exemple@exemple.com)",
+        "firstName": "il ne peut contenir que des lettres, traits d'union, espaces et apostrophes",
+        "lastName": "il ne peut contenir que des lettres, traits d'union, espaces et apostrophes",
+        "password": "il doit contenir au moins: 1 minuscule, 1 majuscule, 1 chiffre, 1 caractère spécial",
+        "phone": "veuillez entrer un numéro de téléphone au format international : +XX 0000000000 (remplacez XX par le code du pays)",
+        "currentPasswordDontMatch": "le mot de passe actuel saisi est incorrect",
+        "passwordsDontMatch": "les mots de passe ne correspondent pas",
+        "newPasswordsDontMatch": "le mot de passe saisi dans Confirmer le nouveau mot de passe ne correspond pas avec le mot de passe saisi dans le champ Nouveau mot de passe"
+      },
+      "blogArticle": {
+        "isPublished": "il doit être de type Boolean, et donc être soit true, soit false"
+      }
     },
     "messages": {
       "required": "Le champ {{field}} est requis",
@@ -78,6 +94,16 @@
   "profile": {
     "success": {
       "deleteAccountSuccess": "Votre compte a été supprimé avec succès !"
+    }
+  },
+  "blog": {
+    "success": {
+      "blogArticleCreationSuccess": "Article créé avec succès !",
+      "blogArticleUpdateSuccess": "Article modifié avec succès!",
+      "blogArticleDeleteSuccess": "Article supprimé avec succès !"
+    },
+    "error": {
+      "blogArticleCreationFailed": "La création de l'article a échouée"
     }
   }
 }

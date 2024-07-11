@@ -5,7 +5,7 @@ export enum UserRole {
   ADMIN = 'admin',
 }
 
-export interface IUser {
+export interface User {
   firstName: string;
   lastName: string;
   email: string;
@@ -15,7 +15,7 @@ export interface IUser {
   role?: UserRole;
 }
 
-export interface UserData extends Omit<IUser, 'password'> {
+export interface UserData extends Omit<User, 'password'> {
   password?: string;
   confirmPassword?: string;
   currentPassword?: string;
@@ -25,7 +25,7 @@ export interface UserData extends Omit<IUser, 'password'> {
 
 export type UserField = keyof Omit<UserData, 'avatar' | 'role'>;
 
-export interface UserDocument extends IUser, Document {
+export interface UserDocument extends User, Document {
   comparePassword(candidatePassword: string): Promise<boolean>;
   createJWT(): string;
 }
