@@ -1,18 +1,18 @@
 import Router, { Express } from 'express';
-import { authMiddleware } from '../middlewares/auth/auth.middleware';
-import { isAdminMiddleware } from '../middlewares/admin/isAdmin.middleware';
+import { authMiddleware } from '../../../middlewares/auth/auth.middleware';
+import { isAdminMiddleware } from '../../../middlewares/admin/isAdmin.middleware';
 import {
   getAllUsers,
   getUser,
-} from '../controllers/back-office/users.controller';
+} from '../../../controllers/back-office/users.controller';
 import {
   createBlogArticle,
   deleteBlogArticle,
   getAllBlogArticles,
   getBlogArticle,
   updateBlogArticle,
-} from '../controllers/back-office/blogArticles.controller';
-import { blogArticlePictureUploader } from '../middlewares/uploads/uploadBlogArticlePicture.middleware';
+} from '../../../controllers/back-office/blogArticles.controller';
+import { blogArticlePictureUploader } from '../../../middlewares/uploads/uploadBlogArticlePicture.middleware';
 
 const router: Express = Router();
 

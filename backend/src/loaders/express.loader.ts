@@ -3,9 +3,9 @@ import { handle as i18nextMiddleware } from 'i18next-express-middleware';
 import cors from 'cors';
 import path from 'path';
 import express, { Express } from 'express';
-import authRouter from '../routers/auth.router';
-import profileRouter from '../routers/profile.router';
-import backOfficeRouter from '../routers/backOffice.router';
+import authRouter from '../routers/public/auth.router';
+import profileRouter from '../routers/secured/user/profile.router';
+import backOfficeRouter from '../routers/secured/admin/backOffice.router';
 import { fileURLToPath } from 'url';
 import { env } from './env.loader';
 import {

@@ -12,7 +12,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const avatarsDir = path.join(__dirname, '../../uploads/user/avatars');
 
-export const getUser = async (
+export const getUserProfile = async (
   req: Request,
   res: Response,
   next: NextFunction,
