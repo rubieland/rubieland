@@ -15,6 +15,7 @@ import {
   ValidatePhoneNumberFunction,
 } from '../validation/types/validation.types';
 import { regexes } from '../validation/User.validators';
+import { forbiddenCharsRegex } from '../validation/Common.validator';
 /**
  * @param phoneNumber(string): phone number to validate
  * @returns(boolean): returns true if the string is a valid international phone number
@@ -60,7 +61,9 @@ export const getValidationErrorMessage: GetValidationErrorMessageFunction = ({
   const fieldName = i18n.t(`validation.fields.${context}.${field}`);
   const ruleMessage = i18n.t(`validation.rules.${context}.${rule}`);
   const errorMessageTemplate = i18n.t(`validation.messages.${reason}`);
+
   let result = '';
+
   switch (reason) {
     case Reason.INVALID:
       result = errorMessageTemplate
@@ -90,8 +93,13 @@ export const getValidationErrorMessage: GetValidationErrorMessageFunction = ({
         .replace('{{field}}', fieldName)
         .replace('{{max}}', String(max));
       break;
+    case Reason.HAS_FORBIDDEN_CHARS:
+      result = errorMessageTemplate.replace('{{field}}', fieldName);
+      break;
     default:
-      result = '';
+      result = i18n
+        .t('validation.messages.default')
+        .replace('{{field}}', fieldName);
   }
   return result;
 };
@@ -171,4 +179,8 @@ export const checkFieldFormat: FieldFormatValidatorFunction = (
   fieldValue: string,
 ) => {
   return regexes.nameField.test(fieldValue);
+};
+
+export const hasForbiddenChars = (fieldValue: string) => {
+  return forbiddenCharsRegex.test(fieldValue);
 };
