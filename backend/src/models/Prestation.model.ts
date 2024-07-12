@@ -6,6 +6,7 @@ import {
   prestationDataLengths,
   prestationMixMax,
 } from '../validation/Prestation.validators';
+import { forbiddenCharsRegex } from '../validation/Common.validator';
 
 const context: DataContext = DataContext.PRESTATION;
 const prestationSchema = new Schema<PrestationDocument>(
@@ -39,6 +40,14 @@ const prestationSchema = new Schema<PrestationDocument>(
           reason: Reason.MINLENGTH,
         }),
       ],
+      validate: [
+        (v: string) => forbiddenCharsRegex.test(v),
+        getValidationErrorMessage({
+          context,
+          field: 'title',
+          reason: Reason.HAS_FORBIDDEN_CHARS,
+        }),
+      ],
     },
     description: {
       type: String,
@@ -67,6 +76,14 @@ const prestationSchema = new Schema<PrestationDocument>(
           field: 'description',
           minLength: prestationDataLengths.description.minLength,
           reason: Reason.MINLENGTH,
+        }),
+      ],
+      validate: [
+        (v: string) => forbiddenCharsRegex.test(v),
+        getValidationErrorMessage({
+          context,
+          field: 'description',
+          reason: Reason.HAS_FORBIDDEN_CHARS,
         }),
       ],
     },
