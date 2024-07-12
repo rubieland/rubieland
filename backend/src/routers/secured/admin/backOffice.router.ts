@@ -14,6 +14,7 @@ import {
 } from '../../../controllers/back-office/blogBackOffice.controller';
 import { blogArticlePictureUploader } from '../../../middlewares/uploads/uploadBlogArticlePicture.middleware';
 import {
+  createPrestation,
   getAllPrestations,
   getPrestation,
 } from '../../../controllers/back-office/prestations.controller';
@@ -71,6 +72,12 @@ router.get(
   authMiddleware,
   isAdminMiddleware,
   getPrestation,
+);
+router.post(
+  '/prestations/create',
+  authMiddleware,
+  isAdminMiddleware,
+  createPrestation,
 );
 
 export default router;

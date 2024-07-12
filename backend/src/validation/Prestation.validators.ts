@@ -12,6 +12,7 @@ import {
   DataMinMax,
   Reason,
 } from './types/validation.types';
+import validator from 'validator';
 
 export const prestationDataLengths: DataLengths = {
   title: {
@@ -19,15 +20,15 @@ export const prestationDataLengths: DataLengths = {
     maxLength: 100,
   },
   description: {
-    minLength: 100,
-    maxLength: Infinity,
+    minLength: 20,
+    maxLength: 10000,
   },
 };
 
 export const prestationMixMax: DataMinMax = {
   price: {
     min: 0,
-    max: Infinity,
+    max: 10000,
   },
 };
 
@@ -65,31 +66,39 @@ export const checkPrestationData = async (data: IPrestation) => {
         );
       }
     }
-
-    if (key in prestationMixMax) {
-      const fieldKey = key as PrestationField;
-
-      // check max
-      if (!checkMax(value, prestationMixMax[fieldKey].max)) {
+  }
+  // check price
+  if ('price' in data && data.price != null) {
+    if (!validator.isNumeric(String(data.price))) {
+      errors.push(
+        getValidationErrorMessage({
+          context,
+          field: 'price',
+          rule: 'priceNotNumeric',
+          reason: Reason.INVALID,
+        }),
+      );
+    } else {
+      // check max price
+      if (!checkMax(data.price, prestationMixMax.price.max)) {
         errors.push(
           getValidationErrorMessage({
             context,
-            field: fieldKey,
-            rule: fieldKey,
-            max: prestationMixMax[fieldKey].max,
+            field: 'price',
+            rule: 'price',
+            max: prestationMixMax.price.max,
             reason: Reason.MAX,
           }),
         );
       }
-
-      // check min
-      if (!checkMin(value, prestationMixMax[fieldKey].min)) {
+      // check min price
+      if (!checkMin(data.price, prestationMixMax.price.min)) {
         errors.push(
           getValidationErrorMessage({
             context,
-            field: fieldKey,
-            rule: fieldKey,
-            min: prestationMixMax[fieldKey].min,
+            field: 'price',
+            rule: 'price',
+            min: prestationMixMax.price.min,
             reason: Reason.MIN,
           }),
         );

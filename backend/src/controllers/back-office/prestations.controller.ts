@@ -1,7 +1,20 @@
 import { Request, Response, NextFunction } from 'express';
 import i18n from '../../config/i18n';
-import { PrestationDocument } from '../../models/types/Prestation.types';
+import {
+  IPrestation,
+  PrestationDocument,
+} from '../../models/types/Prestation.types';
 import Prestation from '../../models/Prestation.model';
+import { trimData } from '../../utils/string.utils';
+import {
+  extractValidationErrorMessagesFromError,
+  getMissingOrEmptyFields,
+  getMissingOrEmptyFieldsErrorMessage,
+} from '../../utils/validation.utils';
+import { DataContext } from '../../validation/types/validation.types';
+import { checkPrestationData } from '../../validation/Prestation.validators';
+
+const context: DataContext = DataContext.PRESTATION;
 
 export const getAllPrestations = async (
   req: Request,
@@ -54,5 +67,67 @@ export const getPrestation = async (
     });
   } catch (error: unknown) {
     next(error);
+  }
+};
+
+export const createPrestation = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    const { title, description, price } = trimData(req.body);
+
+    const prestationData: IPrestation = {
+      title,
+      description,
+      price,
+    };
+
+    // check for empty or missing fields
+    const missingOrEmptyFields = getMissingOrEmptyFields(prestationData);
+
+    if (missingOrEmptyFields && missingOrEmptyFields.length > 0) {
+      const errors = getMissingOrEmptyFieldsErrorMessage(
+        context,
+        missingOrEmptyFields,
+      );
+
+      return res.status(400).json({
+        message: i18n.t('prestation.error.prestationCreationFailed'),
+        errors,
+      });
+    }
+
+    // data validation
+    const prestationDataErrors = await checkPrestationData(prestationData);
+
+    if (prestationDataErrors && prestationDataErrors.length > 0) {
+      return res.status(400).json({
+        message: i18n.t('prestation.error.prestationCreationFailed'),
+        errors: prestationDataErrors,
+      });
+    }
+
+    // create new instance of Prestation with data from req.body
+    const newPrestation = new Prestation({
+      ...prestationData,
+      price: Number(prestationData.price),
+    });
+
+    // save new prestation in database
+    await newPrestation.save();
+
+    res.status(201).json({
+      message: i18n.t('prestation.success.prestationCreationSuccess'),
+      newPrestation,
+    });
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      const messages = extractValidationErrorMessagesFromError(error);
+      res.status(400).json({ errors: messages });
+    } else {
+      next(error);
+    }
   }
 };
