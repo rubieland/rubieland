@@ -45,6 +45,11 @@
         "title": "Title of the article",
         "content": "Content of the article",
         "isPublished": "Publish this article ?"
+      },
+      "prestation": {
+        "title": "Title of the prestation",
+        "description": "Description of the prestation",
+        "price": "Price of the prestation"
       }
     },
     "rules": {
@@ -60,13 +65,18 @@
       },
       "blogArticle": {
         "isPublished": "it must be of type Boolean, and so, be either true or false"
+      },
+      "prestation": {
+        "priceNotNumeric": "it must be a number"
       }
     },
     "messages": {
       "required": "The field {{field}} is required",
       "invalid": "The field {{field}} is invalid: {{rule}}",
       "minLength": "The field {{field}} must contain at least {{minLength}} characters",
-      "maxLength": "The field {{field}} must not contain more than {{maxLength}} characters"
+      "maxLength": "The field {{field}} must not contain more than {{maxLength}} characters",
+      "min": "The field {{field}} must not be lower than {{min}}",
+      "max": "The field {{field}} must not be higher than {{max}}"
     }
   },
   "auth": {
@@ -108,6 +118,16 @@
     },
     "error": {
       "blogArticleCreationFailed": "The creation of the blog article failed"
+    }
+  },
+  "prestation": {
+    "success": {
+      "prestationCreationSuccess": "Prestation created successfully!",
+      "prestationUpdateSuccess": "Prestation updated successfully!",
+      "prestationDeleteSuccess": "Prestation deleted successfully!"
+    },
+    "error": {
+      "prestationCreationFailed": "The creation of the prestation failed"
     }
   }
 }

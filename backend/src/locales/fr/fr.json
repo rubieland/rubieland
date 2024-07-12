@@ -45,6 +45,11 @@
         "title": "Titre de l'article",
         "content": "Contenu de l'article",
         "isPublished": "Publier cet article ?"
+      },
+      "prestation": {
+        "title": "Titre de la prestation",
+        "description": "Description de la prestation",
+        "price": "Prix de la prestation"
       }
     },
     "rules": {
@@ -60,13 +65,18 @@
       },
       "blogArticle": {
         "isPublished": "il doit être de type Boolean, et donc être soit true, soit false"
+      },
+      "prestation": {
+        "priceNotNumeric": "il doit être un nombre"
       }
     },
     "messages": {
       "required": "Le champ {{field}} est requis",
       "invalid": "Le champ {{field}} est invalide: {{rule}}",
       "minLength": "Le champ {{field}} doit contenir {{minLength}} caractères minimum",
-      "maxLength": "Le champ {{field}} ne peut contenir que {{maxLength}} caractères maximum"
+      "maxLength": "Le champ {{field}} ne peut contenir que {{maxLength}} caractères maximum",
+      "min": "Le champ {{field}} ne doit pas être inférieur à {{min}}",
+      "max": "Le champ {{field}} ne doit pas être supérieur à {{max}}"
     }
   },
   "auth": {
@@ -108,6 +118,16 @@
     },
     "error": {
       "blogArticleCreationFailed": "La création de l'article a échouée"
+    }
+  },
+  "prestation": {
+    "success": {
+      "prestationCreationSuccess": "Prestation créée avec succès !",
+      "prestationUpdateSuccess": "Prestation modifiée avec succès !",
+      "prestationDeleteSuccess": "Prestation supprimée avec succès !"
+    },
+    "error": {
+      "prestationCreationFailed": "La création de la prestation a échouée"
     }
   }
 }
