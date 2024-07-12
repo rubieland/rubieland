@@ -46,7 +46,6 @@ export const checkPrestationData = async (data: IPrestation) => {
           getValidationErrorMessage({
             context,
             field: fieldKey,
-            rule: fieldKey,
             maxLength: prestationDataLengths[fieldKey].maxLength,
             reason: Reason.MAXLENGTH,
           }),
@@ -59,7 +58,6 @@ export const checkPrestationData = async (data: IPrestation) => {
           getValidationErrorMessage({
             context,
             field: fieldKey,
-            rule: fieldKey,
             minLength: prestationDataLengths[fieldKey].minLength,
             reason: Reason.MINLENGTH,
           }),
@@ -85,7 +83,6 @@ export const checkPrestationData = async (data: IPrestation) => {
           getValidationErrorMessage({
             context,
             field: 'price',
-            rule: 'price',
             max: prestationMixMax.price.max,
             reason: Reason.MAX,
           }),
@@ -97,7 +94,6 @@ export const checkPrestationData = async (data: IPrestation) => {
           getValidationErrorMessage({
             context,
             field: 'price',
-            rule: 'price',
             min: prestationMixMax.price.min,
             reason: Reason.MIN,
           }),
