@@ -6,6 +6,7 @@ export enum Reason {
   MAXLENGTH = 'maxLength',
   MIN = 'min',
   MAX = 'max',
+  HAS_FORBIDDEN_CHARS = 'hasForbiddenChars',
 }
 
 export enum DataContext {

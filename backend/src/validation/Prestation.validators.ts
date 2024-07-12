@@ -5,6 +5,7 @@ import {
   checkMin,
   checkMinLength,
   getValidationErrorMessage,
+  hasForbiddenChars,
 } from '../utils/validation.utils';
 import {
   DataContext,
@@ -39,6 +40,17 @@ export const checkPrestationData = async (data: IPrestation) => {
   for (const [key, value] of Object.entries(data)) {
     if (key in prestationDataLengths) {
       const fieldKey = key as PrestationField;
+
+      // check forbidden characters
+      if (hasForbiddenChars(value)) {
+        errors.push(
+          getValidationErrorMessage({
+            context,
+            field: fieldKey,
+            reason: Reason.HAS_FORBIDDEN_CHARS,
+          }),
+        );
+      }
 
       // check maxLengths
       if (!checkMaxLength(value, prestationDataLengths[fieldKey].maxLength)) {
