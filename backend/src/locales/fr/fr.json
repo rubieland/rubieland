@@ -75,8 +75,10 @@
       "invalid": "Le champ {{field}} est invalide: {{rule}}",
       "minLength": "Le champ {{field}} doit contenir {{minLength}} caractères minimum",
       "maxLength": "Le champ {{field}} ne peut contenir que {{maxLength}} caractères maximum",
-      "min": "Le champ {{field}} ne doit pas être inférieur à {{min}}",
-      "max": "Le champ {{field}} ne doit pas être supérieur à {{max}}"
+      "min": "Le champ {{field}} ne peut pas être inférieur à {{min}}€",
+      "max": "Le champ {{field}} ne peut pas être supérieur à {{max}}€",
+      "hasForbiddenChars": "Le champ {{field}} ne doit contenir aucun des caractères suivants: <, >, {, }, ^, ~, |, \\",
+      "default": "Veuillez vérifier les informations saisies pour le champ {{field}}"
     }
   },
   "auth": {

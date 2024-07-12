@@ -75,8 +75,10 @@
       "invalid": "The field {{field}} is invalid: {{rule}}",
       "minLength": "The field {{field}} must contain at least {{minLength}} characters",
       "maxLength": "The field {{field}} must not contain more than {{maxLength}} characters",
-      "min": "The field {{field}} must not be lower than {{min}}",
-      "max": "The field {{field}} must not be higher than {{max}}"
+      "min": "The field {{field}} cannot be lower than {{min}}€",
+      "max": "The field {{field}} cannot be higher than {{max}}€",
+      "hasForbiddenChars": "The field {{field}} must not contain any of the following special characters: <, >, {, }, ^, ~, |, \\",
+      "default": "Please check the information entered for field {{field}}"
     }
   },
   "auth": {
