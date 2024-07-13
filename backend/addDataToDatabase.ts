@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import { readFile } from 'fs/promises';
 import User from './src/models/User.model';
 import BlogArticle from './src/models/BlogArticle.model';
+import Prestation from './src/models/Prestation.model';
 dotenv.config();
 
 const { NODE_ENV, DEV_DB_URI, PROD_DB_URI } = process.env;
@@ -16,7 +17,7 @@ async function insertUsers() {
     // parse the data
     const usersData = JSON.parse(data);
 
-    // loop on each user and save it in base (we loop and use save() on each user to trigger pre("save") method from User model)
+    // loop on all users and save each user in base (we loop and use save() on each user to trigger pre("save") method from User model)
     for (const userData of usersData) {
       const user = new User(userData);
       await user.save();
@@ -28,17 +29,15 @@ async function insertUsers() {
   }
 }
 
-// ----- other insertData functions ----- \\
-
 // function to load and insert blogArticles
 async function insertBlogArticles() {
   try {
-    // read json file with users data
+    // read json file with blog articles data
     const data = await readFile('./data/blogArticles.json', 'utf8');
     // parse the data
     const blogArticlesData = JSON.parse(data);
 
-    // loop on each blogArticle and save it in base
+    // loop on all blogArticle and save each article in base
     for (const blogArticleData of blogArticlesData) {
       const blogArticle = new BlogArticle(blogArticleData);
       await blogArticle.save();
@@ -55,6 +54,28 @@ async function insertBlogArticles() {
   }
 }
 
+// function to load and insert prestations
+async function insertPrestations() {
+  try {
+    // read json file with prestations data
+    const data = await readFile('./data/prestations.json', 'utf8');
+    // parse the data
+    const prestationsData = JSON.parse(data);
+
+    // loop on all prestations and save each prestation in base
+    for (const prestationData of prestationsData) {
+      const prestation = new Prestation(prestationData);
+      await prestation.save();
+      console.log(
+        `Prestation with title "${prestation.title}" inserted successfully!`,
+      );
+    }
+  } catch (err) {
+    console.error('An error occurred while trying to insert prestations:', err);
+    throw err;
+  }
+}
+
 // main function to handle the connection and data insertion
 async function main() {
   try {
@@ -63,8 +84,10 @@ async function main() {
     await mongoose.connect(MONGO_URI, {});
     console.log('Connection to database successful!');
 
+    // execute all the insertData() functions
     await insertUsers();
     await insertBlogArticles();
+    await insertPrestations();
 
     console.log('All data inserted successfully!');
   } catch (err) {
