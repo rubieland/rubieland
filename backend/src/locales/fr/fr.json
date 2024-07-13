@@ -11,16 +11,20 @@
       "saveFailed": "Une erreur est survenue lors de la sauvegarde des données. Veuillez réessayer",
       "deleteFileFailed": "Le fichier n'a pas pu être supprimé",
       "resourceDoesNotExist": "Cette ressource n'existe pas ou n'existe plus",
-      "userFound_zero": "Aucun utilisateur trouvé",
+      "usersFound_zero": "Aucun utilisateur trouvé",
       "userDoesNotExist": "Cet utilisateur n'existe pas ou n'existe plus",
-      "blogArticleFound_zero": "Aucun article de blog trouvé",
-      "blogArticleDoesNotExist": "Cet article de blog n'existe pas ou n'existe plus"
+      "blogArticlesFound_zero": "Aucun article de blog trouvé",
+      "blogArticleDoesNotExist": "Cet article de blog n'existe pas ou n'existe plus",
+      "prestationsFound_zero": "Aucune prestation trouvée",
+      "prestationDoesNotExist": "Cette prestation n'existe pas ou n'existe plus"
     },
     "success": {
-      "userFound_one": "{{count}} utilisateur trouvé",
-      "userFound_other": "{{count}} utilisateurs trouvés",
-      "blogArticleFound_one": "{{count}} article de blog trouvé",
-      "blogArticleFound_other": "{{count}} articles de blog trouvés"
+      "usersFound_one": "{{count}} utilisateur trouvé",
+      "usersFound_other": "{{count}} utilisateurs trouvés",
+      "blogArticlesFound_one": "{{count}} article de blog trouvé",
+      "blogArticlesFound_other": "{{count}} articles de blog trouvés",
+      "prestationsFound_one": "{{count}} prestation trouvée",
+      "prestationsFound_other": "{{count}} prestations trouvées"
     }
   },
   "validation": {
@@ -41,6 +45,12 @@
         "title": "Titre de l'article",
         "content": "Contenu de l'article",
         "isPublished": "Publier cet article ?"
+      },
+      "prestation": {
+        "title": "Titre de la prestation",
+        "description": "Description de la prestation",
+        "price": "Prix de la prestation",
+        "isAvailable": "Disponibilité"
       }
     },
     "rules": {
@@ -56,13 +66,21 @@
       },
       "blogArticle": {
         "isPublished": "il doit être de type Boolean, et donc être soit true, soit false"
+      },
+      "prestation": {
+        "priceNotNumeric": "il doit être un nombre",
+        "isAvailable": "il doit être de type Boolean, et donc être soit true, soit false"
       }
     },
     "messages": {
       "required": "Le champ {{field}} est requis",
       "invalid": "Le champ {{field}} est invalide: {{rule}}",
       "minLength": "Le champ {{field}} doit contenir {{minLength}} caractères minimum",
-      "maxLength": "Le champ {{field}} ne peut contenir que {{maxLength}} caractères maximum"
+      "maxLength": "Le champ {{field}} ne peut contenir que {{maxLength}} caractères maximum",
+      "min": "Le champ {{field}} ne peut pas être inférieur à {{min}}€",
+      "max": "Le champ {{field}} ne peut pas être supérieur à {{max}}€",
+      "hasForbiddenChars": "Le champ {{field}} ne doit contenir aucun des caractères suivants: <, >, {, }, ^, ~, |, \\",
+      "default": "Veuillez vérifier les informations saisies pour le champ {{field}}"
     }
   },
   "auth": {
@@ -103,7 +121,19 @@
       "blogArticleDeleteSuccess": "Article supprimé avec succès !"
     },
     "error": {
-      "blogArticleCreationFailed": "La création de l'article a échouée"
+      "blogArticleCreationFailed": "La création de l'article a échouée",
+      "blogArticleUpdateFailed": "La mise à jour de l'article a échouée"
+    }
+  },
+  "prestation": {
+    "success": {
+      "prestationCreationSuccess": "Prestation créée avec succès !",
+      "prestationUpdateSuccess": "Prestation modifiée avec succès !",
+      "prestationDeleteSuccess": "Prestation supprimée avec succès !"
+    },
+    "error": {
+      "prestationCreationFailed": "La création de la prestation a échouée",
+      "prestationUpdateFailed": "La mise à jour de la prestation a échouée"
     }
   }
 }

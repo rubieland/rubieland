@@ -13,33 +13,17 @@ import {
   updateBlogArticle,
 } from '../../../controllers/back-office/blogBackOffice.controller';
 import { blogArticlePictureUploader } from '../../../middlewares/uploads/uploadBlogArticlePicture.middleware';
+import {
+  createPrestation,
+  deletePrestation,
+  getAllPrestations,
+  getPrestation,
+  updatePrestation,
+} from '../../../controllers/back-office/prestationsBackOffice.controller';
 
 const router: Express = Router();
 
-// users routes
-router.get('/users/:userId', authMiddleware, isAdminMiddleware, getUser);
-router.get('/users/all', authMiddleware, isAdminMiddleware, getAllUsers);
-
 // blog routes
-router.get(
-  '/blog/articles/all',
-  authMiddleware,
-  isAdminMiddleware,
-  getAllBlogArticles,
-);
-router.get(
-  '/blog/articles/:id',
-  authMiddleware,
-  isAdminMiddleware,
-  getBlogArticle,
-);
-router.post(
-  '/blog/articles/create',
-  authMiddleware,
-  isAdminMiddleware,
-  blogArticlePictureUploader,
-  createBlogArticle,
-);
 router.put(
   '/blog/articles/:id/update',
   authMiddleware,
@@ -53,5 +37,60 @@ router.delete(
   isAdminMiddleware,
   deleteBlogArticle,
 );
+router.post(
+  '/blog/articles/create',
+  authMiddleware,
+  isAdminMiddleware,
+  blogArticlePictureUploader,
+  createBlogArticle,
+);
+router.get(
+  '/blog/articles/all',
+  authMiddleware,
+  isAdminMiddleware,
+  getAllBlogArticles,
+);
+router.get(
+  '/blog/articles/:id',
+  authMiddleware,
+  isAdminMiddleware,
+  getBlogArticle,
+);
+
+// prestation routes
+router.put(
+  '/prestations/:id/update',
+  authMiddleware,
+  isAdminMiddleware,
+  updatePrestation,
+);
+router.delete(
+  '/prestations/:id/delete',
+  authMiddleware,
+  isAdminMiddleware,
+  deletePrestation,
+);
+router.post(
+  '/prestations/create',
+  authMiddleware,
+  isAdminMiddleware,
+  createPrestation,
+);
+router.get(
+  '/prestations/all',
+  authMiddleware,
+  isAdminMiddleware,
+  getAllPrestations,
+);
+router.get(
+  '/prestations/:id',
+  authMiddleware,
+  isAdminMiddleware,
+  getPrestation,
+);
+
+// users routes
+router.get('/users/all', authMiddleware, isAdminMiddleware, getAllUsers);
+router.get('/users/:userId', authMiddleware, isAdminMiddleware, getUser);
 
 export default router;
