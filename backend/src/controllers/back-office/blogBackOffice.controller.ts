@@ -185,7 +185,7 @@ export const updateBlogArticle = async (
           `${blogArticlesPicturesDir}/${pictureFile?.filename}`,
         );
       return res.status(400).json({
-        message: i18n.t('blog.error.blogArticleCreationFailed'),
+        message: i18n.t('blog.error.blogArticleUpdateFailed'),
         errors: blogArticleDataErrors,
       });
     }
@@ -219,12 +219,7 @@ export const updateBlogArticle = async (
       article,
     });
   } catch (error: unknown) {
-    if (error instanceof Error) {
-      const messages = extractValidationErrorMessagesFromError(error);
-      res.status(400).json({ errors: messages });
-    } else {
-      next(error);
-    }
+    next(error);
   }
 };
 
