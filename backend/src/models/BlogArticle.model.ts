@@ -3,6 +3,7 @@ import { BlogArticleDocument } from './types/BlogArticle.types';
 import { getValidationErrorMessage } from '../utils/validation.utils';
 import { DataContext, Reason } from '../validation/types/validation.types';
 import { blogArticleDataLengths } from '../validation/BlogArticle.validators';
+import { forbiddenCharsRegex } from '../validation/Common.validator';
 
 const context: DataContext = DataContext.BLOG_ARTICLE;
 
@@ -37,6 +38,14 @@ const blogArticleSchema = new Schema<BlogArticleDocument>(
           reason: Reason.MINLENGTH,
         }),
       ],
+      validate: [
+        (v: string) => !forbiddenCharsRegex.test(v),
+        getValidationErrorMessage({
+          context,
+          field: 'title',
+          reason: Reason.HAS_FORBIDDEN_CHARS,
+        }),
+      ],
     },
     content: {
       type: String,
@@ -65,6 +74,14 @@ const blogArticleSchema = new Schema<BlogArticleDocument>(
           field: 'content',
           minLength: blogArticleDataLengths.content.minLength,
           reason: Reason.MINLENGTH,
+        }),
+      ],
+      validate: [
+        (v: string) => !forbiddenCharsRegex.test(v),
+        getValidationErrorMessage({
+          context,
+          field: 'content',
+          reason: Reason.HAS_FORBIDDEN_CHARS,
         }),
       ],
     },

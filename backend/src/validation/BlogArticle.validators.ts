@@ -6,6 +6,7 @@ import {
   checkMaxLength,
   checkMinLength,
   getValidationErrorMessage,
+  hasForbiddenChars,
 } from '../utils/validation.utils';
 import { DataContext, DataLengths, Reason } from './types/validation.types';
 
@@ -36,6 +37,17 @@ export const checkBlogArticleData = async (
   for (const [key, value] of Object.entries(data)) {
     if (key in blogArticleDataLengths) {
       const fieldKey = key as BlogArticleField;
+
+      // check forbidden characters
+      if (typeof value === 'string' && hasForbiddenChars(value)) {
+        errors.push(
+          getValidationErrorMessage({
+            context,
+            field: fieldKey,
+            reason: Reason.HAS_FORBIDDEN_CHARS,
+          }),
+        );
+      }
 
       // check maxLengths
       if (!checkMaxLength(value, blogArticleDataLengths[fieldKey].maxLength)) {
