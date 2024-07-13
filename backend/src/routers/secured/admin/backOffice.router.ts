@@ -45,16 +45,16 @@ router.post(
   createBlogArticle,
 );
 router.get(
-  '/blog/articles/:id',
-  authMiddleware,
-  isAdminMiddleware,
-  getBlogArticle,
-);
-router.get(
   '/blog/articles/all',
   authMiddleware,
   isAdminMiddleware,
   getAllBlogArticles,
+);
+router.get(
+  '/blog/articles/:id',
+  authMiddleware,
+  isAdminMiddleware,
+  getBlogArticle,
 );
 
 // prestation routes
@@ -77,20 +77,20 @@ router.post(
   createPrestation,
 );
 router.get(
-  '/prestations/:id',
-  authMiddleware,
-  isAdminMiddleware,
-  getPrestation,
-);
-router.get(
   '/prestations/all',
   authMiddleware,
   isAdminMiddleware,
   getAllPrestations,
 );
+router.get(
+  '/prestations/:id',
+  authMiddleware,
+  isAdminMiddleware,
+  getPrestation,
+);
 
 // users routes
-router.get('/users/:userId', authMiddleware, isAdminMiddleware, getUser);
 router.get('/users/all', authMiddleware, isAdminMiddleware, getAllUsers);
+router.get('/users/:userId', authMiddleware, isAdminMiddleware, getUser);
 
 export default router;
