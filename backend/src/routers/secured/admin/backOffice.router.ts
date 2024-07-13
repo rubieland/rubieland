@@ -19,7 +19,7 @@ import {
   getAllPrestations,
   getPrestation,
   updatePrestation,
-} from '../../../controllers/back-office/prestations.controller';
+} from '../../../controllers/back-office/prestationsBackOffice.controller';
 
 const router: Express = Router();
 

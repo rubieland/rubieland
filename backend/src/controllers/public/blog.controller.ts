@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
-import { BlogArticleDocument } from '../../../models/types/BlogArticle.types';
-import BlogArticle from '../../../models/BlogArticle.model';
-import i18n from '../../../config/i18n';
+import { BlogArticleDocument } from '../../models/types/BlogArticle.types';
+import BlogArticle from '../../models/BlogArticle.model';
+import i18n from '../../config/i18n';
 
 export const getAllBlogArticles = async (
   req: Request,
