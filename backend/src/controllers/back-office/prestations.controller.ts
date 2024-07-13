@@ -131,3 +131,81 @@ export const createPrestation = async (
     }
   }
 };
+
+export const updatePrestation = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    const id = req.params?.id;
+    const prestation: PrestationDocument | null = await Prestation.findById(id);
+    const { title, description, price } = trimData(req.body);
+
+    if (!prestation) {
+      return res
+        .status(404)
+        .json({ error: i18n.t('common.error.prestationDoesNotExist') });
+    }
+
+    const prestationData: IPrestation = {
+      title,
+      description,
+      price,
+    };
+
+    // data validation
+    const prestationDataErrors = await checkPrestationData(prestationData);
+
+    if (prestationDataErrors && prestationDataErrors.length > 0) {
+      return res.status(400).json({
+        message: i18n.t('prestation.error.prestationUpdateFailed'),
+        errors: prestationDataErrors,
+      });
+    }
+
+    (Object.keys(prestationData) as (keyof IPrestation)[]).forEach((key) => {
+      if (prestationData[key] !== undefined) {
+        (prestation[key] as keyof IPrestation) = prestationData[
+          key
+        ] as keyof IPrestation;
+        prestation.price = Number(prestationData.price);
+      }
+    });
+
+    // save new prestation in database
+    await prestation.save();
+
+    res.status(201).json({
+      message: i18n.t('prestation.success.prestationUpdateSuccess'),
+      prestation,
+    });
+  } catch (error: unknown) {
+    next(error);
+  }
+};
+
+export const deletePrestation = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    const id = req.params?.id;
+    const prestation = await Prestation.findById(id);
+
+    if (!prestation) {
+      return res
+        .status(404)
+        .json({ error: i18n.t('common.error.prestationDoesNotExist') });
+    }
+
+    await prestation.deleteOne();
+
+    res.status(200).json({
+      message: i18n.t('prestation.success.prestationDeleteSuccess'),
+    });
+  } catch (error: unknown) {
+    next(error);
+  }
+};

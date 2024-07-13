@@ -119,7 +119,8 @@
       "blogArticleDeleteSuccess": "Article supprimé avec succès !"
     },
     "error": {
-      "blogArticleCreationFailed": "La création de l'article a échouée"
+      "blogArticleCreationFailed": "La création de l'article a échouée",
+      "blogArticleUpdateFailed": "La mise à jour de l'article a échouée"
     }
   },
   "prestation": {
@@ -129,7 +130,8 @@
       "prestationDeleteSuccess": "Prestation supprimée avec succès !"
     },
     "error": {
-      "prestationCreationFailed": "La création de la prestation a échouée"
+      "prestationCreationFailed": "La création de la prestation a échouée",
+      "prestationUpdateFailed": "La mise à jour de la prestation a échouée"
     }
   }
 }

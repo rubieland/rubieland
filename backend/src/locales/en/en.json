@@ -119,7 +119,8 @@
       "blogArticleDeleteSuccess": "Article deleted successfully!"
     },
     "error": {
-      "blogArticleCreationFailed": "The creation of the blog article failed"
+      "blogArticleCreationFailed": "Blog article creation failed",
+      "blogArticleUpdateFailed": "Blog article update failed"
     }
   },
   "prestation": {
@@ -129,7 +130,8 @@
       "prestationDeleteSuccess": "Prestation deleted successfully!"
     },
     "error": {
-      "prestationCreationFailed": "The creation of the prestation failed"
+      "prestationCreationFailed": "Prestation creation failed",
+      "prestationUpdateFailed": "Prestation update failed"
     }
   }
 }
