@@ -125,7 +125,7 @@ export const updateProfile = async (
       >)[]
     ).forEach((key) => {
       if (userData[key] !== undefined) {
-        userInBase[key] = userData[key] as any;
+        (userInBase[key] as keyof UserData) = userData[key] as keyof UserData;
       }
     });
 
