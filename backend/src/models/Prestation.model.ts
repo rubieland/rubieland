@@ -41,7 +41,7 @@ const prestationSchema = new Schema<PrestationDocument>(
         }),
       ],
       validate: [
-        (v: string) => forbiddenCharsRegex.test(v),
+        (v: string) => !forbiddenCharsRegex.test(v),
         getValidationErrorMessage({
           context,
           field: 'title',
@@ -79,7 +79,7 @@ const prestationSchema = new Schema<PrestationDocument>(
         }),
       ],
       validate: [
-        (v: string) => forbiddenCharsRegex.test(v),
+        (v: string) => !forbiddenCharsRegex.test(v),
         getValidationErrorMessage({
           context,
           field: 'description',
