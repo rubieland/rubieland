@@ -37,12 +37,15 @@ export const errorHandler = (
   ) {
     let message = i18n.t('common.error.resourceDoesNotExist');
     if (err.message.includes('User')) {
-      message = i18n.t('common.error.userDoesNotExist', { count: 0 });
+      message = i18n.t('common.error.userDoesNotExist');
     }
     if (err.message.includes('BlogArticle')) {
-      message = i18n.t('common.error.blogArticleDoesNotExist', { count: 0 });
+      message = i18n.t('common.error.blogArticleDoesNotExist');
     }
-    // TODO: add cases for other models (blog article, animal...) when they're ready
+    if (err.message.includes('Prestation')) {
+      message = i18n.t('common.error.prestationDoesNotExist');
+    }
+    // TODO: add cases for other models (animal...) when they're ready
     return res.status(404).json({ message });
   }
 

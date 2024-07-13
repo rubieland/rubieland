@@ -88,7 +88,6 @@ export const checkUserData = async (
           getValidationErrorMessage({
             context,
             field: fieldKey,
-            rule: fieldKey,
             maxLength: userDataLengths[fieldKey].maxLength,
             reason: Reason.MAXLENGTH,
           }),
@@ -101,7 +100,6 @@ export const checkUserData = async (
           getValidationErrorMessage({
             context,
             field: fieldKey,
-            rule: fieldKey,
             minLength: userDataLengths[fieldKey].minLength,
             reason: Reason.MINLENGTH,
           }),

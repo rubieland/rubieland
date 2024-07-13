@@ -43,7 +43,6 @@ export const checkBlogArticleData = async (
           getValidationErrorMessage({
             context,
             field: fieldKey,
-            rule: fieldKey,
             maxLength: blogArticleDataLengths[fieldKey].maxLength,
             reason: Reason.MAXLENGTH,
           }),
@@ -56,7 +55,6 @@ export const checkBlogArticleData = async (
           getValidationErrorMessage({
             context,
             field: fieldKey,
-            rule: fieldKey,
             minLength: blogArticleDataLengths[fieldKey].minLength,
             reason: Reason.MINLENGTH,
           }),

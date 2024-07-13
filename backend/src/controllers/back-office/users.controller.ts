@@ -18,13 +18,13 @@ export const getAllUsers = async (
     if (!users || users.length === 0) {
       return res
         .status(404)
-        .json({ error: i18n.t('common.error.userFound_zero', { count: 0 }) });
+        .json({ error: i18n.t('common.error.usersFound_zero', { count: 0 }) });
     }
 
     const message =
       users.length === 1
-        ? i18n.t('common.success.userFound_one', { count: 1 })
-        : i18n.t('common.success.userFound_other', { count: users.length });
+        ? i18n.t('common.success.usersFound_one', { count: 1 })
+        : i18n.t('common.success.usersFound_other', { count: users.length });
 
     res.status(200).json({
       message,
@@ -54,7 +54,7 @@ export const getUser = async (
     }
 
     res.status(200).json({
-      message: i18n.t('common.success.userFound_one', { count: 1 }),
+      message: i18n.t('common.success.usersFound_one', { count: 1 }),
       user,
     });
   } catch (error: unknown) {

@@ -12,7 +12,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const avatarsDir = path.join(__dirname, '../../uploads/user/avatars');
 
-export const getUserProfile = async (
+export const getProfile = async (
   req: Request,
   res: Response,
   next: NextFunction,
@@ -24,7 +24,7 @@ export const getUserProfile = async (
     if (!user) {
       return res
         .status(404)
-        .json({ error: i18n.t('common.error.userFound_zero', { count: 0 }) });
+        .json({ error: i18n.t('common.error.usersFound_zero', { count: 0 }) });
     }
 
     res.status(200).json({ user });
@@ -33,7 +33,7 @@ export const getUserProfile = async (
   }
 };
 
-export const updateUser = async (
+export const updateProfile = async (
   req: Request,
   res: Response,
   next: NextFunction,
@@ -60,7 +60,7 @@ export const updateUser = async (
 
       return res
         .status(404)
-        .json({ error: i18n.t('common.error.userFound_zero', { count: 0 }) });
+        .json({ error: i18n.t('common.error.usersFound_zero', { count: 0 }) });
     }
 
     // if user provides a new email, but this email already exists in base, send error
@@ -125,7 +125,7 @@ export const updateUser = async (
       >)[]
     ).forEach((key) => {
       if (userData[key] !== undefined) {
-        userInBase[key] = userData[key] as any;
+        (userInBase[key] as keyof UserData) = userData[key] as keyof UserData;
       }
     });
 

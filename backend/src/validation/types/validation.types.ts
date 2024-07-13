@@ -4,17 +4,28 @@ export enum Reason {
   REQUIRED = 'required',
   MINLENGTH = 'minLength',
   MAXLENGTH = 'maxLength',
+  MIN = 'min',
+  MAX = 'max',
+  HAS_FORBIDDEN_CHARS = 'hasForbiddenChars',
 }
 
 export enum DataContext {
   USER = 'user',
   BLOG_ARTICLE = 'blogArticle',
+  PRESTATION = 'prestation',
 }
 
 export interface DataLengths {
   [key: string]: {
     maxLength: number;
     minLength: number;
+  };
+}
+
+export interface DataMinMax {
+  [key: string]: {
+    max: number;
+    min: number;
   };
 }
 
@@ -25,6 +36,8 @@ interface ValidationErrorMessageParams {
   rule?: string;
   minLength?: number;
   maxLength?: number;
+  min?: number;
+  max?: number;
   reason: Reason;
   context: DataContext;
 }
@@ -40,9 +53,9 @@ export type GetMissingOrEmptyFieldsErrorMessageFunction = (
   fields: string[],
 ) => string[];
 
-export type FieldLengthValidatorFunction = (
-  value: string,
-  maxLength: number,
+export type MinMaxValidatorFunction = (
+  fieldValue: string | number,
+  mixMaxValue: number,
 ) => boolean;
 
 export type FieldFormatValidatorFunction = (fieldValue: string) => boolean;

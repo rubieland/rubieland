@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
-import { BlogArticleDocument } from '../../../models/types/BlogArticle.types';
-import BlogArticle from '../../../models/BlogArticle.model';
-import i18n from '../../../config/i18n';
+import { BlogArticleDocument } from '../../models/types/BlogArticle.types';
+import BlogArticle from '../../models/BlogArticle.model';
+import i18n from '../../config/i18n';
 
 export const getAllBlogArticles = async (
   req: Request,
@@ -14,7 +14,7 @@ export const getAllBlogArticles = async (
 
     if (!articles || articles.length === 0) {
       return res.status(404).json({
-        error: i18n.t('common.error.blogArticleFound_zero', {
+        error: i18n.t('common.error.blogArticlesFound_zero', {
           count: 0,
         }),
       });
@@ -22,8 +22,8 @@ export const getAllBlogArticles = async (
 
     const message =
       articles.length === 1
-        ? i18n.t('common.success.blogArticleFound_one', { count: 1 })
-        : i18n.t('common.success.blogArticleFound_other', {
+        ? i18n.t('common.success.blogArticlesFound_one', { count: 1 })
+        : i18n.t('common.success.blogArticlesFound_other', {
             count: articles.length,
           });
 
@@ -52,7 +52,7 @@ export const getBlogArticle = async (
     }
 
     res.status(200).json({
-      message: i18n.t('common.success.blogArticleFound_one', { count: 1 }),
+      message: i18n.t('common.success.blogArticlesFound_one', { count: 1 }),
       article,
     });
   } catch (error: unknown) {

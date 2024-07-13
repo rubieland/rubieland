@@ -11,16 +11,20 @@
       "saveFailed": "An error occurred while saving the data. Please try again",
       "deleteFileFailed": "The file has not been deleted",
       "resourceDoesNotExist": "This resource does not exist",
-      "userFound_zero": "No user was found",
+      "usersFound_zero": "No user was found",
       "userDoesNotExist": "This user does not exist or does not exist anymore",
-      "blogArticleFound_zero": "No blog article was found",
-      "blogArticleDoesNotExist": "This blog article does not exist or does not exist anymore"
+      "blogArticlesFound_zero": "No blog article was found",
+      "blogArticleDoesNotExist": "This blog article does not exist or does not exist anymore",
+      "prestationsFound_zero": "No prestation was found",
+      "prestationDoesNotExist": "This prestation does not exist or does not exist anymore"
     },
     "success": {
-      "userFound_one": "{{count}} user found",
-      "userFound_other": "{{count}} users found",
-      "blogArticleFound_one": "{{count}} blog article found",
-      "blogArticleFound_other": "{{count}} blog articles found"
+      "usersFound_one": "{{count}} user found",
+      "usersFound_other": "{{count}} users found",
+      "blogArticlesFound_one": "{{count}} blog article found",
+      "blogArticlesFound_other": "{{count}} blog articles found",
+      "prestationsFound_one": "{{count}} prestation found",
+      "prestationsFound_other": "{{count}} prestations found"
     }
   },
   "validation": {
@@ -41,6 +45,12 @@
         "title": "Title of the article",
         "content": "Content of the article",
         "isPublished": "Publish this article ?"
+      },
+      "prestation": {
+        "title": "Title of the prestation",
+        "description": "Description of the prestation",
+        "price": "Price of the prestation",
+        "isAvailable": "Availability"
       }
     },
     "rules": {
@@ -56,13 +66,21 @@
       },
       "blogArticle": {
         "isPublished": "it must be of type Boolean, and so, be either true or false"
+      },
+      "prestation": {
+        "priceNotNumeric": "it must be a number",
+        "isAvailable": "il doit être de type Boolean, et donc être soit true, soit false"
       }
     },
     "messages": {
       "required": "The field {{field}} is required",
       "invalid": "The field {{field}} is invalid: {{rule}}",
       "minLength": "The field {{field}} must contain at least {{minLength}} characters",
-      "maxLength": "The field {{field}} must not contain more than {{maxLength}} characters"
+      "maxLength": "The field {{field}} must not contain more than {{maxLength}} characters",
+      "min": "The field {{field}} cannot be lower than {{min}}€",
+      "max": "The field {{field}} cannot be higher than {{max}}€",
+      "hasForbiddenChars": "The field {{field}} must not contain any of the following special characters: <, >, {, }, ^, ~, |, \\",
+      "default": "Please check the information entered for field {{field}}"
     }
   },
   "auth": {
@@ -103,7 +121,19 @@
       "blogArticleDeleteSuccess": "Article deleted successfully!"
     },
     "error": {
-      "blogArticleCreationFailed": "The creation of the blog article failed"
+      "blogArticleCreationFailed": "Blog article creation failed",
+      "blogArticleUpdateFailed": "Blog article update failed"
+    }
+  },
+  "prestation": {
+    "success": {
+      "prestationCreationSuccess": "Prestation created successfully!",
+      "prestationUpdateSuccess": "Prestation updated successfully!",
+      "prestationDeleteSuccess": "Prestation deleted successfully!"
+    },
+    "error": {
+      "prestationCreationFailed": "Prestation creation failed",
+      "prestationUpdateFailed": "Prestation update failed"
     }
   }
 }
