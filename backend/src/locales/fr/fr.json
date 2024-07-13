@@ -11,18 +11,18 @@
       "saveFailed": "Une erreur est survenue lors de la sauvegarde des données. Veuillez réessayer",
       "deleteFileFailed": "Le fichier n'a pas pu être supprimé",
       "resourceDoesNotExist": "Cette ressource n'existe pas ou n'existe plus",
-      "userFound_zero": "Aucun utilisateur trouvé",
+      "usersFound_zero": "Aucun utilisateur trouvé",
       "userDoesNotExist": "Cet utilisateur n'existe pas ou n'existe plus",
-      "blogArticleFound_zero": "Aucun article de blog trouvé",
+      "blogArticlesFound_zero": "Aucun article de blog trouvé",
       "blogArticleDoesNotExist": "Cet article de blog n'existe pas ou n'existe plus",
       "prestationsFound_zero": "Aucune prestation trouvée",
       "prestationDoesNotExist": "Cette prestation n'existe pas ou n'existe plus"
     },
     "success": {
-      "userFound_one": "{{count}} utilisateur trouvé",
-      "userFound_other": "{{count}} utilisateurs trouvés",
-      "blogArticleFound_one": "{{count}} article de blog trouvé",
-      "blogArticleFound_other": "{{count}} articles de blog trouvés",
+      "usersFound_one": "{{count}} utilisateur trouvé",
+      "usersFound_other": "{{count}} utilisateurs trouvés",
+      "blogArticlesFound_one": "{{count}} article de blog trouvé",
+      "blogArticlesFound_other": "{{count}} articles de blog trouvés",
       "prestationsFound_one": "{{count}} prestation trouvée",
       "prestationsFound_other": "{{count}} prestations trouvées"
     }

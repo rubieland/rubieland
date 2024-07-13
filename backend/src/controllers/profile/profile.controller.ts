@@ -24,7 +24,7 @@ export const getProfile = async (
     if (!user) {
       return res
         .status(404)
-        .json({ error: i18n.t('common.error.userFound_zero', { count: 0 }) });
+        .json({ error: i18n.t('common.error.usersFound_zero', { count: 0 }) });
     }
 
     res.status(200).json({ user });
@@ -60,7 +60,7 @@ export const updateProfile = async (
 
       return res
         .status(404)
-        .json({ error: i18n.t('common.error.userFound_zero', { count: 0 }) });
+        .json({ error: i18n.t('common.error.usersFound_zero', { count: 0 }) });
     }
 
     // if user provides a new email, but this email already exists in base, send error

@@ -62,7 +62,7 @@ export const getPrestation = async (
     }
 
     res.status(200).json({
-      message: i18n.t('common.success.prestationFound_one', { count: 1 }),
+      message: i18n.t('common.success.prestationsFound_one', { count: 1 }),
       prestation,
     });
   } catch (error: unknown) {

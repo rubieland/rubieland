@@ -11,18 +11,18 @@
       "saveFailed": "An error occurred while saving the data. Please try again",
       "deleteFileFailed": "The file has not been deleted",
       "resourceDoesNotExist": "This resource does not exist",
-      "userFound_zero": "No user was found",
+      "usersFound_zero": "No user was found",
       "userDoesNotExist": "This user does not exist or does not exist anymore",
-      "blogArticleFound_zero": "No blog article was found",
+      "blogArticlesFound_zero": "No blog article was found",
       "blogArticleDoesNotExist": "This blog article does not exist or does not exist anymore",
       "prestationsFound_zero": "No prestation was found",
       "prestationDoesNotExist": "This prestation does not exist or does not exist anymore"
     },
     "success": {
-      "userFound_one": "{{count}} user found",
-      "userFound_other": "{{count}} users found",
-      "blogArticleFound_one": "{{count}} blog article found",
-      "blogArticleFound_other": "{{count}} blog articles found",
+      "usersFound_one": "{{count}} user found",
+      "usersFound_other": "{{count}} users found",
+      "blogArticlesFound_one": "{{count}} blog article found",
+      "blogArticlesFound_other": "{{count}} blog articles found",
       "prestationsFound_one": "{{count}} prestation found",
       "prestationsFound_other": "{{count}} prestations found"
     }
