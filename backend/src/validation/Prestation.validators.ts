@@ -1,4 +1,7 @@
-import { IPrestation, PrestationField } from '../models/types/Prestation.types';
+import {
+  PrestationData,
+  PrestationField,
+} from '../models/types/Prestation.types';
 import {
   checkMax,
   checkMaxLength,
@@ -33,7 +36,14 @@ export const prestationMixMax: DataMinMax = {
   },
 };
 
-export const checkPrestationData = async (data: IPrestation) => {
+const checkIsAvailable = (isAvailable: string) => {
+  return (
+    typeof isAvailable === 'string' &&
+    (isAvailable === 'true' || isAvailable === 'false')
+  );
+};
+
+export const checkPrestationData = async (data: PrestationData) => {
   const errors: string[] = [];
   const context: DataContext = DataContext.PRESTATION;
 
@@ -42,7 +52,7 @@ export const checkPrestationData = async (data: IPrestation) => {
       const fieldKey = key as PrestationField;
 
       // check forbidden characters
-      if (hasForbiddenChars(value)) {
+      if (typeof value === 'string' && hasForbiddenChars(value)) {
         errors.push(
           getValidationErrorMessage({
             context,
@@ -112,6 +122,17 @@ export const checkPrestationData = async (data: IPrestation) => {
         );
       }
     }
+  }
+
+  if (!checkIsAvailable(data.isAvailable)) {
+    errors.push(
+      getValidationErrorMessage({
+        context,
+        field: 'isAvailable',
+        rule: 'isAvailable',
+        reason: Reason.INVALID,
+      }),
+    );
   }
   return errors;
 };

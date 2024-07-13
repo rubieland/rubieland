@@ -49,7 +49,8 @@
       "prestation": {
         "title": "Title of the prestation",
         "description": "Description of the prestation",
-        "price": "Price of the prestation"
+        "price": "Price of the prestation",
+        "isAvailable": "Availability"
       }
     },
     "rules": {
@@ -67,7 +68,8 @@
         "isPublished": "it must be of type Boolean, and so, be either true or false"
       },
       "prestation": {
-        "priceNotNumeric": "it must be a number"
+        "priceNotNumeric": "it must be a number",
+        "isAvailable": "il doit être de type Boolean, et donc être soit true, soit false"
       }
     },
     "messages": {

@@ -117,6 +117,18 @@ const prestationSchema = new Schema<PrestationDocument>(
         }),
       ],
     },
+    isAvailable: {
+      type: Boolean,
+      required: [
+        true,
+        getValidationErrorMessage({
+          context,
+          field: 'isAvailable',
+          reason: Reason.REQUIRED,
+        }),
+      ],
+      default: true,
+    },
   },
   { timestamps: true },
 );

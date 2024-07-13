@@ -2,10 +2,11 @@ import { Request, Response, NextFunction } from 'express';
 import i18n from '../../config/i18n';
 import {
   IPrestation,
+  PrestationData,
   PrestationDocument,
 } from '../../models/types/Prestation.types';
 import Prestation from '../../models/Prestation.model';
-import { trimData } from '../../utils/string.utils';
+import { convertStringToBoolean, trimData } from '../../utils/string.utils';
 import {
   extractValidationErrorMessagesFromError,
   getMissingOrEmptyFields,
@@ -76,12 +77,13 @@ export const createPrestation = async (
   next: NextFunction,
 ) => {
   try {
-    const { title, description, price } = trimData(req.body);
+    const { title, description, price, isAvailable } = trimData(req.body);
 
-    const prestationData: IPrestation = {
+    const prestationData: PrestationData = {
       title,
       description,
       price,
+      isAvailable,
     };
 
     // check for empty or missing fields
@@ -113,6 +115,7 @@ export const createPrestation = async (
     const newPrestation = new Prestation({
       ...prestationData,
       price: Number(prestationData.price),
+      isAvailable: convertStringToBoolean(prestationData.isAvailable),
     });
 
     // save new prestation in database
@@ -140,7 +143,7 @@ export const updatePrestation = async (
   try {
     const id = req.params?.id;
     const prestation: PrestationDocument | null = await Prestation.findById(id);
-    const { title, description, price } = trimData(req.body);
+    const { title, description, price, isAvailable } = trimData(req.body);
 
     if (!prestation) {
       return res
@@ -148,10 +151,11 @@ export const updatePrestation = async (
         .json({ error: i18n.t('common.error.prestationDoesNotExist') });
     }
 
-    const prestationData: IPrestation = {
+    const prestationData: PrestationData = {
       title,
       description,
       price,
+      isAvailable,
     };
 
     // data validation
@@ -170,6 +174,9 @@ export const updatePrestation = async (
           key
         ] as keyof IPrestation;
         prestation.price = Number(prestationData.price);
+        prestation.isAvailable = convertStringToBoolean(
+          prestationData.isAvailable,
+        );
       }
     });
 
