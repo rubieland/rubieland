@@ -3,20 +3,19 @@ import { authMiddleware } from '../../../middlewares/auth/auth.middleware';
 import { isMeMiddleware } from '../../../middlewares/user/isMe.middleware';
 import {
   deleteAccount,
-  getUserProfile,
-  updateUser,
+  getProfile,
+  updateProfile,
 } from '../../../controllers/profile/profile.controller';
 import { avatarUploader } from '../../../middlewares/uploads/uploadAvatar.middleware';
 
 const router: Express = Router();
 
-router.get('/:userId', authMiddleware, isMeMiddleware, getUserProfile);
 router.put(
-  '/:userId/update-user',
+  '/:userId/update-profile',
   authMiddleware,
   isMeMiddleware,
   avatarUploader,
-  updateUser,
+  updateProfile,
 );
 router.delete(
   '/:userId/delete-account',
@@ -24,5 +23,6 @@ router.delete(
   isMeMiddleware,
   deleteAccount,
 );
+router.get('/:userId', authMiddleware, isMeMiddleware, getProfile);
 
 export default router;
