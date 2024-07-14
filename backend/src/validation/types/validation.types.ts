@@ -13,6 +13,7 @@ export enum DataContext {
   USER = 'user',
   BLOG_ARTICLE = 'blogArticle',
   PRESTATION = 'prestation',
+  DOG = 'dog',
 }
 
 export interface DataLengths {

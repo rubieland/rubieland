@@ -14,8 +14,7 @@ import {
   Reason,
   ValidatePhoneNumberFunction,
 } from '../validation/types/validation.types';
-import { regexes } from '../validation/User.validators';
-import { forbiddenCharsRegex } from '../validation/Common.validator';
+import { forbiddenCharsRegex, nameRegex } from '../validation/Common.validator';
 /**
  * @param phoneNumber(string): phone number to validate
  * @returns(boolean): returns true if the string is a valid international phone number
@@ -178,7 +177,7 @@ export const checkMax: MinMaxValidatorFunction = (
 export const checkFieldFormat: FieldFormatValidatorFunction = (
   fieldValue: string,
 ) => {
-  return regexes.nameField.test(fieldValue);
+  return nameRegex.test(fieldValue);
 };
 
 export const hasForbiddenChars = (fieldValue: string) => {

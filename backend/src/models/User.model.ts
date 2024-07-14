@@ -1,6 +1,5 @@
 import { Schema, model } from 'mongoose';
 import {
-  regexes,
   strongPasswordOptions,
   userDataLengths,
 } from '../validation/User.validators';
@@ -16,6 +15,7 @@ import jwt from 'jsonwebtoken';
 import { env } from '../loaders/env.loader';
 import i18n from '../config/i18n';
 import { DataContext, Reason } from '../validation/types/validation.types';
+import { nameRegex } from '../validation/Common.validator';
 
 const { JWT_SECRET, JWT_EXPIRATION } = env;
 const context: DataContext = DataContext.USER;
@@ -52,7 +52,7 @@ const userSchema = new Schema<UserDocument>(
         }),
       ],
       validate: [
-        (v: string) => regexes.nameField.test(v),
+        (v: string) => nameRegex.test(v),
         getValidationErrorMessage({
           context,
           field: 'firstName',
@@ -91,7 +91,7 @@ const userSchema = new Schema<UserDocument>(
         }),
       ],
       validate: [
-        (v: string) => regexes.nameField.test(v),
+        (v: string) => nameRegex.test(v),
         getValidationErrorMessage({
           context,
           field: 'lastName',

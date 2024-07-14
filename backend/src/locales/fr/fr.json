@@ -51,6 +51,18 @@
         "description": "Description de la prestation",
         "price": "Prix de la prestation",
         "isAvailable": "Disponibilité"
+      },
+      "dog": {
+        "gender": "Sexe",
+        "name": "Nom",
+        "bio": "Bio",
+        "birthDate": "Date de naissance",
+        "breed": "Race",
+        "size": "Taille",
+        "weight": "Poids",
+        "picture": "Photo",
+        "isVaccinated": "Votre chien est-il vacciné ?",
+        "isNeutered": "Votre chien est-il stérilisé ?"
       }
     },
     "rules": {
@@ -70,6 +82,10 @@
       "prestation": {
         "priceNotNumeric": "il doit être un nombre",
         "isAvailable": "il doit être de type Boolean, et donc être soit true, soit false"
+      },
+      "dog": {
+        "invalidGender": "il ne peut être que \"mâle\" ou \"femelle\"",
+        "invalidSize": "il ne peut être que \"petit\", \"moyen\" ou \"grand\""
       }
     },
     "messages": {
