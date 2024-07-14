@@ -20,6 +20,11 @@ import { nameRegex } from '../validation/Common.validator';
 const { JWT_SECRET, JWT_EXPIRATION } = env;
 const context: DataContext = DataContext.USER;
 
+// TODO: add dogs: [{
+//     type: Schema.Types.ObjectId,
+//     ref: 'Dog',
+//   }],
+
 const userSchema = new Schema<UserDocument>(
   {
     firstName: {
