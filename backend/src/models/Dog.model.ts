@@ -12,17 +12,18 @@ import {
   dogMixMax,
 } from '../validation/Dog.validators';
 import { forbiddenCharsRegex, nameRegex } from '../validation/Common.validator';
+import User from './User.model';
 
 const context: DataContext = DataContext.DOG;
 
 /**
  * TODO:
- * add validate for all properties
- * add min, max, minLength, maxLength validations
+ * add validate for birthDate, picture
  * add calculateAge method and age virtual property
+ * add pre save and call formatName utils
  */
 
-const DogSchema = new Schema<DogDocument>(
+const dogSchema = new Schema<DogDocument>(
   {
     gender: {
       type: String,
@@ -167,7 +168,7 @@ const DogSchema = new Schema<DogDocument>(
         (v: string) => !forbiddenCharsRegex.test(v),
         getValidationErrorMessage({
           context,
-          field: 'bio',
+          field: 'breed',
           reason: Reason.HAS_FORBIDDEN_CHARS,
         }),
       ],
@@ -222,6 +223,14 @@ const DogSchema = new Schema<DogDocument>(
           reason: Reason.MAX,
         }),
       ],
+      validate: [
+        (v: number) => !isNaN(v),
+        getValidationErrorMessage({
+          context,
+          field: 'weight',
+          reason: Reason.IS_NAN,
+        }),
+      ],
     },
     picture: {
       type: String,
@@ -229,8 +238,8 @@ const DogSchema = new Schema<DogDocument>(
       default: null,
     },
     ownerId: {
-      type: Schema.Types.ObjectId, // reference to a User Document
-      ref: 'User',
+      type: Schema.Types.ObjectId,
+      ref: 'User', // reference to a User Document
       required: [
         true,
         getValidationErrorMessage({
@@ -238,6 +247,13 @@ const DogSchema = new Schema<DogDocument>(
           field: 'ownerId',
           reason: Reason.REQUIRED,
         }),
+      ],
+      validate: [
+        async function (v: Schema.Types.ObjectId) {
+          const user = await User.findById(v);
+          return !!user;
+        },
+        i18n.t('common.error.userDoesNotExist'),
       ],
     },
     isVaccinated: {
@@ -265,3 +281,7 @@ const DogSchema = new Schema<DogDocument>(
   },
   { timestamps: true },
 );
+
+const Dog = model('Dog', dogSchema);
+
+export default Dog;
