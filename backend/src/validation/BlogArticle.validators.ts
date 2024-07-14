@@ -17,7 +17,7 @@ export const blogArticleDataLengths: DataLengths = {
   },
   content: {
     minLength: 100,
-    maxLength: Infinity,
+    maxLength: 10000,
   },
 };
 
