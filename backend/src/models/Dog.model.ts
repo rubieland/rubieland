@@ -5,7 +5,12 @@ import { getValidationErrorMessage } from '../utils/validation.utils';
 import { formatName } from '../utils/string.utils';
 import i18n from '../config/i18n';
 import { DataContext, Reason } from '../validation/types/validation.types';
-import { checkDogGender, checkDogSize } from '../validation/Dog.validators';
+import {
+  checkDogGender,
+  checkDogSize,
+  dogDataLengths,
+  dogMixMax,
+} from '../validation/Dog.validators';
 import { forbiddenCharsRegex, nameRegex } from '../validation/Common.validator';
 
 const context: DataContext = DataContext.DOG;
@@ -42,12 +47,31 @@ const DogSchema = new Schema<DogDocument>(
     },
     name: {
       type: String,
+      trim: true,
       required: [
         true,
         getValidationErrorMessage({
           context,
           field: 'name',
           reason: Reason.REQUIRED,
+        }),
+      ],
+      minlength: [
+        dogDataLengths.name.minLength,
+        getValidationErrorMessage({
+          context,
+          field: 'name',
+          minLength: dogDataLengths.name.minLength,
+          reason: Reason.MINLENGTH,
+        }),
+      ],
+      maxlength: [
+        dogDataLengths.name.maxLength,
+        getValidationErrorMessage({
+          context,
+          field: 'name',
+          maxLength: dogDataLengths.name.maxLength,
+          reason: Reason.MAXLENGTH,
         }),
       ],
       validate: [
@@ -62,12 +86,31 @@ const DogSchema = new Schema<DogDocument>(
     },
     bio: {
       type: String,
+      trim: true,
       required: [
         true,
         getValidationErrorMessage({
           context,
           field: 'bio',
           reason: Reason.REQUIRED,
+        }),
+      ],
+      minlength: [
+        dogDataLengths.bio.minLength,
+        getValidationErrorMessage({
+          context,
+          field: 'bio',
+          minLength: dogDataLengths.bio.minLength,
+          reason: Reason.MINLENGTH,
+        }),
+      ],
+      maxlength: [
+        dogDataLengths.bio.maxLength,
+        getValidationErrorMessage({
+          context,
+          field: 'bio',
+          maxLength: dogDataLengths.bio.maxLength,
+          reason: Reason.MAXLENGTH,
         }),
       ],
       validate: [
@@ -93,12 +136,31 @@ const DogSchema = new Schema<DogDocument>(
     },
     breed: {
       type: String,
+      trim: true,
       required: [
         true,
         getValidationErrorMessage({
           context,
           field: 'breed',
           reason: Reason.REQUIRED,
+        }),
+      ],
+      minlength: [
+        dogDataLengths.breed.minLength,
+        getValidationErrorMessage({
+          context,
+          field: 'breed',
+          minLength: dogDataLengths.breed.minLength,
+          reason: Reason.MINLENGTH,
+        }),
+      ],
+      maxlength: [
+        dogDataLengths.breed.maxLength,
+        getValidationErrorMessage({
+          context,
+          field: 'breed',
+          maxLength: dogDataLengths.breed.maxLength,
+          reason: Reason.MAXLENGTH,
         }),
       ],
       validate: [
@@ -112,6 +174,7 @@ const DogSchema = new Schema<DogDocument>(
     },
     size: {
       type: String,
+      trim: true,
       enum: Object.values(DogSize),
       required: [
         true,
@@ -141,9 +204,28 @@ const DogSchema = new Schema<DogDocument>(
           reason: Reason.REQUIRED,
         }),
       ],
+      min: [
+        dogMixMax.weight.min,
+        getValidationErrorMessage({
+          context,
+          field: 'weight',
+          min: dogMixMax.weight.min,
+          reason: Reason.MIN,
+        }),
+      ],
+      max: [
+        dogMixMax.weight.max,
+        getValidationErrorMessage({
+          context,
+          field: 'weight',
+          max: dogMixMax.weight.max,
+          reason: Reason.MAX,
+        }),
+      ],
     },
     picture: {
       type: String,
+      trim: true,
       default: null,
     },
     ownerId: {
