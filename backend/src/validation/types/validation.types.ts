@@ -7,6 +7,7 @@ export enum Reason {
   MIN = 'min',
   MAX = 'max',
   HAS_FORBIDDEN_CHARS = 'hasForbiddenChars',
+  IS_NAN = 'isNaN',
 }
 
 export enum DataContext {
