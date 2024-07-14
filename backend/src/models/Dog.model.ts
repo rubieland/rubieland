@@ -10,6 +10,13 @@ import { forbiddenCharsRegex, nameRegex } from '../validation/Common.validator';
 
 const context: DataContext = DataContext.DOG;
 
+/**
+ * TODO:
+ * add validate for all properties
+ * add min, max, minLength, maxLength validations
+ * add calculateAge method and age virtual property
+ */
+
 const DogSchema = new Schema<DogDocument>(
   {
     gender: {
