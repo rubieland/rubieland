@@ -94,8 +94,7 @@ export const checkPrestationData = async (data: PrestationData) => {
         getValidationErrorMessage({
           context,
           field: 'price',
-          rule: 'priceNotNumeric',
-          reason: Reason.INVALID,
+          reason: Reason.IS_NAN,
         }),
       );
     } else {

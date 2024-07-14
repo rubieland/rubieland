@@ -116,6 +116,14 @@ const prestationSchema = new Schema<PrestationDocument>(
           reason: Reason.MIN,
         }),
       ],
+      validate: [
+        (v: number) => isNaN(v),
+        getValidationErrorMessage({
+          context,
+          field: 'price',
+          reason: Reason.IS_NAN,
+        }),
+      ],
     },
     isAvailable: {
       type: Boolean,
