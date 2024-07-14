@@ -96,6 +96,7 @@
       "min": "Le champ {{field}} ne peut pas être inférieur à {{min}}€",
       "max": "Le champ {{field}} ne peut pas être supérieur à {{max}}€",
       "hasForbiddenChars": "Le champ {{field}} ne doit contenir aucun des caractères suivants: <, >, {, }, ^, ~, |, \\",
+      "isNaN": "Le champ {{field}} doit être un nombre",
       "default": "Veuillez vérifier les informations saisies pour le champ {{field}}"
     }
   },
@@ -151,5 +152,8 @@
       "prestationCreationFailed": "La création de la prestation a échouée",
       "prestationUpdateFailed": "La mise à jour de la prestation a échouée"
     }
+  },
+  "dog": {
+    "error": {}
   }
 }

@@ -96,6 +96,7 @@
       "min": "The field {{field}} cannot be lower than {{min}}€",
       "max": "The field {{field}} cannot be higher than {{max}}€",
       "hasForbiddenChars": "The field {{field}} must not contain any of the following special characters: <, >, {, }, ^, ~, |, \\",
+      "isNaN": "The field {{field}} must be a number",
       "default": "Please check the information entered for field {{field}}"
     }
   },
