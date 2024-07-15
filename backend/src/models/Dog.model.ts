@@ -21,6 +21,8 @@ const context: DataContext = DataContext.DOG;
  * add validate for birthDate, picture
  * add calculateAge method and age virtual property
  * add pre save and call formatName utils
+ * add properties in compliance with information sheet
+ *  => will need to separate general information and specific information (medical, behavior, feeding...)
  */
 
 const dogSchema = new Schema<DogDocument>(
