@@ -1,5 +1,5 @@
-import { DogGender, DogSize } from '../models/types/Dog.types';
-import { DataLengths, DataMinMax } from './types/validation.types';
+import { DogGender } from '../models/types/Dog.types';
+import { DataLengths } from './types/validation.types';
 
 export const dogDataLengths: DataLengths = {
   name: {
@@ -16,17 +16,6 @@ export const dogDataLengths: DataLengths = {
   },
 };
 
-export const dogMixMax: DataMinMax = {
-  weight: {
-    min: 0,
-    max: 150,
-  },
-};
-
 export const checkDogGender = (gender: string) => {
   return Object.values(DogGender).includes(gender as DogGender);
-};
-
-export const checkDogSize = (size: string) => {
-  return Object.values(DogSize).includes(size as DogSize);
 };

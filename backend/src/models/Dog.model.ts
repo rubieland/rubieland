@@ -1,16 +1,11 @@
 import { Schema, model } from 'mongoose';
-import { DogDocument, DogGender, DogSize } from './types/Dog.types';
+import { DogDocument, DogGender } from './types/Dog.types';
 import validator from 'validator';
 import { getValidationErrorMessage } from '../utils/validation.utils';
 import { formatName } from '../utils/string.utils';
 import i18n from '../config/i18n';
 import { DataContext, Reason } from '../validation/types/validation.types';
-import {
-  checkDogGender,
-  checkDogSize,
-  dogDataLengths,
-  dogMixMax,
-} from '../validation/Dog.validators';
+import { checkDogGender, dogDataLengths } from '../validation/Dog.validators';
 import { forbiddenCharsRegex, nameRegex } from '../validation/Common.validator';
 import User from './User.model';
 
@@ -175,69 +170,11 @@ const dogSchema = new Schema<DogDocument>(
         }),
       ],
     },
-    size: {
-      type: String,
-      trim: true,
-      enum: Object.values(DogSize),
-      required: [
-        true,
-        getValidationErrorMessage({
-          context,
-          field: 'size',
-          reason: Reason.REQUIRED,
-        }),
-      ],
-      validate: [
-        (v: string) => !checkDogSize(v),
-        getValidationErrorMessage({
-          context,
-          field: 'size',
-          rule: 'size',
-          reason: Reason.INVALID,
-        }),
-      ],
-    },
-    weight: {
-      type: Number,
-      required: [
-        true,
-        getValidationErrorMessage({
-          context,
-          field: 'weight',
-          reason: Reason.REQUIRED,
-        }),
-      ],
-      min: [
-        dogMixMax.weight.min,
-        getValidationErrorMessage({
-          context,
-          field: 'weight',
-          min: dogMixMax.weight.min,
-          reason: Reason.MIN,
-        }),
-      ],
-      max: [
-        dogMixMax.weight.max,
-        getValidationErrorMessage({
-          context,
-          field: 'weight',
-          max: dogMixMax.weight.max,
-          reason: Reason.MAX,
-        }),
-      ],
-      validate: [
-        (v: number) => !isNaN(v),
-        getValidationErrorMessage({
-          context,
-          field: 'weight',
-          reason: Reason.IS_NAN,
-        }),
-      ],
-    },
     picture: {
       type: String,
       trim: true,
       default: null,
+      // TODO: add validate
     },
     ownerId: {
       type: Schema.Types.ObjectId,
@@ -256,28 +193,6 @@ const dogSchema = new Schema<DogDocument>(
           return !!user;
         },
         i18n.t('common.error.userDoesNotExist'),
-      ],
-    },
-    isVaccinated: {
-      type: Boolean,
-      required: [
-        true,
-        getValidationErrorMessage({
-          context,
-          field: 'isVaccinated',
-          reason: Reason.REQUIRED,
-        }),
-      ],
-    },
-    isNeutered: {
-      type: Boolean,
-      required: [
-        true,
-        getValidationErrorMessage({
-          context,
-          field: 'isNeutered',
-          reason: Reason.REQUIRED,
-        }),
       ],
     },
   },

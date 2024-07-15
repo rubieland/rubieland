@@ -58,11 +58,7 @@
         "bio": "Bio",
         "birthDate": "Birth date",
         "breed": "Breed",
-        "size": "Size",
-        "weight": "Weight",
-        "picture": "Picture",
-        "isVaccinated": "Is your dog vaccinated ?",
-        "isNeutered": "Is your dog neutered ?"
+        "picture": "Picture"
       }
     },
     "rules": {
@@ -82,10 +78,6 @@
       "prestation": {
         "priceNotNumeric": "it must be a number",
         "isAvailable": "it must be of type Boolean, and so, be either true or false"
-      },
-      "dog": {
-        "invalidGender": "it can only be either \"male\" or \"female\"",
-        "invalidSize": "it can only be either \"small\", \"medium\" or \"large\""
       }
     },
     "messages": {
@@ -152,5 +144,8 @@
       "prestationCreationFailed": "Prestation creation failed",
       "prestationUpdateFailed": "Prestation update failed"
     }
+  },
+  "dog": {
+    "error": {}
   }
 }
