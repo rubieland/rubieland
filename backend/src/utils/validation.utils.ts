@@ -95,6 +95,15 @@ export const getValidationErrorMessage: GetValidationErrorMessageFunction = ({
     case Reason.HAS_FORBIDDEN_CHARS:
       result = errorMessageTemplate.replace('{{field}}', fieldName);
       break;
+    case Reason.INVALID_DATE_FORMAT:
+      result = errorMessageTemplate.replace('{{field}}', fieldName);
+      break;
+    case Reason.FUTURE_DATE:
+      result = errorMessageTemplate.replace('{{field}}', fieldName);
+      break;
+    case Reason.TOO_OLD:
+      result = errorMessageTemplate.replace('{{field}}', fieldName);
+      break;
     default:
       result = i18n
         .t('validation.messages.default')

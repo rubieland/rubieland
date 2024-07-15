@@ -1,6 +1,5 @@
 import { Schema, model } from 'mongoose';
 import { DogDocument, DogGender } from './types/Dog.types';
-import validator from 'validator';
 import { getValidationErrorMessage } from '../utils/validation.utils';
 import { formatName } from '../utils/string.utils';
 import i18n from '../config/i18n';
@@ -8,14 +7,18 @@ import { DataContext, Reason } from '../validation/types/validation.types';
 import { checkDogGender, dogDataLengths } from '../validation/Dog.validators';
 import { forbiddenCharsRegex, nameRegex } from '../validation/Common.validator';
 import User from './User.model';
+import {
+  calculateAge,
+  isNotInFuture,
+  isNotTooOld,
+  isValidDate,
+} from '../utils/date.utils';
 
 const context: DataContext = DataContext.DOG;
 
 /**
  * TODO:
- * add validate for birthDate, picture
- * add calculateAge method and age virtual property
- * add pre save and call formatName utils
+ * add validate for picture
  * add properties in compliance with information sheet
  *  => will need to separate general information and specific information (medical, behavior, feeding...)
  */
@@ -130,7 +133,37 @@ const dogSchema = new Schema<DogDocument>(
           reason: Reason.REQUIRED,
         }),
       ],
-      // TODO: check isDate() from validator
+      validate: [
+        {
+          // check if birthDate is a valid date
+          validator: isValidDate,
+          message: getValidationErrorMessage({
+            context,
+            field: 'birthDate',
+            reason: Reason.INVALID_DATE_FORMAT,
+          }),
+        },
+        {
+          // check that birthDate is not in the future
+          validator: isNotInFuture,
+          message: getValidationErrorMessage({
+            context,
+            field: 'birthDate',
+            reason: Reason.FUTURE_DATE,
+          }),
+        },
+        {
+          // check that birthDate is not too old (25 years ago)
+          validator: (v: Date) => {
+            return isNotTooOld(v, 25);
+          },
+          message: getValidationErrorMessage({
+            context,
+            field: 'birthDate',
+            reason: Reason.TOO_OLD,
+          }),
+        },
+      ],
     },
     breed: {
       type: String,
@@ -197,6 +230,30 @@ const dogSchema = new Schema<DogDocument>(
     },
   },
   { timestamps: true },
+);
+
+dogSchema.pre(
+  'save',
+  async function (this: DogDocument, next: (err?: Error) => void) {
+    try {
+      // format dog's name
+      if (this.isModified('name')) {
+        this.name = formatName(this.name);
+      }
+      // calculate dog's age
+      if (this.isModified('birthDate')) {
+        this.age = calculateAge(this.birthDate);
+      }
+
+      next();
+    } catch (error: unknown) {
+      next(
+        error instanceof Error
+          ? new Error(i18n.t('common.error.saveFailed'))
+          : new Error(i18n.t('common.error.unknown')),
+      );
+    }
+  },
 );
 
 const Dog = model('Dog', dogSchema);

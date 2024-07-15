@@ -18,6 +18,5 @@ export interface IDog {
 export type DogField = keyof Omit<IDog, 'ownerId' | 'picture'>;
 
 export interface DogDocument extends IDog, Document {
-  calculateAge: (birthDate: Date) => number;
   age: number; // calculated using birthdate
 }

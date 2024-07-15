@@ -8,6 +8,9 @@ export enum Reason {
   MAX = 'max',
   HAS_FORBIDDEN_CHARS = 'hasForbiddenChars',
   IS_NAN = 'isNaN',
+  INVALID_DATE_FORMAT = 'invalidDateFormat',
+  FUTURE_DATE = 'futureDate',
+  TOO_OLD = 'tooOld',
 }
 
 export enum DataContext {

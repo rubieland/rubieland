@@ -89,6 +89,9 @@
       "max": "The field {{field}} cannot be higher than {{max}}€",
       "hasForbiddenChars": "The field {{field}} must not contain any of the following special characters: <, >, {, }, ^, ~, |, \\",
       "isNaN": "The field {{field}} must be a number",
+      "invalidDateFormat": "Date format for the {{field}} is invalid. Valid format: \"DD-MM-YYYY\"",
+      "futureDate": "Date for the field {{field}} is invalid: it cannot be in the future",
+      "tooOld": "Date for the field {{field}} is invalid: it cannot be this old",
       "default": "Please check the information entered for field {{field}}"
     }
   },
