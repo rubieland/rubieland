@@ -12,13 +12,13 @@ import {
 } from '../utils/validation.utils';
 import {
   DataContext,
-  DataLengths,
-  DataMinMax,
+  StringDataLengths,
+  NumberDataMinMax,
   Reason,
 } from './types/validation.types';
 import validator from 'validator';
 
-export const prestationDataLengths: DataLengths = {
+export const prestationDataLengths: StringDataLengths = {
   title: {
     minLength: 5,
     maxLength: 100,
@@ -29,7 +29,7 @@ export const prestationDataLengths: DataLengths = {
   },
 };
 
-export const prestationMixMax: DataMinMax = {
+export const prestationMixMax: NumberDataMinMax = {
   price: {
     min: 0,
     max: 10000,

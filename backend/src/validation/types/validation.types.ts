@@ -20,14 +20,14 @@ export enum DataContext {
   DOG = 'dog',
 }
 
-export interface DataLengths {
+export interface StringDataLengths {
   [key: string]: {
     maxLength: number;
     minLength: number;
   };
 }
 
-export interface DataMinMax {
+export interface NumberDataMinMax {
   [key: string]: {
     max: number;
     min: number;

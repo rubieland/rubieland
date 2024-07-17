@@ -8,9 +8,13 @@ import {
   getValidationErrorMessage,
   hasForbiddenChars,
 } from '../utils/validation.utils';
-import { DataContext, DataLengths, Reason } from './types/validation.types';
+import {
+  DataContext,
+  StringDataLengths,
+  Reason,
+} from './types/validation.types';
 
-export const blogArticleDataLengths: DataLengths = {
+export const blogArticleDataLengths: StringDataLengths = {
   title: {
     minLength: 5,
     maxLength: 100,
