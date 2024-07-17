@@ -16,7 +16,9 @@
       "blogArticlesFound_zero": "Aucun article de blog trouvé",
       "blogArticleDoesNotExist": "Cet article de blog n'existe pas ou n'existe plus",
       "prestationsFound_zero": "Aucune prestation trouvée",
-      "prestationDoesNotExist": "Cette prestation n'existe pas ou n'existe plus"
+      "prestationDoesNotExist": "Cette prestation n'existe pas ou n'existe plus",
+      "dogsFound_zero": "Aucun chien trouvé",
+      "dogDoesNotExist": "Cet chien n'existe pas ou n'existe plus"
     },
     "success": {
       "usersFound_one": "{{count}} utilisateur trouvé",
@@ -24,7 +26,9 @@
       "blogArticlesFound_one": "{{count}} article de blog trouvé",
       "blogArticlesFound_other": "{{count}} articles de blog trouvés",
       "prestationsFound_one": "{{count}} prestation trouvée",
-      "prestationsFound_other": "{{count}} prestations trouvées"
+      "prestationsFound_other": "{{count}} prestations trouvées",
+      "dogFound_one": "{{count}} chien trouvé",
+      "dogFound_other": "{{count}} chiens trouvés"
     }
   },
   "validation": {
@@ -78,6 +82,9 @@
       "prestation": {
         "priceNotNumeric": "il doit être un nombre",
         "isAvailable": "il doit être de type Boolean, et donc être soit true, soit false"
+      },
+      "dog": {
+        "gender": "il ne peut qu'être soit \"mâle\" soit \"femelle\""
       }
     },
     "messages": {
@@ -89,9 +96,9 @@
       "max": "Le champ {{field}} ne peut pas être supérieur à {{max}}€",
       "hasForbiddenChars": "Le champ {{field}} ne doit contenir aucun des caractères suivants: <, >, {, }, ^, ~, |, \\",
       "isNaN": "Le champ {{field}} doit être un nombre",
-      "invalidDateFormat": "Le format de la date pour le champ {{field}} est invalide. Format attendu: \"JJ-MM-AAAA\"",
+      "invalidDateFormat": "Le format de la date pour le champ {{field}} est invalide",
       "futureDate": "La date pour le champ {{field}} est invalide: elle ne peut pas être dans le futur",
-      "tooOld": "La date pour le champ {{field}} est invalide: elle ne peut pas être si ancienne",
+      "tooOld": "La date pour le champ {{field}} est invalide: elle ne peut pas être plus de {{min}} ans avant la date actuelle",
       "default": "Veuillez vérifier les informations saisies pour le champ {{field}}"
     }
   },
@@ -149,6 +156,14 @@
     }
   },
   "dog": {
-    "error": {}
+    "success": {
+      "dogCreationSuccess": "Chien créé avec succès !",
+      "dogUpdateSuccess": "Chien modifié avec succès!",
+      "dogDeleteSuccess": "Chien supprimé avec succès !"
+    },
+    "error": {
+      "dogCreationFailed": "La création du chien a échouée",
+      "dogUpdateFailed": "La mise à jour du chien a échouée"
+    }
   }
 }

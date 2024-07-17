@@ -16,7 +16,9 @@
       "blogArticlesFound_zero": "No blog article was found",
       "blogArticleDoesNotExist": "This blog article does not exist or does not exist anymore",
       "prestationsFound_zero": "No prestation was found",
-      "prestationDoesNotExist": "This prestation does not exist or does not exist anymore"
+      "prestationDoesNotExist": "This prestation does not exist or does not exist anymore",
+      "dogsFound_zero": "No dog was found",
+      "dogDoesNotExist": "This dog does not exist or does not exist anymore"
     },
     "success": {
       "usersFound_one": "{{count}} user found",
@@ -24,7 +26,9 @@
       "blogArticlesFound_one": "{{count}} blog article found",
       "blogArticlesFound_other": "{{count}} blog articles found",
       "prestationsFound_one": "{{count}} prestation found",
-      "prestationsFound_other": "{{count}} prestations found"
+      "prestationsFound_other": "{{count}} prestations found",
+      "dogFound_one": "{{count}} dog found",
+      "dogFound_other": "{{count}} dogs found"
     }
   },
   "validation": {
@@ -78,6 +82,9 @@
       "prestation": {
         "priceNotNumeric": "it must be a number",
         "isAvailable": "it must be of type Boolean, and so, be either true or false"
+      },
+      "dog": {
+        "gender": "it can only be either \"male\" or \"female\""
       }
     },
     "messages": {
@@ -89,9 +96,9 @@
       "max": "The field {{field}} cannot be higher than {{max}}€",
       "hasForbiddenChars": "The field {{field}} must not contain any of the following special characters: <, >, {, }, ^, ~, |, \\",
       "isNaN": "The field {{field}} must be a number",
-      "invalidDateFormat": "Date format for the {{field}} is invalid. Valid format: \"DD-MM-YYYY\"",
+      "invalidDateFormat": "Date format for the {{field}} is invalid",
       "futureDate": "Date for the field {{field}} is invalid: it cannot be in the future",
-      "tooOld": "Date for the field {{field}} is invalid: it cannot be this old",
+      "tooOld": "Date for the field {{field}} is invalid: it cannot be more than {{min}} years before the current date",
       "default": "Please check the information entered for field {{field}}"
     }
   },
@@ -149,6 +156,14 @@
     }
   },
   "dog": {
-    "error": {}
+    "success": {
+      "dogCreationSuccess": "Dog created successfully!",
+      "dogUpdateSuccess": "Dog updated successfully!",
+      "dogDeleteSuccess": "Dog deleted successfully!"
+    },
+    "error": {
+      "dogCreationFailed": "Dog creation failed",
+      "dogUpdateFailed": "Dog update failed"
+    }
   }
 }
