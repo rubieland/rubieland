@@ -37,7 +37,7 @@ const dogSchema = new Schema<DogDocument>(
         }),
       ],
       validate: [
-        (v: string) => !checkDogGender(v),
+        (v: string) => checkDogGender(v),
         getValidationErrorMessage({
           context,
           field: 'gender',
