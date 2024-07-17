@@ -4,15 +4,15 @@ import { getValidationErrorMessage } from '../utils/validation.utils';
 import { formatName } from '../utils/string.utils';
 import i18n from '../config/i18n';
 import { DataContext, Reason } from '../validation/types/validation.types';
-import { checkDogGender, dogDataLengths } from '../validation/Dog.validators';
+import {
+  checkDogGender,
+  dogAgeLimit,
+  dogDataLengths,
+  dogDateDataMinMax,
+} from '../validation/Dog.validators';
 import { forbiddenCharsRegex, nameRegex } from '../validation/Common.validator';
 import User from './User.model';
-import {
-  calculateAge,
-  isNotInFuture,
-  isNotTooOld,
-  isValidDate,
-} from '../utils/date.utils';
+import { calculateAge } from '../utils/date.utils';
 
 const context: DataContext = DataContext.DOG;
 
@@ -133,36 +133,22 @@ const dogSchema = new Schema<DogDocument>(
           reason: Reason.REQUIRED,
         }),
       ],
-      validate: [
-        {
-          // check if birthDate is a valid date
-          validator: isValidDate,
-          message: getValidationErrorMessage({
-            context,
-            field: 'birthDate',
-            reason: Reason.INVALID_DATE_FORMAT,
-          }),
-        },
-        {
-          // check that birthDate is not in the future
-          validator: isNotInFuture,
-          message: getValidationErrorMessage({
-            context,
-            field: 'birthDate',
-            reason: Reason.FUTURE_DATE,
-          }),
-        },
-        {
-          // check that birthDate is not too old (25 years ago)
-          validator: (v: Date) => {
-            return isNotTooOld(v, 25);
-          },
-          message: getValidationErrorMessage({
-            context,
-            field: 'birthDate',
-            reason: Reason.TOO_OLD,
-          }),
-        },
+      min: [
+        dogDateDataMinMax.birthDate.min,
+        getValidationErrorMessage({
+          context,
+          field: 'birthDate',
+          min: dogAgeLimit,
+          reason: Reason.TOO_OLD,
+        }),
+      ],
+      max: [
+        dogDateDataMinMax.birthDate.max,
+        getValidationErrorMessage({
+          context,
+          field: 'birthDate',
+          reason: Reason.FUTURE_DATE,
+        }),
       ],
     },
     breed: {

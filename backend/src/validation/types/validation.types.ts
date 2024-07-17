@@ -34,6 +34,13 @@ export interface DataMinMax {
   };
 }
 
+export interface DateDataMinMax {
+  [key: string]: {
+    max: Date;
+    min: Date;
+  };
+}
+
 export type ValidatePhoneNumberFunction = (phoneNumber: string) => boolean;
 
 interface ValidationErrorMessageParams {

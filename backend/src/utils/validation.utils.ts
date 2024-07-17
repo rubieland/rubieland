@@ -102,7 +102,9 @@ export const getValidationErrorMessage: GetValidationErrorMessageFunction = ({
       result = errorMessageTemplate.replace('{{field}}', fieldName);
       break;
     case Reason.TOO_OLD:
-      result = errorMessageTemplate.replace('{{field}}', fieldName);
+      result = errorMessageTemplate
+        .replace('{{field}}', fieldName)
+        .replace('{{min}}', String(min));
       break;
     default:
       result = i18n

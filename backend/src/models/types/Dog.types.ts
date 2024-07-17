@@ -15,6 +15,9 @@ export interface IDog {
   ownerId: Types.ObjectId;
 }
 
+export type DogData = Omit<IDog, 'ownerId' | 'picture' | 'birthDate'> & {
+  birthDate: string;
+};
 export type DogField = keyof Omit<IDog, 'ownerId' | 'picture'>;
 
 export interface DogDocument extends IDog, Document {
