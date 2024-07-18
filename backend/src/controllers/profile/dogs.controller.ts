@@ -148,3 +148,91 @@ export const createDog = async (
     }
   }
 };
+
+export const updateDog = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  const pictureFile = req.file;
+
+  try {
+    const userId = req.session.authUser!.id!;
+    const dogId = req.params?.dogId;
+
+    const { gender, name, bio, birthDate, breed } = trimData(req.body);
+
+    const dogData: DogData = {
+      gender,
+      name,
+      bio,
+      birthDate,
+      breed,
+    };
+
+    const dogInBase: DogDocument | null = await Dog.findById(dogId);
+
+    if (!dogInBase) {
+      if (pictureFile)
+        await deletePicture(`${picturesDir}/${pictureFile?.filename}`);
+
+      return res
+        .status(404)
+        .json({ error: i18n.t('common.error.dogsFound_zero', { count: 0 }) });
+    }
+
+    if (String(dogInBase.ownerId) !== userId) {
+      return res.status(403).json({
+        error: i18n.t('common.error.permissionDenied'),
+      });
+    }
+
+    // data validation
+    const dogDataErrors = await checkDogData(dogData);
+
+    if (dogDataErrors && dogDataErrors.length > 0) {
+      if (pictureFile)
+        await deletePicture(`${picturesDir}/${pictureFile?.filename}`);
+      return res.status(400).json({
+        message: i18n.t('dog.error.dogUpdateFailed'),
+        errors: dogDataErrors,
+      });
+    }
+
+    // if user uploads a new picture for the dog, delete the old one and replace it by the new one
+    if (pictureFile) {
+      if (dogInBase.picture) {
+        await deletePicture(`${picturesDir}/${dogInBase.picture}`).then(
+          async () => {
+            dogInBase.picture = pictureFile?.filename;
+          },
+        );
+      } else {
+        dogInBase.picture = pictureFile?.filename;
+      }
+    }
+
+    // update dog data
+    (Object.keys(dogData) as (keyof Omit<DogData, 'birthDate'>)[]).forEach(
+      (key) => {
+        if (dogData[key] !== undefined) {
+          (dogInBase[key] as keyof DogData) = dogData[key] as keyof DogData;
+          dogInBase.birthDate = new Date(birthDate);
+        }
+      },
+    );
+
+    // save dog with updated data
+    await dogInBase.save();
+
+    return res.status(200).json({
+      message: i18n.t('dog.success.dogUpdateSuccess'),
+      dogInBase,
+    });
+  } catch (error: unknown) {
+    if (pictureFile)
+      await deletePicture(`${picturesDir}/${pictureFile?.filename}`);
+
+    next(error);
+  }
+};

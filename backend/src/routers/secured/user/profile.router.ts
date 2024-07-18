@@ -11,6 +11,7 @@ import {
   createDog,
   getMyDog,
   getMyDogs,
+  updateDog,
 } from '../../../controllers/profile/dogs.controller';
 import { dogPictureUploader } from '../../../middlewares/uploads/uploadDogPicture.middleware';
 
@@ -39,6 +40,13 @@ router.post(
   isMeMiddleware,
   dogPictureUploader,
   createDog,
+);
+router.put(
+  '/:userId/my-dogs/:dogId/update',
+  authMiddleware,
+  isMeMiddleware,
+  dogPictureUploader,
+  updateDog,
 );
 router.get('/:userId/my-dogs/all', authMiddleware, isMeMiddleware, getMyDogs);
 router.get('/:userId/my-dogs/:dogId', authMiddleware, isMeMiddleware, getMyDog);
