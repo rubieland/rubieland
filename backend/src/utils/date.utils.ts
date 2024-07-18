@@ -1,4 +1,5 @@
 import validator from 'validator';
+import { dateRegex } from '../validation/Common.validator';
 
 /**
  * calculate current age using date of birth
@@ -28,17 +29,9 @@ export const calculatePastDate = (years: number) => {
   return pastDate;
 };
 
-/**
- * check if a date is valid and in ISO 8601 format
- * @param {Date} date - the date to validate
- * @returns {boolean} - returns true if the date is valid
- */
-export const isValidDate = (date: Date): boolean => {
-  if (isNaN(date.getTime())) {
-    return false;
-  }
-
-  return validator.isDate(date.toString());
+// check that the date string is in YYYY-MM-DD format
+export const checkDateFormat = (dateString: string) => {
+  return dateRegex.test(dateString);
 };
 
 /**
