@@ -45,6 +45,9 @@ export const errorHandler = (
     if (err.message.includes('Prestation')) {
       message = i18n.t('common.error.prestationDoesNotExist');
     }
+    if (err.message.includes('Dog')) {
+      message = i18n.t('common.error.dogDoesNotExist');
+    }
     // TODO: add cases for other models (animal...) when they're ready
     return res.status(404).json({ message });
   }
