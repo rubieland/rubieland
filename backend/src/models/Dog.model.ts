@@ -283,7 +283,7 @@ const dogSchema = new Schema<DogDocument>(
         }),
       ],
       validate: [
-        (v: number) => isNaN(v),
+        (v: number) => !isNaN(v),
         getValidationErrorMessage({
           context,
           field: 'age',
