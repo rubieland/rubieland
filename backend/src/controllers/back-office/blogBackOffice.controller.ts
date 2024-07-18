@@ -87,9 +87,10 @@ export const createBlogArticle = async (
   res: Response,
   next: NextFunction,
 ) => {
+  const pictureFile = req.file;
+
   try {
     const { title, content, isPublished } = trimData(req.body);
-    const pictureFile = req.file;
 
     const blogArticleData: BlogArticleData = {
       title,
@@ -144,6 +145,10 @@ export const createBlogArticle = async (
       newBlogArticle,
     });
   } catch (error: unknown) {
+    if (pictureFile)
+      await deletePicture(
+        `${blogArticlesPicturesDir}/${pictureFile?.filename}`,
+      );
     if (error instanceof Error) {
       const messages = extractValidationErrorMessagesFromError(error);
       res.status(400).json({ errors: messages });
@@ -158,9 +163,10 @@ export const updateBlogArticle = async (
   res: Response,
   next: NextFunction,
 ) => {
+  const pictureFile = req.file;
+
   try {
     const id = req.params?.id;
-    const pictureFile = req.file;
     const article: BlogArticleDocument | null = await BlogArticle.findById(id);
     const { title, content, isPublished } = trimData(req.body);
 
@@ -219,6 +225,10 @@ export const updateBlogArticle = async (
       article,
     });
   } catch (error: unknown) {
+    if (pictureFile)
+      await deletePicture(
+        `${blogArticlesPicturesDir}/${pictureFile?.filename}`,
+      );
     next(error);
   }
 };

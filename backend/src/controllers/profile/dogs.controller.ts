@@ -81,12 +81,13 @@ export const createDog = async (
   res: Response,
   next: NextFunction,
 ) => {
+  const pictureFile = req.file;
+
   try {
     const userId = req.session.authUser!.id!;
     const ownerId = new Types.ObjectId(userId);
 
     const { gender, name, bio, birthDate, breed } = trimData(req.body);
-    const pictureFile = req.file;
 
     const dogData: DogData = {
       gender,
@@ -140,6 +141,8 @@ export const createDog = async (
       newDog,
     });
   } catch (error: unknown) {
+    if (pictureFile)
+      await deletePicture(`${picturesDir}/${pictureFile?.filename}`);
     if (error instanceof Error) {
       const messages = extractValidationErrorMessagesFromError(error);
       res.status(400).json({ errors: messages });
