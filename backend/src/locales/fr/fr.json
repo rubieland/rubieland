@@ -8,6 +8,7 @@
       "415": "Unsupported Media Type",
       "500": "Internal server error",
       "unknown": "Une erreur inconnue est survenue",
+      "permissionDenied": "Vous n'avez pas l'autorisation d'accéder à cette ressource",
       "saveFailed": "Une erreur est survenue lors de la sauvegarde des données. Veuillez réessayer",
       "deleteFileFailed": "Le fichier n'a pas pu être supprimé",
       "resourceDoesNotExist": "Cette ressource n'existe pas ou n'existe plus",
@@ -62,7 +63,8 @@
         "bio": "Bio",
         "birthDate": "Date de naissance",
         "breed": "Race",
-        "picture": "Photo"
+        "picture": "Photo",
+        "age": "Age"
       }
     },
     "rules": {
@@ -131,6 +133,7 @@
   },
   "profile": {
     "success": {
+      "profileUpdateSuccess": "Votre profil a été modifié avec succès !",
       "deleteAccountSuccess": "Votre compte a été supprimé avec succès !"
     }
   },
@@ -158,13 +161,13 @@
   },
   "dog": {
     "success": {
-      "dogCreationSuccess": "Chien créé avec succès !",
-      "dogUpdateSuccess": "Chien modifié avec succès!",
-      "dogDeleteSuccess": "Chien supprimé avec succès !"
+      "dogCreationSuccess": "Votre chien a été créé avec succès !",
+      "dogUpdateSuccess": "Les informations de votre chien ont été mises à jour avec succès !",
+      "dogDeleteSuccess": "Votre chien a été supprimé avec succès !"
     },
     "error": {
-      "dogCreationFailed": "La création du chien a échouée",
-      "dogUpdateFailed": "La mise à jour du chien a échouée"
+      "dogCreationFailed": "La création de votre chien a échouée",
+      "dogUpdateFailed": "La mise à jour des informations de votre chien a échouée"
     }
   }
 }

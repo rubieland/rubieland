@@ -8,6 +8,7 @@
       "415": "Unsupported Media Type",
       "500": "Internal server error",
       "unknown": "An unexpected error occured",
+      "permissionDenied": "You do not have permission to access this resource",
       "saveFailed": "An error occurred while saving the data. Please try again",
       "deleteFileFailed": "The file has not been deleted",
       "resourceDoesNotExist": "This resource does not exist",
@@ -62,7 +63,8 @@
         "bio": "Bio",
         "birthDate": "Birth date",
         "breed": "Breed",
-        "picture": "Picture"
+        "picture": "Picture",
+        "age": "Age"
       }
     },
     "rules": {
@@ -131,6 +133,7 @@
   },
   "profile": {
     "success": {
+      "profileUpdateSuccess": "Your profile has been modified successfully!",
       "deleteAccountSuccess": "Your account has been deleted successfully!"
     }
   },
@@ -158,13 +161,13 @@
   },
   "dog": {
     "success": {
-      "dogCreationSuccess": "Dog created successfully!",
-      "dogUpdateSuccess": "Dog updated successfully!",
-      "dogDeleteSuccess": "Dog deleted successfully!"
+      "dogCreationSuccess": "Your dog has been successfully created!",
+      "dogUpdateSuccess": "Your dog's information has been successfully updated!",
+      "dogDeleteSuccess": "Your dog has been successfully deleted!"
     },
     "error": {
-      "dogCreationFailed": "Dog creation failed",
-      "dogUpdateFailed": "Dog update failed"
+      "dogCreationFailed": "Failed to create your dog",
+      "dogUpdateFailed": "Failed to update your dog's information"
     }
   }
 }
