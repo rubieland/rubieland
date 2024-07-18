@@ -128,6 +128,7 @@ export const createDog = async (
     // create new instance of Dog with data from req.body
     const newDog = new Dog({
       ...dogData,
+      birthDate: new Date(birthDate),
       ownerId,
       picture: pictureFile?.filename,
     });
