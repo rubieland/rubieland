@@ -27,8 +27,8 @@
       "blogArticlesFound_other": "{{count}} blog articles found",
       "prestationsFound_one": "{{count}} prestation found",
       "prestationsFound_other": "{{count}} prestations found",
-      "dogFound_one": "{{count}} dog found",
-      "dogFound_other": "{{count}} dogs found"
+      "dogsFound_one": "{{count}} dog found",
+      "dogsFound_other": "{{count}} dogs found"
     }
   },
   "validation": {

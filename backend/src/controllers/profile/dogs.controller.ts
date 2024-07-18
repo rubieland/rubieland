@@ -68,7 +68,7 @@ export const getMyDog = async (
       });
     }
     res.status(200).json({
-      message: i18n.t('common.success.dogFound_one', { count: 1 }),
+      message: i18n.t('common.success.dogsFound_one', { count: 1 }),
       dog,
     });
   } catch (error: unknown) {
