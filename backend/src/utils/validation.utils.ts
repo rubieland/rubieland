@@ -96,7 +96,9 @@ export const getValidationErrorMessage: GetValidationErrorMessageFunction = ({
       result = errorMessageTemplate.replace('{{field}}', fieldName);
       break;
     case Reason.INVALID_DATE_FORMAT:
-      result = errorMessageTemplate.replace('{{field}}', fieldName);
+      result = errorMessageTemplate
+        .replace('{{field}}', fieldName)
+        .replace('{{rule}}', ruleMessage);
       break;
     case Reason.FUTURE_DATE:
       result = errorMessageTemplate.replace('{{field}}', fieldName);
