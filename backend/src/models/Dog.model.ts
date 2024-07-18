@@ -9,10 +9,17 @@ import {
   dogAgeLimit,
   dogDataLengths,
   dogDateDataMinMax,
+  dogNumberDataMinMax,
 } from '../validation/Dog.validators';
 import { forbiddenCharsRegex, nameRegex } from '../validation/Common.validator';
 import User from './User.model';
-import { calculateAge } from '../utils/date.utils';
+import {
+  calculateAge,
+  isInFuture,
+  isTooOld,
+  checkDateFormat,
+} from '../utils/date.utils';
+import validator from 'validator';
 
 const context: DataContext = DataContext.DOG;
 
@@ -150,6 +157,47 @@ const dogSchema = new Schema<DogDocument>(
           reason: Reason.FUTURE_DATE,
         }),
       ],
+      validate: [
+        {
+          validator: (v: Date) =>
+            checkDateFormat(v.toISOString().split('T')[0]),
+          message: getValidationErrorMessage({
+            context,
+            field: 'birthDate',
+            rule: 'birthDateInvalidFormat',
+            reason: Reason.INVALID_DATE_FORMAT,
+          }),
+        },
+        {
+          validator: (v: Date) =>
+            validator.isDate(v.toISOString().split('T')[0]),
+          message: getValidationErrorMessage({
+            context,
+            field: 'birthDate',
+            rule: 'birthDateInvalidFormat',
+            reason: Reason.INVALID_DATE_FORMAT,
+          }),
+        },
+        {
+          validator: (v: Date) =>
+            !isInFuture(new Date(v.toISOString().split('T')[0])),
+          message: getValidationErrorMessage({
+            context,
+            field: 'birthDate',
+            reason: Reason.FUTURE_DATE,
+          }),
+        },
+        {
+          validator: (v: Date) =>
+            !isTooOld(new Date(v.toISOString().split('T')[0]), dogAgeLimit),
+          message: getValidationErrorMessage({
+            context,
+            field: 'birthDate',
+            min: dogAgeLimit,
+            reason: Reason.TOO_OLD,
+          }),
+        },
+      ],
     },
     breed: {
       type: String,
@@ -212,6 +260,35 @@ const dogSchema = new Schema<DogDocument>(
           return !!user;
         },
         i18n.t('common.error.userDoesNotExist'),
+      ],
+    },
+    age: {
+      type: Number,
+      min: [
+        dogNumberDataMinMax.age.min,
+        getValidationErrorMessage({
+          context,
+          field: 'age',
+          min: dogNumberDataMinMax.age.min,
+          reason: Reason.MIN,
+        }),
+      ],
+      max: [
+        dogNumberDataMinMax.age.max,
+        getValidationErrorMessage({
+          context,
+          field: 'age',
+          max: dogNumberDataMinMax.age.max,
+          reason: Reason.MAX,
+        }),
+      ],
+      validate: [
+        (v: number) => isNaN(v),
+        getValidationErrorMessage({
+          context,
+          field: 'age',
+          reason: Reason.IS_NAN,
+        }),
       ],
     },
   },

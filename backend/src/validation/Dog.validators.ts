@@ -1,5 +1,11 @@
+import validator from 'validator';
 import { DogData, DogField, DogGender } from '../models/types/Dog.types';
-import { calculatePastDate } from '../utils/date.utils';
+import {
+  calculatePastDate,
+  isInFuture,
+  isTooOld,
+  checkDateFormat,
+} from '../utils/date.utils';
 import {
   checkMaxLength,
   checkMinLength,
@@ -11,6 +17,7 @@ import {
   StringDataLengths,
   Reason,
   DateDataMinMax,
+  NumberDataMinMax,
 } from './types/validation.types';
 
 export const dogAgeLimit = 25;
@@ -31,6 +38,13 @@ export const dogDataLengths: StringDataLengths = {
   },
 };
 
+export const dogNumberDataMinMax: NumberDataMinMax = {
+  age: {
+    min: 0,
+    max: dogAgeLimit,
+  },
+};
+
 export const dogDateDataMinMax: DateDataMinMax = {
   birthDate: {
     min: calculatePastDate(dogAgeLimit),
@@ -45,6 +59,8 @@ export const checkDogGender = (gender: string) => {
 export const checkDogData = async (data: DogData) => {
   const errors: string[] = [];
   const context: DataContext = DataContext.DOG;
+  const isValidBirthDate =
+    checkDateFormat(data.birthDate) && validator.isDate(data.birthDate);
 
   for (const [key, value] of Object.entries(data)) {
     // check forbidden characters
@@ -103,7 +119,42 @@ export const checkDogData = async (data: DogData) => {
     );
   }
 
-  // TODO: check birthDate
+  // check birthDate
+
+  // if birthDate is in invalid format (YYYY-MM-DD) or is an invalid date
+  if (!isValidBirthDate) {
+    errors.push(
+      getValidationErrorMessage({
+        context,
+        field: 'birthDate',
+        rule: 'birthDateInvalidFormat',
+        reason: Reason.INVALID_DATE_FORMAT,
+      }),
+    );
+  }
+
+  // if birthDate is after the current date
+  if (isValidBirthDate && isInFuture(new Date(data.birthDate))) {
+    errors.push(
+      getValidationErrorMessage({
+        context,
+        field: 'birthDate',
+        reason: Reason.FUTURE_DATE,
+      }),
+    );
+  }
+
+  // if birthDate is too old compared to the age limit we defined
+  if (isValidBirthDate && isTooOld(new Date(data.birthDate), dogAgeLimit)) {
+    errors.push(
+      getValidationErrorMessage({
+        context,
+        field: 'birthDate',
+        min: dogAgeLimit,
+        reason: Reason.TOO_OLD,
+      }),
+    );
+  }
 
   return errors;
 };
