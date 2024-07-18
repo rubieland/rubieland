@@ -84,7 +84,8 @@
         "isAvailable": "il doit être de type Boolean, et donc être soit true, soit false"
       },
       "dog": {
-        "gender": "il ne peut qu'être soit \"mâle\" soit \"femelle\""
+        "gender": "il ne peut qu'être soit \"mâle\" soit \"femelle\"",
+        "birthDateInvalidFormat": "format attendu: AAAA-MM-JJ"
       }
     },
     "messages": {
@@ -92,11 +93,11 @@
       "invalid": "Le champ {{field}} est invalide: {{rule}}",
       "minLength": "Le champ {{field}} doit contenir {{minLength}} caractères minimum",
       "maxLength": "Le champ {{field}} ne peut contenir que {{maxLength}} caractères maximum",
-      "min": "Le champ {{field}} ne peut pas être inférieur à {{min}}€",
-      "max": "Le champ {{field}} ne peut pas être supérieur à {{max}}€",
+      "min": "Le champ {{field}} ne peut pas être inférieur à {{min}}",
+      "max": "Le champ {{field}} ne peut pas être supérieur à {{max}}",
       "hasForbiddenChars": "Le champ {{field}} ne doit contenir aucun des caractères suivants: <, >, {, }, ^, ~, |, \\",
       "isNaN": "Le champ {{field}} doit être un nombre",
-      "invalidDateFormat": "Le format de la date pour le champ {{field}} est invalide",
+      "invalidDateFormat": "Le format de la date pour le champ {{field}} est invalide: {{rule}}",
       "futureDate": "La date pour le champ {{field}} est invalide: elle ne peut pas être dans le futur",
       "tooOld": "La date pour le champ {{field}} est invalide: elle ne peut pas être plus de {{min}} ans avant la date actuelle",
       "default": "Veuillez vérifier les informations saisies pour le champ {{field}}"
