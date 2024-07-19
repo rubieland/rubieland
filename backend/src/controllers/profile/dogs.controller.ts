@@ -14,6 +14,7 @@ import {
 import { DataContext } from '../../validation/types/validation.types';
 import { Types } from 'mongoose';
 import { checkDogData } from '../../validation/Dog.validators';
+import User from '../../models/User.model';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -86,6 +87,13 @@ export const createDog = async (
   try {
     const userId = req.session.authUser!.id!;
     const ownerId = new Types.ObjectId(userId);
+    const owner = await User.findById(userId);
+
+    if (!owner) {
+      return res
+        .status(404)
+        .json({ error: i18n.t('common.error.userDoesNotExist') });
+    }
 
     const { gender, name, bio, birthDate, breed } = trimData(req.body);
 
@@ -134,8 +142,13 @@ export const createDog = async (
       picture: pictureFile?.filename,
     });
 
-    // save new dog in database
-    await newDog.save();
+    // save new dog in database and add new dog id in ownwer's dogsIds array
+    await newDog
+      .save()
+      .then(() => owner.dogsIds.push(newDog._id as Types.ObjectId));
+
+    await owner.save();
+
     res.status(201).json({
       message: i18n.t('dog.success.dogCreationSuccess'),
       newDog,
@@ -247,8 +260,15 @@ export const deleteDog = async (
 ) => {
   try {
     const userId = req.session.authUser!.id!;
+    const owner = await User.findById(userId);
     const dogId = req.params?.dogId;
     const dog: DogDocument | null = await Dog.findById(dogId);
+
+    if (!owner) {
+      return res
+        .status(404)
+        .json({ error: i18n.t('common.error.userDoesNotExist') });
+    }
 
     if (!dog) {
       return res
@@ -262,10 +282,17 @@ export const deleteDog = async (
       });
     }
 
+    // delete dog and if had a picture, delete picture + remove dog id from user dogsIds array
     await dog.deleteOne().then(async () => {
       if (dog.picture) await deletePicture(`${picturesDir}/${dog.picture}`);
+      const newOwnerDogsIds = owner?.dogsIds.filter(
+        (id) => String(id) !== dogId,
+      );
+      owner.dogsIds = newOwnerDogsIds;
     });
 
+    // save user to update dogsIds array
+    await owner.save();
     res.status(200).json({
       message: i18n.t('dog.success.dogDeleteSuccess'),
     });

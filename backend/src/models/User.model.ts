@@ -1,4 +1,4 @@
-import { Schema, model } from 'mongoose';
+import { Schema, Types, model } from 'mongoose';
 import {
   strongPasswordOptions,
   userDataLengths,
@@ -22,7 +22,7 @@ const context: DataContext = DataContext.USER;
 
 /**
  * TODO:
- * add dogs: [{ type: Schema.Types.ObjectId, ref: 'Dog'}],
+ * add dogsIds validate
  * add Address
  * REFACTOR: Separate user personal information and user account information
  */
@@ -222,6 +222,11 @@ const userSchema = new Schema<UserDocument>(
       type: String,
       enum: Object.values(UserRole),
       default: UserRole.USER,
+    },
+    dogsIds: {
+      type: [Types.ObjectId],
+      ref: 'Dog', // ref to a Dog document
+      default: [],
     },
   },
   { timestamps: true },
