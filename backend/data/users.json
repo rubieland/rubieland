@@ -6,7 +6,8 @@
     "password": "Admin44!",
     "phone": "+33765776577",
     "avatar": "female_avatar.png",
-    "role": "admin"
+    "role": "admin",
+    "dogsIds": []
   },
   {
     "firstName": "john",
@@ -15,6 +16,7 @@
     "password": "Johndoe44!",
     "phone": "+33765776575",
     "avatar": "male_avatar.png",
-    "role": "user"
+    "role": "user",
+    "dogsIds": []
   }
 ]
