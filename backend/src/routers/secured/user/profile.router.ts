@@ -9,6 +9,7 @@ import {
 import { avatarUploader } from '../../../middlewares/uploads/uploadAvatar.middleware';
 import {
   createDog,
+  deleteDog,
   getMyDog,
   getMyDogs,
   updateDog,
@@ -47,6 +48,12 @@ router.put(
   isMeMiddleware,
   dogPictureUploader,
   updateDog,
+);
+router.delete(
+  '/:userId/my-dogs/:dogId/delete',
+  authMiddleware,
+  isMeMiddleware,
+  deleteDog,
 );
 router.get('/:userId/my-dogs/all', authMiddleware, isMeMiddleware, getMyDogs);
 router.get('/:userId/my-dogs/:dogId', authMiddleware, isMeMiddleware, getMyDog);

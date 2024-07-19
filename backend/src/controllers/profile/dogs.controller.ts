@@ -239,3 +239,37 @@ export const updateDog = async (
     next(error);
   }
 };
+
+export const deleteDog = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    const userId = req.session.authUser!.id!;
+    const dogId = req.params?.dogId;
+    const dog: DogDocument | null = await Dog.findById(dogId);
+
+    if (!dog) {
+      return res
+        .status(404)
+        .json({ error: i18n.t('common.error.dogDoesNotExist') });
+    }
+
+    if (String(dog.ownerId) !== userId) {
+      return res.status(403).json({
+        error: i18n.t('common.error.permissionDenied'),
+      });
+    }
+
+    await dog.deleteOne().then(async () => {
+      if (dog.picture) await deletePicture(`${picturesDir}/${dog.picture}`);
+    });
+
+    res.status(200).json({
+      message: i18n.t('dog.success.dogDeleteSuccess'),
+    });
+  } catch (error: unknown) {
+    next(error);
+  }
+};
