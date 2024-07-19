@@ -117,7 +117,7 @@ const prestationSchema = new Schema<PrestationDocument>(
         }),
       ],
       validate: [
-        (v: number) => isNaN(v),
+        (v: number) => !isNaN(v),
         getValidationErrorMessage({
           context,
           field: 'price',
