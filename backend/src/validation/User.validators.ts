@@ -7,11 +7,11 @@ import {
   getValidationErrorMessage,
   validatePhoneNumber,
 } from '../utils/validation.utils';
-import { Reason, DataLengths, DataContext } from './types/validation.types';
-
-export const regexes = {
-  nameField: /^[a-zA-ZÀ-ÖØ-öø-ÿ' -]+$/i, // accepts only letters, hyphens, spaces, and apostrophes
-};
+import {
+  Reason,
+  StringDataLengths,
+  DataContext,
+} from './types/validation.types';
 
 export const strongPasswordOptions: StrongPasswordOptions = {
   minLength: 8,
@@ -21,7 +21,7 @@ export const strongPasswordOptions: StrongPasswordOptions = {
   minSymbols: 1,
 };
 
-export const userDataLengths: DataLengths = {
+export const userDataLengths: StringDataLengths = {
   firstName: {
     minLength: 2,
     maxLength: 30,

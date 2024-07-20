@@ -1,6 +1,5 @@
-import { Schema, model } from 'mongoose';
+import { Schema, Types, model } from 'mongoose';
 import {
-  regexes,
   strongPasswordOptions,
   userDataLengths,
 } from '../validation/User.validators';
@@ -16,9 +15,17 @@ import jwt from 'jsonwebtoken';
 import { env } from '../loaders/env.loader';
 import i18n from '../config/i18n';
 import { DataContext, Reason } from '../validation/types/validation.types';
+import { nameRegex } from '../validation/Common.validator';
 
 const { JWT_SECRET, JWT_EXPIRATION } = env;
 const context: DataContext = DataContext.USER;
+
+/**
+ * TODO:
+ * add dogsIds validate
+ * add Address
+ * REFACTOR: Separate user personal information and user account information
+ */
 
 const userSchema = new Schema<UserDocument>(
   {
@@ -52,7 +59,7 @@ const userSchema = new Schema<UserDocument>(
         }),
       ],
       validate: [
-        (v: string) => regexes.nameField.test(v),
+        (v: string) => nameRegex.test(v),
         getValidationErrorMessage({
           context,
           field: 'firstName',
@@ -91,7 +98,7 @@ const userSchema = new Schema<UserDocument>(
         }),
       ],
       validate: [
-        (v: string) => regexes.nameField.test(v),
+        (v: string) => nameRegex.test(v),
         getValidationErrorMessage({
           context,
           field: 'lastName',
@@ -215,6 +222,11 @@ const userSchema = new Schema<UserDocument>(
       type: String,
       enum: Object.values(UserRole),
       default: UserRole.USER,
+    },
+    dogsIds: {
+      type: [Types.ObjectId],
+      ref: 'Dog', // ref to a Dog document
+      default: [],
     },
   },
   { timestamps: true },

@@ -7,25 +7,37 @@ export enum Reason {
   MIN = 'min',
   MAX = 'max',
   HAS_FORBIDDEN_CHARS = 'hasForbiddenChars',
+  IS_NAN = 'isNaN',
+  INVALID_DATE_FORMAT = 'invalidDateFormat',
+  FUTURE_DATE = 'futureDate',
+  TOO_OLD = 'tooOld',
 }
 
 export enum DataContext {
   USER = 'user',
   BLOG_ARTICLE = 'blogArticle',
   PRESTATION = 'prestation',
+  DOG = 'dog',
 }
 
-export interface DataLengths {
+export interface StringDataLengths {
   [key: string]: {
     maxLength: number;
     minLength: number;
   };
 }
 
-export interface DataMinMax {
+export interface NumberDataMinMax {
   [key: string]: {
     max: number;
     min: number;
+  };
+}
+
+export interface DateDataMinMax {
+  [key: string]: {
+    max: Date;
+    min: Date;
   };
 }
 

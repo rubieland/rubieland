@@ -8,6 +8,7 @@
       "415": "Unsupported Media Type",
       "500": "Internal server error",
       "unknown": "Une erreur inconnue est survenue",
+      "permissionDenied": "Vous n'avez pas l'autorisation d'accéder à cette ressource",
       "saveFailed": "Une erreur est survenue lors de la sauvegarde des données. Veuillez réessayer",
       "deleteFileFailed": "Le fichier n'a pas pu être supprimé",
       "resourceDoesNotExist": "Cette ressource n'existe pas ou n'existe plus",
@@ -16,7 +17,9 @@
       "blogArticlesFound_zero": "Aucun article de blog trouvé",
       "blogArticleDoesNotExist": "Cet article de blog n'existe pas ou n'existe plus",
       "prestationsFound_zero": "Aucune prestation trouvée",
-      "prestationDoesNotExist": "Cette prestation n'existe pas ou n'existe plus"
+      "prestationDoesNotExist": "Cette prestation n'existe pas ou n'existe plus",
+      "dogsFound_zero": "Aucun chien trouvé",
+      "dogDoesNotExist": "Cet chien n'existe pas ou n'existe plus"
     },
     "success": {
       "usersFound_one": "{{count}} utilisateur trouvé",
@@ -24,7 +27,9 @@
       "blogArticlesFound_one": "{{count}} article de blog trouvé",
       "blogArticlesFound_other": "{{count}} articles de blog trouvés",
       "prestationsFound_one": "{{count}} prestation trouvée",
-      "prestationsFound_other": "{{count}} prestations trouvées"
+      "prestationsFound_other": "{{count}} prestations trouvées",
+      "dogsFound_one": "{{count}} chien trouvé",
+      "dogsFound_other": "{{count}} chiens trouvés"
     }
   },
   "validation": {
@@ -51,6 +56,15 @@
         "description": "Description de la prestation",
         "price": "Prix de la prestation",
         "isAvailable": "Disponibilité"
+      },
+      "dog": {
+        "gender": "Sexe",
+        "name": "Nom",
+        "bio": "Bio",
+        "birthDate": "Date de naissance",
+        "breed": "Race",
+        "picture": "Photo",
+        "age": "Age"
       }
     },
     "rules": {
@@ -70,6 +84,10 @@
       "prestation": {
         "priceNotNumeric": "il doit être un nombre",
         "isAvailable": "il doit être de type Boolean, et donc être soit true, soit false"
+      },
+      "dog": {
+        "gender": "il ne peut qu'être soit \"mâle\" soit \"femelle\"",
+        "birthDateInvalidFormat": "format attendu: AAAA-MM-JJ"
       }
     },
     "messages": {
@@ -77,9 +95,13 @@
       "invalid": "Le champ {{field}} est invalide: {{rule}}",
       "minLength": "Le champ {{field}} doit contenir {{minLength}} caractères minimum",
       "maxLength": "Le champ {{field}} ne peut contenir que {{maxLength}} caractères maximum",
-      "min": "Le champ {{field}} ne peut pas être inférieur à {{min}}€",
-      "max": "Le champ {{field}} ne peut pas être supérieur à {{max}}€",
+      "min": "Le champ {{field}} ne peut pas être inférieur à {{min}}",
+      "max": "Le champ {{field}} ne peut pas être supérieur à {{max}}",
       "hasForbiddenChars": "Le champ {{field}} ne doit contenir aucun des caractères suivants: <, >, {, }, ^, ~, |, \\",
+      "isNaN": "Le champ {{field}} doit être un nombre",
+      "invalidDateFormat": "Le format de la date pour le champ {{field}} est invalide: {{rule}}",
+      "futureDate": "La date pour le champ {{field}} est invalide: elle ne peut pas être dans le futur",
+      "tooOld": "La date pour le champ {{field}} est invalide: elle ne peut pas être plus de {{min}} ans avant la date actuelle",
       "default": "Veuillez vérifier les informations saisies pour le champ {{field}}"
     }
   },
@@ -111,6 +133,7 @@
   },
   "profile": {
     "success": {
+      "profileUpdateSuccess": "Votre profil a été modifié avec succès !",
       "deleteAccountSuccess": "Votre compte a été supprimé avec succès !"
     }
   },
@@ -134,6 +157,17 @@
     "error": {
       "prestationCreationFailed": "La création de la prestation a échouée",
       "prestationUpdateFailed": "La mise à jour de la prestation a échouée"
+    }
+  },
+  "dog": {
+    "success": {
+      "dogCreationSuccess": "Votre chien a été créé avec succès !",
+      "dogUpdateSuccess": "Les informations de votre chien ont été mises à jour avec succès !",
+      "dogDeleteSuccess": "Votre chien a été supprimé avec succès !"
+    },
+    "error": {
+      "dogCreationFailed": "La création de votre chien a échouée",
+      "dogUpdateFailed": "La mise à jour des informations de votre chien a échouée"
     }
   }
 }

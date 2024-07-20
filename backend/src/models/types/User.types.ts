@@ -1,4 +1,4 @@
-import { Document } from 'mongoose';
+import { Document, Types } from 'mongoose';
 
 export enum UserRole {
   USER = 'user',
@@ -13,9 +13,10 @@ export interface User {
   phone: string;
   avatar?: string | null;
   role?: UserRole;
+  dogsIds: Types.ObjectId[];
 }
 
-export interface UserData extends Omit<User, 'password'> {
+export interface UserData extends Omit<User, 'password' | 'dogsIds'> {
   password?: string;
   confirmPassword?: string;
   currentPassword?: string;
@@ -23,7 +24,7 @@ export interface UserData extends Omit<User, 'password'> {
   confirmNewPassword?: string;
 }
 
-export type UserField = keyof Omit<UserData, 'avatar' | 'role'>;
+export type UserField = keyof Omit<UserData, 'avatar' | 'role' | 'dogsIds'>;
 
 export interface UserDocument extends User, Document {
   comparePassword(candidatePassword: string): Promise<boolean>;

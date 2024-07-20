@@ -38,6 +38,8 @@ export const updateProfile = async (
   res: Response,
   next: NextFunction,
 ) => {
+  const avatarFile = req.file;
+
   try {
     const {
       firstName,
@@ -48,7 +50,6 @@ export const updateProfile = async (
       confirmNewPassword,
       phone,
     } = trimData(req.body);
-    const avatarFile = req.file;
     const userId = req.session?.authUser?.id;
     const userInBase: UserDocument | null = await User.findById(userId);
     const emailExists = await User.findOne({ email });
@@ -133,10 +134,11 @@ export const updateProfile = async (
     await userInBase.save();
 
     return res.status(200).json({
-      message: `Votre profil a été modifié avec succès!`,
+      message: i18n.t('profile.success.profileUpdateSuccess'),
       userInBase,
     });
   } catch (error: unknown) {
+    if (avatarFile) await deleteAvatar(`${avatarsDir}/${avatarFile?.filename}`);
     next(error);
   }
 };

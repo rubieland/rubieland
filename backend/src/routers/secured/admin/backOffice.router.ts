@@ -20,6 +20,10 @@ import {
   getPrestation,
   updatePrestation,
 } from '../../../controllers/back-office/prestationsBackOffice.controller';
+import {
+  getAllDogs,
+  getDog,
+} from '../../../controllers/back-office/dogsBackOffice.controller';
 
 const router: Express = Router();
 
@@ -92,5 +96,9 @@ router.get(
 // users routes
 router.get('/users/all', authMiddleware, isAdminMiddleware, getAllUsers);
 router.get('/users/:userId', authMiddleware, isAdminMiddleware, getUser);
+
+// dog routes
+router.get('/dogs/all', authMiddleware, isAdminMiddleware, getAllDogs);
+router.get('/dogs/:dogId', authMiddleware, isAdminMiddleware, getDog);
 
 export default router;

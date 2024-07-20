@@ -14,8 +14,7 @@ import {
   Reason,
   ValidatePhoneNumberFunction,
 } from '../validation/types/validation.types';
-import { regexes } from '../validation/User.validators';
-import { forbiddenCharsRegex } from '../validation/Common.validator';
+import { forbiddenCharsRegex, nameRegex } from '../validation/Common.validator';
 /**
  * @param phoneNumber(string): phone number to validate
  * @returns(boolean): returns true if the string is a valid international phone number
@@ -95,6 +94,19 @@ export const getValidationErrorMessage: GetValidationErrorMessageFunction = ({
       break;
     case Reason.HAS_FORBIDDEN_CHARS:
       result = errorMessageTemplate.replace('{{field}}', fieldName);
+      break;
+    case Reason.INVALID_DATE_FORMAT:
+      result = errorMessageTemplate
+        .replace('{{field}}', fieldName)
+        .replace('{{rule}}', ruleMessage);
+      break;
+    case Reason.FUTURE_DATE:
+      result = errorMessageTemplate.replace('{{field}}', fieldName);
+      break;
+    case Reason.TOO_OLD:
+      result = errorMessageTemplate
+        .replace('{{field}}', fieldName)
+        .replace('{{min}}', String(min));
       break;
     default:
       result = i18n
@@ -178,7 +190,7 @@ export const checkMax: MinMaxValidatorFunction = (
 export const checkFieldFormat: FieldFormatValidatorFunction = (
   fieldValue: string,
 ) => {
-  return regexes.nameField.test(fieldValue);
+  return nameRegex.test(fieldValue);
 };
 
 export const hasForbiddenChars = (fieldValue: string) => {
