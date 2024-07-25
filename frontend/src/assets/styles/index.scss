@@ -5,11 +5,11 @@
 @import './form-inputs';
 
 * {
-  margin: 0;
-  padding: 0;
+  box-sizing: border-box;
   text-decoration: none;
   list-style: none;
-  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
 body {
@@ -24,13 +24,13 @@ h3,
 h4,
 h5,
 h6 {
-  text-align: center;
   font-family: $secondary-font-stack;
+  text-align: center;
   font-weight: 600;
 }
 
 h1 {
-  font-weight: bold;
   font-size: clamp(1.5rem, 2vw + 1rem, 3rem);
+  font-weight: bold;
   color: $primary;
 }

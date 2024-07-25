@@ -3,19 +3,19 @@
 // ----- box and flex elements ----- \\
 
 @mixin box($width, $height: $width) {
-  width: $width;
   height: $height;
+  width: $width;
 }
 
 @mixin flex-column {
-  display: flex;
   flex-direction: column;
+  display: flex;
 }
 
 @mixin flex-center {
-  display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  display: flex;
 }
 
 @mixin flex-center-column {
@@ -24,19 +24,20 @@
 }
 
 @mixin flex-center-y {
-  display: flex;
   align-items: center;
+  display: flex;
 }
 
 @mixin flex-center-x {
-  display: flex;
   justify-content: center;
+  display: flex;
 }
 
 // ----- button ----- \\
 
 @mixin btn-base {
   display: inline-block;
+  font-family: inherit;
   border-radius: 8px;
   text-align: center;
   padding: 8px 16px;
@@ -53,6 +54,22 @@
   &:hover {
     opacity: 0.85;
   }
+}
+
+// ----- form inputs ----- \\
+
+@mixin input-base {
+  border-radius: 0.5rem;
+  font-family: inherit;
+  padding: 0.5rem 1rem;
+  max-height: 2.5rem;
+  font-size: 1.2rem;
+}
+
+@mixin checkbox {
+  accent-color: $green;
+  height: 2.5rem;
+  width: 2.5rem;
 }
 
 // ----- handle media querries ----- \\

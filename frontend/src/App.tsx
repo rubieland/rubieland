@@ -31,7 +31,19 @@ export const App = () => {
         onClick={() => console.log('clicked')}
         type="disabled"
       />
-      <input type="text" className="input" />
+      <input type="text" className="input" placeholder="Prénom" />
+      <input type="checkbox" className="checkbox" />
+      <textarea
+        className="textarea"
+        cols={20}
+        rows={2}
+        placeholder="Décrivez-nous votre toutou en quelques lignes..."
+      ></textarea>
+      <select className="select">
+        <option>Option 1</option>
+        <option>Option 2</option>
+        <option>Option 3</option>
+      </select>
 
       <ul>
         <li>

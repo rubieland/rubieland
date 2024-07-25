@@ -1,0 +1,20 @@
+@import './placeholders';
+
+.input,
+.textarea,
+.select {
+  @extend %input-base;
+
+  &::placeholder {
+    color: $grey50;
+  }
+}
+
+.textarea {
+  max-height: fit-content;
+  @extend %input-base;
+}
+
+.checkbox {
+  @extend %checkbox;
+}

@@ -1,5 +1,7 @@
 @import './mixins';
 
+// ----- buttons ----- \\
+
 %btn-base {
   @include btn-base;
 }
@@ -21,4 +23,14 @@
 
 %btn-error {
   @include btn-styles($red, $white);
+}
+
+// ----- form inputs ----- \\
+
+%input-base {
+  @include input-base;
+}
+
+%checkbox {
+  @include checkbox;
 }
