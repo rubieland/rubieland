@@ -1,0 +1,74 @@
+@import './_variables.scss';
+
+// ----- box and flex elements ----- \\
+
+@mixin box($width, $height: $width) {
+  width: $width;
+  height: $height;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-center-column {
+  @include flex-center;
+  flex-direction: column;
+}
+
+@mixin flex-center-y {
+  display: flex;
+  align-items: center;
+}
+
+@mixin flex-center-x {
+  display: flex;
+  justify-content: center;
+}
+
+// ----- button ----- \\
+
+@mixin button-style($bg-color, $text-color) {
+  background-color: $bg-color;
+  border-radius: 8px;
+  color: $text-color;
+  text-align: center;
+  padding: 8px 16px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+
+  &:hover {
+    opacity: 0.85;
+  }
+}
+
+// ----- handle media querries ----- \\
+
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == small {
+    @media (min-width: $breakpoint-small) {
+      @content;
+    }
+  } @else if $breakpoint == medium {
+    @media (min-width: $breakpoint-medium) {
+      @content;
+    }
+  } @else if $breakpoint == large {
+    @media (min-width: $breakpoint-large) {
+      @content;
+    }
+  } @else if $breakpoint == xlarge {
+    @media (min-width: $breakpoint-xlarge) {
+      @content;
+    }
+  }
+}

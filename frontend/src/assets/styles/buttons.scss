@@ -1,0 +1,18 @@
+.btn {
+  @include button-style($primary, $white);
+}
+
+.success-btn {
+  @include button-style($green, $black90);
+}
+
+.error-btn {
+  @include button-style($red, $white);
+}
+
+.disabled-btn {
+  @include button-style($grey30, $grey50);
+  &:hover {
+    opacity: 1;
+  }
+}

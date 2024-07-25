@@ -1,3 +1,7 @@
+@import './mixins';
+@import './variables';
+@import './buttons.scss';
+
 * {
   margin: 0;
   padding: 0;
@@ -7,7 +11,8 @@
 }
 
 body {
-  font-family: 'Open Sans', sans-serif;
+  font-family: $primary-font-stack;
+  font-size: $default-font-size;
   font-weight: normal;
 }
 
@@ -18,10 +23,12 @@ h4,
 h5,
 h6 {
   text-align: center;
-  font-family: 'Poppins', sans-serif;
+  font-family: $secondary-font-stack;
   font-weight: 600;
 }
 
 h1 {
   font-weight: bold;
+  font-size: clamp(1.5rem, 2vw + 1rem, 3rem);
+  color: $primary;
 }

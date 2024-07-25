@@ -14,6 +14,11 @@ export const App = () => {
   return (
     <>
       <h1>Rubieland</h1>
+      <button className="btn">Button</button>
+      <button className="success-btn">Button</button>
+      <button className="error-btn">Button</button>
+      <button className="disabled-btn">Button</button>
+
       <ul>
         <li>
           <Link to="/" activeProps={activeProps}>
