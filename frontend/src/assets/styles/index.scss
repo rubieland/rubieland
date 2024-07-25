@@ -1,6 +1,8 @@
 @import './mixins';
 @import './variables';
-@import './buttons.scss';
+@import './buttons';
+@import './placeholders';
+@import './form-inputs';
 
 * {
   margin: 0;

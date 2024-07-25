@@ -1,0 +1,24 @@
+@import './mixins';
+
+%btn-base {
+  @include btn-base;
+}
+
+%btn-primary {
+  @include btn-styles($primary, $white);
+}
+
+%btn-disabled {
+  @include btn-styles($grey30, $grey50);
+  &:hover {
+    opacity: 1;
+  }
+}
+
+%btn-success {
+  @include btn-styles($green, $black90);
+}
+
+%btn-error {
+  @include btn-styles($red, $white);
+}

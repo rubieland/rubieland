@@ -1,18 +1,22 @@
+@import './mixins';
+@import './placeholders';
+
 .btn {
-  @include button-style($primary, $white);
-}
+  @extend %btn-base;
 
-.success-btn {
-  @include button-style($green, $black90);
-}
+  &-primary {
+    @extend %btn-primary;
+  }
 
-.error-btn {
-  @include button-style($red, $white);
-}
+  &-disabled {
+    @extend %btn-disabled;
+  }
 
-.disabled-btn {
-  @include button-style($grey30, $grey50);
-  &:hover {
-    opacity: 1;
+  &-success {
+    @extend %btn-success;
+  }
+
+  &-error {
+    @extend %btn-error;
   }
 }

@@ -1,4 +1,4 @@
-@import './_variables.scss';
+@import './variables';
 
 // ----- box and flex elements ----- \\
 
@@ -35,16 +35,20 @@
 
 // ----- button ----- \\
 
-@mixin button-style($bg-color, $text-color) {
-  background-color: $bg-color;
+@mixin btn-base {
+  display: inline-block;
   border-radius: 8px;
-  color: $text-color;
   text-align: center;
   padding: 8px 16px;
   font-size: 1.2rem;
   font-weight: 600;
   cursor: pointer;
   border: none;
+}
+
+@mixin btn-styles($bg-color, $text-color) {
+  background-color: $bg-color;
+  color: $text-color;
 
   &:hover {
     opacity: 0.85;
