@@ -1,17 +1,19 @@
 interface CustomButtonProps {
-  type?: 'primary' | 'success' | 'error' | 'disabled';
+  style?: 'primary' | 'success' | 'error';
+  type?: 'submit' | 'reset' | 'button';
   isDisabled?: boolean;
-  text: string;
-  onClick: () => void;
+  onClick?: () => void;
+  title: string;
 }
 
 const CustomButton = ({
-  type = 'primary',
   isDisabled = false,
-  text,
+  style = 'primary',
+  type = 'button',
   onClick,
+  title,
 }: CustomButtonProps) => {
-  const classNames = `btn btn-${type}`;
+  const classNames = isDisabled ? 'btn btn-disabled' : `btn btn-${style}`;
 
   return (
     <button
@@ -19,8 +21,9 @@ const CustomButton = ({
       className={classNames}
       disabled={isDisabled}
       onClick={onClick}
+      type={type}
     >
-      {text}
+      {title}
     </button>
   );
 };
