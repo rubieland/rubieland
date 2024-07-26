@@ -1,5 +1,7 @@
 import { Link, Outlet } from '@tanstack/react-router';
 import CustomButton from './ui/components/Button/CustomButton';
+import FormInput from './ui/components/FormInputs/FormInput';
+import { ChangeEvent, useState } from 'react';
 
 // DOCS: Tanstack router tutorials => https://www.youtube.com/watch?v=4sslBg8LprE&list=PLOQjd5dsGSxJilh0lBofeY8Qib98kzmF5&index=1
 
@@ -10,6 +12,18 @@ export const App = () => {
       fontWeight: 'bold',
     },
   };
+
+  const [value, setValue] = useState('');
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setValue(e.target.value);
+  };
+
+  const nameRegex: RegExp = /^[a-zA-ZÀ-ÖØ-öø-ÿ' -]+$/i;
+
+  const error = !nameRegex.test(value)
+    ? 'Le champ prénom est invalide'
+    : undefined;
 
   // TODO: use Navbar when it's ready
   return (
@@ -31,7 +45,15 @@ export const App = () => {
         onClick={() => console.log('clicked')}
         type="disabled"
       />
-      <input type="text" className="input" placeholder="Prénom" />
+      <FormInput
+        label="Prénom"
+        name="firstName"
+        placeholder="Prénom"
+        value={value}
+        error={error}
+        onChange={handleChange}
+      />
+      <p>Value: {value} </p>
       <input type="checkbox" className="checkbox" />
       <textarea
         className="textarea"

@@ -14,7 +14,12 @@ const CustomButton = ({
   const classNames = `btn btn-${type}`;
 
   return (
-    <button className={classNames} disabled={isDisabled} onClick={onClick}>
+    <button
+      aria-disabled={isDisabled}
+      className={classNames}
+      disabled={isDisabled}
+      onClick={onClick}
+    >
       {text}
     </button>
   );
