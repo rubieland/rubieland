@@ -1,60 +1,42 @@
 import { Link, Outlet } from '@tanstack/react-router';
 import CustomButton from './ui/components/Button/CustomButton';
-import FormInput from './ui/components/FormInputs/FormInput';
-import { ChangeEvent, useState } from 'react';
+import FormTests from './ui/components/FormTests/FormTests';
 
 // DOCS: Tanstack router tutorials => https://www.youtube.com/watch?v=4sslBg8LprE&list=PLOQjd5dsGSxJilh0lBofeY8Qib98kzmF5&index=1
 
 export const App = () => {
   const activeProps = {
     style: {
-      color: 'red',
       fontWeight: 'bold',
+      color: 'red',
     },
   };
-
-  const [value, setValue] = useState('');
-
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setValue(e.target.value);
-  };
-
-  const nameRegex: RegExp = /^[a-zA-ZÀ-ÖØ-öø-ÿ' -]+$/i;
-
-  const error = !nameRegex.test(value)
-    ? 'Le champ prénom est invalide'
-    : undefined;
 
   // TODO: use Navbar when it's ready
   return (
     <>
       <h1>Rubieland</h1>
-      <CustomButton text="Button" onClick={() => console.log('clicked')} />
+      <CustomButton title="Button" onClick={() => console.log('clicked')} />
       <CustomButton
-        text="Button"
         onClick={() => console.log('clicked')}
-        type="success"
-      />
-      <CustomButton
-        text="Button"
-        onClick={() => console.log('clicked')}
-        type="error"
+        title="Button"
+        style="success"
       />
       <CustomButton
-        text="Button"
         onClick={() => console.log('clicked')}
-        type="disabled"
+        title="Button"
+        style="error"
       />
-      <FormInput
-        label="Prénom"
-        name="firstName"
-        placeholder="Prénom"
-        value={value}
-        error={error}
-        onChange={handleChange}
+      <CustomButton
+        onClick={() => console.log('clicked')}
+        title="Button"
+        isDisabled={true}
       />
-      <p>Value: {value} </p>
-      <input type="checkbox" className="checkbox" />
+
+      {/* TODO: remove <FormTests /> when first form is ready  */}
+      <FormTests />
+
+      {/* <input type="checkbox" className="checkbox" />
       <textarea
         className="textarea"
         cols={20}
@@ -65,7 +47,7 @@ export const App = () => {
         <option>Option 1</option>
         <option>Option 2</option>
         <option>Option 3</option>
-      </select>
+      </select> */}
 
       <ul>
         <li>
