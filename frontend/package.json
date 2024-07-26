@@ -26,6 +26,7 @@
     "react-i18next": "^15.0.0"
   },
   "devDependencies": {
+    "@hookform/resolvers": "^3.9.0",
     "@tanstack/eslint-plugin-query": "^5.51.12",
     "@tanstack/router-devtools": "^1.45.7",
     "@tanstack/router-plugin": "^1.45.7",
