@@ -1,3 +1,18 @@
 {
-  "hello": "Salut Monde !"
+  "common": {
+    "send": "Envoyer"
+  },
+  "form": {
+    "errors": {
+      "requiredField": "Ce champ est obligatoire",
+      "inputMax": "Ce champ ne peut contenir que {{max}} caractères maximum",
+      "inputMin": "Ce champ doit contenir au moins {{min}} caractères",
+      "invalidEmailFormat": "Veuillez saisir une adresse e-mail valide (exemple@exemple.com)"
+    },
+    "user": {
+      "emailLabel": "Email",
+      "emailPlaceholder": "exemple@exemple.com",
+      "password": "Mot de passe"
+    }
+  }
 }

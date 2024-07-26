@@ -1,3 +1,18 @@
 {
-  "hello": "Hello world!"
+  "common": {
+    "send": "Send"
+  },
+  "form": {
+    "errors": {
+      "requiredField": "This field is required",
+      "inputMax": "This field  must not contain more than {{max}} characters",
+      "inputMin": "This field  must contain at least {{min}} characters",
+      "invalidEmailFormat": "Please enter a valid email address (example@example.com)"
+    },
+    "user": {
+      "emailLabel": "Email",
+      "emailPlaceholder": "example@example.com",
+      "password": "Password"
+    }
+  }
 }
