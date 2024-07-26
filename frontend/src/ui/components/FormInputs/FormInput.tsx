@@ -1,51 +1,47 @@
 import { ChangeEventHandler, FocusEventHandler } from 'react';
 
 interface FormInputProps {
-  label: string;
-  type?: 'text' | 'email' | 'password';
-  name: string;
-  value: string | number;
   onChange: ChangeEventHandler<HTMLInputElement>;
+  onFocus?: FocusEventHandler<HTMLInputElement>;
+  onBlur?: FocusEventHandler<HTMLInputElement>;
+  type?: 'text' | 'email' | 'password';
+  value: string | number;
   placeholder?: string;
   isRequired?: boolean;
-  error?: string;
-  onBlur?: FocusEventHandler<HTMLInputElement>;
-  onFocus?: FocusEventHandler<HTMLInputElement>;
+  isInvalid?: boolean;
+  label: string;
+  name: string;
 }
 
 const FormInput = ({
-  label,
-  type = 'text',
-  name,
-  value,
-  onChange,
-  placeholder,
   isRequired = true,
-  error,
-  onBlur,
+  type = 'text',
+  placeholder,
+  isInvalid,
+  onChange,
   onFocus,
+  onBlur,
+  label,
+  value,
+  name,
 }: FormInputProps) => {
-  const classNames = error ? 'input input-error' : 'input';
+  const classNames = isInvalid ? 'input input-error' : 'input';
 
   return (
-    <div className="form-input">
-      <label htmlFor={name}>{label}</label>
-      <input
-        aria-label={!label ? placeholder : undefined}
-        aria-invalid={!!error}
-        aria-required={isRequired}
-        type={type}
-        name={name}
-        value={value}
-        onChange={onChange}
-        placeholder={placeholder}
-        required={isRequired}
-        className={classNames}
-        onBlur={() => onBlur}
-        onFocus={() => onFocus}
-      />
-      {error && <span className="input-error-message">{error}</span>}
-    </div>
+    <input
+      aria-required={isRequired}
+      placeholder={placeholder}
+      aria-invalid={isInvalid}
+      onFocus={() => onFocus}
+      className={classNames}
+      required={isRequired}
+      onBlur={() => onBlur}
+      onChange={onChange}
+      aria-label={label}
+      value={value}
+      type={type}
+      name={name}
+    />
   );
 };
 
