@@ -1,0 +1,22 @@
+@import './mixins';
+@import './placeholders';
+
+.btn {
+  @extend %btn-base;
+
+  &-primary {
+    @extend %btn-primary;
+  }
+
+  &-disabled {
+    @extend %btn-disabled;
+  }
+
+  &-success {
+    @extend %btn-success;
+  }
+
+  &-error {
+    @extend %btn-error;
+  }
+}

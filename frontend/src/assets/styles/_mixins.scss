@@ -1,0 +1,100 @@
+@import './variables';
+
+// ----- box and flex elements ----- \\
+
+@mixin box($width, $height: $width) {
+  height: $height;
+  width: $width;
+}
+
+@mixin flex-column {
+  flex-direction: column;
+  display: flex;
+}
+
+@mixin flex-center {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+@mixin flex-center-column {
+  @include flex-center;
+  flex-direction: column;
+}
+
+@mixin flex-center-y {
+  align-items: center;
+  display: flex;
+}
+
+@mixin flex-center-x {
+  justify-content: center;
+  display: flex;
+}
+
+// ----- button ----- \\
+
+@mixin btn-base {
+  border-radius: 0.375rem;
+  padding: 0.375rem 1rem;
+  display: inline-block;
+  font-family: inherit;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+}
+
+@mixin btn-styles($bg-color, $text-color) {
+  background-color: $bg-color;
+  color: $text-color;
+
+  &:hover {
+    opacity: 0.85;
+  }
+}
+
+// ----- form inputs ----- \\
+
+@mixin input-base {
+  border: 2px solid $grey40;
+  border-radius: 0.375rem;
+  font-family: inherit;
+  padding: 0.5rem 1rem;
+  max-height: 2.5rem;
+  font-size: 1.2rem;
+
+  &:focus {
+    border-color: $primary;
+  }
+}
+
+@mixin checkbox {
+  accent-color: $green;
+  height: 2.5rem;
+  width: 2.5rem;
+}
+
+// ----- handle media querries ----- \\
+
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == small {
+    @media (min-width: $breakpoint-small) {
+      @content;
+    }
+  } @else if $breakpoint == medium {
+    @media (min-width: $breakpoint-medium) {
+      @content;
+    }
+  } @else if $breakpoint == large {
+    @media (min-width: $breakpoint-large) {
+      @content;
+    }
+  } @else if $breakpoint == xlarge {
+    @media (min-width: $breakpoint-xlarge) {
+      @content;
+    }
+  }
+}
