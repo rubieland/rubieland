@@ -1,0 +1,45 @@
+@import '../../../../assets/styles/mixins';
+
+// burger menu button
+.burger-menu-btn {
+  transition: all 0.7s ease-in-out;
+  @include flex-column;
+  cursor: pointer;
+  position: fixed;
+  display: flex;
+  height: 50px;
+  padding: 5px;
+  z-index: 99;
+  right: 24px;
+  top: 5px;
+  gap: 5px;
+
+  //   @include respond-to('medium') {
+  //     display: none;
+  //   }
+
+  .burger-menu-bar {
+    transition: cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.75s;
+    transform: rotate(0) translate(0);
+    background-color: $primary;
+    border-radius: 0.5em;
+    height: 0.25em;
+    width: 2em;
+  }
+
+  // burger menu button bars animations
+  .burger-menu-bar.active:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+    transition: all 0.7s ease-out;
+  }
+
+  .burger-menu-bar.active:nth-child(2) {
+    transition: all 0.7s ease-out;
+    transform: scale(0.1);
+  }
+
+  .burger-menu-bar.active:nth-child(3) {
+    transform: rotate(135deg) translate(-7.5px, 7.5px);
+    transition: all 0.7s ease-out;
+  }
+}
