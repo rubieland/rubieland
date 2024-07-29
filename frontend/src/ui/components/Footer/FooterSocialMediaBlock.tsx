@@ -1,8 +1,8 @@
+import { SocialMediaLinks } from '../../../enums/SocialMediaLinks';
 import './styles/FooterSocialMediaBlock.scss';
+import Instagram from '../Icons/Instagram';
 import Facebook from '../Icons/Facebook';
 import i18n from '../../../core/i18n';
-import Instagram from '../Icons/Instagram';
-import { SocialMediaLinks } from '../../../enums/SocialMediaLinks';
 
 const FooterSocialMediaBlock = () => {
   return (
