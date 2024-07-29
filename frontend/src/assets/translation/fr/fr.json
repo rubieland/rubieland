@@ -7,6 +7,10 @@
     "about": "À propos",
     "blog": "Blog"
   },
+  "footer": {
+    "copyright": "©{{year}} Rubieland. Tous droits réservés",
+    "socialMedia": "Suivez-moi sur mes réseaux sociaux"
+  },
   "form": {
     "errors": {
       "requiredField": "Ce champ est obligatoire",
