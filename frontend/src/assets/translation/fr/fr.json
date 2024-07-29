@@ -1,8 +1,9 @@
 {
   "common": {
-    "send": "Envoyer"
+    "send": "Envoyer",
+    "goBackToHomepage": "Revenir à l'accueil"
   },
-  "navbar": {
+  "nav": {
     "home": "Accueil",
     "about": "À propos",
     "blog": "Blog"
@@ -10,6 +11,10 @@
   "footer": {
     "copyright": "©{{year}} Rubieland. Tous droits réservés",
     "socialMedia": "Suivez-moi sur mes réseaux sociaux"
+  },
+  "notFound": {
+    "title": "Erreur 404: Page introuvable",
+    "content": "Cette page n'existe pas."
   },
   "form": {
     "errors": {

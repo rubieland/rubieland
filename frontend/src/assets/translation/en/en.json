@@ -1,8 +1,9 @@
 {
   "common": {
-    "send": "Send"
+    "send": "Send",
+    "goBackToHomepage": "Go back to homepage"
   },
-  "navbar": {
+  "nav": {
     "home": "Home",
     "about": "About",
     "blog": "Blog"
@@ -10,6 +11,10 @@
   "footer": {
     "copyright": "©{{year}} Rubieland. All rights reserved",
     "socialMedia": "Follow me on my social media"
+  },
+  "notFound": {
+    "title": "Error 404: Page not found",
+    "content": "This page does not exist."
   },
   "form": {
     "errors": {

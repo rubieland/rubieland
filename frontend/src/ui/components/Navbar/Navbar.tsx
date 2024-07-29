@@ -6,15 +6,15 @@ import './styles/Navbar.scss';
 
 const links = [
   {
-    title: i18n.t('navbar.home'),
+    title: i18n.t('nav.home'),
     to: '/',
   },
   {
-    title: i18n.t('navbar.about'),
+    title: i18n.t('nav.about'),
     to: '/about',
   },
   {
-    title: i18n.t('navbar.blog'),
+    title: i18n.t('nav.blog'),
     to: '/blog',
   },
 ];
