@@ -1,0 +1,14 @@
+@import '../../../../assets/styles/mixins';
+
+footer {
+  @include flex-center-x;
+  flex-direction: column;
+  padding: 0 1rem 1rem;
+  font-size: 0.9rem;
+  min-height: 10dvh;
+  gap: 1rem;
+}
+
+.footer-copyright {
+  text-align: center;
+}
