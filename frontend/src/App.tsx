@@ -2,6 +2,7 @@ import CustomButton from './ui/components/Button/CustomButton';
 import FormTests from './ui/components/FormTests/FormTests';
 import { Outlet } from '@tanstack/react-router';
 import Header from './ui/components/Header/Header';
+import Footer from './ui/components/Footer/Footer';
 
 // DOCS: Tanstack router tutorials => https://www.youtube.com/watch?v=4sslBg8LprE&list=PLOQjd5dsGSxJilh0lBofeY8Qib98kzmF5&index=1
 
@@ -44,6 +45,7 @@ export const App = () => {
       </select> */}
 
       <Outlet />
+      <Footer />
     </>
   );
 };
