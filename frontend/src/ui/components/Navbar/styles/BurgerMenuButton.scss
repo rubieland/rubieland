@@ -14,13 +14,7 @@
   gap: 5px;
 
   &:hover {
-    .burger-menu-bar {
-      background-color: $green;
-
-      &.opened {
-        background-color: $red;
-      }
-    }
+    opacity: 0.75;
   }
 
   .burger-menu-bar {
