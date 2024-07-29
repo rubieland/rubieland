@@ -1,0 +1,9 @@
+@import '../../../assets/styles/mixins';
+@import '../../../assets/styles/variables';
+
+header {
+  justify-content: space-between;
+  @include flex-center-y;
+  width: 100dvw;
+  padding: 1rem;
+}

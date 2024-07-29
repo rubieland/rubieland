@@ -1,8 +1,7 @@
-import { NavbarProvider } from './ui/components/Navbar/providers/NavbarProvider';
 import CustomButton from './ui/components/Button/CustomButton';
 import FormTests from './ui/components/FormTests/FormTests';
-import Navbar from './ui/components/Navbar/Navbar';
 import { Outlet } from '@tanstack/react-router';
+import Header from './ui/components/Header/Header';
 
 // DOCS: Tanstack router tutorials => https://www.youtube.com/watch?v=4sslBg8LprE&list=PLOQjd5dsGSxJilh0lBofeY8Qib98kzmF5&index=1
 
@@ -10,11 +9,7 @@ export const App = () => {
   // TODO: use Navbar when it's ready
   return (
     <>
-      <NavbarProvider>
-        <Navbar />
-      </NavbarProvider>
-
-      <h1>Rubieland</h1>
+      <Header />
       <CustomButton title="Button" onClick={() => console.log('clicked')} />
       <CustomButton
         onClick={() => console.log('clicked')}

@@ -27,7 +27,7 @@
   display: inline-block;
   letter-spacing: 1px;
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   color: $primary;
   width: 80dvw;
 
@@ -40,14 +40,13 @@
 
 @include respond-to('large') {
   .navbar {
-    box-shadow: 0 1px 5px $black90;
-    justify-content: space-between;
+    justify-content: flex-end;
     flex-direction: row;
     align-items: center;
+    box-shadow: none;
     min-height: 75px;
     position: sticky;
-    padding: 0 1rem;
-    width: 100%;
+    padding: inherit;
     height: auto;
   }
 
