@@ -2,6 +2,11 @@
   "common": {
     "send": "Send"
   },
+  "navbar": {
+    "home": "Home",
+    "about": "About",
+    "blog": "Blog"
+  },
   "form": {
     "errors": {
       "requiredField": "This field is required",
