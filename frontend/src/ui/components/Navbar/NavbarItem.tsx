@@ -1,5 +1,6 @@
-import { useMenuIsActive } from './hooks/useMenuIsActive';
 import { Link } from '@tanstack/react-router';
+import { useNavbarContext } from './providers/NavbarProvider';
+import '../../../assets/styles/_variables.scss';
 
 interface NavbarItemProps {
   title: string;
@@ -9,15 +10,20 @@ interface NavbarItemProps {
 const activeProps = {
   style: {
     fontWeight: 'bold',
-    color: 'red',
+    color: '#ef5350',
   },
 };
 
 const NavbarItem = ({ title, to }: NavbarItemProps) => {
-  const { removeIsActive } = useMenuIsActive();
+  const { hideMenu } = useNavbarContext();
 
   return (
-    <Link onClick={removeIsActive} to={to} activeProps={activeProps}>
+    <Link
+      className="navbar-link"
+      onClick={hideMenu}
+      to={to}
+      activeProps={activeProps}
+    >
       {title}
     </Link>
   );

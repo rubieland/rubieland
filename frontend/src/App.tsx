@@ -1,3 +1,4 @@
+import { NavbarProvider } from './ui/components/Navbar/providers/NavbarProvider';
 import CustomButton from './ui/components/Button/CustomButton';
 import FormTests from './ui/components/FormTests/FormTests';
 import Navbar from './ui/components/Navbar/Navbar';
@@ -9,6 +10,10 @@ export const App = () => {
   // TODO: use Navbar when it's ready
   return (
     <>
+      <NavbarProvider>
+        <Navbar />
+      </NavbarProvider>
+
       <h1>Rubieland</h1>
       <CustomButton title="Button" onClick={() => console.log('clicked')} />
       <CustomButton
@@ -43,7 +48,6 @@ export const App = () => {
         <option>Option 3</option>
       </select> */}
 
-      <Navbar />
       <Outlet />
     </>
   );

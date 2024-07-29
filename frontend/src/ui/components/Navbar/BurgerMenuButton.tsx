@@ -1,22 +1,22 @@
-import { useMenuIsActive } from './hooks/useMenuIsActive';
+import { useNavbarContext } from './providers/NavbarProvider';
 import './styles/BurgerMenuButton.scss';
 
 const BurgerMenuButton = () => {
-  const { toggleIsActive, isActive } = useMenuIsActive();
+  const { isOpen, toggleIsOpen } = useNavbarContext();
 
   return (
     <div
-      className={isActive ? 'burger-menu-btn active' : 'burger-menu-btn'}
-      onClick={toggleIsActive}
+      className={isOpen ? 'burger-menu-btn opened' : 'burger-menu-btn'}
+      onClick={toggleIsOpen}
     >
       <div
-        className={isActive ? 'burger-menu-bar active' : 'burger-menu-bar'}
+        className={isOpen ? 'burger-menu-bar opened' : 'burger-menu-bar'}
       ></div>
       <div
-        className={isActive ? 'burger-menu-bar active' : 'burger-menu-bar'}
+        className={isOpen ? 'burger-menu-bar opened' : 'burger-menu-bar'}
       ></div>
       <div
-        className={isActive ? 'burger-menu-bar active' : 'burger-menu-bar'}
+        className={isOpen ? 'burger-menu-bar opened' : 'burger-menu-bar'}
       ></div>
     </div>
   );
