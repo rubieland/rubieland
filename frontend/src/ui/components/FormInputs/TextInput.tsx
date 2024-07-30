@@ -1,6 +1,6 @@
 import { ChangeEventHandler, FocusEventHandler } from 'react';
 
-interface FormInputProps {
+interface TextInputProps {
   onChange: ChangeEventHandler<HTMLInputElement>;
   onFocus?: FocusEventHandler<HTMLInputElement>;
   onBlur?: FocusEventHandler<HTMLInputElement>;
@@ -13,7 +13,7 @@ interface FormInputProps {
   name: string;
 }
 
-const FormInput = ({
+const TextInput = ({
   isRequired = true,
   type = 'text',
   placeholder,
@@ -24,7 +24,7 @@ const FormInput = ({
   label,
   value,
   name,
-}: FormInputProps) => {
+}: TextInputProps) => {
   const classNames = isInvalid ? 'input input-error' : 'input';
 
   return (
@@ -45,4 +45,4 @@ const FormInput = ({
   );
 };
 
-export default FormInput;
+export default TextInput;

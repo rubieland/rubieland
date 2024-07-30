@@ -1,7 +1,7 @@
 import { Controller, useFormContext } from 'react-hook-form';
-import FormInput from '../FormInput';
+import TextInput from '../TextInput';
 
-interface ControlledFormInputProps {
+interface ControlledTextInputProps {
   type?: 'text' | 'email' | 'password';
   placeholder?: string;
   isRequired?: boolean;
@@ -10,14 +10,14 @@ interface ControlledFormInputProps {
   name: string;
 }
 
-const ControlledFormInput = ({
+const ControlledTextInput = ({
   withLabel = false,
   isRequired = true,
   type = 'text',
   placeholder,
   label,
   name,
-}: ControlledFormInputProps) => {
+}: ControlledTextInputProps) => {
   const { control } = useFormContext();
 
   return (
@@ -27,7 +27,7 @@ const ControlledFormInput = ({
       render={({ field: { value, onChange }, fieldState: { error } }) => (
         <div className="form-input">
           {withLabel && <label htmlFor={name}>{label}</label>}
-          <FormInput
+          <TextInput
             placeholder={placeholder}
             isRequired={isRequired}
             isInvalid={!!error}
@@ -46,4 +46,4 @@ const ControlledFormInput = ({
   );
 };
 
-export default ControlledFormInput;
+export default ControlledTextInput;

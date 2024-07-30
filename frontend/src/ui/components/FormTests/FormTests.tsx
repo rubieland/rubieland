@@ -1,9 +1,9 @@
-import { FormProvider } from 'react-hook-form';
-import ControlledFormInput from '../FormInputs/ControlledFormInputs/ControlledFormInput';
+import ControlledTextInput from '../FormInputs/ControlledFormInputs/ControlledTextInput';
 import { useFormTestsValidation } from './hooks/useFormTestsValidation';
+import { addAsterisk } from '../../../utils/string.utils';
 import { isFormValid } from '../../../utils/form.utils';
 import CustomButton from '../Button/CustomButton';
-import { addAsterisk } from '../../../utils/string.utils';
+import { FormProvider } from 'react-hook-form';
 import i18n from '../../../core/i18n';
 
 const FormTests = () => {
@@ -17,14 +17,14 @@ const FormTests = () => {
   return (
     <FormProvider {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
-        <ControlledFormInput
+        <ControlledTextInput
           label={addAsterisk(i18n.t('form.user.emailLabel'))}
           placeholder={i18n.t('form.user.emailPlaceholder')}
           name="email"
           type="email"
           withLabel
         />
-        <ControlledFormInput
+        <ControlledTextInput
           label={addAsterisk(i18n.t('form.user.password'))}
           placeholder={i18n.t('form.user.password')}
           name="password"
