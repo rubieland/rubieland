@@ -38,9 +38,11 @@ const TextInput = ({
       onBlur={() => onBlur}
       onChange={onChange}
       aria-label={label}
+      autoComplete="on"
       value={value}
       type={type}
       name={name}
+      id={name}
     />
   );
 };

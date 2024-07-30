@@ -44,6 +44,7 @@ const Textarea = ({
       name={name}
       cols={cols}
       rows={rows}
+      id={name}
     ></textarea>
   );
 };
