@@ -4,21 +4,28 @@ import FormTests from '../../components/FormTests/FormTests';
 const Home = () => {
   return (
     <>
-      <CustomButton title="Button" onClick={() => console.log('clicked')} />
       <CustomButton
         onClick={() => console.log('clicked')}
         title="Button"
+        width={200}
+      />
+      <CustomButton
+        onClick={() => console.log('clicked')}
         style="success"
+        title="Button"
+        width={200}
       />
       <CustomButton
         onClick={() => console.log('clicked')}
         title="Button"
         style="error"
+        width={200}
       />
       <CustomButton
         onClick={() => console.log('clicked')}
-        title="Button"
         isDisabled={true}
+        title="Button"
+        width={200}
       />
 
       {/* TODO: remove <FormTests /> when first form is ready  */}
