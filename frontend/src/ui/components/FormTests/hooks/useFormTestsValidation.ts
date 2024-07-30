@@ -13,6 +13,11 @@ export const FormTestsSchema = z.object({
     .string()
     .min(8, { message: i18n.t('form.errors.inputMin', { min: 8 }) })
     .max(60, { message: i18n.t('form.errors.inputMax', { max: 60 }) }),
+  description: z
+    .string()
+    .min(8)
+    .min(8, { message: i18n.t('form.errors.inputMin', { min: 8 }) })
+    .max(60, { message: i18n.t('form.errors.inputMax', { max: 60 }) }),
 });
 
 export type FormTestsSchemaFormData = z.infer<typeof FormTestsSchema>;
@@ -22,6 +27,7 @@ export const useFormTestsValidation = () => {
     defaultValues: {
       email: '',
       password: '',
+      description: '',
     },
     resolver: zodResolver(FormTestsSchema),
     mode: 'onBlur',

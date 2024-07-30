@@ -1,4 +1,5 @@
 import ControlledTextInput from '../FormInputs/ControlledFormInputs/ControlledTextInput';
+import ControlledTextarea from '../FormInputs/ControlledFormInputs/ControlledTextarea';
 import { useFormTestsValidation } from './hooks/useFormTestsValidation';
 import { addAsterisk } from '../../../utils/string.utils';
 import { isFormValid } from '../../../utils/form.utils';
@@ -8,7 +9,7 @@ import i18n from '../../../core/i18n';
 
 const FormTests = () => {
   const form = useFormTestsValidation();
-  const watchedValues = form.watch(['email', 'password']);
+  const watchedValues = form.watch(['email', 'password', 'description']);
   const isFormFilled = isFormValid(watchedValues);
   const onSubmit = () => {
     console.log('Submit with data: ', form.getValues());
@@ -31,6 +32,7 @@ const FormTests = () => {
           type="password"
           withLabel
         />
+        <ControlledTextarea label="Description" name="description" withLabel />
         <CustomButton
           title={i18n.t('common.send')}
           isDisabled={!isFormFilled}
