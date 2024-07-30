@@ -40,12 +40,11 @@ const Textarea = ({
       onBlur={() => onBlur}
       onChange={onChange}
       aria-label={label}
+      value={value}
       name={name}
       cols={cols}
       rows={rows}
-    >
-      {value}
-    </textarea>
+    ></textarea>
   );
 };
 
