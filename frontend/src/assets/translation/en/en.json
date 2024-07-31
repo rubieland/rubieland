@@ -21,7 +21,10 @@
       "requiredField": "This field is required",
       "inputMaxLength": "This field  must not contain more than {{maxLength}} characters",
       "inputMinLength": "This field  must contain at least {{minLength}} characters",
-      "invalidEmailFormat": "Please enter a valid email address (example@example.com)"
+      "invalidEmailFormat": "Please enter a valid email address (example@example.com)",
+      "minBirthDate": "The required age is {{min}} years old minimum",
+      "maxBirthDate": "The age cannot exceed {{max}} years old",
+      "birthDateInFuture": "The birthdate cannot be in the future"
     },
     "user": {
       "emailLabel": "Email",
