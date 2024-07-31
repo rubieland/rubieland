@@ -4,25 +4,25 @@ interface TextInputProps {
   onChange: ChangeEventHandler<HTMLInputElement>;
   onFocus?: FocusEventHandler<HTMLInputElement>;
   onBlur?: FocusEventHandler<HTMLInputElement>;
-  type?: 'text' | 'email' | 'password';
+  type: 'text' | 'email' | 'password';
   value: string | number;
   placeholder?: string;
-  isRequired?: boolean;
-  isInvalid?: boolean;
+  isRequired: boolean;
+  isInvalid: boolean;
   label: string;
   name: string;
 }
 
 const TextInput = ({
-  isRequired = true,
-  type = 'text',
   placeholder,
+  isRequired,
   isInvalid,
   onChange,
   onFocus,
   onBlur,
   label,
   value,
+  type,
   name,
 }: TextInputProps) => {
   const classNames = isInvalid ? 'input input-error' : 'input';

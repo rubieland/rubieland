@@ -5,18 +5,18 @@ interface TextareaProps {
   onFocus?: FocusEventHandler<HTMLTextAreaElement>;
   onBlur?: FocusEventHandler<HTMLTextAreaElement>;
   placeholder?: string;
-  isRequired?: boolean;
-  isInvalid?: boolean;
+  isRequired: boolean;
+  isInvalid: boolean;
   value: string;
   label: string;
   name: string;
-  cols?: number;
-  rows?: number;
+  cols: number;
+  rows: number;
 }
 
 const Textarea = ({
-  isRequired = true,
   placeholder,
+  isRequired,
   isInvalid,
   onChange,
   onFocus,
