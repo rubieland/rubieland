@@ -1,9 +1,7 @@
-import { ChangeEventHandler, FocusEventHandler } from 'react';
+import { ChangeEventHandler } from 'react';
 
 interface TextInputProps {
   onChange: ChangeEventHandler<HTMLInputElement>;
-  onFocus?: FocusEventHandler<HTMLInputElement>;
-  onBlur?: FocusEventHandler<HTMLInputElement>;
   type: 'text' | 'email' | 'password';
   value: string | number;
   placeholder?: string;
@@ -18,8 +16,6 @@ const TextInput = ({
   isRequired,
   isInvalid,
   onChange,
-  onFocus,
-  onBlur,
   label,
   value,
   type,
@@ -32,10 +28,8 @@ const TextInput = ({
       aria-required={isRequired}
       placeholder={placeholder}
       aria-invalid={isInvalid}
-      onFocus={() => onFocus}
       className={classNames}
       required={isRequired}
-      onBlur={() => onBlur}
       onChange={onChange}
       aria-label={label}
       autoComplete="on"
