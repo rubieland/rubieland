@@ -19,8 +19,8 @@
   "form": {
     "errors": {
       "requiredField": "This field is required",
-      "inputMax": "This field  must not contain more than {{max}} characters",
-      "inputMin": "This field  must contain at least {{min}} characters",
+      "inputMaxLength": "This field  must not contain more than {{maxLength}} characters",
+      "inputMinLength": "This field  must contain at least {{minLength}} characters",
       "invalidEmailFormat": "Please enter a valid email address (example@example.com)"
     },
     "user": {
