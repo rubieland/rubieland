@@ -6,6 +6,7 @@ import { isFormValid } from '../../../utils/form.utils';
 import CustomButton from '../Button/CustomButton';
 import { FormProvider } from 'react-hook-form';
 import i18n from '../../../core/i18n';
+import ControlledCheckbox from '../FormInputs/ControlledFormInputs/ControlledCheckbox';
 
 const FormTests = () => {
   const form = useFormTestsValidation();
@@ -33,6 +34,7 @@ const FormTests = () => {
           withLabel
         />
         <ControlledTextarea label="Description" name="description" withLabel />
+        <ControlledCheckbox label="Publier cet article ?" name="isPublished" />
         <CustomButton
           title={i18n.t('common.send')}
           isDisabled={!isFormFilled}

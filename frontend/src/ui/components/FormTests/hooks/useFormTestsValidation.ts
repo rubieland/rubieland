@@ -11,12 +11,17 @@ export const FormTestsSchema = z.object({
     .email({ message: i18n.t('form.errors.invalidEmailFormat') }),
   password: z
     .string()
-    .min(8, { message: i18n.t('form.errors.inputMinLength', { min: 8 }) })
-    .max(60, { message: i18n.t('form.errors.inputMaxLength', { max: 60 }) }),
+    .min(8, { message: i18n.t('form.errors.inputMinLength', { minLength: 8 }) })
+    .max(60, {
+      message: i18n.t('form.errors.inputMaxLength', { maxLength: 60 }),
+    }),
   description: z
     .string()
-    .min(8, { message: i18n.t('form.errors.inputMinLength', { min: 8 }) })
-    .max(60, { message: i18n.t('form.errors.inputMaxLength', { max: 60 }) }),
+    .min(8, { message: i18n.t('form.errors.inputMinLength', { minLength: 8 }) })
+    .max(60, {
+      message: i18n.t('form.errors.inputMaxLength', { maxLength: 60 }),
+    }),
+  isPublished: z.boolean(),
 });
 
 export type FormTestsSchemaFormData = z.infer<typeof FormTestsSchema>;
@@ -27,6 +32,7 @@ export const useFormTestsValidation = () => {
       email: '',
       password: '',
       description: '',
+      isPublished: false,
     },
     resolver: zodResolver(FormTestsSchema),
     mode: 'onBlur',
