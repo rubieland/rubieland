@@ -1,3 +1,4 @@
+import ControlledDatePicker from '../FormInputs/ControlledFormInputs/ControlledDatePicker';
 import ControlledTextInput from '../FormInputs/ControlledFormInputs/ControlledTextInput';
 import ControlledCheckbox from '../FormInputs/ControlledFormInputs/ControlledCheckbox';
 import ControlledTextarea from '../FormInputs/ControlledFormInputs/ControlledTextarea';
@@ -26,9 +27,22 @@ const mockSelectItems: SelectItem[] = [
   },
 ];
 
+const today = new Date();
+const maxBirthDate = today.toISOString();
+const minBirthDate = new Date(
+  today.setFullYear(today.getFullYear() - 99),
+).toISOString();
+const formattedMaxBirthDate = maxBirthDate.split('T')[0];
+const formattedMinBirthDate = minBirthDate.split('T')[0];
+
 const FormTests = () => {
   const form = useFormTestsValidation();
-  const watchedValues = form.watch(['email', 'password', 'description']);
+  const watchedValues = form.watch([
+    'email',
+    'password',
+    'description',
+    'birthDate',
+  ]);
   const isFormFilled = isFormValid(watchedValues);
   const onSubmit = () => {
     console.log('Submit with data: ', form.getValues());
@@ -57,6 +71,12 @@ const FormTests = () => {
           name="password"
           type="password"
           withLabel
+        />
+        <ControlledDatePicker
+          label="Date de naissance"
+          name="birthDate"
+          maxDate={formattedMaxBirthDate}
+          minDate={formattedMinBirthDate}
         />
         <ControlledTextarea label="Description" name="description" withLabel />
         <ControlledCheckbox label="Publier cet article ?" name="isPublished" />
