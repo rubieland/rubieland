@@ -75,6 +75,7 @@
 
 @mixin checkbox {
   accent-color: $green;
+  cursor: pointer;
   height: 1.5rem;
   width: 1.5rem;
 }
