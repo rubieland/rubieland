@@ -22,6 +22,12 @@ export const FormTestsSchema = z.object({
       message: i18n.t('form.errors.inputMaxLength', { maxLength: 60 }),
     }),
   isPublished: z.boolean(),
+  gender: z
+    .enum(['male', 'female'], {
+      message: 'La valeur de ce champ doit être soit Homme soit Femme',
+    })
+    .nullable()
+    .refine((value) => value !== null, i18n.t('form.errors.requiredField')),
 });
 
 export type FormTestsSchemaFormData = z.infer<typeof FormTestsSchema>;
@@ -33,6 +39,7 @@ export const useFormTestsValidation = () => {
       password: '',
       description: '',
       isPublished: false,
+      gender: 'male',
     },
     resolver: zodResolver(FormTestsSchema),
     mode: 'onBlur',
