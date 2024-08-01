@@ -19,8 +19,8 @@
 }
 
 @mixin flex-center-column {
-  @include flex-center;
   flex-direction: column;
+  @include flex-center;
 }
 
 @mixin flex-center-y {
@@ -42,8 +42,8 @@
   display: inline-block;
   font-family: inherit;
   text-align: center;
-  font-size: 1.2rem;
   font-weight: 600;
+  font-size: 1rem;
   cursor: pointer;
   border: none;
   width: 100%;
