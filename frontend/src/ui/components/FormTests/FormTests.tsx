@@ -80,11 +80,13 @@ const FormTests = () => {
         />
         <ControlledTextarea label="Description" name="description" withLabel />
         <ControlledCheckbox label="Publier cet article ?" name="isPublished" />
-        <CustomButton
-          title={i18n.t('common.send')}
-          isDisabled={!isFormFilled}
-          type="submit"
-        />
+        <div className="form-input">
+          <CustomButton
+            title={i18n.t('common.send')}
+            isDisabled={!isFormFilled}
+            type="submit"
+          />
+        </div>
       </form>
     </FormProvider>
   );
