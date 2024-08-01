@@ -1,5 +1,5 @@
 import { createRouter, RouterProvider } from '@tanstack/react-router';
-import NotFound from './ui/pages/NotFound/NotFound.tsx';
+import NotFound from './ui/components/NotFound/NotFound.tsx';
 import { routeTree } from './routeTree.gen.ts';
 
 const router = createRouter({ routeTree, defaultNotFoundComponent: NotFound });

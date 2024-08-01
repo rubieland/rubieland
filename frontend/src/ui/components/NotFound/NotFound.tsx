@@ -7,7 +7,7 @@ const NotFound = () => {
     <section className="not-found-container">
       <h2>{i18n.t('notFound.title')}</h2>
       <p>{i18n.t('notFound.content')}</p>
-      <Link className="btn btn-primary" to="/">
+      <Link className="btn btn-primary back-home-btn" to="/">
         {i18n.t('common.goBackToHomepage')}
       </Link>
     </section>
