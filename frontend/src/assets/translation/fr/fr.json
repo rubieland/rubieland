@@ -24,7 +24,10 @@
       "invalidEmailFormat": "Veuillez saisir une adresse e-mail valide (exemple@exemple.com)",
       "minBirthDate": "L'âge requis est de {{min}} ans minimum",
       "maxBirthDate": "L'âge ne peut pas excéder {{max}} ans",
-      "birthDateInFuture": "La date de naissance ne peut pas être dans le futur"
+      "birthDateInFuture": "La date de naissance ne peut pas être dans le futur",
+      "invalidFileType": "Fichier invalide. Seuls les fichiers de type {{types}} sont acceptés",
+      "fileTooLarge": "Fichier trop lourd. Max: {{limit}}MB",
+      "oneFileLimit": "Vous ne devez envoyer qu'un fichier"
     },
     "user": {
       "emailLabel": "Email",

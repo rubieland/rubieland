@@ -1,5 +1,10 @@
 import { isAtLeastNYearsOld, isInFuture } from '../../../../utils/date.utils';
 import { zodResolver } from '@hookform/resolvers/zod';
+import {
+  acceptedMimeTypes,
+  acceptedMimeTypesString,
+  maxFileSize,
+} from '../../../../core/fileUploadConfig';
 import { useForm } from 'react-hook-form';
 import i18n from '../../../../core/i18n';
 import { isBefore } from 'date-fns';
@@ -64,6 +69,34 @@ export const FormTestsSchema = z.object({
       },
       {
         message: i18n.t('form.errors.maxBirthDate', { max: 99 }),
+      },
+    ),
+  avatar: z
+    .array(z.instanceof(File))
+    .refine(
+      (files) => {
+        return files.length === 1;
+      },
+      {
+        message: i18n.t('form.errors.oneFileLimit'),
+      },
+    )
+    .refine(
+      (files) => {
+        return files.every((file) => acceptedMimeTypes.includes(file.type));
+      },
+      {
+        message: i18n.t('form.errors.invalidFileType', {
+          types: acceptedMimeTypesString,
+        }),
+      },
+    )
+    .refine(
+      (files) => {
+        return files.every((file) => file.size <= maxFileSize);
+      },
+      {
+        message: i18n.t('form.errors.fileTooLarge', { limit: 3 }),
       },
     ),
 });

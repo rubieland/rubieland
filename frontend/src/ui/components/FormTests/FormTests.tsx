@@ -1,8 +1,10 @@
 import ControlledDatePicker from '../FormInputs/ControlledFormInputs/ControlledDatePicker';
+import ControlledFileInput from '../FormInputs/ControlledFormInputs/ControlledFileInput';
 import ControlledTextInput from '../FormInputs/ControlledFormInputs/ControlledTextInput';
 import ControlledCheckbox from '../FormInputs/ControlledFormInputs/ControlledCheckbox';
 import ControlledTextarea from '../FormInputs/ControlledFormInputs/ControlledTextarea';
 import ControlledSelect from '../FormInputs/ControlledFormInputs/ControlledSelect';
+import { acceptedMimeTypesString } from '../../../core/fileUploadConfig';
 import { useFormTestsValidation } from './hooks/useFormTestsValidation';
 import { SelectItem } from '../FormInputs/types/FormInputsTypes';
 import { addAsterisk } from '../../../utils/string.utils';
@@ -77,6 +79,11 @@ const FormTests = () => {
           name="birthDate"
           maxDate={formattedMaxBirthDate}
           minDate={formattedMinBirthDate}
+        />
+        <ControlledFileInput
+          acceptedMimetypes={acceptedMimeTypesString}
+          label="Avatar"
+          name="avatar"
         />
         <ControlledTextarea label="Description" name="description" withLabel />
         <ControlledCheckbox label="Publier cet article ?" name="isPublished" />
