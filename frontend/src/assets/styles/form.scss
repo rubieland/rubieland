@@ -58,6 +58,8 @@ form {
   @extend %checkbox;
 }
 
-.date-picker {
+.select,
+.date-picker,
+.file-input {
   cursor: pointer;
 }
