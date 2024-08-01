@@ -1,19 +1,33 @@
 @import './placeholders';
 @import './mixins';
 
+form {
+  @include flex-center-column;
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 1rem;
+  row-gap: 1rem;
+}
+
 .form-input {
   @include flex-column;
+  max-width: 36rem;
   gap: 0.125rem;
+  width: 100%;
 }
 
 .checkbox-input {
   @include flex-center-y;
+  max-width: 36rem;
+  width: 100%;
   gap: 1.5rem;
 }
 
 .input-error-message {
   font-size: 0.875rem;
   font-weight: 600;
+  max-width: 36rem;
+  width: 100%;
   color: $red;
 }
 
@@ -36,24 +50,9 @@
 }
 
 .textarea {
-  max-height: fit-content;
   @extend %input-base;
 }
 
 .checkbox {
   @extend %checkbox;
-}
-
-// ----- responsive ----- \\
-
-@include respond-to('medium') {
-  label {
-    font-size: 1.125rem;
-  }
-
-  .input,
-  .textarea,
-  .select {
-    font-size: 1rem;
-  }
 }
