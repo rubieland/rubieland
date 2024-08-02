@@ -63,3 +63,85 @@ form {
 .file-input {
   cursor: pointer;
 }
+
+.edit-avatar-input {
+  transition: all ease-in-out 0.3s;
+  background-color: $grey50;
+  border-radius: 100%;
+  text-align: center;
+  cursor: pointer;
+  height: 100px;
+  width: 100px;
+
+  &:hover {
+    background-color: $blackTransp80;
+  }
+
+  input {
+    display: none;
+  }
+}
+
+.edit-avatar-figure {
+  @include flex-center-column;
+  border-radius: 100%;
+  position: relative;
+  height: 100px;
+  width: 100px;
+
+  > img {
+    object-position: center;
+    border-radius: 100%;
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+  }
+
+  > svg {
+    height: 50%;
+    width: 50%;
+  }
+}
+
+.edit-avatar-figcaption {
+  transition: all ease-in-out 0.3s;
+  @include flex-center-column;
+  background-color: $black90;
+  border-radius: 100%;
+  position: absolute;
+  cursor: pointer;
+  height: inherit;
+  width: inherit;
+  opacity: 0;
+  top: 0px;
+
+  &:hover {
+    background-color: $blackTransp80;
+    opacity: 1;
+  }
+
+  > svg {
+    height: 50%;
+    width: 50%;
+  }
+
+  > .caption-text {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: $white;
+  }
+}
+
+// ----- responsive ----- \\
+
+@include respond-to('large') {
+  .edit-avatar-input,
+  .edit-avatar-figure {
+    height: 150px;
+    width: 150px;
+
+    .edit-avatar-figcaption > .caption-text {
+      font-size: 1rem;
+    }
+  }
+}
