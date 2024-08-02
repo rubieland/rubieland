@@ -1,4 +1,4 @@
-import { ChangeEventHandler } from 'react';
+import { ChangeEventHandler, forwardRef } from 'react';
 
 interface FileInputProps {
   onChange: ChangeEventHandler<HTMLInputElement>;
@@ -10,36 +10,40 @@ interface FileInputProps {
   name: string;
 }
 
-const FileInput = ({
-  acceptedMimetypes,
-  isRequired,
-  isInvalid,
-  multiple,
-  onChange,
-  label,
-  name,
-}: FileInputProps) => {
-  const classNames = isInvalid
-    ? 'input file-input input-error'
-    : 'input file-input';
+const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
+  (
+    {
+      acceptedMimetypes,
+      isRequired,
+      isInvalid,
+      multiple,
+      onChange,
+      label,
+      name,
+    },
+    ref,
+  ) => {
+    const classNames = isInvalid
+      ? 'input file-input input-error'
+      : 'input file-input';
 
-  return (
-    <input
-      accept={acceptedMimetypes}
-      aria-required={isRequired}
-      aria-invalid={isInvalid}
-      className={classNames}
-      required={isRequired}
-      onChange={(e) => {
-        onChange(e);
-      }}
-      multiple={multiple}
-      aria-label={label}
-      type="file"
-      name={name}
-      id={name}
-    />
-  );
-};
+    return (
+      <input
+        accept={acceptedMimetypes}
+        aria-required={isRequired}
+        aria-invalid={isInvalid}
+        className={classNames}
+        required={isRequired}
+        onChange={onChange}
+        multiple={multiple}
+        aria-label={label}
+        type="file"
+        name={name}
+        ref={ref}
+        id={name}
+      />
+    );
+  },
+);
 
 export default FileInput;
