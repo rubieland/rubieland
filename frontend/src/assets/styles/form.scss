@@ -66,12 +66,12 @@ form {
 
 .edit-avatar-input {
   transition: all ease-in-out 0.3s;
-  background-color: $grey50;
+  background-color: $grey40;
   border-radius: 100%;
   text-align: center;
   cursor: pointer;
-  height: 100px;
-  width: 100px;
+  height: 120px;
+  width: 120px;
 
   &:hover {
     background-color: $blackTransp80;
@@ -86,8 +86,8 @@ form {
   @include flex-center-column;
   border-radius: 100%;
   position: relative;
-  height: 100px;
-  width: 100px;
+  height: 120px;
+  width: 120px;
 
   > img {
     object-position: center;
