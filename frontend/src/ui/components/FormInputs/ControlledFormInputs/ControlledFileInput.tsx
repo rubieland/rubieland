@@ -65,30 +65,31 @@ const ControlledFileInput = ({
       control={control}
       name={name}
       render={({ field: { onChange }, fieldState: { error } }) => (
-        <div className={classNames} onClick={handleClick}>
-          <FileInput
-            onChange={(e) => handleChange(e, onChange)}
-            acceptedMimetypes={acceptedMimetypes}
-            isRequired={isRequired}
-            isInvalid={!!error}
-            ref={inputFileRef}
-            multiple={multiple}
-            label={label}
-            name={name}
-          />
+        <div className="file-input-container">
+          <div className={classNames} onClick={handleClick}>
+            <FileInput
+              onChange={(e) => handleChange(e, onChange)}
+              acceptedMimetypes={acceptedMimetypes}
+              isRequired={isRequired}
+              isInvalid={!!error}
+              ref={inputFileRef}
+              multiple={multiple}
+              label={label}
+              name={name}
+            />
 
-          <figure className="edit-avatar-figure">
-            {previewUrl && typeof previewUrl === 'string' ? (
-              <img src={previewUrl} alt={label} />
-            ) : (
-              <DefaultAvatar color="#fff" />
-            )}
-            <figcaption className="edit-avatar-figcaption">
-              <Camera color="#fff" />
-              <p className="caption-text">Modifier</p>
-            </figcaption>
-          </figure>
-
+            <figure className="edit-avatar-figure">
+              {previewUrl && typeof previewUrl === 'string' ? (
+                <img src={previewUrl} alt={label} />
+              ) : (
+                <DefaultAvatar color="#fff" />
+              )}
+              <figcaption className="edit-avatar-figcaption">
+                <Camera color="#fff" />
+                <p className="caption-text">Modifier</p>
+              </figcaption>
+            </figure>
+          </div>
           {error && (
             <span className="input-error-message">{error.message}</span>
           )}
