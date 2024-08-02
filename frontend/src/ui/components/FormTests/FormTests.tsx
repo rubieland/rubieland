@@ -53,6 +53,12 @@ const FormTests = () => {
   return (
     <FormProvider {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
+        <ControlledFileInput
+          acceptedMimetypes={acceptedMimeTypesString}
+          inputType="avatar"
+          label="Modifier la photo de profil"
+          name="avatar"
+        />
         <ControlledSelect
           placeholder={mockSelectPlaceholder}
           items={mockSelectItems}
@@ -80,11 +86,7 @@ const FormTests = () => {
           maxDate={formattedMaxBirthDate}
           minDate={formattedMinBirthDate}
         />
-        <ControlledFileInput
-          acceptedMimetypes={acceptedMimeTypesString}
-          label="Avatar"
-          name="avatar"
-        />
+
         <ControlledTextarea label="Description" name="description" withLabel />
         <ControlledCheckbox label="Publier cet article ?" name="isPublished" />
         <div className="form-input">
