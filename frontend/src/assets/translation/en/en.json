@@ -1,6 +1,8 @@
 {
   "common": {
     "send": "Send",
+    "edit": "Edit",
+    "addPicture": "Add a picture",
     "goBackToHomepage": "Go back to homepage"
   },
   "nav": {

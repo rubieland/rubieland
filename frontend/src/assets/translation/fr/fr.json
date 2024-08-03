@@ -1,6 +1,8 @@
 {
   "common": {
     "send": "Envoyer",
+    "edit": "Modifier",
+    "addPicture": "Ajouter une image",
     "goBackToHomepage": "Revenir à l'accueil"
   },
   "nav": {
