@@ -64,54 +64,97 @@ form {
   cursor: pointer;
 }
 
+// ----- file inputs styles ----- \\
+
 .file-input {
   @include flex-center-column;
-  gap: 0.5rem;
   text-align: center;
   width: 100%;
-}
-
-.file-input-container {
-  @include flex-center-column;
   gap: 0.5rem;
 }
 
-.edit-avatar-input {
-  transition: all ease-in-out 0.3s;
-  background-color: $grey40;
-  border-radius: 100%;
-  text-align: center;
-  cursor: pointer;
-  height: 120px;
-  width: 120px;
+// ----- edit blog article picture input styles ----- \\
 
-  &:hover {
-    background-color: $blackTransp80;
-  }
-
-  input {
-    display: none;
-  }
+.edit-article-picture-input-container {
+  font-family: $secondary-font-stack;
+  max-width: 36rem;
+  @include box(100%);
 }
 
-.edit-avatar-figure {
+.edit-article-picture-input {
+  @extend %edit-picture-input;
+}
+
+.edit-article-picture-figure {
+  @include box(inherit, 200px);
   @include flex-center-column;
-  border-radius: 100%;
+  border-radius: 0.25rem;
   position: relative;
-  height: 120px;
-  width: 120px;
 
   > img {
-    object-position: center;
-    border-radius: 100%;
-    object-fit: cover;
-    height: 100%;
-    width: 100%;
+    @include img($br: inherit);
   }
 
   > svg {
-    height: 50%;
-    width: 50%;
+    @include box(50%);
+    opacity: 0.8;
+    z-index: 0;
+  }
+
+  > p {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: $grey50;
+    z-index: 1;
+  }
+}
+
+.edit-article-picture-figcaption {
+  transition: all ease-in-out 0.3s;
+  @include flex-center-column;
+  @include box(100%, inherit);
+  border-radius: inherit;
+  position: absolute;
+  cursor: pointer;
+  opacity: 0;
+  z-index: 2;
+  top: 0px;
+
+  &:hover {
+    background-color: $blackTransp80;
+    opacity: 1;
+  }
+
+  > svg {
+    @include box(50%);
+  }
+
+  > p {
+    font-weight: 600;
+    color: $white;
+  }
+}
+
+// ----- edit avatar input styles ----- \\
+
+.edit-avatar-input {
+  @extend %edit-picture-input;
+  border-radius: 100%;
+}
+
+.edit-avatar-figure {
+  font-family: $secondary-font-stack;
+  @include flex-center-column;
+  border-radius: 100%;
+  position: relative;
+  @include box(120px);
+
+  > img {
+    @include img($br: 100%);
+  }
+
+  > svg {
+    @include box(50%);
   }
 }
 
@@ -119,11 +162,10 @@ form {
   transition: all ease-in-out 0.3s;
   @include flex-center-column;
   background-color: $black90;
+  @include box(inherit);
   border-radius: 100%;
   position: absolute;
   cursor: pointer;
-  height: inherit;
-  width: inherit;
   opacity: 0;
   top: 0px;
 
@@ -133,11 +175,10 @@ form {
   }
 
   > svg {
-    height: 50%;
-    width: 50%;
+    @include box(50%);
   }
 
-  > .caption-text {
+  > p {
     font-size: 0.8rem;
     font-weight: 600;
     color: $white;
@@ -149,11 +190,19 @@ form {
 @include respond-to('large') {
   .edit-avatar-input,
   .edit-avatar-figure {
-    height: 150px;
-    width: 150px;
+    @include box(150px);
 
-    .edit-avatar-figcaption > .caption-text {
+    .edit-avatar-figcaption > p {
       font-size: 1rem;
+    }
+  }
+
+  .edit-article-picture-input,
+  .edit-article-picture-figure {
+    height: 250px;
+
+    .edit-article-picture-figcaption > p {
+      font-size: 1.2rem;
     }
   }
 }
