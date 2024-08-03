@@ -1,11 +1,10 @@
 import { Controller, useFormContext } from 'react-hook-form';
+import EditPictureFileInput from '../EditPictureFileInput';
 import { ChangeEvent, useRef, useState } from 'react';
-import DefaultAvatar from '../../Icons/DefaultAvatar';
-import Camera from '../../Icons/Camera';
 import FileInput from '../FileInput';
 
 interface ControlledFileInputProps {
-  inputType: 'avatar' | 'blogArticlePicture';
+  pictureType: 'avatar' | 'articlePicture';
   currentAvatar?: string | null;
   acceptedMimetypes: string;
   isRequired?: boolean;
@@ -18,8 +17,8 @@ const ControlledFileInput = ({
   currentAvatar = null,
   isRequired = false,
   acceptedMimetypes,
-  inputType,
   multiple = false,
+  pictureType,
   label,
   name,
 }: ControlledFileInputProps) => {
@@ -29,10 +28,11 @@ const ControlledFileInput = ({
   const [previewUrl, setPreviewUrl] = useState<string | ArrayBuffer | null>(
     currentAvatar,
   );
+
   const classNames =
-    inputType === 'avatar'
+    pictureType === 'avatar'
       ? `edit-avatar-input`
-      : `form-input edit-blog-article-picture-input`;
+      : `edit-article-picture-input`;
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement>,
@@ -65,30 +65,24 @@ const ControlledFileInput = ({
       control={control}
       name={name}
       render={({ field: { onChange }, fieldState: { error } }) => (
-        <div className="file-input-container">
+        <div className={`${classNames}-container`}>
           <div className={classNames} onClick={handleClick}>
             <FileInput
               onChange={(e) => handleChange(e, onChange)}
               acceptedMimetypes={acceptedMimetypes}
               isRequired={isRequired}
               isInvalid={!!error}
-              ref={inputFileRef}
               multiple={multiple}
+              ref={inputFileRef}
               label={label}
               name={name}
             />
 
-            <figure className="edit-avatar-figure">
-              {previewUrl && typeof previewUrl === 'string' ? (
-                <img src={previewUrl} alt={label} />
-              ) : (
-                <DefaultAvatar color="#fff" />
-              )}
-              <figcaption className="edit-avatar-figcaption">
-                <Camera color="#fff" />
-                <p className="caption-text">Modifier</p>
-              </figcaption>
-            </figure>
+            <EditPictureFileInput
+              previewUrl={previewUrl}
+              pictureType={pictureType}
+              label={label}
+            />
           </div>
           {error && (
             <span className="input-error-message">{error.message}</span>

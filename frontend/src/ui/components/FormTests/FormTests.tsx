@@ -55,9 +55,15 @@ const FormTests = () => {
       <form onSubmit={form.handleSubmit(onSubmit)}>
         <ControlledFileInput
           acceptedMimetypes={acceptedMimeTypesString}
-          inputType="avatar"
           label="Modifier la photo de profil"
+          pictureType="avatar"
           name="avatar"
+        />
+        <ControlledFileInput
+          acceptedMimetypes={acceptedMimeTypesString}
+          label="Modifier l'image de l'article"
+          pictureType="articlePicture"
+          name="picture"
         />
         <ControlledSelect
           placeholder={mockSelectPlaceholder}
