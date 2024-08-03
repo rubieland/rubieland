@@ -1,7 +1,7 @@
 type getAdaptableSizeProps = {
+  currentWidth: number | undefined;
   originalHeight: number;
   originalWidth: number;
-  currentWidth: number | undefined;
 };
 
 type getAdaptableSizeResponse = {
