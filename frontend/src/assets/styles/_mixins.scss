@@ -79,6 +79,32 @@
   width: 1.5rem;
 }
 
+@mixin edit-picture-input {
+  transition: all ease-in-out 0.3s;
+  background-color: $grey30;
+  border-radius: 0.25rem;
+  text-align: center;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $blackTransp80;
+  }
+
+  input {
+    display: none;
+  }
+}
+
+// ----- images and icons ----- \\
+
+@mixin img($w: 100%, $h: 100%, $br: 4px, $pos: center, $fit: cover) {
+  object-position: $pos;
+  border-radius: $br;
+  object-fit: $fit;
+  height: $h;
+  width: $w;
+}
+
 // ----- handle media querries ----- \\
 
 @mixin respond-to($breakpoint) {

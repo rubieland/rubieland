@@ -34,3 +34,7 @@
 %checkbox {
   @include checkbox;
 }
+
+%edit-picture-input {
+  @include edit-picture-input;
+}
