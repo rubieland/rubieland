@@ -1,4 +1,5 @@
 import { useCropPictureModalContext } from './providers/CropPictureModalProvider';
+import colors from '../../../assets/styles/colors';
 import CustomButton from '../Button/CustomButton';
 import i18n from '../../../core/i18n';
 import Cross from '../Icons/Cross';
@@ -16,7 +17,7 @@ const CropPictureModal = () => {
         <div className="modal-header">
           <h3>{i18n.t('cropPictureModal.title')}</h3>
           <div className="modal-close-icon" onClick={closeModal}>
-            <Cross height={36} width={36} />
+            <Cross color={colors.white} height={36} width={36} />
           </div>
         </div>
         <div className="modal-content">

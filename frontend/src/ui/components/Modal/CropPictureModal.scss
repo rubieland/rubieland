@@ -22,8 +22,10 @@
 }
 
 .modal-header {
+  background-color: $primary;
   position: relative;
   padding: 1rem;
+  color: $white;
 
   > h3 {
     width: 100%;
@@ -63,17 +65,18 @@
 }
 
 @include respond-to('medium') {
-  .modal-close-icon {
-    @include flex-center;
-    @include box(2rem);
-    position: absolute;
-    cursor: pointer;
-    display: block;
-    right: 1rem;
-    top: 1rem;
+  .modal-header {
+    > .modal-close-icon {
+      @include flex-center;
+      @include box(2rem);
+      position: absolute;
+      cursor: pointer;
+      right: 1rem;
+      top: 1rem;
 
-    &:hover {
-      opacity: 0.5;
+      &:hover {
+        opacity: 0.5;
+      }
     }
   }
 
@@ -84,10 +87,14 @@
 
 @include respond-to('large') {
   .modal-overlay {
-    padding: 10%;
+    padding: 5% 10%;
   }
 
   .modal-wrapper {
     height: 100%;
+
+    h3 {
+      font-size: 1.5rem;
+    }
   }
 }
