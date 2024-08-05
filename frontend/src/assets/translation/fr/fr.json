@@ -1,13 +1,35 @@
 {
   "common": {
-    "send": "Envoyer"
+    "send": "Envoyer",
+    "edit": "Modifier",
+    "addPicture": "Ajouter une image",
+    "goBackToHomepage": "Revenir à l'accueil"
+  },
+  "nav": {
+    "home": "Accueil",
+    "about": "À propos",
+    "blog": "Blog"
+  },
+  "footer": {
+    "copyright": "©{{year}} Rubieland. Tous droits réservés",
+    "socialMedia": "Suivez-moi sur mes réseaux sociaux"
+  },
+  "notFound": {
+    "title": "Erreur 404: Page introuvable",
+    "content": "Cette page n'existe pas."
   },
   "form": {
     "errors": {
       "requiredField": "Ce champ est obligatoire",
-      "inputMax": "Ce champ ne peut contenir que {{max}} caractères maximum",
-      "inputMin": "Ce champ doit contenir au moins {{min}} caractères",
-      "invalidEmailFormat": "Veuillez saisir une adresse e-mail valide (exemple@exemple.com)"
+      "inputMaxLength": "Ce champ ne peut contenir que {{maxLength}} caractères maximum",
+      "inputMinLength": "Ce champ doit contenir au moins {{minLength}} caractères",
+      "invalidEmailFormat": "Veuillez saisir une adresse e-mail valide (exemple@exemple.com)",
+      "minBirthDate": "L'âge requis est de {{min}} ans minimum",
+      "maxBirthDate": "L'âge ne peut pas excéder {{max}} ans",
+      "birthDateInFuture": "La date de naissance ne peut pas être dans le futur",
+      "invalidFileType": "Fichier invalide. Seuls les fichiers de type {{types}} sont acceptés",
+      "fileTooLarge": "Fichier trop lourd. Max: {{limit}}MB",
+      "oneFileLimit": "Vous ne devez envoyer qu'un fichier"
     },
     "user": {
       "emailLabel": "Email",

@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router';
+import Home from '../ui/pages/Home/Home';
 
 export const Route = createFileRoute('/')({
-  // TODO: replace component by Home page when it's ready
-  component: () => <div>Hello /!</div>,
+  component: Home,
 });

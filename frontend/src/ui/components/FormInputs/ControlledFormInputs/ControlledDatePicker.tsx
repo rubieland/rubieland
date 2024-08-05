@@ -1,23 +1,23 @@
 import { Controller, useFormContext } from 'react-hook-form';
-import FormInput from '../FormInput';
+import DatePicker from '../DatePicker';
 
-interface ControlledFormInputProps {
-  type?: 'text' | 'email' | 'password';
-  placeholder?: string;
+interface ControlledDatePickerProps {
+  maxDate?: string | number;
+  minDate?: string | number;
   isRequired?: boolean;
   withLabel?: boolean;
   label: string;
   name: string;
 }
 
-const ControlledFormInput = ({
-  withLabel = false,
+const ControlledDatePicker = ({
   isRequired = true,
-  type = 'text',
-  placeholder,
+  withLabel = true,
+  maxDate,
+  minDate,
   label,
   name,
-}: ControlledFormInputProps) => {
+}: ControlledDatePickerProps) => {
   const { control } = useFormContext();
 
   return (
@@ -27,14 +27,14 @@ const ControlledFormInput = ({
       render={({ field: { value, onChange }, fieldState: { error } }) => (
         <div className="form-input">
           {withLabel && <label htmlFor={name}>{label}</label>}
-          <FormInput
-            placeholder={placeholder}
+          <DatePicker
             isRequired={isRequired}
             isInvalid={!!error}
             onChange={onChange}
+            maxDate={maxDate}
+            minDate={minDate}
             value={value}
             label={label}
-            type={type}
             name={name}
           />
           {error && (
@@ -46,4 +46,4 @@ const ControlledFormInput = ({
   );
 };
 
-export default ControlledFormInput;
+export default ControlledDatePicker;

@@ -19,8 +19,8 @@
 }
 
 @mixin flex-center-column {
-  @include flex-center;
   flex-direction: column;
+  @include flex-center;
 }
 
 @mixin flex-center-y {
@@ -36,15 +36,17 @@
 // ----- button ----- \\
 
 @mixin btn-base {
-  border-radius: 0.375rem;
+  border-radius: 0.25rem;
   padding: 0.375rem 1rem;
+  min-width: fit-content;
   display: inline-block;
   font-family: inherit;
   text-align: center;
-  font-size: 1.2rem;
   font-weight: 600;
+  font-size: 1rem;
   cursor: pointer;
   border: none;
+  width: 100%;
 }
 
 @mixin btn-styles($bg-color, $text-color) {
@@ -60,11 +62,10 @@
 
 @mixin input-base {
   border: 2px solid $grey40;
-  border-radius: 0.375rem;
+  border-radius: 0.25rem;
   font-family: inherit;
   padding: 0.5rem 1rem;
-  max-height: 2.5rem;
-  font-size: 1.2rem;
+  font-size: 0.875rem;
 
   &:focus {
     border-color: $primary;
@@ -73,8 +74,35 @@
 
 @mixin checkbox {
   accent-color: $green;
-  height: 2.5rem;
-  width: 2.5rem;
+  cursor: pointer;
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+@mixin edit-picture-input {
+  transition: all ease-in-out 0.3s;
+  background-color: $grey30;
+  border-radius: 0.25rem;
+  text-align: center;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $blackTransp80;
+  }
+
+  input {
+    display: none;
+  }
+}
+
+// ----- images and icons ----- \\
+
+@mixin img($w: 100%, $h: 100%, $br: 4px, $pos: center, $fit: cover) {
+  object-position: $pos;
+  border-radius: $br;
+  object-fit: $fit;
+  height: $h;
+  width: $w;
 }
 
 // ----- handle media querries ----- \\

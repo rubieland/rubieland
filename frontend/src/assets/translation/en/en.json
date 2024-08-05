@@ -1,13 +1,35 @@
 {
   "common": {
-    "send": "Send"
+    "send": "Send",
+    "edit": "Edit",
+    "addPicture": "Add a picture",
+    "goBackToHomepage": "Go back to homepage"
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "blog": "Blog"
+  },
+  "footer": {
+    "copyright": "©{{year}} Rubieland. All rights reserved",
+    "socialMedia": "Follow me on my social media"
+  },
+  "notFound": {
+    "title": "Error 404: Page not found",
+    "content": "This page does not exist."
   },
   "form": {
     "errors": {
       "requiredField": "This field is required",
-      "inputMax": "This field  must not contain more than {{max}} characters",
-      "inputMin": "This field  must contain at least {{min}} characters",
-      "invalidEmailFormat": "Please enter a valid email address (example@example.com)"
+      "inputMaxLength": "This field  must not contain more than {{maxLength}} characters",
+      "inputMinLength": "This field  must contain at least {{minLength}} characters",
+      "invalidEmailFormat": "Please enter a valid email address (example@example.com)",
+      "minBirthDate": "The required age is {{min}} years old minimum",
+      "maxBirthDate": "The age cannot exceed {{max}} years old",
+      "birthDateInFuture": "The birthdate cannot be in the future",
+      "invalidFileType": "Invalid file. Only files of type {{types}} are allowed",
+      "fileTooLarge": "File too large. Max: {{limit}}MB",
+      "oneFileLimit": "You must send only one file"
     },
     "user": {
       "emailLabel": "Email",
