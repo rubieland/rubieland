@@ -2,6 +2,7 @@
   "common": {
     "send": "Envoyer",
     "edit": "Modifier",
+    "cancel": "Annuler",
     "addPicture": "Ajouter une image",
     "goBackToHomepage": "Revenir à l'accueil"
   },
@@ -36,5 +37,9 @@
       "emailPlaceholder": "exemple@exemple.com",
       "password": "Mot de passe"
     }
+  },
+  "cropPictureModal": {
+    "title": "Redimensionner l'image",
+    "cropButtonTitle": "Redimensionner"
   }
 }

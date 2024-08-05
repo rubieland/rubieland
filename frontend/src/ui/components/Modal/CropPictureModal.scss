@@ -29,10 +29,17 @@
     width: 100%;
   }
 
-  > button {
+  > .modal-close-icon {
+    @include flex-center;
+    @include box(2rem);
     position: absolute;
+    cursor: pointer;
     right: 1rem;
     top: 1rem;
+
+    &:hover {
+      opacity: 0.5;
+    }
   }
 }
 
