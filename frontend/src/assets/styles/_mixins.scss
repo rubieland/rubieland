@@ -82,10 +82,10 @@
   width: 1.5rem;
 }
 
-@mixin edit-picture-input {
+@mixin edit-picture-input($border-radius: 0.25rem) {
   transition: all ease-in-out 0.3s;
+  border-radius: $border-radius;
   background-color: $grey30;
-  border-radius: 0.25rem;
   text-align: center;
   cursor: pointer;
 

@@ -63,7 +63,7 @@ const FormTests = () => {
           acceptedMimetypes={acceptedMimeTypesString}
           label="Modifier l'image de l'article"
           pictureType="articlePicture"
-          name="picture"
+          name="avatar"
         />
         <ControlledSelect
           placeholder={mockSelectPlaceholder}

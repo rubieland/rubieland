@@ -24,6 +24,7 @@ form {
 }
 
 .input-error-message {
+  font-family: $primary-font-stack;
   font-size: 0.875rem;
   font-weight: 600;
   max-width: 36rem;
@@ -77,12 +78,14 @@ form {
 
 .edit-article-picture-input-container {
   font-family: $secondary-font-stack;
-  max-width: 36rem;
+  @include flex-column;
   @include box(100%);
+  max-width: 36rem;
+  gap: 0.125rem;
 }
 
 .edit-article-picture-input {
-  @extend %edit-picture-input;
+  @include edit-picture-input;
 }
 
 .edit-article-picture-figure {
@@ -137,9 +140,14 @@ form {
 
 // ----- edit avatar input styles ----- \\
 
+.edit-avatar-input-container {
+  @include flex-column;
+  text-align: center;
+  gap: 0.125rem;
+}
+
 .edit-avatar-input {
-  @extend %edit-picture-input;
-  border-radius: 100% !important;
+  @include edit-picture-input(100%);
 }
 
 .edit-avatar-figure {
