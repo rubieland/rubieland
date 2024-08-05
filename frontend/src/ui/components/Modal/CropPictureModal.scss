@@ -1,0 +1,48 @@
+@import '../../../assets//styles/variables';
+@import '../../../assets//styles/mixins';
+
+.modal-overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+  @include box(100dvw, 100dvh);
+  @include flex-center;
+  padding: 4rem 8rem;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+}
+
+.modal-wrapper {
+  background-color: $white;
+  border-radius: 0.25rem;
+  @include flex-column;
+  overflow-x: hidden;
+  @include box(100%);
+  overflow-y: auto;
+}
+
+.modal-header {
+  position: relative;
+  padding: 1rem;
+
+  > h3 {
+    width: 100%;
+  }
+
+  > button {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+  }
+}
+
+.modal-content {
+  @include flex-center-column;
+  flex: 1;
+}
+
+.modal-footer {
+  justify-content: space-between;
+  display: flex;
+  padding: 1rem;
+}
