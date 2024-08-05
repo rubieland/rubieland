@@ -6,7 +6,7 @@ const colors = {
   blackTransp80: 'rgba(0, 0, 0, 0.8)',
   red: '#ef5350',
   green: '#66bb6a',
-  blue: '#1a5ee5',
+  secondary: '#1a5ee5',
   grey10: '#f5f5f5',
   grey20: '#eeeeee',
   grey30: '#e0e0e0',

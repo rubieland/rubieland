@@ -36,8 +36,10 @@
 // ----- button ----- \\
 
 @mixin btn-base {
+  border: 1px solid transparent;
   border-radius: 0.25rem;
   padding: 0.375rem 1rem;
+  min-height: $btn-height;
   min-width: fit-content;
   display: inline-block;
   font-family: inherit;
@@ -45,12 +47,12 @@
   font-weight: 600;
   font-size: 1rem;
   cursor: pointer;
-  border: none;
   width: 100%;
 }
 
-@mixin btn-styles($bg-color, $text-color) {
+@mixin btn-styles($bg-color, $text-color, $border-color: transparent) {
   background-color: $bg-color;
+  border-color: $border-color;
   color: $text-color;
 
   &:hover {
@@ -62,6 +64,7 @@
 
 @mixin input-base {
   border: 2px solid $grey40;
+  min-height: $input-height;
   border-radius: 0.25rem;
   font-family: inherit;
   padding: 0.5rem 1rem;

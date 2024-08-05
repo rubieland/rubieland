@@ -3,11 +3,11 @@
 
 .modal-overlay {
   background-color: rgba(0, 0, 0, 0.5);
-  @include box(100dvw, 100dvh);
+  @include box(100dvw, 100vh);
   @include flex-center;
-  padding: 4rem 8rem;
   position: fixed;
   z-index: 1000;
+  padding: 5%;
   left: 0;
   top: 0;
 }
@@ -17,7 +17,7 @@
   border-radius: 0.25rem;
   @include flex-column;
   overflow-x: hidden;
-  @include box(100%);
+  @include box(100%, 85%);
   overflow-y: auto;
 }
 
@@ -30,16 +30,7 @@
   }
 
   > .modal-close-icon {
-    @include flex-center;
-    @include box(2rem);
-    position: absolute;
-    cursor: pointer;
-    right: 1rem;
-    top: 1rem;
-
-    &:hover {
-      opacity: 0.5;
-    }
+    display: none;
   }
 }
 
@@ -49,7 +40,54 @@
 }
 
 .modal-footer {
-  justify-content: space-between;
-  display: flex;
+  @include flex-column;
   padding: 1rem;
+  gap: 1rem;
+
+  > button {
+    height: 2.5rem;
+  }
+}
+
+// ----- responsive ----- \\
+
+@include respond-to('small') {
+  .modal-footer {
+    justify-content: space-between;
+    flex-direction: row;
+
+    > button {
+      max-width: 12rem;
+    }
+  }
+}
+
+@include respond-to('medium') {
+  .modal-close-icon {
+    @include flex-center;
+    @include box(2rem);
+    position: absolute;
+    cursor: pointer;
+    display: block;
+    right: 1rem;
+    top: 1rem;
+
+    &:hover {
+      opacity: 0.5;
+    }
+  }
+
+  .modal-footer {
+    justify-content: flex-end;
+  }
+}
+
+@include respond-to('large') {
+  .modal-overlay {
+    padding: 10%;
+  }
+
+  .modal-wrapper {
+    height: 100%;
+  }
 }

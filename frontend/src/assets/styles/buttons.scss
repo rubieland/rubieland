@@ -1,11 +1,23 @@
-@import './mixins';
 @import './placeholders';
+@import './mixins';
 
 .btn {
   @extend %btn-base;
 
   &-primary {
     @extend %btn-primary;
+
+    &-outlined {
+      @include btn-styles(transparent, $primary, $primary);
+    }
+  }
+
+  &-secondary {
+    @extend %btn-secondary;
+
+    &-outlined {
+      @include btn-styles(transparent, $secondary, $secondary);
+    }
   }
 
   &-disabled {
@@ -18,5 +30,9 @@
 
   &-error {
     @extend %btn-error;
+
+    &-outlined {
+      @include btn-styles(transparent, $red, $red);
+    }
   }
 }

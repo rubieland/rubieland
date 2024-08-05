@@ -1,22 +1,36 @@
 interface CustomButtonProps {
-  style?: 'primary' | 'success' | 'error';
+  style?: 'primary' | 'secondary' | 'success' | 'error';
   type?: 'submit' | 'reset' | 'button';
-  isDisabled?: boolean;
-  onClick?: () => void;
   width?: string | number;
+  isDisabled?: boolean;
+  outlined?: boolean;
+  onClick?: () => void;
   title: string;
 }
 
 const CustomButton = ({
   isDisabled = false,
   style = 'primary',
+  outlined = false,
   type = 'button',
   width = '100%',
   onClick,
   title,
 }: CustomButtonProps) => {
-  const classNames = isDisabled ? 'btn btn-disabled' : `btn btn-${style}`;
-  const getWidth = typeof width === 'string' ? `${width}` : width;
+  const initialClasses: string[] = ['btn'];
+
+  const classNames = [
+    ...initialClasses,
+    outlined ? `btn-${style}-outlined` : `btn-${style}`,
+    isDisabled ? 'btn-disabled' : '',
+  ]
+    .reduce<string[]>((acc, curr) => {
+      if (curr) acc.push(curr);
+      return acc;
+    }, [])
+    .join(' ');
+
+  const getWidth = typeof width === 'string' ? width : `${width}px`;
 
   return (
     <button

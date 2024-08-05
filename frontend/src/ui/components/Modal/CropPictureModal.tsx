@@ -1,8 +1,8 @@
 import { useCropPictureModalContext } from './providers/CropPictureModalProvider';
 import CustomButton from '../Button/CustomButton';
-import './CropPictureModal.scss';
-import Cross from '../Icons/Cross';
 import i18n from '../../../core/i18n';
+import Cross from '../Icons/Cross';
+import './CropPictureModal.scss';
 
 const CropPictureModal = () => {
   const { closeModal } = useCropPictureModalContext();
@@ -25,15 +25,14 @@ const CropPictureModal = () => {
         <div className="modal-footer">
           <CustomButton
             title={i18n.t('common.cancel')}
-            style="error"
             onClick={closeModal}
-            width={20}
+            style="error"
+            outlined
           />
           <CustomButton
             title={i18n.t('cropPictureModal.cropButtonTitle')}
             style="primary"
             onClick={crop}
-            width={20}
           />
         </div>
       </div>
