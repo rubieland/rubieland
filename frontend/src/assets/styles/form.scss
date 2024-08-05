@@ -139,7 +139,7 @@ form {
 
 .edit-avatar-input {
   @extend %edit-picture-input;
-  border-radius: 100%;
+  border-radius: 100% !important;
 }
 
 .edit-avatar-figure {
