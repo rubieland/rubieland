@@ -1,17 +1,16 @@
 import {
-  useState,
-  createContext,
   PropsWithChildren,
-  Dispatch,
   SetStateAction,
+  createContext,
   useContext,
+  Dispatch,
+  useState,
 } from 'react';
 
 type CropPictureModalType = {
   isModalOpen: boolean;
   setIsModalOpen: Dispatch<SetStateAction<boolean>>;
   toggleOpenModal: () => void;
-  closeModal: () => void;
 };
 
 const CropPictureModalContext = createContext<CropPictureModalType | null>(
@@ -25,13 +24,9 @@ export const CropPictureModalProvider = ({ children }: PropsWithChildren) => {
     setIsModalOpen((prev) => !prev);
   };
 
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
-
   return (
     <CropPictureModalContext.Provider
-      value={{ isModalOpen, setIsModalOpen, toggleOpenModal, closeModal }}
+      value={{ isModalOpen, setIsModalOpen, toggleOpenModal }}
     >
       {children}
     </CropPictureModalContext.Provider>

@@ -6,17 +6,17 @@ import Cross from '../Icons/Cross';
 import './CropPictureModal.scss';
 
 const CropPictureModal = () => {
-  const { closeModal } = useCropPictureModalContext();
+  const { toggleOpenModal } = useCropPictureModalContext();
   const crop = () => {
     console.log('CROP');
   };
 
   return (
-    <div className="modal-overlay">
-      <div className="modal-wrapper">
+    <div className="modal-overlay" onClick={toggleOpenModal}>
+      <div className="modal-wrapper" onClick={(e) => e.stopPropagation()}>
         <div className="modal-header">
           <h3>{i18n.t('cropPictureModal.title')}</h3>
-          <div className="modal-close-icon" onClick={closeModal}>
+          <div className="modal-close-icon" onClick={toggleOpenModal}>
             <Cross color={colors.white} height={36} width={36} />
           </div>
         </div>
@@ -26,7 +26,7 @@ const CropPictureModal = () => {
         <div className="modal-footer">
           <CustomButton
             title={i18n.t('common.cancel')}
-            onClick={closeModal}
+            onClick={toggleOpenModal}
             style="error"
             outlined
           />
