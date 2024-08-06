@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import { ChangeEventHandler, FocusEvent } from 'react';
 
 interface DatePickerProps {
@@ -21,9 +22,9 @@ const DatePicker = ({
   label,
   name,
 }: DatePickerProps) => {
-  const classNames = isInvalid
-    ? 'input date-picker input-error'
-    : 'input date-picker';
+  const className = classNames('input date-picker', {
+    'input-error': isInvalid,
+  });
 
   const showPicker = (e: FocusEvent<HTMLInputElement>) => {
     e.target.showPicker();
@@ -33,7 +34,7 @@ const DatePicker = ({
     <input
       aria-required={isRequired}
       aria-invalid={isInvalid}
-      className={classNames}
+      className={className}
       required={isRequired}
       onFocus={showPicker}
       onChange={onChange}

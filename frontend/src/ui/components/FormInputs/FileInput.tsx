@@ -1,4 +1,5 @@
 import { ChangeEventHandler, forwardRef } from 'react';
+import classNames from 'classnames';
 
 interface FileInputProps {
   onChange: ChangeEventHandler<HTMLInputElement>;
@@ -23,16 +24,16 @@ const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
     },
     ref,
   ) => {
-    const classNames = isInvalid
-      ? 'input file-input input-error'
-      : 'input file-input';
+    const className = classNames('input file-input', {
+      'input-error': isInvalid,
+    });
 
     return (
       <input
         accept={acceptedMimetypes}
         aria-required={isRequired}
         aria-invalid={isInvalid}
-        className={classNames}
+        className={className}
         required={isRequired}
         onChange={onChange}
         multiple={multiple}

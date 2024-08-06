@@ -29,7 +29,7 @@ const ControlledFileInput = ({
     currentAvatar,
   );
 
-  const classNames =
+  const className =
     pictureType === 'avatar'
       ? `edit-avatar-input`
       : `edit-article-picture-input`;
@@ -65,8 +65,8 @@ const ControlledFileInput = ({
       control={control}
       name={name}
       render={({ field: { onChange }, fieldState: { error } }) => (
-        <div className={`${classNames}-container`}>
-          <div className={classNames} onClick={handleClick}>
+        <div className={`${className}-container`}>
+          <div className={className} onClick={handleClick}>
             <FileInput
               onChange={(e) => handleChange(e, onChange)}
               acceptedMimetypes={acceptedMimetypes}

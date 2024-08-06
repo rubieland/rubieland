@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import { ChangeEventHandler, FocusEventHandler } from 'react';
 
 interface TextareaProps {
@@ -27,7 +28,9 @@ const Textarea = ({
   cols,
   rows,
 }: TextareaProps) => {
-  const classNames = isInvalid ? 'textarea input-error' : 'textarea';
+  const className = classNames('textarea', {
+    'input-error': isInvalid,
+  });
 
   return (
     <textarea
@@ -35,7 +38,7 @@ const Textarea = ({
       placeholder={placeholder}
       aria-invalid={isInvalid}
       onFocus={() => onFocus}
-      className={classNames}
+      className={className}
       required={isRequired}
       onBlur={() => onBlur}
       onChange={onChange}

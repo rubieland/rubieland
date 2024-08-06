@@ -1,10 +1,12 @@
+import classNames from 'classnames';
+
 interface CustomButtonProps {
   style?: 'primary' | 'secondary' | 'success' | 'error';
   type?: 'submit' | 'reset' | 'button';
   width?: string | number;
+  onClick?: () => void;
   isDisabled?: boolean;
   outlined?: boolean;
-  onClick?: () => void;
   title: string;
 }
 
@@ -17,26 +19,19 @@ const CustomButton = ({
   onClick,
   title,
 }: CustomButtonProps) => {
-  const initialClasses: string[] = ['btn'];
+  const className = classNames('btn', {
+    [`btn-${style}-outlined`]: outlined,
+    [`btn-${style}`]: !outlined,
+    'btn-disabled': isDisabled,
+  });
 
-  const classNames = [
-    ...initialClasses,
-    outlined ? `btn-${style}-outlined` : `btn-${style}`,
-    isDisabled ? 'btn-disabled' : '',
-  ]
-    .reduce<string[]>((acc, curr) => {
-      if (curr) acc.push(curr);
-      return acc;
-    }, [])
-    .join(' ');
-
-  const getWidth = typeof width === 'string' ? width : `${width}px`;
+  const getWidth = typeof width === 'string' ? width : `${width}rem`;
 
   return (
     <button
       aria-disabled={isDisabled}
       style={{ width: getWidth }}
-      className={classNames}
+      className={className}
       disabled={isDisabled}
       onClick={onClick}
       type={type}

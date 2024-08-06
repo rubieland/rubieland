@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import { ChangeEventHandler } from 'react';
 
 interface CheckboxProps {
@@ -19,14 +20,16 @@ const Checkbox = ({
   label,
   name,
 }: CheckboxProps) => {
-  const classNames = isInvalid ? 'checkbox input-error' : 'checkbox';
+  const className = classNames('checkbox', {
+    'checkbox input-error': isInvalid,
+  });
 
   return (
     <input
       aria-required={isRequired}
       aria-invalid={isInvalid}
       onChange={onCheckChange}
-      className={classNames}
+      className={className}
       required={isRequired}
       checked={isChecked}
       aria-label={label}
