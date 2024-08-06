@@ -11,6 +11,7 @@ import { addAsterisk } from '../../../utils/string.utils';
 import { isFormValid } from '../../../utils/form.utils';
 import CustomButton from '../Button/CustomButton';
 import { FormProvider } from 'react-hook-form';
+import '../../../assets/styles/form.scss';
 import i18n from '../../../core/i18n';
 
 const mockSelectPlaceholder: SelectItem = {
