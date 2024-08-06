@@ -1,9 +1,8 @@
 import { useCropPictureModalContext } from './providers/CropPictureModalProvider';
-import colors from '../../../assets/styles/colors';
-import CustomButton from '../Button/CustomButton';
+import CropPictureModalFooter from './CropPictureModalFooter';
+import './styles/CropPictureModal.scss';
 import i18n from '../../../core/i18n';
-import Cross from '../Icons/Cross';
-import './CropPictureModal.scss';
+import Modal from './Modal';
 
 const CropPictureModal = () => {
   const { toggleOpenModal } = useCropPictureModalContext();
@@ -12,32 +11,22 @@ const CropPictureModal = () => {
   };
 
   return (
-    <div className="modal-overlay" onClick={toggleOpenModal}>
-      <div className="modal-wrapper" onClick={(e) => e.stopPropagation()}>
-        <div className="modal-header">
-          <h3>{i18n.t('cropPictureModal.title')}</h3>
-          <div className="modal-close-icon" onClick={toggleOpenModal}>
-            <Cross color={colors.white} height={36} width={36} />
-          </div>
-        </div>
-        <div className="modal-content">
-          <p>CropPictureModal</p>
-        </div>
-        <div className="modal-footer">
-          <CustomButton
-            title={i18n.t('common.cancel')}
-            onClick={toggleOpenModal}
-            style="error"
-            outlined
+    <>
+      <Modal
+        toggleOpenModal={toggleOpenModal}
+        title={i18n.t('cropPictureModal.title')}
+        height="100%"
+        width="75%"
+        footer={
+          <CropPictureModalFooter
+            toggleOpenModal={toggleOpenModal}
+            crop={crop}
           />
-          <CustomButton
-            title={i18n.t('cropPictureModal.cropButtonTitle')}
-            style="primary"
-            onClick={crop}
-          />
-        </div>
-      </div>
-    </div>
+        }
+      >
+        {/* TODO: add <Cropper /> component here */}
+      </Modal>
+    </>
   );
 };
 

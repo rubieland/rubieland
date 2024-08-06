@@ -1,5 +1,5 @@
-@import '../../../assets//styles/variables';
-@import '../../../assets//styles/mixins';
+@import '../../../../assets//styles/variables';
+@import '../../../../assets//styles/mixins';
 
 .modal-overlay {
   background-color: rgba(0, 0, 0, 0.5);
@@ -14,18 +14,19 @@
 
 .modal-wrapper {
   background-color: $white;
+  @include box(100%, 85%);
   border-radius: 0.25rem;
   @include flex-column;
   overflow-x: hidden;
-  @include box(100%, 85%);
+  min-height: 15rem;
   overflow-y: auto;
+  min-width: 15rem;
 }
 
 .modal-header {
-  background-color: $primary;
   position: relative;
+  color: $black90;
   padding: 1rem;
-  color: $white;
 
   > h3 {
     width: 100%;
@@ -38,6 +39,7 @@
 
 .modal-content {
   @include flex-center-column;
+  padding: 0 1rem;
   flex: 1;
 }
 
@@ -88,13 +90,5 @@
 @include respond-to('large') {
   .modal-overlay {
     padding: 5% 10%;
-  }
-
-  .modal-wrapper {
-    height: 100%;
-
-    h3 {
-      font-size: 1.5rem;
-    }
   }
 }
