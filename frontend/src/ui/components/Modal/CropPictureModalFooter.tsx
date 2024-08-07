@@ -18,7 +18,11 @@ const CropPictureModalFooter = ({
         style="error"
         outlined
       />
-      <CustomButton title={'Confirmer'} style="primary" onClick={crop} />
+      <CustomButton
+        title={i18n.t('cropPictureModal.cropButtonTitle')}
+        style="primary"
+        onClick={crop}
+      />
     </>
   );
 };
