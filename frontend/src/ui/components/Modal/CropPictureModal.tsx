@@ -5,7 +5,7 @@ import i18n from '../../../core/i18n';
 import Modal from './Modal';
 
 const CropPictureModal = () => {
-  const { toggleOpenModal } = useCropPictureModalContext();
+  const { isModalOpen, toggleOpenModal } = useCropPictureModalContext();
   const crop = () => {
     console.log('CROP');
   };
@@ -15,6 +15,7 @@ const CropPictureModal = () => {
       <Modal
         title={i18n.t('cropPictureModal.title')}
         toggleOpenModal={toggleOpenModal}
+        isOpen={isModalOpen}
         height="100%"
         width="75%"
         footer={
