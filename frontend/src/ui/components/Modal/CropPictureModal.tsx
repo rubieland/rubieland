@@ -13,8 +13,8 @@ const CropPictureModal = () => {
   return (
     <>
       <Modal
-        toggleOpenModal={toggleOpenModal}
         title={i18n.t('cropPictureModal.title')}
+        toggleOpenModal={toggleOpenModal}
         height="100%"
         width="75%"
         footer={
