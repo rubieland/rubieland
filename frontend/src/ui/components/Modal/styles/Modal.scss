@@ -3,7 +3,7 @@
 
 .modal-overlay {
   background-color: rgba(0, 0, 0, 0.5);
-  animation: bounceIn 0.6s forwards;
+  animation: bounceIn 0.5s forwards;
   @include box(100dvw, 100vh);
   @include flex-center;
   position: fixed;
@@ -14,40 +14,49 @@
 }
 
 .modal-wrapper {
-  animation: bounceIn 0.6s forwards;
+  animation: bounceIn 0.5s forwards;
   background-color: $white;
   @include box(100%, 85%);
   border-radius: 0.25rem;
   @include flex-column;
   overflow-x: hidden;
-  min-height: 15rem;
+  position: relative;
+  min-height: 10rem;
   overflow-y: auto;
-  min-width: 15rem;
+  min-width: 16rem;
+}
+
+.modal-close-btn {
+  @include flex-center;
+  position: absolute;
+  cursor: pointer;
+  right: 0.5rem;
+  top: 1rem;
+
+  &:hover {
+    opacity: 0.5;
+  }
 }
 
 .modal-header {
-  position: relative;
   color: $black90;
-  padding: 1rem;
+  padding: 1rem 1rem 0;
 
   > h3 {
-    width: 100%;
-  }
-
-  > .modal-close-icon {
-    display: none;
+    width: calc(100% - 1rem);
+    font-size: 1rem;
   }
 }
 
 .modal-content {
   @include flex-center-column;
-  padding: 0 1rem;
+  padding: 2rem;
   flex: 1;
 }
 
 .modal-footer {
   @include flex-column;
-  padding: 1rem;
+  padding: 0 1rem 1rem;
   gap: 1rem;
 
   > button {
@@ -85,19 +94,13 @@
 }
 
 @include respond-to('medium') {
-  .modal-header {
-    > .modal-close-icon {
-      @include flex-center;
-      @include box(2rem);
-      position: absolute;
-      cursor: pointer;
-      right: 1rem;
-      top: 1rem;
+  .modal-close-btn {
+    top: 1.15rem;
+  }
 
-      &:hover {
-        opacity: 0.5;
-      }
-    }
+  .modal-header > h3 {
+    font-size: 1.15rem;
+    width: 100%;
   }
 
   .modal-footer {

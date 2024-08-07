@@ -25,12 +25,10 @@ const Modal = ({
         style={{ width, height }}
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="modal-header">
-          {title && <h3>{title}</h3>}
-          <div className="modal-close-icon" onClick={toggleOpenModal}>
-            <Cross height={36} width={36} />
-          </div>
+        <div className="modal-close-btn" onClick={toggleOpenModal}>
+          <Cross />
         </div>
+        <div className="modal-header">{title && <h3>{title}</h3>}</div>
         <div className="modal-content">{children}</div>
         {footer && <div className="modal-footer">{footer}</div>}
       </div>
