@@ -8,7 +8,7 @@ const Home = () => {
 
   return (
     <>
-      <div style={{ textAlign: 'center' }}>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
         <CustomButton
           width={20}
           title="Ouvrir la modale"

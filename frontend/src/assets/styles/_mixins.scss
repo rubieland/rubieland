@@ -37,11 +37,12 @@
 
 @mixin btn-base {
   border: 1px solid transparent;
+  min-height: $btn-height;
   border-radius: 0.25rem;
   padding: 0.375rem 1rem;
-  min-height: $btn-height;
+  vertical-align: middle;
   min-width: fit-content;
-  display: inline-block;
+  @include flex-center;
   font-family: inherit;
   text-align: center;
   font-weight: 600;
