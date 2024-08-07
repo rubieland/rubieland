@@ -9,6 +9,10 @@
 
     &-outlined {
       @include btn-styles(transparent, $primary, $primary);
+
+      &:hover {
+        @include btn-styles($primary, $white);
+      }
     }
   }
 
@@ -17,6 +21,10 @@
 
     &-outlined {
       @include btn-styles(transparent, $secondary, $secondary);
+
+      &:hover {
+        @include btn-styles($secondary, $white);
+      }
     }
   }
 
@@ -26,6 +34,14 @@
 
   &-success {
     @extend %btn-success;
+
+    &-outlined {
+      @include btn-styles(transparent, $green, $green);
+
+      &:hover {
+        @include btn-styles($green, $black90);
+      }
+    }
   }
 
   &-error {
@@ -33,6 +49,10 @@
 
     &-outlined {
       @include btn-styles(transparent, $red, $red);
+
+      &:hover {
+        @include btn-styles($red, $white);
+      }
     }
   }
 }
