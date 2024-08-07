@@ -12,18 +12,20 @@ const FooterSocialMediaBlock = () => {
       </div>
       <div className="footer-social-media-icons-container">
         <a
+          aria-label={i18n.t('aria-labels.facebook-icon')}
           className="footer-social-media-icon"
           href={SocialMediaLinks.FACEBOOK}
-          aria-label="facebook-icon"
           target="_blank"
+          role="button"
         >
           <Facebook />
         </a>
         <a
+          aria-label={i18n.t('aria-labels.instagram-icon')}
           className="footer-social-media-icon"
           href={SocialMediaLinks.INSTAGRAM}
-          aria-label="instagram-icon"
           target="_blank"
+          role="button"
         >
           <Instagram />
         </a>

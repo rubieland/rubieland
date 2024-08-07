@@ -6,19 +6,30 @@
     "addPicture": "Ajouter une image",
     "goBackToHomepage": "Revenir à l'accueil"
   },
+
+  "aria-labels": {
+    "burger-btn": "Ouvrir/Fermer le menu",
+    "facebook-icon": "Lien vers la page Facebook",
+    "instagram-icon": "Lien vers la page Instagram",
+    "close-modal": "Fermer la modale"
+  },
+
   "nav": {
     "home": "Accueil",
     "about": "À propos",
     "blog": "Blog"
   },
+
   "footer": {
     "copyright": "©{{year}} Rubieland. Tous droits réservés",
     "socialMedia": "Suivez-moi sur mes réseaux sociaux"
   },
+
   "notFound": {
     "title": "Erreur 404: Page introuvable",
     "content": "Cette page n'existe pas."
   },
+
   "form": {
     "errors": {
       "requiredField": "Ce champ est obligatoire",
@@ -32,12 +43,14 @@
       "fileTooLarge": "Fichier trop lourd. Max: {{limit}}MB",
       "oneFileLimit": "Vous ne devez envoyer qu'un fichier"
     },
+
     "user": {
       "emailLabel": "Email",
       "emailPlaceholder": "exemple@exemple.com",
       "password": "Mot de passe"
     }
   },
+
   "cropPictureModal": {
     "title": "Redimensionner l'image",
     "cropButtonTitle": "Redimensionner"
