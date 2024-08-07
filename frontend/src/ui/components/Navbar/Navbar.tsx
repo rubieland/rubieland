@@ -21,9 +21,10 @@ const links = [
 
 const Navbar = () => {
   const { isOpen } = useNavbarContext();
+  const className = isOpen ? 'navbar' : 'navbar hidden';
 
   return (
-    <nav className={isOpen ? 'navbar' : 'navbar hidden'}>
+    <nav className={className}>
       <BurgerMenuButton />
       {links.map((link, i) => (
         <NavbarItem key={i} to={link.to} title={link.title} />
