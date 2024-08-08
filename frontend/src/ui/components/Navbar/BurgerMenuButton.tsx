@@ -1,12 +1,9 @@
 import { useNavbarContext } from './providers/NavbarProvider';
-import useFocusElement from '../../../hooks/useFocusElement';
 import './styles/BurgerMenuButton.scss';
 import i18n from '../../../core/i18n';
-import { useRef } from 'react';
 
 const BurgerMenuButton = () => {
   const { isOpen, toggleIsOpen, hideMenu } = useNavbarContext();
-  const burgerBtnRef = useRef<HTMLDivElement>(null);
   const burgerBtnClassName = isOpen
     ? 'burger-menu-btn opened'
     : 'burger-menu-btn';
@@ -16,9 +13,6 @@ const BurgerMenuButton = () => {
     e.preventDefault();
     toggleIsOpen();
   };
-
-  // ACCESSIBILITY: allow focus with tab keys
-  useFocusElement({ ref: burgerBtnRef });
 
   // ACCESSIBILITY: handle keyboard events to show/hide menu
   const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
@@ -42,7 +36,6 @@ const BurgerMenuButton = () => {
       onKeyDown={handleKeyDown}
       aria-expanded={isOpen}
       onClick={toggleIsOpen}
-      ref={burgerBtnRef}
       role="button"
       tabIndex={0}
     >
