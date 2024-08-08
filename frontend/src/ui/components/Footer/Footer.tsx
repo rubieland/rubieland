@@ -5,7 +5,7 @@ import './styles/Footer.scss';
 
 const Footer = () => {
   return (
-    <footer>
+    <footer className="app-footer">
       <FooterSocialMediaBlock />
       <p className="footer-copyright">
         {i18n.t('footer.copyright', { year: currentYear })}

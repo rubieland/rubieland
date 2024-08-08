@@ -7,7 +7,7 @@ import './Header.scss';
 
 const Header = () => {
   return (
-    <header>
+    <header className="app-header">
       <Link to="/">
         <Logo color={colors.primary} />
       </Link>
