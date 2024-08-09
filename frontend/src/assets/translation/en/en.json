@@ -8,6 +8,7 @@
   },
 
   "aria-labels": {
+    "app-logo": "Rubieland logo (link to the home page)",
     "burger-btn": "Toggle menu",
     "facebook-icon": "Link to the Facebook page",
     "instagram-icon": "Link to the Instagram page",

@@ -16,7 +16,7 @@ const FooterSocialMediaBlock = () => {
           className="footer-social-media-icon"
           href={SocialMediaLinks.FACEBOOK}
           target="_blank"
-          role="button"
+          role="link"
         >
           <Facebook />
         </a>
@@ -25,7 +25,7 @@ const FooterSocialMediaBlock = () => {
           className="footer-social-media-icon"
           href={SocialMediaLinks.INSTAGRAM}
           target="_blank"
-          role="button"
+          role="link"
         >
           <Instagram />
         </a>
