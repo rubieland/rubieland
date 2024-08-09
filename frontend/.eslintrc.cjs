@@ -16,6 +16,7 @@ module.exports = {
     ],
     'object-shorthand': 'error', // Expected property shorthand.
     '@typescript-eslint/no-explicit-any': 'off', // Unexpected any. Specify a different type.
+    'react-hooks/exhaustive-deps': 'off', // React Hook useEffect has missing dependencies : [missingDeps]. Either include them or remove the dependency array.
     '@typescript-eslint/no-unused-vars': [
       // var is defined but never used.
 
