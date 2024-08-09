@@ -4,6 +4,7 @@ const colors = {
   black: '#000000',
   black90: '#171717',
   blackTransp80: 'rgba(0, 0, 0, 0.8)',
+  blackTransp50: 'rgba(0, 0, 0, 0.5)',
   red: '#ef5350',
   green: '#66bb6a',
   secondary: '#1a5ee5',
