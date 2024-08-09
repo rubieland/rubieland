@@ -1,3 +1,4 @@
+import 'react-image-crop/src/ReactCrop.scss';
 import ReactDOM from 'react-dom/client';
 import './assets/styles/index.scss';
 import './assets/styles/fonts.scss';

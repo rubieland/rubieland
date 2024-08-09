@@ -54,6 +54,7 @@
 
   "cropPictureModal": {
     "title": "Redimensionner l'image",
-    "cropButtonTitle": "Redimensionner"
+    "cropButtonTitle": "Redimensionner",
+    "alt": "Prévisualisation - {{label}}"
   }
 }

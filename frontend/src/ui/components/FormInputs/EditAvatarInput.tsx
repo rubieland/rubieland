@@ -4,19 +4,18 @@ import i18n from '../../../core/i18n';
 import Camera from '../Icons/Camera';
 
 interface EditAvatarInputProps {
-  previewUrl: string | ArrayBuffer | null;
+  imgSrc: string;
   label: string;
 }
 
-const EditAvatarInput = ({ previewUrl, label }: EditAvatarInputProps) => {
-  const isPreviewUrlString = previewUrl && typeof previewUrl === 'string';
-
+const EditAvatarInput = ({ imgSrc, label }: EditAvatarInputProps) => {
   return (
     <figure className="edit-avatar-figure">
-      {isPreviewUrlString ? (
-        <img src={previewUrl} alt={label} />
-      ) : (
+      {!imgSrc ? (
         <DefaultAvatar color={colors.grey50} />
+      ) : (
+        // TODO: replace <img /> with <Cropper />
+        <img src={imgSrc} alt={label} />
       )}
       <figcaption className="edit-avatar-figcaption">
         <Camera color={colors.white} />

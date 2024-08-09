@@ -54,6 +54,7 @@
 
   "cropPictureModal": {
     "title": "Crop picture",
-    "cropButtonTitle": "Crop"
+    "cropButtonTitle": "Crop",
+    "alt": "Preview - {{label}}"
   }
 }

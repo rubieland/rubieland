@@ -4,25 +4,20 @@ import ImagePen from '../Icons/ImagePen';
 import i18n from '../../../core/i18n';
 
 interface EditArticlePictureInputProps {
-  previewUrl: string | ArrayBuffer | null;
+  imgSrc: string;
   label: string;
 }
 
 const EditArticlePictureInput = ({
-  previewUrl,
+  imgSrc,
   label,
 }: EditArticlePictureInputProps) => {
-  const isPreviewUrlString = previewUrl && typeof previewUrl === 'string';
-
   return (
     <figure className="edit-article-picture-figure">
-      {isPreviewUrlString ? (
-        <img src={previewUrl} alt={label} />
+      {!imgSrc ? (
+        <ImageCircle color={colors.grey50} />
       ) : (
-        <>
-          <ImageCircle color={colors.grey50} />
-          <p>{i18n.t('common.addPicture')}</p>
-        </>
+        <img src={imgSrc} alt={label} />
       )}
       <figcaption className="edit-article-picture-figcaption">
         <ImagePen color={colors.white} />

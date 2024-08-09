@@ -5,8 +5,8 @@ import FileInput from '../FileInput';
 
 interface ControlledFileInputProps {
   pictureType: 'avatar' | 'articlePicture';
-  currentAvatar?: string | null;
   acceptedMimetypes: string;
+  currentAvatar?: string;
   isRequired?: boolean;
   multiple?: boolean;
   label: string;
@@ -14,7 +14,7 @@ interface ControlledFileInputProps {
 }
 
 const ControlledFileInput = ({
-  currentAvatar = null,
+  currentAvatar = '',
   isRequired = false,
   acceptedMimetypes,
   multiple = false,
@@ -25,33 +25,27 @@ const ControlledFileInput = ({
   const inputFileRef = useRef<HTMLInputElement | null>(null);
 
   const { control } = useFormContext();
-  const [previewUrl, setPreviewUrl] = useState<string | ArrayBuffer | null>(
-    currentAvatar,
-  );
+  const [imgSrc, setImgSrc] = useState<string>(currentAvatar);
 
   const className =
     pictureType === 'avatar'
       ? `edit-avatar-input`
       : `edit-article-picture-input`;
 
-  const handleChange = (
+  const onSelectFile = (
     e: ChangeEvent<HTMLInputElement>,
     onChange: (...event: any[]) => void,
   ) => {
-    const target = e.target as HTMLInputElement & {
-      files: FileList;
-    };
+    const file = e.target.files?.[0];
+    if (!file) return;
 
-    const selectedFile = target.files[0];
     const reader = new FileReader();
-    reader.onloadend = () => {
-      setPreviewUrl(reader.result);
-    };
-
-    if (selectedFile) {
-      reader.readAsDataURL(selectedFile);
-      onChange([selectedFile]);
-    }
+    reader.addEventListener('load', () => {
+      const imageUrl = reader.result?.toString() || '';
+      setImgSrc(imageUrl);
+    });
+    reader.readAsDataURL(file);
+    onChange([file]);
   };
 
   const handleClick = () => {
@@ -81,7 +75,7 @@ const ControlledFileInput = ({
             tabIndex={0}
           >
             <FileInput
-              onChange={(e) => handleChange(e, onChange)}
+              onChange={(e) => onSelectFile(e, onChange)}
               acceptedMimetypes={acceptedMimetypes}
               isRequired={isRequired}
               isInvalid={!!error}
@@ -92,8 +86,8 @@ const ControlledFileInput = ({
             />
 
             <EditPictureFileInput
-              previewUrl={previewUrl}
               pictureType={pictureType}
+              imgSrc={imgSrc}
               label={label}
             />
           </div>
