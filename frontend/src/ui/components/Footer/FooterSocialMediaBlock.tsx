@@ -6,7 +6,7 @@ import i18n from '../../../core/i18n';
 
 const FooterSocialMediaBlock = () => {
   return (
-    <div className="footer-social-media-container">
+    <section className="footer-social-media-container">
       <div className="footer-social-media-title">
         <h3>{i18n.t('footer.socialMedia')}</h3>
       </div>
@@ -30,7 +30,7 @@ const FooterSocialMediaBlock = () => {
           <Instagram />
         </a>
       </div>
-    </div>
+    </section>
   );
 };
 
