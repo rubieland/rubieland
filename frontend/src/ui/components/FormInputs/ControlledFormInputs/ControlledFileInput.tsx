@@ -60,13 +60,26 @@ const ControlledFileInput = ({
     }
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === ' ' || e.key === 'Enter') {
+      e.preventDefault();
+      handleClick();
+    }
+  };
+
   return (
     <Controller
       control={control}
       name={name}
       render={({ field: { onChange }, fieldState: { error } }) => (
         <div className={`${className}-container`}>
-          <div className={className} onClick={handleClick}>
+          <div
+            onKeyDown={handleKeyDown}
+            className={className}
+            onClick={handleClick}
+            role="button"
+            tabIndex={0}
+          >
             <FileInput
               onChange={(e) => handleChange(e, onChange)}
               acceptedMimetypes={acceptedMimetypes}
