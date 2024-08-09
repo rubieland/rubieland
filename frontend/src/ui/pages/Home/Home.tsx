@@ -1,23 +1,24 @@
-import { useCropPictureModalContext } from '../../components/Modal/providers/CropPictureModalProvider';
 import CropPictureModal from '../../components/Modal/CropPictureModal';
+import { useModalStoreActions } from '../../../stores/ModalStore';
 import CustomButton from '../../components/Button/CustomButton';
 import FormTests from '../../components/FormTests/FormTests';
+import { useRef } from 'react';
 
 const Home = () => {
-  const { toggleOpenModal, isModalOpen } = useCropPictureModalContext();
+  const cropPictureModalRef = useRef<HTMLDialogElement>(null);
+  const { openModal } = useModalStoreActions();
 
   return (
     <>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <CustomButton
+          title="Ouvrir Crop Picture Modal"
+          onClick={() => openModal('cropPictureModal')}
           width={20}
-          title="Ouvrir la modale"
-          onClick={toggleOpenModal}
         />
       </div>
-      {/* TODO: remove <FormTests /> when first form is ready  */}
+      <CropPictureModal modalRef={cropPictureModalRef} />
       <FormTests />
-      {isModalOpen && <CropPictureModal />}
     </>
   );
 };

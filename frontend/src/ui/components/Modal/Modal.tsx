@@ -1,11 +1,12 @@
-import { PropsWithChildren, ReactNode } from 'react';
+import { PropsWithChildren, RefObject } from 'react';
 import i18n from '../../../core/i18n';
 import Cross from '../Icons/Cross';
 import './styles/Modal.scss';
 
 interface ModalProps extends PropsWithChildren {
-  toggleOpenModal: () => void;
-  footer?: ReactNode;
+  modalRef: RefObject<HTMLDialogElement>;
+  closeModal: () => void;
+  footer?: React.ReactNode;
   isOpen: boolean;
   height?: string;
   width?: string;
@@ -13,43 +14,55 @@ interface ModalProps extends PropsWithChildren {
 }
 
 const Modal = ({
-  toggleOpenModal,
+  closeModal,
+  modalRef,
   children,
-  isOpen,
   footer,
-  title,
   height,
   width,
+  title,
 }: ModalProps) => {
-  if (!isOpen) return null;
+  // close modal when click on the backdrop
+  const handlecloseModal = (
+    e: React.MouseEvent<HTMLDialogElement, MouseEvent>,
+  ) => {
+    if (e.currentTarget === e.target) {
+      closeModal();
+    }
+  };
+
+  // close modal when spacebar in pressed (when the X icon button is focused)
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === ' ') {
+      closeModal();
+    }
+  };
 
   return (
-    <div className="modal-overlay" onClick={toggleOpenModal}>
+    <dialog
+      onClick={(e) => handlecloseModal(e)}
+      style={{ height, width }}
+      ref={modalRef}
+      role="dialog"
+    >
+      <header className="modal-header">
+        {title && <h3 id="modal-title">{title}</h3>}
+      </header>
       <div
-        onClick={(e) => e.stopPropagation()}
-        aria-describedby="modal-content"
-        aria-labelledby="modal-title"
-        style={{ width, height }}
-        className="modal-wrapper"
-        role="dialog"
+        aria-label={i18n.t('aria-labels.close-modal')}
+        className="modal-close-btn"
+        onClick={closeModal}
+        role="button"
+        tabIndex={0}
+        onKeyDown={handleKeyDown}
       >
-        <div
-          aria-label={i18n.t('aria-labels.close-modal')}
-          onClick={toggleOpenModal}
-          className="modal-close-btn"
-          role="button"
-        >
-          <Cross />
-        </div>
-        <div className="modal-header">
-          {title && <h3 id="modal-title">{title}</h3>}
-        </div>
-        <div className="modal-content" id="modal-content">
-          {children}
-        </div>
-        {footer && <div className="modal-footer">{footer}</div>}
+        <Cross />
       </div>
-    </div>
+      <section className="modal-content" id="modal-content">
+        {children}
+      </section>
+      {footer && <footer className="modal-footer">{footer}</footer>}
+    </dialog>
   );
 };
 
