@@ -1,6 +1,7 @@
-import { Link } from '@tanstack/react-router';
 import { useNavbarContext } from './providers/NavbarProvider';
+import colors from '../../../assets/styles/colors';
 import '../../../assets/styles/_variables.scss';
+import { Link } from '@tanstack/react-router';
 
 interface NavbarItemProps {
   title: string;
@@ -10,19 +11,24 @@ interface NavbarItemProps {
 const activeProps = {
   style: {
     fontWeight: 'bold',
-    color: '#ef5350',
+    color: colors.red,
   },
 };
 
 const NavbarItem = ({ title, to }: NavbarItemProps) => {
   const { hideMenu } = useNavbarContext();
 
+  const hideOnEscapeKeyDown = (e: React.KeyboardEvent<'a'>) => {
+    if (e.key === 'Escape') hideMenu();
+  };
+
   return (
     <Link
+      onKeyDown={hideOnEscapeKeyDown}
+      activeProps={activeProps}
       className="navbar-link"
       onClick={hideMenu}
       to={to}
-      activeProps={activeProps}
     >
       {title}
     </Link>

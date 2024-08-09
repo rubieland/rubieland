@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import { ChangeEventHandler } from 'react';
 
 interface TextInputProps {
@@ -21,14 +22,16 @@ const TextInput = ({
   type,
   name,
 }: TextInputProps) => {
-  const classNames = isInvalid ? 'input input-error' : 'input';
+  const className = classNames('input', {
+    'input-error': isInvalid,
+  });
 
   return (
     <input
       aria-required={isRequired}
       placeholder={placeholder}
       aria-invalid={isInvalid}
-      className={classNames}
+      className={className}
       required={isRequired}
       onChange={onChange}
       aria-label={label}

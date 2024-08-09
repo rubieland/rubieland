@@ -29,7 +29,7 @@ const ControlledFileInput = ({
     currentAvatar,
   );
 
-  const classNames =
+  const className =
     pictureType === 'avatar'
       ? `edit-avatar-input`
       : `edit-article-picture-input`;
@@ -60,13 +60,26 @@ const ControlledFileInput = ({
     }
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === ' ' || e.key === 'Enter') {
+      e.preventDefault();
+      handleClick();
+    }
+  };
+
   return (
     <Controller
       control={control}
       name={name}
       render={({ field: { onChange }, fieldState: { error } }) => (
-        <div className={`${classNames}-container`}>
-          <div className={classNames} onClick={handleClick}>
+        <div className={`${className}-container`}>
+          <div
+            onKeyDown={handleKeyDown}
+            className={className}
+            onClick={handleClick}
+            role="button"
+            tabIndex={0}
+          >
             <FileInput
               onChange={(e) => handleChange(e, onChange)}
               acceptedMimetypes={acceptedMimetypes}

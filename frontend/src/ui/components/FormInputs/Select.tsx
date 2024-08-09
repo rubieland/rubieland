@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import { SelectItem } from './types/FormInputsTypes';
 import { ChangeEventHandler } from 'react';
 
@@ -21,14 +22,16 @@ const Select = ({
   value,
   name,
 }: SelectProps) => {
-  const classNames = isInvalid ? 'select input-error' : 'select';
+  const className = classNames('select', {
+    'input-error': isInvalid,
+  });
 
   return (
     <select
       aria-required={isRequired}
       onChange={onValueChange}
       aria-invalid={isInvalid}
-      className={classNames}
+      className={className}
       required={isRequired}
       value={value}
       name={name}

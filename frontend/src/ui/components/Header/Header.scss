@@ -1,7 +1,7 @@
-@import '../../../assets/styles/mixins';
 @import '../../../assets/styles/variables';
+@import '../../../assets/styles/mixins';
 
-header {
+.app-header {
   justify-content: space-between;
   width: calc(100dvw - 2rem);
   @include flex-center-y;

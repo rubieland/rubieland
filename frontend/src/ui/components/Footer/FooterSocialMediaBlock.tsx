@@ -6,29 +6,31 @@ import i18n from '../../../core/i18n';
 
 const FooterSocialMediaBlock = () => {
   return (
-    <div className="footer-social-media-container">
+    <section className="footer-social-media-container">
       <div className="footer-social-media-title">
         <h3>{i18n.t('footer.socialMedia')}</h3>
       </div>
       <div className="footer-social-media-icons-container">
         <a
+          aria-label={i18n.t('aria-labels.facebook-icon')}
           className="footer-social-media-icon"
           href={SocialMediaLinks.FACEBOOK}
-          aria-label="facebook-icon"
           target="_blank"
+          role="link"
         >
           <Facebook />
         </a>
         <a
+          aria-label={i18n.t('aria-labels.instagram-icon')}
           className="footer-social-media-icon"
           href={SocialMediaLinks.INSTAGRAM}
-          aria-label="instagram-icon"
           target="_blank"
+          role="link"
         >
           <Instagram />
         </a>
       </div>
-    </div>
+    </section>
   );
 };
 
