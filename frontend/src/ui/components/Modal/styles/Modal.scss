@@ -38,6 +38,7 @@ dialog[open] {
 .modal-header {
   padding: 1rem 1rem 0;
   color: $black90;
+  width: 100%;
 
   > h3 {
     width: calc(100% - 1rem);
@@ -47,6 +48,7 @@ dialog[open] {
 
 .modal-content {
   @include flex-center-column;
+  @include box(100%);
   padding: 2rem;
   flex: 1;
 }
