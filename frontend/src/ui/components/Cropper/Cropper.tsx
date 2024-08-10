@@ -1,4 +1,4 @@
-import ReactCrop, { Crop } from 'react-image-crop';
+import ReactCrop, { centerCrop, Crop, makeAspectCrop } from 'react-image-crop';
 import i18n from '../../../core/i18n';
 import { useState } from 'react';
 
@@ -19,6 +19,29 @@ const Cropper = ({ src, alt }: CropperProps) => {
     y: 25,
   });
 
+  // TODO: see if this function is needed...
+  const onImageLoad = (e: React.SyntheticEvent<HTMLImageElement>) => {
+    const { naturalWidth: width, naturalHeight: height } = e.currentTarget;
+
+    const crop = centerCrop(
+      makeAspectCrop(
+        {
+          // You don't need to pass a complete crop into
+          // makeAspectCrop or centerCrop.
+          unit: '%',
+          width: MIN_DIMENSION,
+        },
+        ASPECT_RATIO,
+        width,
+        height,
+      ),
+      width,
+      height,
+    );
+
+    setCrop(crop);
+  };
+
   return (
     <ReactCrop
       onChange={(c) => setCrop(c)}
@@ -28,13 +51,17 @@ const Cropper = ({ src, alt }: CropperProps) => {
       circularCrop
       crop={crop}
     >
-      <img
-        alt={i18n.t('cropPictureModal.alt', { label: alt })}
-        src={src}
-        style={{
-          maxHeight: '70vh',
-        }}
-      />
+      {src && (
+        <img
+          alt={i18n.t('cropPictureModal.alt', { label: alt })}
+          onLoad={() => onImageLoad}
+          src={src}
+          style={{
+            width: '100%',
+            maxHeight: '50vh',
+          }}
+        />
+      )}
     </ReactCrop>
   );
 };

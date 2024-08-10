@@ -22,7 +22,7 @@ const Modal = ({
   width,
   title,
 }: ModalProps) => {
-  // close modal when click on the backdrop
+  // close modal when click outside the dialog (e.g. on the backdrop)
   const handlecloseModal = (
     e: React.MouseEvent<HTMLDialogElement, MouseEvent>,
   ) => {
