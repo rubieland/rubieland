@@ -18,7 +18,9 @@
   "nav": {
     "home": "Accueil",
     "about": "À propos",
-    "blog": "Blog"
+    "blog": "Blog",
+    "register": "M'inscrire",
+    "login": "Me connecter"
   },
 
   "footer": {

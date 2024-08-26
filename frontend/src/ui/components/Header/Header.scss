@@ -3,7 +3,6 @@
 
 .app-header {
   justify-content: space-between;
-  width: calc(100dvw - 2rem);
   @include flex-center-y;
   padding: 1rem;
 }

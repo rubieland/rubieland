@@ -1,10 +1,11 @@
 import { useNavbarContext } from './providers/NavbarProvider';
 import BurgerMenuButton from './BurgerMenuButton';
 import i18n from '../../../core/i18n';
+import AuthLinksBlock from './AuthLinksBlock';
 import NavbarItem from './NavbarItem';
 import './styles/Navbar.scss';
 
-const links = [
+const mainLinks = [
   {
     title: i18n.t('nav.home'),
     to: '/',
@@ -26,9 +27,10 @@ const Navbar = () => {
   return (
     <nav className={className}>
       <BurgerMenuButton />
-      {links.map((link, i) => (
+      {mainLinks.map((link, i) => (
         <NavbarItem key={i} to={link.to} title={link.title} />
       ))}
+      <AuthLinksBlock />
     </nav>
   );
 };

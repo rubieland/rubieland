@@ -28,7 +28,7 @@
   letter-spacing: 1px;
   text-align: center;
   font-size: 1.2rem;
-  color: $primary;
+  color: $black90;
   width: 80dvw;
 
   &:hover {
@@ -40,17 +40,19 @@
 
 @include respond-to('large') {
   .navbar {
+    padding: inherit inherit 0;
     justify-content: flex-end;
     flex-direction: row;
     align-items: center;
     box-shadow: none;
     min-height: 75px;
     position: sticky;
-    padding: inherit;
     height: auto;
+    gap: 0;
   }
 
   .navbar-link {
+    padding: 0.375rem 1rem;
     @include flex-center;
     width: auto;
 
