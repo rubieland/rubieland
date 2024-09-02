@@ -4,7 +4,9 @@
     "edit": "Edit",
     "cancel": "Cancel",
     "addPicture": "Add a picture",
-    "goBackToHomepage": "Go back to homepage"
+    "goBackToHomepage": "Go back to homepage",
+    "register": "Register",
+    "formSending": "Sending..."
   },
 
   "aria-labels": {
@@ -44,13 +46,36 @@
       "birthDateInFuture": "The birthdate cannot be in the future",
       "invalidFileType": "Invalid file. Only files of type {{types}} are allowed",
       "fileTooLarge": "File too large. Max: {{limit}}MB",
-      "oneFileLimit": "You must send only one file"
+      "oneFileLimit": "You must send only one file",
+      "passwordsDontMatch": "The passwords don't match",
+      "invalidName": "Ths field can only contain letters, hyphens, spaces and apostrophes",
+      "invalidPhone": "Please enter a phone number in the international format: +XX 0000000000 (replace XX with the country code)",
+      "minLowercase": "The password must contain at least 1 lowercase",
+      "minUppercase": "The password must contain at least 1 uppercase",
+      "minNumbers": "The password must contain at least 1 number",
+      "minSymbols": "The password must contain at least 1 special character"
     },
 
     "user": {
+      "firstName": "First name",
+      "lastName": "Last name",
       "emailLabel": "Email",
       "emailPlaceholder": "example@example.com",
-      "password": "Password"
+      "password": "Password",
+      "confirmPassword": "Confirm password",
+      "birthDate": "Birth date",
+      "phoneLabel": "Phone",
+      "phonePlaceholder": "ex: +44 7500 123456"
+    }
+  },
+
+  "auth": {
+    "success": {
+      "registerSuccess": "Registration successful!"
+    },
+    "error": {
+      "accountAlreadyExists": "An account with this email already exists. Please enter a new email",
+      "registerFailed": "Registration failed"
     }
   },
 

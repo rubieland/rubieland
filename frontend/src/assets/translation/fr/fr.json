@@ -4,7 +4,9 @@
     "edit": "Modifier",
     "cancel": "Annuler",
     "addPicture": "Ajouter une image",
-    "goBackToHomepage": "Revenir à l'accueil"
+    "goBackToHomepage": "Revenir à l'accueil",
+    "register": "M'inscrire",
+    "formSending": "Envoi en cours..."
   },
 
   "aria-labels": {
@@ -44,13 +46,36 @@
       "birthDateInFuture": "La date de naissance ne peut pas être dans le futur",
       "invalidFileType": "Fichier invalide. Seuls les fichiers de type {{types}} sont acceptés",
       "fileTooLarge": "Fichier trop lourd. Max: {{limit}}MB",
-      "oneFileLimit": "Vous ne devez envoyer qu'un fichier"
+      "oneFileLimit": "Vous ne devez envoyer qu'un fichier",
+      "passwordsDontMatch": "Les mots de passe ne correspondent pas",
+      "invalidName": "Ce champ ne peut contenir que des lettres, traits d'union, espaces et apostrophes",
+      "invalidPhone": "Veuillez entrer un numéro de téléphone au format international : +XX 0000000000 (remplacez XX par le code du pays)",
+      "minLowercase": "Le mot de passe doit contenir au moins 1 minuscule",
+      "minUppercase": "Le mot de passe doit contenir au moins 1 majuscule",
+      "minNumbers": "Le mot de passe doit contenir au moins 1 chiffre",
+      "minSymbols": "Le mot de passe doit contenir au moins 1 caractère spécial"
     },
 
     "user": {
+      "firstName": "Prénom",
+      "lastName": "Nom de famille",
       "emailLabel": "Email",
       "emailPlaceholder": "exemple@exemple.com",
-      "password": "Mot de passe"
+      "password": "Mot de passe",
+      "confirmPassword": "Confirmer le mot de passe",
+      "birthDate": "Date de naissance",
+      "phoneLabel": "Téléphone",
+      "phonePlaceholder": "ex: +33 7 12 34 56 78"
+    }
+  },
+
+  "auth": {
+    "success": {
+      "registerSuccess": "Inscription réussie !"
+    },
+    "error": {
+      "accountAlreadyExists": "Un compte avec cet email existe déjà. Veuillez entrer un nouvel email",
+      "registerFailed": "La création de compte a échouée"
     }
   },
 
