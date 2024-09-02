@@ -62,7 +62,7 @@ export const register = async (
     // if the email already exists in base, send error (as it must be unique)
     if (userInBase) {
       return res
-        .status(400)
+        .status(409)
         .json({ error: i18n.t('auth.error.userExistsInBase') });
     }
 

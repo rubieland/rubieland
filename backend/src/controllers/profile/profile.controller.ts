@@ -70,7 +70,7 @@ export const updateProfile = async (
         await deleteAvatar(`${avatarsDir}/${avatarFile?.filename}`);
 
       return res
-        .status(400)
+        .status(409)
         .json({ error: i18n.t('auth.error.userExistsInBase') });
     }
 
