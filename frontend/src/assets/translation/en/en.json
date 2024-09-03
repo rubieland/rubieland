@@ -22,7 +22,7 @@
     "about": "About",
     "blog": "Blog",
     "register": "Register",
-    "login": "Login"
+    "login": "Log in"
   },
 
   "footer": {
@@ -82,5 +82,17 @@
   "cropPictureModal": {
     "title": "Crop picture",
     "cropButtonTitle": "Crop"
+  },
+
+  "pages": {
+    "register": {
+      "alreadyRegisteredBlock": {
+        "title": "Already have an account?",
+        "buttonTitle": "Log in"
+      },
+      "registerBlock": {
+        "title": "No account yet? Register now"
+      }
+    }
   }
 }

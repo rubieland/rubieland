@@ -82,5 +82,17 @@
   "cropPictureModal": {
     "title": "Redimensionner l'image",
     "cropButtonTitle": "Redimensionner"
+  },
+
+  "pages": {
+    "register": {
+      "alreadyRegisteredBlock": {
+        "title": "Vous avez déjà un compte ?",
+        "buttonTitle": "Connectez-vous"
+      },
+      "registerBlock": {
+        "title": "Pas encore de compte ? Inscrivez-vous"
+      }
+    }
   }
 }
