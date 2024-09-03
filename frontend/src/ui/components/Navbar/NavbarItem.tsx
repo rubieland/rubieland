@@ -11,7 +11,7 @@ interface NavbarItemProps {
 const activeProps = {
   style: {
     color: colors.primary,
-    fontWeight: 500,
+    fontWeight: 600,
   },
 };
 

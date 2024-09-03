@@ -8,7 +8,7 @@ const activeProps = {
   style: {
     borderColor: colors.primary,
     color: colors.primary,
-    fontWeight: 500,
+    fontWeight: 600,
   },
 };
 
