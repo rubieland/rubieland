@@ -10,12 +10,8 @@
   gap: 1.5rem;
 
   &::before {
-    background-color: $grey30;
     @include box(90%, 1px);
-    margin: 0 auto;
-    height: 1px;
-    content: '';
-    width: 90%;
+    @include separator;
   }
 }
 

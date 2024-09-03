@@ -100,6 +100,15 @@
   }
 }
 
+// ----- separator ----- \\
+
+@mixin separator {
+  background-color: $grey30;
+  @include box(90%, 1px);
+  margin: 0 auto;
+  content: '';
+}
+
 // ----- images and icons ----- \\
 
 @mixin img($w: 100%, $h: 100%, $br: 4px, $pos: center, $fit: cover) {
