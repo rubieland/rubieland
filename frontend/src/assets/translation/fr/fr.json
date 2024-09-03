@@ -88,10 +88,10 @@
     "register": {
       "alreadyRegisteredBlock": {
         "title": "Vous avez déjà un compte ?",
-        "buttonTitle": "Connectez-vous"
+        "linkTitle": "Connectez-vous"
       },
       "registerBlock": {
-        "title": "Pas encore de compte ? Inscrivez-vous"
+        "title": "Créez votre compte"
       }
     }
   }
