@@ -1,0 +1,23 @@
+@import '../../../../assets/styles/variables';
+@import '../../../../assets/styles/mixins';
+
+.already-registered-container {
+  @include flex-center-column;
+  max-width: 40rem;
+  padding: 2rem;
+  width: 100%;
+  gap: 1.125rem;
+
+  > h2 {
+    font-size: 1.25rem;
+    color: $black90;
+  }
+}
+
+// ----- responsive ----- \\
+
+@include respond-to('medium') {
+  .already-registered-container {
+    width: 75%;
+  }
+}

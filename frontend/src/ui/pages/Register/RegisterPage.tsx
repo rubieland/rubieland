@@ -1,13 +1,17 @@
-import RegisterForm from './components/RegisterForm';
-import useRegister from './hooks/useRegister';
+import AlreadyRegisteredBlock from './components/AlreadyRegisteredBlock';
+import Separator from '../../components/Separator/Separator';
+import RegisterBlock from './components/RegisterBlock';
+import colors from '../../../assets/styles/colors';
+import './styles/RegisterPage.scss';
 
 const RegisterPage = () => {
-  const { onSubmit } = useRegister();
-
   return (
-    <div>
-      <p>RegisterPage</p>
-      <RegisterForm onSubmit={onSubmit} />
+    <div className="register-page-main-container">
+      <AlreadyRegisteredBlock />
+      <div className="separator-container">
+        <Separator backgroundColor={colors.grey40} />
+      </div>
+      <RegisterBlock />
     </div>
   );
 };

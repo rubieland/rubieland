@@ -34,41 +34,42 @@ const RegisterForm = ({ onSubmit }: RegisterFormProps) => {
     <FormProvider {...form}>
       <form>
         <ControlledTextInput
-          label={addAsterisk(i18n.t('form.user.firstName'))}
-          placeholder={i18n.t('form.user.firstName')}
+          placeholder={addAsterisk(i18n.t('form.user.firstName'))}
+          label={i18n.t('form.user.firstName')}
           autocomplete="given-name"
           name="firstName"
-          withLabel
         />
         <ControlledTextInput
-          label={addAsterisk(i18n.t('form.user.lastName'))}
-          placeholder={i18n.t('form.user.lastName')}
+          placeholder={addAsterisk(i18n.t('form.user.lastName'))}
+          label={i18n.t('form.user.lastName')}
           autocomplete="family-name"
           name="lastName"
-          withLabel
         />
         <ControlledTextInput
-          label={addAsterisk(i18n.t('form.user.emailLabel'))}
-          placeholder={i18n.t('form.user.emailPlaceholder')}
+          placeholder={addAsterisk(i18n.t('form.user.emailLabel'))}
+          label={i18n.t('form.user.emailPlaceholder')}
           autocomplete="email"
           name="email"
           type="email"
-          withLabel
         />
         <ControlledTextInput
-          label={addAsterisk(i18n.t('form.user.password'))}
-          placeholder={i18n.t('form.user.password')}
+          placeholder={addAsterisk(i18n.t('form.user.password'))}
+          label={i18n.t('form.user.password')}
           autocomplete="new-password"
           name="password"
           type="password"
-          withLabel
         />
         <ControlledTextInput
-          label={addAsterisk(i18n.t('form.user.confirmPassword'))}
-          placeholder={i18n.t('form.user.confirmPassword')}
+          placeholder={addAsterisk(i18n.t('form.user.confirmPassword'))}
+          label={i18n.t('form.user.confirmPassword')}
           name="confirmPassword"
           type="password"
-          withLabel
+        />
+        <ControlledTextInput
+          placeholder={`${addAsterisk(i18n.t('form.user.phoneLabel'))} (${i18n.t('form.user.phonePlaceholder')})`}
+          label={i18n.t('form.user.phoneLabel')}
+          autocomplete="tel"
+          name="phone"
         />
         <ControlledDatePicker
           label={addAsterisk(i18n.t('form.user.birthDate'))}
@@ -76,13 +77,6 @@ const RegisterForm = ({ onSubmit }: RegisterFormProps) => {
           minDate={formattedMinBirthDate}
           autocomplete="bday"
           name="birthDate"
-        />
-        <ControlledTextInput
-          label={addAsterisk(i18n.t('form.user.phoneLabel'))}
-          placeholder={i18n.t('form.user.phonePlaceholder')}
-          autocomplete="tel"
-          name="phone"
-          withLabel
         />
         <div className="form-input">
           <CustomButton
