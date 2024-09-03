@@ -1,8 +1,9 @@
+import { ChangeEventHandler, HTMLInputAutoCompleteAttribute } from 'react';
 import classNames from 'classnames';
-import { ChangeEventHandler } from 'react';
 
 interface TextInputProps {
   onChange: ChangeEventHandler<HTMLInputElement>;
+  autocomplete?: HTMLInputAutoCompleteAttribute;
   type: 'text' | 'email' | 'password';
   value: string | number;
   placeholder?: string;
@@ -13,6 +14,7 @@ interface TextInputProps {
 }
 
 const TextInput = ({
+  autocomplete,
   placeholder,
   isRequired,
   isInvalid,
@@ -28,6 +30,7 @@ const TextInput = ({
 
   return (
     <input
+      autoComplete={autocomplete}
       aria-required={isRequired}
       placeholder={placeholder}
       aria-invalid={isInvalid}
@@ -35,7 +38,6 @@ const TextInput = ({
       required={isRequired}
       onChange={onChange}
       aria-label={label}
-      autoComplete="on"
       value={value}
       type={type}
       name={name}

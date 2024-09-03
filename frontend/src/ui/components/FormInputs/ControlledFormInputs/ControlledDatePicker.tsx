@@ -1,7 +1,9 @@
 import { Controller, useFormContext } from 'react-hook-form';
+import { HTMLInputAutoCompleteAttribute } from 'react';
 import DatePicker from '../DatePicker';
 
 interface ControlledDatePickerProps {
+  autocomplete?: HTMLInputAutoCompleteAttribute;
   maxDate?: string | number;
   minDate?: string | number;
   isRequired?: boolean;
@@ -13,6 +15,7 @@ interface ControlledDatePickerProps {
 const ControlledDatePicker = ({
   isRequired = true,
   withLabel = true,
+  autocomplete,
   maxDate,
   minDate,
   label,
@@ -28,6 +31,7 @@ const ControlledDatePicker = ({
         <div className="form-input">
           {withLabel && <label htmlFor={name}>{label}</label>}
           <DatePicker
+            autocomplete={autocomplete}
             isRequired={isRequired}
             isInvalid={!!error}
             onChange={onChange}
