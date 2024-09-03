@@ -1,5 +1,5 @@
-import classNames from 'classnames';
 import '../../../assets/styles/buttons.scss';
+import classNames from 'classnames';
 
 interface CustomButtonProps {
   style?: 'primary' | 'secondary' | 'success' | 'error';

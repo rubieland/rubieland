@@ -1,5 +1,5 @@
-import classNames from 'classnames';
 import { ChangeEventHandler, FocusEventHandler } from 'react';
+import classNames from 'classnames';
 
 interface TextareaProps {
   onChange: ChangeEventHandler<HTMLTextAreaElement>;

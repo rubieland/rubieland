@@ -1,5 +1,5 @@
-import classNames from 'classnames';
 import { ChangeEventHandler } from 'react';
+import classNames from 'classnames';
 
 interface CheckboxProps {
   onCheckChange: ChangeEventHandler<HTMLInputElement>;

@@ -1,6 +1,6 @@
-import classNames from 'classnames';
 import { SelectItem } from './types/FormInputsTypes';
 import { ChangeEventHandler } from 'react';
+import classNames from 'classnames';
 
 interface SelectProps {
   onValueChange: ChangeEventHandler<HTMLSelectElement>;
