@@ -7,11 +7,11 @@ import './styles/RegisterPage.scss';
 const RegisterPage = () => {
   return (
     <div className="register-page-main-container">
-      <AlreadyRegisteredBlock />
+      <RegisterBlock />
       <div className="separator-container">
         <Separator backgroundColor={colors.grey40} />
       </div>
-      <RegisterBlock />
+      <AlreadyRegisteredBlock />
     </div>
   );
 };
