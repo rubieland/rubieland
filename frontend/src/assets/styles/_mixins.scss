@@ -64,7 +64,7 @@
 // ----- form inputs ----- \\
 
 @mixin input-base {
-  border: 2px solid $grey40;
+  border: 1px solid $grey50;
   min-height: $input-height;
   border-radius: 0.25rem;
   font-family: inherit;

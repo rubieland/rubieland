@@ -3,23 +3,20 @@
 
 .register-block-container {
   @include flex-center-column;
-  padding: 1.125rem 2rem 2rem;
-  width: 100%;
   gap: 1.125rem;
+  padding: 2rem;
+  width: 100%;
 
   > h2 {
-    font-size: 1.25rem;
+    font-size: 1.125rem;
+    max-width: 36rem;
+    text-align: left;
     color: $black90;
+    width: inherit;
   }
 
   > form {
+    max-width: 40rem;
     width: 100%;
-  }
-}
-
-// ----- responsive ----- \\
-@include respond-to('medium') {
-  .register-block-container {
-    width: 75%;
   }
 }

@@ -3,21 +3,20 @@
 
 .already-registered-container {
   @include flex-center-column;
+  padding: 1.125rem 2rem 2rem;
   max-width: 40rem;
-  padding: 2rem;
-  width: 100%;
   gap: 1.125rem;
+  width: 100%;
 
   > h2 {
-    font-size: 1.25rem;
+    font-size: 1.125rem;
     color: $black90;
   }
-}
 
-// ----- responsive ----- \\
-
-@include respond-to('medium') {
-  .already-registered-container {
-    width: 75%;
+  .link-to-login {
+    text-decoration: underline;
+    font-weight: 700;
+    font-size: 1rem;
+    color: $primary;
   }
 }
