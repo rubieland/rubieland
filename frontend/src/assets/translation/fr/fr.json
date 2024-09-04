@@ -6,6 +6,7 @@
     "addPicture": "Ajouter une image",
     "goBackToHomepage": "Revenir à l'accueil",
     "register": "M'inscrire",
+    "login": "Me connecter",
     "formSending": "Envoi en cours..."
   },
 
@@ -71,11 +72,14 @@
 
   "auth": {
     "success": {
-      "registerSuccess": "Inscription réussie !"
+      "registerSuccess": "Inscription réussie !",
+      "loginSuccess": "Vous êtes connecté(e) !"
     },
     "error": {
       "accountAlreadyExists": "Un compte avec cet email existe déjà. Veuillez entrer un nouvel email",
-      "registerFailed": "La création de compte a échouée"
+      "registerFailed": "La création de compte a échouée",
+      "invalidCredentials": "Identifiants incorrects",
+      "loginFailed": "La connexion a échouée"
     }
   },
 
@@ -92,6 +96,15 @@
       },
       "registerBlock": {
         "title": "Créez votre compte"
+      }
+    },
+    "login": {
+      "notRegisteredYetBlock": {
+        "title": "Pas encore de compte ?",
+        "linkTitle": "Créez votre compte"
+      },
+      "loginBlock": {
+        "title": "Connectez-vous"
       }
     }
   }

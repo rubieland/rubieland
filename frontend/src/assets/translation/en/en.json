@@ -6,6 +6,7 @@
     "addPicture": "Add a picture",
     "goBackToHomepage": "Go back to homepage",
     "register": "Register",
+    "login": "Log in",
     "formSending": "Sending..."
   },
 
@@ -71,11 +72,14 @@
 
   "auth": {
     "success": {
-      "registerSuccess": "Registration successful!"
+      "registerSuccess": "Registration successful!",
+      "loginSuccess": "You are logged in!"
     },
     "error": {
       "accountAlreadyExists": "An account with this email already exists. Please enter a new email",
-      "registerFailed": "Registration failed"
+      "registerFailed": "Registration failed",
+      "invalidCredentials": "Invalid credentials",
+      "loginFailed": "Log in failed"
     }
   },
 
@@ -92,6 +96,15 @@
       },
       "registerBlock": {
         "title": "Create your account"
+      }
+    },
+    "login": {
+      "notRegisteredYetBlock": {
+        "title": "No account yet?",
+        "linkTitle": "Create your account"
+      },
+      "loginBlock": {
+        "title": "Log in"
       }
     }
   }
