@@ -1,7 +1,7 @@
 @import '../../../../assets/styles/variables';
 @import '../../../../assets/styles/mixins';
 
-.register-block-container {
+.auth-form-container {
   @include flex-center-column;
   gap: 1.125rem;
   padding: 2rem;

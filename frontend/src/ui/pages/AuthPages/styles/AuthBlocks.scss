@@ -1,7 +1,7 @@
 @import '../../../../assets/styles/variables';
 @import '../../../../assets/styles/mixins';
 
-.already-registered-container {
+.auth-link-container {
   @include flex-center-column;
   max-width: 40rem;
   padding: 2rem;
@@ -10,11 +10,10 @@
 
   > p {
     color: $primary;
-  }
-
-  .link-to-login {
-    font-weight: 700;
-    font-size: 1rem;
-    color: $primary;
+    > .auth-link {
+      font-weight: 700;
+      font-size: 1rem;
+      color: $primary;
+    }
   }
 }

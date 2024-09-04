@@ -1,8 +1,11 @@
-import { isAtLeastNYearsOld, isInFuture } from '../../../../utils/date.utils';
-import { validatePhoneNumber } from '../../../../utils/phone.utils';
+import {
+  isAtLeastNYearsOld,
+  isInFuture,
+} from '../../../../../utils/date.utils';
+import { validatePhoneNumber } from '../../../../../utils/phone.utils';
 import { zodResolver } from '@hookform/resolvers/zod';
+import i18n from '../../../../../core/i18n';
 import { useForm } from 'react-hook-form';
-import i18n from '../../../../core/i18n';
 import { isBefore } from 'date-fns';
 import { z } from 'zod';
 
@@ -54,24 +57,6 @@ export const RegisterFormSchema = z
         message: i18n.t('form.errors.minSymbols'),
       }),
     confirmPassword: z.string(),
-    //   .min(8, {
-    //     message: i18n.t('form.errors.inputMinLength', { minLength: 8 }),
-    //   })
-    //   .max(60, {
-    //     message: i18n.t('form.errors.inputMaxLength', { maxLength: 60 }),
-    //   })
-    //   .refine((value) => /[a-z]/.test(value), {
-    //     message: i18n.t('form.errors.minLowercase'),
-    //   })
-    //   .refine((value) => /[A-Z]/.test(value), {
-    //     message: i18n.t('form.errors.minUppercase'),
-    //   })
-    //   .refine((value) => /\d/.test(value), {
-    //     message: i18n.t('form.errors.minNumbers'),
-    //   })
-    //   .refine((value) => /[!@#$%^&*(),.?":{}|<>]/.test(value), {
-    //     message: i18n.t('form.errors.minSymbols'),
-    //   }),
     birthDate: z
       .string()
       .refine(

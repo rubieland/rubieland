@@ -1,13 +1,13 @@
-import ControlledDatePicker from '../../../components/FormInputs/ControlledFormInputs/ControlledDatePicker';
-import ControlledTextInput from '../../../components/FormInputs/ControlledFormInputs/ControlledTextInput';
+import ControlledDatePicker from '../../../../components/FormInputs/ControlledFormInputs/ControlledDatePicker';
+import ControlledTextInput from '../../../../components/FormInputs/ControlledFormInputs/ControlledTextInput';
 import { useRegisterFormValidation } from '../hooks/useRegisterFormValidation';
-import { calculateMinDateYYYYMMDD } from '../../../../utils/date.utils';
-import CustomButton from '../../../components/Button/CustomButton';
-import { RegisterBody } from '../../../../models/user/user.entity';
-import { addAsterisk } from '../../../../utils/string.utils';
-import { isFormValid } from '../../../../utils/form.utils';
+import { calculateMinDateYYYYMMDD } from '../../../../../utils/date.utils';
+import CustomButton from '../../../../components/Button/CustomButton';
+import { RegisterBody } from '../../../../../models/user/user.entity';
+import { addAsterisk } from '../../../../../utils/string.utils';
+import { isFormValid } from '../../../../../utils/form.utils';
 import { FormProvider } from 'react-hook-form';
-import i18n from '../../../../core/i18n';
+import i18n from '../../../../../core/i18n';
 
 const today = new Date();
 const formattedMaxBirthDate = calculateMinDateYYYYMMDD(today, 16);

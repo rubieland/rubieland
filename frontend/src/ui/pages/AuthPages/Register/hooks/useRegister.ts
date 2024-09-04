@@ -1,7 +1,7 @@
-import { usePostRegister } from '../../../../api/auth/postRegister';
-import { RegisterBody } from '../../../../models/user/user.entity';
+import { usePostRegister } from '../../../../../api/auth/postRegister';
+import { RegisterBody } from '../../../../../models/user/user.entity';
+import i18n from '../../../../../core/i18n';
 import { Id, toast } from 'react-toastify';
-import i18n from '../../../../core/i18n';
 import { AxiosError } from 'axios';
 import { useState } from 'react';
 
@@ -43,7 +43,6 @@ const useRegister = () => {
           autoClose: 3000,
         });
       }
-      console.log('REGISTER SUCCESSFUL!');
     },
     onError: handleRegisterError,
     onSettled: () => {
