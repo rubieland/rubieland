@@ -31,6 +31,8 @@ export const loadExpress = async ({ server }: { server: Express }) => {
         resave: false,
         saveUninitialized: false,
         cookie: {
+          secure: process.env.NODE_ENV === 'production',
+          sameSite: 'none',
           httpOnly: true,
           maxAge: Number(COOKIE_MAX_AGE), // 1h
         },
@@ -43,6 +45,7 @@ export const loadExpress = async ({ server }: { server: Express }) => {
     server.use(
       cors({
         origin: `http://${CLIENT_HOST ?? 'localhost'}:${CLIENT_PORT ?? 5173}`,
+        credentials: true,
       }),
     );
 

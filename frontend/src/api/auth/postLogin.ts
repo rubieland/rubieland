@@ -4,7 +4,9 @@ import { MutationConfig } from '../reactQuery';
 import { api } from '../axios';
 
 const postLogin = async (body: LoginBody) => {
-  const response = await api.post('/auth/login', body);
+  const response = await api.post('/auth/login', body, {
+    withCredentials: true,
+  });
 
   return response;
 };
