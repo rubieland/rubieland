@@ -11,7 +11,7 @@ const useLogin = () => {
 
   const handleLoginError = (error: AxiosError) => {
     let message;
-    if (error.response && error.response.status === 401) {
+    if (error.response && error.response.status === 400) {
       message = i18n.t('auth.error.invalidCredentials');
     } else {
       message = i18n.t('auth.error.loginFailed');
