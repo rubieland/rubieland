@@ -31,8 +31,8 @@ export const loadExpress = async ({ server }: { server: Express }) => {
         resave: false,
         saveUninitialized: false,
         cookie: {
-          secure: process.env.NODE_ENV === 'production',
-          sameSite: 'none',
+          secure: process.env.NODE_ENV === 'production', // allow receiving cookie from HTTPS domain only (so "true" in production only because localhost uses HTTP, not HTTPS)
+          sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax', // "none" allows receiving cookie from any cross-origin request whereas "lax" does not allow receiving cookie from another site in case of unsafe request like POST or PUT
           httpOnly: true,
           maxAge: Number(COOKIE_MAX_AGE), // 1h
         },
