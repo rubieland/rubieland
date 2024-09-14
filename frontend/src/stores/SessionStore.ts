@@ -2,25 +2,28 @@ import { SessionData, User } from '../models/user/user.entity';
 import { create } from 'zustand';
 
 type SessionStoreStateType = {
-  token: string | null | undefined;
+  accessToken: string | null | undefined;
   user: User | null;
+  isAdmin: boolean;
   actions: {
-    setSession: ({ token, user }: SessionData) => void;
-    setUser: ({ user }: SessionData) => void;
+    setSession: ({ accessToken, user }: SessionData) => void;
+    setUser: ({ user }: Pick<SessionData, 'user'>) => void;
     logout: () => void;
   };
 };
 
 export const useSessionStore = create<SessionStoreStateType>((set) => ({
-  token: null,
+  accessToken: null,
   user: null,
+  isAdmin: false,
   actions: {
-    setSession: ({ token, user }) =>
+    setSession: ({ accessToken, user }) =>
       set((state) => {
         return {
           ...state,
-          token,
+          accessToken,
           user,
+          isAdmin: user?.role === 'admin',
         };
       }),
     setUser: ({ user }) =>
@@ -33,15 +36,18 @@ export const useSessionStore = create<SessionStoreStateType>((set) => ({
     logout: () =>
       set((state) => ({
         ...state,
-        token: null,
+        accessToken: null,
         user: null,
+        isAdmin: false,
       })),
   },
 }));
 
-export const useIsConnected = () => useSessionStore((state) => !!state.token);
-export const useSession = () =>
-  useSessionStore((state) => ({ token: state.token }));
+export const useIsConnected = () =>
+  useSessionStore((state) => !!state.accessToken);
+export const useAccessToken = () =>
+  useSessionStore((state) => ({ accessToken: state.accessToken }));
 export const useSessionStoreActions = () =>
   useSessionStore((state) => state.actions);
 export const useUserInfo = () => useSessionStore((state) => state.user);
+export const useIsAdmin = () => useSessionStore((state) => state.isAdmin);

@@ -18,7 +18,7 @@ export const getProfile = async (
   next: NextFunction,
 ) => {
   try {
-    const userId = req.session?.authUser?.id;
+    const userId = req.authUser?.id;
     const user = await User.findById(userId);
 
     if (!user) {
@@ -27,7 +27,10 @@ export const getProfile = async (
         .json({ error: i18n.t('common.error.usersFound_zero', { count: 0 }) });
     }
 
-    res.status(200).json({ user });
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { password, ...userWithoutPassword } = user.toObject();
+
+    res.status(200).json({ user: userWithoutPassword });
   } catch (error: unknown) {
     next(error);
   }
@@ -50,7 +53,7 @@ export const updateProfile = async (
       confirmNewPassword,
       phone,
     } = trimData(req.body);
-    const userId = req.session?.authUser?.id;
+    const userId = req?.authUser?.id;
     const userInBase: UserDocument | null = await User.findById(userId);
     const emailExists = await User.findOne({ email });
 
@@ -133,9 +136,12 @@ export const updateProfile = async (
     // save user with updated data
     await userInBase.save();
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { password, ...userWithoutPassword } = userInBase.toObject();
+
     return res.status(200).json({
       message: i18n.t('profile.success.profileUpdateSuccess'),
-      userInBase,
+      user: userWithoutPassword,
     });
   } catch (error: unknown) {
     if (avatarFile) await deleteAvatar(`${avatarsDir}/${avatarFile?.filename}`);
@@ -149,7 +155,7 @@ export const deleteAccount = async (
   next: NextFunction,
 ) => {
   try {
-    const userId = req.session?.authUser?.id;
+    const userId = req?.authUser?.id;
     const user = await User.findById(userId);
 
     if (!user) {

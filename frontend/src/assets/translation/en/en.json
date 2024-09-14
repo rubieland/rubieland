@@ -23,7 +23,8 @@
     "about": "About",
     "blog": "Blog",
     "register": "Register",
-    "login": "Log in"
+    "login": "Log in",
+    "profile": "Profile"
   },
 
   "footer": {

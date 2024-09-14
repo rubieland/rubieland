@@ -19,9 +19,10 @@ export type RegisterBody = Omit<User, 'id' | 'role' | 'avatar'> & {
 };
 
 export type LoginBody = Pick<RegisterBody, 'email' | 'password'>;
+
 export type SessionData = {
-  token: string;
-  user: User;
+  accessToken: string | null | undefined;
+  user: User | null;
 };
 
 export const convertUserDtoToEntity = (dto: UserDto): User => {

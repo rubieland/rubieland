@@ -1,6 +1,7 @@
 import { useSessionStoreActions } from '../../../../../stores/SessionStore';
 import { LoginBody } from '../../../../../models/user/user.entity';
 import { usePostLogin } from '../../../../../api/auth/postLogin';
+import { useNavigate } from '@tanstack/react-router';
 import i18n from '../../../../../core/i18n';
 import { Id, toast } from 'react-toastify';
 import { AxiosError } from 'axios';
@@ -10,6 +11,7 @@ const useLogin = () => {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [toastId, setToastId] = useState<Id | null>(null);
   const { setSession } = useSessionStoreActions();
+  const navigate = useNavigate({ from: '/login' });
 
   const handleLoginError = (error: AxiosError) => {
     let message;
@@ -45,6 +47,7 @@ const useLogin = () => {
           autoClose: 3000,
         });
       }
+      navigate({ to: '/' });
     },
     onError: handleLoginError,
     onSettled: () => {
@@ -56,8 +59,9 @@ const useLogin = () => {
   const onSubmit = async (data: LoginBody) => {
     try {
       const loginResponse = await login(data);
-      const { token, user } = loginResponse.data;
-      setSession({ token, user });
+      const { accessToken, user } = loginResponse.data;
+
+      setSession({ accessToken, user });
 
       return loginResponse;
     } catch (error) {

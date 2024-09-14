@@ -1,4 +1,4 @@
-import Router, { Express } from 'express';
+import { Router } from 'express';
 import { authMiddleware } from '../../../middlewares/auth/auth.middleware';
 import { isAdminMiddleware } from '../../../middlewares/admin/isAdmin.middleware';
 import {
@@ -25,7 +25,7 @@ import {
   getDog,
 } from '../../../controllers/back-office/dogsBackOffice.controller';
 
-const router: Express = Router();
+const router = Router();
 
 // blog routes
 router.put(

@@ -7,8 +7,8 @@ export const isAdminMiddleware = async (
   next: NextFunction,
 ) => {
   try {
-    // get the user role from the session
-    const userRole = req.session.authUser?.role;
+    // get the auth user role
+    const userRole = req.authUser?.role;
 
     // if the user is not admin, he must not access the route...
     if (userRole !== 'admin') {

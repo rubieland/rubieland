@@ -12,11 +12,11 @@ export interface User {
   password: string;
   phone: string;
   avatar?: string | null;
-  role?: UserRole;
+  role: UserRole;
   dogsIds: Types.ObjectId[];
 }
 
-export interface UserData extends Omit<User, 'password' | 'dogsIds'> {
+export interface UserData extends Omit<User, 'password' | 'dogsIds' | 'role'> {
   password?: string;
   confirmPassword?: string;
   currentPassword?: string;
@@ -28,5 +28,4 @@ export type UserField = keyof Omit<UserData, 'avatar' | 'role' | 'dogsIds'>;
 
 export interface UserDocument extends User, Document {
   comparePassword(candidatePassword: string): Promise<boolean>;
-  createJWT(): string;
 }

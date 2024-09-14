@@ -1,10 +1,9 @@
-import Axios, { InternalAxiosRequestConfig } from 'axios';
+import { testIfJwtTokenIsValid } from '../helpers/token.helpers';
+import { refreshAccessToken } from './auth/refreshAccessToken';
+import { useSessionStore } from '../stores/SessionStore';
 import { API_URL } from '../core/envConfig';
-
-enum SecuredEndpoints {
-  PROFILE = '/profile',
-  BACK_OFFICE = '/back-office',
-}
+import { queryClient } from './reactQuery';
+import Axios from 'axios';
 
 const api = Axios.create({
   baseURL: API_URL,
@@ -16,53 +15,44 @@ const api = Axios.create({
   withCredentials: false,
 });
 
-api.interceptors.request.use(
-  (config: InternalAxiosRequestConfig) => {
-    // send credentials only to secured routes
-    if (
-      config.url?.includes(SecuredEndpoints.PROFILE) ||
-      config.url?.includes(SecuredEndpoints.BACK_OFFICE)
-    ) {
-      config.withCredentials = true;
-    }
-    return config;
-  },
-  (error) => {
-    return Promise.reject(error);
-  },
-);
+api.interceptors.request.use(async (config) => {
+  const {
+    accessToken,
+    actions: { logout },
+  } = useSessionStore.getState();
 
-api.interceptors.response.use(
-  (response) => response,
-  (error) => {
-    if (error.response) {
-      if (error.response.status === 401) {
-        /**
-         * TODO: 
-         * const {
-            accessToken,
-            actions: { logout },
-        } = useSessionStore.getState();
+  let currentAccessToken = accessToken;
 
-        if (accessToken) {
-            const isTokenValid = await testIfJwtTokenIsValid(accessToken);
+  if (accessToken && config.url !== '/auth/refresh-token') {
+    const isTokenValid = await testIfJwtTokenIsValid(accessToken);
 
-            if (!isTokenValid) {
-            logout();
-            queryClient.removeQueries();
-            }
+    if (!isTokenValid) {
+      try {
+        const refreshedToken = await refreshAccessToken();
+
+        if (!refreshedToken) {
+          throw new Error(
+            '[Axios request interceptors] Refresh token is undefined',
+          );
         }
-         */
+
+        currentAccessToken = refreshedToken;
+        config.headers.Authorization = `Bearer ${currentAccessToken}`;
+        console.log('Token is refreshed');
+      } catch (error: unknown) {
+        console.error(
+          '[Axios request interceptors] Logout user after an error while refreshing token',
+          error,
+        );
+
+        logout();
+        queryClient.removeQueries();
       }
-    } else if (error.request) {
-      // request has been sent but no response has been returned from server
-      console.error('Request error:', error.message);
     } else {
-      // request config error
-      console.error('Configuration error:', error.message);
+      config.headers.Authorization = `Bearer ${currentAccessToken}`;
     }
-    return Promise.reject(error);
-  },
-);
+  }
+  return config;
+});
 
 export { api };

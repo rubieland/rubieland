@@ -1,6 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
 import i18n from '../../../../../core/i18n';
+import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
 export const LoginFormSchema = z.object({
@@ -16,18 +16,6 @@ export const LoginFormSchema = z.object({
     })
     .max(60, {
       message: i18n.t('form.errors.inputMaxLength', { maxLength: 60 }),
-    })
-    .refine((value) => /[a-z]/.test(value), {
-      message: i18n.t('form.errors.minLowercase'),
-    })
-    .refine((value) => /[A-Z]/.test(value), {
-      message: i18n.t('form.errors.minUppercase'),
-    })
-    .refine((value) => /\d/.test(value), {
-      message: i18n.t('form.errors.minNumbers'),
-    })
-    .refine((value) => /[!@#$%^&*(),.?":{}|<>]/.test(value), {
-      message: i18n.t('form.errors.minSymbols'),
     }),
 });
 

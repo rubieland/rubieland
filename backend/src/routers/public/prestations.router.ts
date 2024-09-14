@@ -1,10 +1,10 @@
-import Router, { Express } from 'express';
+import { Router } from 'express';
 import {
   getAllPrestations,
   getPrestation,
 } from '../../controllers/public/prestations.controller';
 
-const router: Express = Router();
+const router = Router();
 
 router.get('/prestations/all', getAllPrestations);
 router.get('/prestations/:id', getPrestation);

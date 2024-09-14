@@ -1,8 +1,11 @@
+import { useIsConnected } from '../../../stores/SessionStore';
 import { useNavbarContext } from './providers/NavbarProvider';
+import colors from '../../../assets/styles/colors';
 import BurgerMenuButton from './BurgerMenuButton';
-import i18n from '../../../core/i18n';
 import AuthLinksBlock from './AuthLinksBlock';
+import { Link } from '@tanstack/react-router';
 import NavbarItem from './NavbarItem';
+import i18n from '../../../core/i18n';
 import './styles/Navbar.scss';
 
 const mainLinks = [
@@ -20,9 +23,21 @@ const mainLinks = [
   },
 ];
 
+const activeProps = {
+  style: {
+    color: colors.primary,
+    fontWeight: 600,
+  },
+};
+
 const Navbar = () => {
-  const { isOpen } = useNavbarContext();
+  const { isOpen, hideMenu } = useNavbarContext();
   const className = isOpen ? 'navbar' : 'navbar hidden';
+  const isConnected = useIsConnected();
+
+  const hideOnEscapeKeyDown = (e: React.KeyboardEvent<'a'>) => {
+    if (e.key === 'Escape') hideMenu();
+  };
 
   return (
     <nav className={className}>
@@ -30,7 +45,20 @@ const Navbar = () => {
       {mainLinks.map((link, i) => (
         <NavbarItem key={i} to={link.to} title={link.title} />
       ))}
-      <AuthLinksBlock />
+
+      {!isConnected ? (
+        <AuthLinksBlock />
+      ) : (
+        <Link
+          className="navbar-link"
+          onKeyDown={hideOnEscapeKeyDown}
+          activeProps={activeProps}
+          onClick={hideMenu}
+          to="/profile"
+        >
+          {i18n.t('nav.profile')}
+        </Link>
+      )}
     </nav>
   );
 };

@@ -11,13 +11,10 @@ import {
 import { UserDocument, UserRole } from './types/User.types';
 import bcrypt from 'bcrypt';
 import { formatName } from '../utils/string.utils';
-import jwt from 'jsonwebtoken';
-import { env } from '../loaders/env.loader';
 import i18n from '../config/i18n';
 import { DataContext, Reason } from '../validation/types/validation.types';
 import { nameRegex } from '../validation/Common.validator';
 
-const { JWT_SECRET, JWT_EXPIRATION } = env;
 const context: DataContext = DataContext.USER;
 
 /**
@@ -275,17 +272,6 @@ userSchema.methods.comparePassword = async function (
       ? new Error(i18n.t('auth.error.comparePasswordFailed'))
       : new Error(i18n.t('common.error.unknown'));
   }
-};
-
-userSchema.methods.createJWT = function () {
-  return jwt.sign(
-    {
-      id: this._id,
-      role: this.role,
-    },
-    JWT_SECRET,
-    { expiresIn: JWT_EXPIRATION },
-  );
 };
 
 const User = model('User', userSchema);
