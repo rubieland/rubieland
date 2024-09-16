@@ -21,11 +21,11 @@ export const getProfile = async (
 
 type QueryFnType = typeof getProfile;
 
-type UseGetUserOptions = {
+type UseGetProfileOptions = {
   config?: QueryConfig<QueryFnType>;
 };
 
-export const useGetProfile = ({ config }: UseGetUserOptions = {}) => {
+export const useGetProfile = ({ config }: UseGetProfileOptions = {}) => {
   const { setUser } = useSessionStoreActions();
 
   return useQuery<ExtractFnReturnType<QueryFnType>>({
