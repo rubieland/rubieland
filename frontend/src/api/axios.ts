@@ -24,7 +24,7 @@ api.interceptors.request.use(async (config) => {
   // retrive access token state and logout action from SessionStore
   const {
     accessToken,
-    actions: { logout },
+    actions: { resetSession },
   } = useSessionStore.getState();
 
   // we exclude /auth/refresh-token endpoint because it already checks access token validity and expiration
@@ -54,7 +54,7 @@ api.interceptors.request.use(async (config) => {
         );
 
         // TODO: add api call to /auth/logout
-        logout();
+        resetSession();
         queryClient.removeQueries();
       }
     } else {

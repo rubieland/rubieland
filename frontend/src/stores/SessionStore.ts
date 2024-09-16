@@ -5,10 +5,12 @@ type SessionStoreStateType = {
   accessToken: string | null | undefined;
   user: User | null;
   isAdmin: boolean;
+  isSessionLoading: boolean;
   actions: {
     setSession: ({ accessToken, user }: SessionData) => void;
     setUser: ({ user }: Pick<SessionData, 'user'>) => void;
-    logout: () => void;
+    resetSession: () => void;
+    setIsSessionLoading: (loading: boolean) => void;
   };
 };
 
@@ -16,6 +18,7 @@ export const useSessionStore = create<SessionStoreStateType>((set) => ({
   accessToken: null,
   user: null,
   isAdmin: false,
+  isSessionLoading: true,
   actions: {
     setSession: ({ accessToken, user }) =>
       set((state) => {
@@ -33,7 +36,12 @@ export const useSessionStore = create<SessionStoreStateType>((set) => ({
           user,
         };
       }),
-    logout: () =>
+    setIsSessionLoading: (loading) =>
+      set((state) => ({
+        ...state,
+        isSessionLoading: loading,
+      })),
+    resetSession: () =>
       set((state) => ({
         ...state,
         accessToken: null,

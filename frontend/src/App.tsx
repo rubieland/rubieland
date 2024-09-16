@@ -10,24 +10,34 @@ import {
 
 // DOCS: Tanstack router tutorials => https://www.youtube.com/watch?v=4sslBg8LprE&list=PLOQjd5dsGSxJilh0lBofeY8Qib98kzmF5&index=1
 const InnerApp = () => {
-  const { logout } = useSessionStoreActions();
-  const { isAdmin } = useSessionStore();
+  const { resetSession, setIsSessionLoading } = useSessionStoreActions();
+  const { isAdmin, isSessionLoading } = useSessionStore();
   const isConnected = useIsConnected();
 
+  // for security purposes, we do not persist access token in local storage or session storage
+  // so we have to restore session with a new access token each time user reloads
   useEffect(() => {
     const restoreSession = async () => {
       try {
+        setIsSessionLoading(true);
         const newAccessToken = await refreshAccessToken();
         if (!newAccessToken) {
-          logout();
+          resetSession();
         }
       } catch (error) {
-        logout();
+        resetSession();
+      } finally {
+        setIsSessionLoading(false);
       }
     };
 
     restoreSession();
-  }, [logout]);
+  }, [resetSession, setIsSessionLoading]);
+
+  // TODO: replace with a loader or loading screen
+  if (isSessionLoading) {
+    return <div>Chargement...</div>;
+  }
 
   return <RouterProvider router={router} context={{ isConnected, isAdmin }} />;
 };
