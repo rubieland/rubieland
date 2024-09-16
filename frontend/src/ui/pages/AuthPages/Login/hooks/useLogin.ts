@@ -28,7 +28,10 @@ const useLogin = () => {
         render: message,
         type: 'error',
         isLoading: false,
-        autoClose: 5000,
+        autoClose: 3000,
+        pauseOnHover: false,
+        closeOnClick: true,
+        draggable: true,
       });
     }
   };
@@ -45,6 +48,9 @@ const useLogin = () => {
           type: 'success',
           isLoading: false,
           autoClose: 3000,
+          pauseOnHover: false,
+          closeOnClick: true,
+          draggable: true,
         });
       }
       navigate({ to: '/' });
