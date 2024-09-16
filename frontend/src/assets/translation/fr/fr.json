@@ -82,7 +82,8 @@
       "accountAlreadyExists": "Un compte avec cet email existe déjà. Veuillez entrer un nouvel email",
       "registerFailed": "La création de compte a échouée",
       "invalidCredentials": "Identifiants incorrects",
-      "loginFailed": "La connexion a échouée"
+      "loginFailed": "La connexion a échouée",
+      "logoutFailed": "Une erreur est survenue lors de la déconnexion"
     }
   },
 

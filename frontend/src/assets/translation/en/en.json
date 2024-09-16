@@ -82,7 +82,8 @@
       "accountAlreadyExists": "An account with this email already exists. Please enter a new email",
       "registerFailed": "Registration failed",
       "invalidCredentials": "Invalid credentials",
-      "loginFailed": "Log in failed"
+      "loginFailed": "Log in failed",
+      "logoutFailed": "An error occured while logging out"
     }
   },
 
