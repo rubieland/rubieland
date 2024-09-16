@@ -7,7 +7,8 @@
     "goBackToHomepage": "Revenir à l'accueil",
     "register": "M'inscrire",
     "login": "Me connecter",
-    "formSending": "Envoi en cours..."
+    "formSending": "Envoi en cours...",
+    "loggingOut": "Déconnexion en cours..."
   },
 
   "aria-labels": {
@@ -74,7 +75,8 @@
   "auth": {
     "success": {
       "registerSuccess": "Inscription réussie !",
-      "loginSuccess": "Vous êtes connecté(e) !"
+      "loginSuccess": "Vous êtes connecté(e) !",
+      "logoutSuccess": "Vous êtes déconnecté(e) !"
     },
     "error": {
       "accountAlreadyExists": "Un compte avec cet email existe déjà. Veuillez entrer un nouvel email",

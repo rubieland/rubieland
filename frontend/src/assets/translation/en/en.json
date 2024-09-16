@@ -7,7 +7,8 @@
     "goBackToHomepage": "Go back to homepage",
     "register": "Register",
     "login": "Log in",
-    "formSending": "Sending..."
+    "formSending": "Sending...",
+    "loggingOut": "Logging out..."
   },
 
   "aria-labels": {
@@ -74,7 +75,8 @@
   "auth": {
     "success": {
       "registerSuccess": "Registration successful!",
-      "loginSuccess": "You are logged in!"
+      "loginSuccess": "You are logged in!",
+      "logoutSuccess": "Successfully logged out!"
     },
     "error": {
       "accountAlreadyExists": "An account with this email already exists. Please enter a new email",

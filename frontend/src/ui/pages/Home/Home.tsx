@@ -3,16 +3,14 @@ import { useModalStoreActions } from '../../../stores/ModalStore';
 import CustomButton from '../../components/Button/CustomButton';
 import FormTests from '../../components/FormTests/FormTests';
 import { useRef } from 'react';
-import {
-  useIsConnected,
-  useSessionStoreActions,
-} from '../../../stores/SessionStore';
+import { useIsConnected } from '../../../stores/SessionStore';
+import useLogout from '../../../hooks/useLogout';
 
 const Home = () => {
   const cropPictureModalRef = useRef<HTMLDialogElement>(null);
   const { openModal } = useModalStoreActions();
   const isConnected = useIsConnected();
-  const { logout } = useSessionStoreActions();
+  const { logout } = useLogout();
 
   return (
     <>
@@ -27,7 +25,7 @@ const Home = () => {
         {isConnected && (
           <CustomButton
             title="Déconnexion"
-            onClick={logout}
+            onClick={() => logout(undefined)}
             width={20}
             style="error"
           />
