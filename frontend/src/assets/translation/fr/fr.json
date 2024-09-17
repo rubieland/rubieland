@@ -98,7 +98,7 @@
         "title": "Vous avez déjà un compte ?",
         "linkTitle": "Connectez-vous"
       },
-      "registerBlock": {
+      "registerFormBlock": {
         "title": "Créez votre compte"
       }
     },
@@ -107,7 +107,7 @@
         "title": "Pas encore de compte ?",
         "linkTitle": "Créez votre compte"
       },
-      "loginBlock": {
+      "loginFormBlock": {
         "title": "Connectez-vous"
       }
     }

@@ -1,4 +1,5 @@
 import { refreshAccessToken } from './api/auth/refreshAccessToken';
+import PageLoader from './ui/components/Loader/PageLoader';
 import { RouterProvider } from '@tanstack/react-router';
 import { useEffect } from 'react';
 import { router } from './router';
@@ -34,9 +35,8 @@ const InnerApp = () => {
     restoreSession();
   }, [resetSession, setIsSessionLoading]);
 
-  // TODO: replace with a loader or loading screen
   if (isSessionLoading) {
-    return <div>Chargement...</div>;
+    return <PageLoader isLoading={isSessionLoading} />;
   }
 
   return <RouterProvider router={router} context={{ isConnected, isAdmin }} />;
