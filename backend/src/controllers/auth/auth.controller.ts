@@ -140,8 +140,8 @@ export const login = async (
 
     // create an httpOnly refresh token cookie
     res.cookie('refreshToken', refreshToken, {
-      secure: NODE_ENV === 'production', // allow receiving cookie from HTTPS domain only (so "true" in production only because localhost uses HTTP, not HTTPS)
-      sameSite: NODE_ENV === 'production' ? 'none' : 'lax', // "none" allows receiving cookie from any cross-origin request whereas "lax" does not allow receiving cookie from another site in case of unsafe request like POST or PUT
+      secure: NODE_ENV === 'production', // allow receiving cookies from HTTPS domain only (so "true" in production only because localhost uses HTTP, not HTTPS)
+      sameSite: NODE_ENV === 'production' ? 'strict' : 'lax', // "strict" allows receiving cookies only from the same site whereas "lax" does not allow receiving cookie from another site in case of unsafe request like POST or PUT
       httpOnly: true,
       maxAge: Number(COOKIE_MAX_AGE), // 1h
     });
@@ -214,7 +214,7 @@ export const refreshToken = async (
     // create a new httpOnly refresh token cookie
     res.cookie('refreshToken', newRefreshToken, {
       secure: NODE_ENV === 'production',
-      sameSite: NODE_ENV === 'production' ? 'none' : 'lax',
+      sameSite: NODE_ENV === 'production' ? 'strict' : 'lax',
       httpOnly: true,
       maxAge: Number(COOKIE_MAX_AGE),
     });
