@@ -9,9 +9,11 @@ import './Header.scss';
 const Header = () => {
   return (
     <header className="app-header">
-      <Link to="/" aria-label={i18n.t('aria-labels.app-logo')} role="link">
-        <Logo color={colors.primary} />
-      </Link>
+      <div className="app-logo-container">
+        <Link to="/" aria-label={i18n.t('aria-labels.app-logo')} role="link">
+          <Logo color={colors.primary} />
+        </Link>
+      </div>
       <NavbarProvider>
         <Navbar />
       </NavbarProvider>

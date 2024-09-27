@@ -4,5 +4,11 @@
 .app-header {
   justify-content: space-between;
   @include flex-center-y;
-  padding: 1rem;
+  position: sticky;
+  z-index: 100;
+  top: 0;
+
+  .app-logo-container {
+    padding: 0 1rem;
+  }
 }

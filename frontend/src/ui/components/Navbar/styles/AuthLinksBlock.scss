@@ -3,11 +3,12 @@
 
 .navbar-auth-links-container {
   @include flex-center-column;
-  gap: 1.5rem;
+  width: 100%;
 
   &::before {
     background-color: $black90;
     @include box(3rem, 1.5px);
+    margin: 0.5rem;
     content: '';
   }
 }
@@ -17,6 +18,8 @@
 @include respond-to('large') {
   .navbar-auth-links-container {
     flex-direction: row;
+    gap: 1rem;
+    width: auto;
     &::before {
       @include box(1.5px, 1.5rem);
     }
