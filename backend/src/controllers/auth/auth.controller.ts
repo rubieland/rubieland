@@ -199,8 +199,8 @@ export const refreshToken = async (
     const user = await User.findOne({ _id: decoded.id, role: decoded.role });
     if (!user) {
       return res
-        .status(404)
-        .json({ error: i18n.t('common.error.userDoesNotExist') });
+        .status(403)
+        .json({ error: i18n.t('auth.error.invalidRefreshToken') });
     }
 
     // generate new access and refresh tokens
