@@ -9,6 +9,14 @@
   top: 0;
 
   .app-logo-container {
+    padding: 1rem;
+  }
+}
+
+// ----- responsive ----- \\
+
+@include respond-to('large') {
+  .app-logo-container {
     padding: 0 1rem;
   }
 }
