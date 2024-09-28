@@ -17,6 +17,8 @@ import { Route as LoginImport } from './routes/login'
 import { Route as BlogImport } from './routes/blog'
 import { Route as AboutImport } from './routes/about'
 import { Route as IndexImport } from './routes/index'
+import { Route as BackOfficeIndexImport } from './routes/back-office/index'
+import { Route as BackOfficeBlogImport } from './routes/back-office/blog'
 
 // Create/Update Routes
 
@@ -47,6 +49,16 @@ const AboutRoute = AboutImport.update({
 
 const IndexRoute = IndexImport.update({
   path: '/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const BackOfficeIndexRoute = BackOfficeIndexImport.update({
+  path: '/back-office/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const BackOfficeBlogRoute = BackOfficeBlogImport.update({
+  path: '/back-office/blog',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -96,6 +108,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RegisterImport
       parentRoute: typeof rootRoute
     }
+    '/back-office/blog': {
+      id: '/back-office/blog'
+      path: '/back-office/blog'
+      fullPath: '/back-office/blog'
+      preLoaderRoute: typeof BackOfficeBlogImport
+      parentRoute: typeof rootRoute
+    }
+    '/back-office/': {
+      id: '/back-office/'
+      path: '/back-office'
+      fullPath: '/back-office'
+      preLoaderRoute: typeof BackOfficeIndexImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -108,6 +134,8 @@ export const routeTree = rootRoute.addChildren({
   LoginRoute,
   ProfileRoute,
   RegisterRoute,
+  BackOfficeBlogRoute,
+  BackOfficeIndexRoute,
 })
 
 /* prettier-ignore-end */
@@ -123,7 +151,9 @@ export const routeTree = rootRoute.addChildren({
         "/blog",
         "/login",
         "/profile",
-        "/register"
+        "/register",
+        "/back-office/blog",
+        "/back-office/"
       ]
     },
     "/": {
@@ -143,6 +173,12 @@ export const routeTree = rootRoute.addChildren({
     },
     "/register": {
       "filePath": "register.tsx"
+    },
+    "/back-office/blog": {
+      "filePath": "back-office/blog.tsx"
+    },
+    "/back-office/": {
+      "filePath": "back-office/index.tsx"
     }
   }
 }
