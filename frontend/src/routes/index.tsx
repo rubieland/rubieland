@@ -1,11 +1,11 @@
-import { createFileRoute } from '@tanstack/react-router';
-import Home from '../ui/pages/Home/Home';
 import { CropPictureModalProvider } from '../ui/components/Modal/providers/CropPictureModalProvider';
+import { createFileRoute } from '@tanstack/react-router';
+import HomePage from '../ui/pages/Home/HomePage';
 
 export const Route = createFileRoute('/')({
   component: () => (
     <CropPictureModalProvider>
-      <Home />
+      <HomePage />
     </CropPictureModalProvider>
   ),
 });
