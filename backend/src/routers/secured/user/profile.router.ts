@@ -1,6 +1,5 @@
-import Router, { Express } from 'express';
+import { Router } from 'express';
 import { authMiddleware } from '../../../middlewares/auth/auth.middleware';
-import { isMeMiddleware } from '../../../middlewares/user/isMe.middleware';
 import {
   deleteAccount,
   getProfile,
@@ -16,46 +15,23 @@ import {
 } from '../../../controllers/profile/dogs.controller';
 import { dogPictureUploader } from '../../../middlewares/uploads/uploadDogPicture.middleware';
 
-const router: Express = Router();
+const router = Router();
 
 // user profile
-router.put(
-  '/:userId/update-profile',
-  authMiddleware,
-  isMeMiddleware,
-  avatarUploader,
-  updateProfile,
-);
-router.delete(
-  '/:userId/delete-account',
-  authMiddleware,
-  isMeMiddleware,
-  deleteAccount,
-);
-router.get('/:userId', authMiddleware, isMeMiddleware, getProfile);
+router.put('/update-profile', authMiddleware, avatarUploader, updateProfile);
+router.delete('/delete-account', authMiddleware, deleteAccount);
+router.get('/', authMiddleware, getProfile);
 
 // users' dogs
-router.post(
-  '/:userId/my-dogs/create',
-  authMiddleware,
-  isMeMiddleware,
-  dogPictureUploader,
-  createDog,
-);
+router.post('/my-dogs/create', authMiddleware, dogPictureUploader, createDog);
 router.put(
-  '/:userId/my-dogs/:dogId/update',
+  '/my-dogs/:dogId/update',
   authMiddleware,
-  isMeMiddleware,
   dogPictureUploader,
   updateDog,
 );
-router.delete(
-  '/:userId/my-dogs/:dogId/delete',
-  authMiddleware,
-  isMeMiddleware,
-  deleteDog,
-);
-router.get('/:userId/my-dogs/all', authMiddleware, isMeMiddleware, getMyDogs);
-router.get('/:userId/my-dogs/:dogId', authMiddleware, isMeMiddleware, getMyDog);
+router.delete('/my-dogs/:dogId/delete', authMiddleware, deleteDog);
+router.get('/my-dogs/all', authMiddleware, getMyDogs);
+router.get('/my-dogs/:dogId', authMiddleware, getMyDog);
 
 export default router;

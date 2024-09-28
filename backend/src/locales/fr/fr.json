@@ -109,8 +109,7 @@
     "success": {
       "register": "Inscription réussie !",
       "login": "Connexion réussie ! Bienvenue {{firstName}} !",
-      "logout": "Déconnexion réussie !",
-      "sessionDestructionSuccess": "Session détruite avec succès !"
+      "logout": "Déconnexion réussie !"
     },
     "error": {
       "registerFailed": "La création de compte a échouée",
@@ -120,7 +119,11 @@
       "unauthorized": "Accès refusé. Veuillez vous connecter",
       "forbidden": "Accès refusé. Veuillez vous reconnecter",
       "comparePasswordFailed": "Une erreur est survenue lors de la comparaison des mots de passe. Veuillez réessayer",
-      "sessionDestructionFailed": "Une erreur est survenue lors de la destruction de la session"
+      "refreshTokenMissing": "Refresh token manquant",
+      "invalidRefreshToken": "Refresh token invalide",
+      "refreshTokenExpired": "Refresh token expiré. Veuillez vous reconnecter",
+      "invalidToken": "Token invalide",
+      "tokenExpired": "Token expiré"
     }
   },
   "uploads": {

@@ -1,8 +1,13 @@
 import classNames from 'classnames';
-import { ChangeEventHandler, FocusEvent } from 'react';
+import {
+  ChangeEventHandler,
+  FocusEvent,
+  HTMLInputAutoCompleteAttribute,
+} from 'react';
 
 interface DatePickerProps {
   onChange: ChangeEventHandler<HTMLInputElement>;
+  autocomplete?: HTMLInputAutoCompleteAttribute;
   maxDate?: string | number;
   minDate?: string | number;
   value: string | number;
@@ -13,6 +18,7 @@ interface DatePickerProps {
 }
 
 const DatePicker = ({
+  autocomplete,
   isRequired,
   isInvalid,
   onChange,
@@ -39,8 +45,8 @@ const DatePicker = ({
       onFocus={showPicker}
       onChange={onChange}
       aria-label={label}
-      autoComplete="on"
-      value={value}
+      autoComplete={autocomplete}
+      value={value || maxDate}
       max={maxDate}
       min={minDate}
       type="date"

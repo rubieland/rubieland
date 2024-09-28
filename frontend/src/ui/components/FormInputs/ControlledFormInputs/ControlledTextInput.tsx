@@ -1,7 +1,9 @@
 import { Controller, useFormContext } from 'react-hook-form';
+import { HTMLInputAutoCompleteAttribute } from 'react';
 import TextInput from '../TextInput';
 
 interface ControlledTextInputProps {
+  autocomplete?: HTMLInputAutoCompleteAttribute;
   type?: 'text' | 'email' | 'password';
   placeholder?: string;
   isRequired?: boolean;
@@ -11,6 +13,7 @@ interface ControlledTextInputProps {
 }
 
 const ControlledTextInput = ({
+  autocomplete = 'on',
   withLabel = false,
   isRequired = true,
   type = 'text',
@@ -28,6 +31,7 @@ const ControlledTextInput = ({
         <div className="form-input">
           {withLabel && <label htmlFor={name}>{label}</label>}
           <TextInput
+            autocomplete={autocomplete}
             placeholder={placeholder}
             isRequired={isRequired}
             isInvalid={!!error}

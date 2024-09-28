@@ -101,6 +101,7 @@ const FormTests = () => {
             title={i18n.t('common.send')}
             isDisabled={!isFormFilled}
             type="submit"
+            onClick={() => console.log('FORMTEST CLICKED')}
           />
         </div>
       </form>

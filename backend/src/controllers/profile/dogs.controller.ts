@@ -28,7 +28,7 @@ export const getMyDogs = async (
   next: NextFunction,
 ) => {
   try {
-    const userId = req.session?.authUser?.id;
+    const userId = req?.authUser?.id;
     const dogs: DogDocument[] | null = await Dog.find({ ownerId: userId });
 
     if (!dogs || dogs.length === 0) {
@@ -56,7 +56,7 @@ export const getMyDog = async (
   next: NextFunction,
 ) => {
   try {
-    const userId = req.session?.authUser?.id;
+    const userId = req?.authUser?.id;
     const dogId = req.params?.dogId;
     const dog: DogDocument | null = await Dog.findOne({
       _id: dogId,
@@ -85,7 +85,7 @@ export const createDog = async (
   const pictureFile = req.file;
 
   try {
-    const userId = req.session.authUser!.id!;
+    const userId = req.authUser!.id!;
     const ownerId = new Types.ObjectId(userId);
     const owner = await User.findById(userId);
 
@@ -173,7 +173,7 @@ export const updateDog = async (
   const pictureFile = req.file;
 
   try {
-    const userId = req.session.authUser!.id!;
+    const userId = req.authUser!.id!;
     const dogId = req.params?.dogId;
 
     const { gender, name, bio, birthDate, breed } = trimData(req.body);
@@ -259,7 +259,7 @@ export const deleteDog = async (
   next: NextFunction,
 ) => {
   try {
-    const userId = req.session.authUser!.id!;
+    const userId = req.authUser!.id!;
     const owner = await User.findById(userId);
     const dogId = req.params?.dogId;
     const dog: DogDocument | null = await Dog.findById(dogId);

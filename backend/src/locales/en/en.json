@@ -109,8 +109,7 @@
     "success": {
       "register": "Registration successful!",
       "login": "Login successful! Welcome {{firstName}}!",
-      "logout": "Logout successful!",
-      "sessionDestructionSuccess": "Session destroyed successfully!"
+      "logout": "Logout successful!"
     },
     "error": {
       "registerFailed": "Registration failed",
@@ -120,7 +119,11 @@
       "unauthorized": "Access denied. Please log in",
       "forbidden": "Access denied. Please log in again",
       "comparePasswordFailed": "An error occurred while comparing passwords. Please try again",
-      "sessionDestructionFailed": "An error occurred while destroying session"
+      "refreshTokenMissing": "Refresh token is missing",
+      "invalidRefreshToken": "Refresh token is invalid",
+      "refreshTokenExpired": "Refresh token expired. Please log in again",
+      "invalidToken": "Invalid token",
+      "tokenExpired": "Token expired"
     }
   },
   "uploads": {

@@ -10,8 +10,9 @@ const requiredEnvVariables = [
   'PROD_DB_URI',
   'NODE_ENV',
   'JWT_SECRET',
-  'JWT_EXPIRATION',
-  'SESSION_SECRET',
+  'JWT_REFRESH_SECRET',
+  'ACCESS_TOKEN_EXPIRATION',
+  'REFRESH_TOKEN_EXPIRATION',
   'COOKIE_MAX_AGE',
 ] as const;
 

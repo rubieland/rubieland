@@ -4,7 +4,11 @@
     "edit": "Edit",
     "cancel": "Cancel",
     "addPicture": "Add a picture",
-    "goBackToHomepage": "Go back to homepage"
+    "goBackToHomepage": "Go back to homepage",
+    "register": "Register",
+    "login": "Log in",
+    "formSending": "Sending...",
+    "loggingOut": "Logging out..."
   },
 
   "aria-labels": {
@@ -18,7 +22,10 @@
   "nav": {
     "home": "Home",
     "about": "About",
-    "blog": "Blog"
+    "blog": "Blog",
+    "register": "Register",
+    "login": "Log in",
+    "profile": "Profile"
   },
 
   "footer": {
@@ -42,18 +49,67 @@
       "birthDateInFuture": "The birthdate cannot be in the future",
       "invalidFileType": "Invalid file. Only files of type {{types}} are allowed",
       "fileTooLarge": "File too large. Max: {{limit}}MB",
-      "oneFileLimit": "You must send only one file"
+      "oneFileLimit": "You must send only one file",
+      "passwordsDontMatch": "The passwords don't match",
+      "invalidName": "Ths field can only contain letters, hyphens, spaces and apostrophes",
+      "invalidPhone": "Please enter a phone number in the international format: +XX 0000000000 (replace XX with the country code)",
+      "minLowercase": "The password must contain at least 1 lowercase",
+      "minUppercase": "The password must contain at least 1 uppercase",
+      "minNumbers": "The password must contain at least 1 number",
+      "minSymbols": "The password must contain at least 1 special character"
     },
 
     "user": {
+      "firstName": "First name",
+      "lastName": "Last name",
       "emailLabel": "Email",
       "emailPlaceholder": "example@example.com",
-      "password": "Password"
+      "password": "Password",
+      "confirmPassword": "Confirm password",
+      "birthDate": "Birth date",
+      "phoneLabel": "Phone",
+      "phonePlaceholder": "ex: +44 7500 123456"
+    }
+  },
+
+  "auth": {
+    "success": {
+      "registerSuccess": "Registration successful!",
+      "loginSuccess": "You are logged in!",
+      "logoutSuccess": "Successfully logged out!"
+    },
+    "error": {
+      "accountAlreadyExists": "An account with this email already exists. Please enter a new email",
+      "registerFailed": "Registration failed",
+      "invalidCredentials": "Invalid credentials",
+      "loginFailed": "Log in failed",
+      "logoutFailed": "An error occured while logging out"
     }
   },
 
   "cropPictureModal": {
     "title": "Crop picture",
     "cropButtonTitle": "Crop"
+  },
+
+  "pages": {
+    "register": {
+      "alreadyRegisteredBlock": {
+        "title": "Already have an account?",
+        "linkTitle": "Log in"
+      },
+      "registerFormBlock": {
+        "title": "Create your account"
+      }
+    },
+    "login": {
+      "notRegisteredYetBlock": {
+        "title": "No account yet?",
+        "linkTitle": "Create your account"
+      },
+      "loginFormBlock": {
+        "title": "Log in"
+      }
+    }
   }
 }

@@ -14,10 +14,10 @@ import {
   errorHandler,
   notFoundHandler,
 } from '../middlewares/errorHandlers/errorHandlers.middleware';
-import session from 'express-session';
+import cookieParser from 'cookie-parser';
 
 // destructure env to get env variables
-const { CLIENT_HOST, CLIENT_PORT, SESSION_SECRET, COOKIE_MAX_AGE } = env;
+const { CLIENT_HOST, CLIENT_PORT } = env;
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -25,24 +25,15 @@ const __dirname = path.dirname(__filename);
 export const loadExpress = async ({ server }: { server: Express }) => {
   try {
     // middlewares
-    server.use(
-      session({
-        secret: SESSION_SECRET,
-        resave: false,
-        saveUninitialized: false,
-        cookie: {
-          httpOnly: true,
-          maxAge: Number(COOKIE_MAX_AGE), // 1h
-        },
-      }),
-    );
     server.use(i18nextMiddleware(i18n));
     server.use(express.static(path.join(__dirname, '../..', 'public')));
+    server.use(cookieParser());
     server.use(express.json());
-    server.use(express.urlencoded({ extended: true }));
+    server.use(express.urlencoded({ extended: false }));
     server.use(
       cors({
         origin: `http://${CLIENT_HOST ?? 'localhost'}:${CLIENT_PORT ?? 5173}`,
+        credentials: true,
       }),
     );
 

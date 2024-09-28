@@ -29,17 +29,18 @@
    💡 You will find in **/backend/.env.sample** all the env variables you need to create. Or, refer to the list below:
 
    ```pl
-   APP_HOST # localhost
-   APP_PORT # 9000
-   CLIENT_HOST # localhost
-   CLIENT_PORT # 5173
+   APP_HOST # e.g. localhost
+   APP_PORT # e.g. 9000
+   CLIENT_HOST # e.g. localhost
+   CLIENT_PORT # e.g. 5173
    DEV_DB_URI # development mongodb uri
    PROD_DB_URI # production mongodb uri
    NODE_ENV # development or production
    JWT_SECRET # the secret key for the jwt.sign
-   JWT_EXPIRATION # time before expiration of the token. format: "1s" for 1 second, "1m" for 1 minute, "1h" for 1 hour, "1d" for 1 day
-   SESSION_SECRET # the secret key for the session (for authentication)
-   COOKIE_MAX_AGE # time in milliseconds before expiration of the cookie stored in session. e.g.: "3600000" = 1 hour (3.600.000 milliseconds)
+   JWT_REFRESH_SECRET # the secret key for the jwt.sign for the refresh token
+   ACCESS_TOKEN_EXPIRATION # expiration of the access token
+   REFRESH_TOKEN_EXPIRATION # expiration of the refresh token
+   COOKIE_MAX_AGE # time in milliseconds before expiration of the cookie. e.g.: "3600000" = 1 hour (3.600.000 milliseconds)
    ```
 
 <br>

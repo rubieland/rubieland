@@ -23,3 +23,14 @@ export const isAtLeastNYearsOld = (dateToCheck: string, n: number) => {
 export const isInFuture = (date: string): boolean => {
   return isAfter(date, new Date().toISOString());
 };
+
+export const formatDateYYYYMMDD = (date: Date) => {
+  const dateToISOString = date.toISOString();
+  return dateToISOString.split('T')[0];
+};
+
+export const calculateMinDateYYYYMMDD = (date: Date, min: number) => {
+  return new Date(date.setFullYear(date.getFullYear() - min))
+    .toISOString()
+    .split('T')[0];
+};

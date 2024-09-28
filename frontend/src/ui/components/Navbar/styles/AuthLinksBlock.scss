@@ -1,0 +1,39 @@
+@import '../../../../assets/styles/variables';
+@import '../../../../assets/styles/mixins';
+
+.navbar-auth-links-container {
+  @include flex-center-column;
+  width: 100%;
+
+  &::before {
+    background-color: $black90;
+    @include box(3rem, 1.5px);
+    margin: 0.5rem;
+    content: '';
+  }
+}
+
+// ----- responsive ----- \\
+
+@include respond-to('large') {
+  .navbar-auth-links-container {
+    flex-direction: row;
+    gap: 1rem;
+    width: auto;
+    &::before {
+      @include box(1.5px, 1.5rem);
+    }
+  }
+
+  .nav-login-link {
+    border: 1px solid $black90;
+    border-radius: 0.25rem;
+    color: $black90;
+  }
+
+  .nav-register-link {
+    border: 1px solid $black90;
+    border-radius: 0.25rem;
+    color: $black90;
+  }
+}

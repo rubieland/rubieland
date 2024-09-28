@@ -1,10 +1,9 @@
-import Axios, { InternalAxiosRequestConfig } from 'axios';
+import { testIfJwtTokenIsValid } from '../helpers/token.helpers';
+import { refreshAccessToken } from './auth/refreshAccessToken';
+import { useSessionStore } from '../stores/SessionStore';
 import { API_URL } from '../core/envConfig';
-
-enum SecuredEndpoints {
-  PROFILE = '/profile',
-  BACK_OFFICE = '/back-office',
-}
+import { queryClient } from './reactQuery';
+import Axios from 'axios';
 
 const api = Axios.create({
   baseURL: API_URL,
@@ -16,53 +15,54 @@ const api = Axios.create({
   withCredentials: false,
 });
 
-api.interceptors.request.use(
-  (config: InternalAxiosRequestConfig) => {
-    // send credentials only to secured routes
-    if (
-      config.url?.includes(SecuredEndpoints.PROFILE) ||
-      config.url?.includes(SecuredEndpoints.BACK_OFFICE)
-    ) {
-      config.withCredentials = true;
-    }
-    return config;
-  },
-  (error) => {
-    return Promise.reject(error);
-  },
-);
+// axios interceptors are kind of "client side middlewares",
+// and this one checks before each request is sent to api if the access token from store is still valid and not expired
+// before setting headers.Authorization with the Bearer {access token}.
+// if it is expired, it calls /auth/refresh-token endpoint to refresh it, then sets authorization headers with
+// the refreshed token we just received from /auth/refresh-token
+api.interceptors.request.use(async (config) => {
+  // retrive access token state and logout action from SessionStore
+  const {
+    accessToken,
+    actions: { resetSession },
+  } = useSessionStore.getState();
 
-api.interceptors.response.use(
-  (response) => response,
-  (error) => {
-    if (error.response) {
-      if (error.response.status === 401) {
-        /**
-         * TODO: 
-         * const {
-            accessToken,
-            actions: { logout },
-        } = useSessionStore.getState();
+  // we exclude /auth/refresh-token endpoint because it already checks access token validity and expiration
+  // and already refreshes the token if invalid or expired, so it would turn into infinite loop of token refreshing
+  if (accessToken && config.url !== '/auth/refresh-token') {
+    // we verify token's validity first
+    const isTokenValid = await testIfJwtTokenIsValid(accessToken);
 
-        if (accessToken) {
-            const isTokenValid = await testIfJwtTokenIsValid(accessToken);
+    // it invalid, we call /auth/refresh-token endpoint to refresh it
+    if (!isTokenValid) {
+      try {
+        const refreshedToken = await refreshAccessToken();
 
-            if (!isTokenValid) {
-            logout();
-            queryClient.removeQueries();
-            }
+        if (!refreshedToken) {
+          throw new Error(
+            '[Axios request interceptors] Refresh token is undefined',
+          );
         }
-         */
+        // and we set headers.Authorization with the newly refreshed token
+        config.headers.Authorization = `Bearer ${refreshedToken}`;
+        console.log('Token is refreshed');
+      } catch (error: unknown) {
+        // if an error occurs during refreshing, logout user
+        console.error(
+          '[Axios request interceptors] Logout user after an error while refreshing token',
+          error,
+        );
+
+        // TODO: add api call to /auth/logout
+        resetSession();
+        queryClient.removeQueries();
       }
-    } else if (error.request) {
-      // request has been sent but no response has been returned from server
-      console.error('Request error:', error.message);
     } else {
-      // request config error
-      console.error('Configuration error:', error.message);
+      // if the access token in store is still valid, we send it through headers.Authorization
+      config.headers.Authorization = `Bearer ${accessToken}`;
     }
-    return Promise.reject(error);
-  },
-);
+  }
+  return config;
+});
 
 export { api };

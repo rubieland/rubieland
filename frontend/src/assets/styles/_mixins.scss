@@ -33,6 +33,17 @@
   display: flex;
 }
 
+// ----- shadows ----- \\
+
+@mixin box-shadow {
+  box-shadow:
+    0 4px 6px rgba(0, 0, 0, 0.1),
+    0 1px 3px rgba(0, 0, 0, 0.25);
+}
+
+@mixin box-shadow-bottom {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
 // ----- button ----- \\
 
 @mixin btn-base {
@@ -64,7 +75,7 @@
 // ----- form inputs ----- \\
 
 @mixin input-base {
-  border: 2px solid $grey40;
+  border: 1px solid $grey50;
   min-height: $input-height;
   border-radius: 0.25rem;
   font-family: inherit;
@@ -98,6 +109,15 @@
   input {
     display: none;
   }
+}
+
+// ----- separator ----- \\
+
+@mixin separator {
+  background-color: $grey30;
+  @include box(90%, 1px);
+  margin: 0 auto;
+  content: '';
 }
 
 // ----- images and icons ----- \\

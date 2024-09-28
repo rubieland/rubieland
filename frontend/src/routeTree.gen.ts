@@ -11,11 +11,29 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as RegisterImport } from './routes/register'
+import { Route as ProfileImport } from './routes/profile'
+import { Route as LoginImport } from './routes/login'
 import { Route as BlogImport } from './routes/blog'
 import { Route as AboutImport } from './routes/about'
 import { Route as IndexImport } from './routes/index'
 
 // Create/Update Routes
+
+const RegisterRoute = RegisterImport.update({
+  path: '/register',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ProfileRoute = ProfileImport.update({
+  path: '/profile',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const LoginRoute = LoginImport.update({
+  path: '/login',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const BlogRoute = BlogImport.update({
   path: '/blog',
@@ -57,6 +75,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogImport
       parentRoute: typeof rootRoute
     }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginImport
+      parentRoute: typeof rootRoute
+    }
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileImport
+      parentRoute: typeof rootRoute
+    }
+    '/register': {
+      id: '/register'
+      path: '/register'
+      fullPath: '/register'
+      preLoaderRoute: typeof RegisterImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -66,6 +105,9 @@ export const routeTree = rootRoute.addChildren({
   IndexRoute,
   AboutRoute,
   BlogRoute,
+  LoginRoute,
+  ProfileRoute,
+  RegisterRoute,
 })
 
 /* prettier-ignore-end */
@@ -78,7 +120,10 @@ export const routeTree = rootRoute.addChildren({
       "children": [
         "/",
         "/about",
-        "/blog"
+        "/blog",
+        "/login",
+        "/profile",
+        "/register"
       ]
     },
     "/": {
@@ -89,6 +134,15 @@ export const routeTree = rootRoute.addChildren({
     },
     "/blog": {
       "filePath": "blog.tsx"
+    },
+    "/login": {
+      "filePath": "login.tsx"
+    },
+    "/profile": {
+      "filePath": "profile.tsx"
+    },
+    "/register": {
+      "filePath": "register.tsx"
     }
   }
 }

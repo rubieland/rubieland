@@ -1,11 +1,11 @@
-import classNames from 'classnames';
 import '../../../assets/styles/buttons.scss';
+import classNames from 'classnames';
 
 interface CustomButtonProps {
   style?: 'primary' | 'secondary' | 'success' | 'error';
   type?: 'submit' | 'reset' | 'button';
   width?: string | number;
-  onClick?: () => void;
+  onClick: () => void;
   isDisabled?: boolean;
   outlined?: boolean;
   title: string;

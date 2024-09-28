@@ -1,0 +1,22 @@
+@import '../../../../assets/styles/variables';
+@import '../../../../assets/styles/mixins';
+
+.auth-form-container {
+  @include flex-center-column;
+  gap: 1.125rem;
+  padding: 2rem;
+  width: 100%;
+
+  > h2 {
+    font-size: 1.125rem;
+    max-width: 36rem;
+    text-align: left;
+    color: $primary;
+    width: inherit;
+  }
+
+  > form {
+    max-width: 40rem;
+    width: 100%;
+  }
+}
