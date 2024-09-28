@@ -5,15 +5,23 @@
   @include flex-center-column;
   max-width: 40rem;
   padding: 2rem;
-  gap: 1.125rem;
   width: 100%;
+  gap: 5px;
 
   > p {
     color: $primary;
-    > .auth-link {
-      font-weight: 700;
-      font-size: 1rem;
-      color: $primary;
-    }
+  }
+  > .auth-link {
+    font-weight: 700;
+    font-size: 1rem;
+    color: $primary;
+  }
+}
+
+// ----- responsive ----- \\
+
+@include respond-to('medium') {
+  .auth-link-container {
+    flex-direction: row;
   }
 }

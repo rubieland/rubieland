@@ -5,12 +5,10 @@ import '../../styles/AuthBlocks.scss';
 const AlreadyRegisteredBlock = () => {
   return (
     <section className="auth-link-container">
-      <p>
-        {i18n.t('pages.register.alreadyRegisteredBlock.title')}{' '}
-        <Link className="auth-link" to="/login">
-          {i18n.t('pages.register.alreadyRegisteredBlock.linkTitle')}
-        </Link>
-      </p>
+      <p>{i18n.t('pages.register.alreadyRegisteredBlock.title')} </p>
+      <Link className="auth-link" to="/login">
+        {i18n.t('pages.register.alreadyRegisteredBlock.linkTitle')}
+      </Link>
     </section>
   );
 };
