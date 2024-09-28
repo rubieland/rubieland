@@ -13,6 +13,7 @@ const Header = () => {
   const className = classNames('app-header', {
     'header-scrolled': scrollYPosition > 0,
   });
+
   return (
     <header className={className}>
       <div className="app-logo-container">
