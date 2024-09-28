@@ -15,6 +15,7 @@ import { Route as RegisterImport } from './routes/register'
 import { Route as ProfileImport } from './routes/profile'
 import { Route as LoginImport } from './routes/login'
 import { Route as BlogImport } from './routes/blog'
+import { Route as BackOfficeImport } from './routes/back-office'
 import { Route as AboutImport } from './routes/about'
 import { Route as IndexImport } from './routes/index'
 import { Route as BackOfficeIndexImport } from './routes/back-office/index'
@@ -42,6 +43,11 @@ const BlogRoute = BlogImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const BackOfficeRoute = BackOfficeImport.update({
+  path: '/back-office',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const AboutRoute = AboutImport.update({
   path: '/about',
   getParentRoute: () => rootRoute,
@@ -53,13 +59,13 @@ const IndexRoute = IndexImport.update({
 } as any)
 
 const BackOfficeIndexRoute = BackOfficeIndexImport.update({
-  path: '/back-office/',
-  getParentRoute: () => rootRoute,
+  path: '/',
+  getParentRoute: () => BackOfficeRoute,
 } as any)
 
 const BackOfficeBlogRoute = BackOfficeBlogImport.update({
-  path: '/back-office/blog',
-  getParentRoute: () => rootRoute,
+  path: '/blog',
+  getParentRoute: () => BackOfficeRoute,
 } as any)
 
 // Populate the FileRoutesByPath interface
@@ -78,6 +84,13 @@ declare module '@tanstack/react-router' {
       path: '/about'
       fullPath: '/about'
       preLoaderRoute: typeof AboutImport
+      parentRoute: typeof rootRoute
+    }
+    '/back-office': {
+      id: '/back-office'
+      path: '/back-office'
+      fullPath: '/back-office'
+      preLoaderRoute: typeof BackOfficeImport
       parentRoute: typeof rootRoute
     }
     '/blog': {
@@ -110,17 +123,17 @@ declare module '@tanstack/react-router' {
     }
     '/back-office/blog': {
       id: '/back-office/blog'
-      path: '/back-office/blog'
+      path: '/blog'
       fullPath: '/back-office/blog'
       preLoaderRoute: typeof BackOfficeBlogImport
-      parentRoute: typeof rootRoute
+      parentRoute: typeof BackOfficeImport
     }
     '/back-office/': {
       id: '/back-office/'
-      path: '/back-office'
-      fullPath: '/back-office'
+      path: '/'
+      fullPath: '/back-office/'
       preLoaderRoute: typeof BackOfficeIndexImport
-      parentRoute: typeof rootRoute
+      parentRoute: typeof BackOfficeImport
     }
   }
 }
@@ -130,12 +143,14 @@ declare module '@tanstack/react-router' {
 export const routeTree = rootRoute.addChildren({
   IndexRoute,
   AboutRoute,
+  BackOfficeRoute: BackOfficeRoute.addChildren({
+    BackOfficeBlogRoute,
+    BackOfficeIndexRoute,
+  }),
   BlogRoute,
   LoginRoute,
   ProfileRoute,
   RegisterRoute,
-  BackOfficeBlogRoute,
-  BackOfficeIndexRoute,
 })
 
 /* prettier-ignore-end */
@@ -148,12 +163,11 @@ export const routeTree = rootRoute.addChildren({
       "children": [
         "/",
         "/about",
+        "/back-office",
         "/blog",
         "/login",
         "/profile",
-        "/register",
-        "/back-office/blog",
-        "/back-office/"
+        "/register"
       ]
     },
     "/": {
@@ -161,6 +175,13 @@ export const routeTree = rootRoute.addChildren({
     },
     "/about": {
       "filePath": "about.tsx"
+    },
+    "/back-office": {
+      "filePath": "back-office.tsx",
+      "children": [
+        "/back-office/blog",
+        "/back-office/"
+      ]
     },
     "/blog": {
       "filePath": "blog.tsx"
@@ -175,10 +196,12 @@ export const routeTree = rootRoute.addChildren({
       "filePath": "register.tsx"
     },
     "/back-office/blog": {
-      "filePath": "back-office/blog.tsx"
+      "filePath": "back-office/blog.tsx",
+      "parent": "/back-office"
     },
     "/back-office/": {
-      "filePath": "back-office/index.tsx"
+      "filePath": "back-office/index.tsx",
+      "parent": "/back-office"
     }
   }
 }
