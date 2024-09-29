@@ -3,6 +3,7 @@ import {
   BlogArticle,
   convertBlogArticleDtoToEntity,
 } from '../../models/blogArticles/blogArticle.entity';
+import { QueryKeysEnum } from '../../enums/queryKeys';
 import { useQuery } from '@tanstack/react-query';
 import { api } from '../axios';
 
@@ -15,16 +16,16 @@ export const getAllBlogArticles = async (): Promise<BlogArticle[]> => {
 
 type QueryFnType = typeof getAllBlogArticles;
 
-type UseGetBlogAllArticlesOptions = {
+type UseGetAllBlogArticlesOptions = {
   config?: QueryConfig<QueryFnType>;
 };
 
 export const useGetAllBlogArticles = ({
   config,
-}: UseGetBlogAllArticlesOptions = {}) => {
+}: UseGetAllBlogArticlesOptions = {}) => {
   return useQuery<ExtractFnReturnType<QueryFnType>>({
     ...config,
-    queryKey: ['blogArticles'],
+    queryKey: [QueryKeysEnum.BLOG_ARTICLES],
     queryFn: () => getAllBlogArticles(),
   });
 };
