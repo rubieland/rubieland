@@ -18,8 +18,12 @@ import { Route as BlogImport } from './routes/blog'
 import { Route as BackOfficeImport } from './routes/back-office'
 import { Route as AboutImport } from './routes/about'
 import { Route as IndexImport } from './routes/index'
+import { Route as BlogIndexImport } from './routes/blog/index'
 import { Route as BackOfficeIndexImport } from './routes/back-office/index'
 import { Route as BackOfficeBlogImport } from './routes/back-office/blog'
+import { Route as BackOfficeBlogIndexImport } from './routes/back-office/blog/index'
+import { Route as BlogArticlesArticleIdImport } from './routes/blog/articles/$articleId'
+import { Route as BackOfficeBlogArticlesArticleIdImport } from './routes/back-office/blog/articles/$articleId'
 
 // Create/Update Routes
 
@@ -58,6 +62,11 @@ const IndexRoute = IndexImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const BlogIndexRoute = BlogIndexImport.update({
+  path: '/',
+  getParentRoute: () => BlogRoute,
+} as any)
+
 const BackOfficeIndexRoute = BackOfficeIndexImport.update({
   path: '/',
   getParentRoute: () => BackOfficeRoute,
@@ -67,6 +76,22 @@ const BackOfficeBlogRoute = BackOfficeBlogImport.update({
   path: '/blog',
   getParentRoute: () => BackOfficeRoute,
 } as any)
+
+const BackOfficeBlogIndexRoute = BackOfficeBlogIndexImport.update({
+  path: '/',
+  getParentRoute: () => BackOfficeBlogRoute,
+} as any)
+
+const BlogArticlesArticleIdRoute = BlogArticlesArticleIdImport.update({
+  path: '/articles/$articleId',
+  getParentRoute: () => BlogRoute,
+} as any)
+
+const BackOfficeBlogArticlesArticleIdRoute =
+  BackOfficeBlogArticlesArticleIdImport.update({
+    path: '/articles/$articleId',
+    getParentRoute: () => BackOfficeBlogRoute,
+  } as any)
 
 // Populate the FileRoutesByPath interface
 
@@ -135,6 +160,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BackOfficeIndexImport
       parentRoute: typeof BackOfficeImport
     }
+    '/blog/': {
+      id: '/blog/'
+      path: '/'
+      fullPath: '/blog/'
+      preLoaderRoute: typeof BlogIndexImport
+      parentRoute: typeof BlogImport
+    }
+    '/blog/articles/$articleId': {
+      id: '/blog/articles/$articleId'
+      path: '/articles/$articleId'
+      fullPath: '/blog/articles/$articleId'
+      preLoaderRoute: typeof BlogArticlesArticleIdImport
+      parentRoute: typeof BlogImport
+    }
+    '/back-office/blog/': {
+      id: '/back-office/blog/'
+      path: '/'
+      fullPath: '/back-office/blog/'
+      preLoaderRoute: typeof BackOfficeBlogIndexImport
+      parentRoute: typeof BackOfficeBlogImport
+    }
+    '/back-office/blog/articles/$articleId': {
+      id: '/back-office/blog/articles/$articleId'
+      path: '/articles/$articleId'
+      fullPath: '/back-office/blog/articles/$articleId'
+      preLoaderRoute: typeof BackOfficeBlogArticlesArticleIdImport
+      parentRoute: typeof BackOfficeBlogImport
+    }
   }
 }
 
@@ -144,10 +197,16 @@ export const routeTree = rootRoute.addChildren({
   IndexRoute,
   AboutRoute,
   BackOfficeRoute: BackOfficeRoute.addChildren({
-    BackOfficeBlogRoute,
+    BackOfficeBlogRoute: BackOfficeBlogRoute.addChildren({
+      BackOfficeBlogIndexRoute,
+      BackOfficeBlogArticlesArticleIdRoute,
+    }),
     BackOfficeIndexRoute,
   }),
-  BlogRoute,
+  BlogRoute: BlogRoute.addChildren({
+    BlogIndexRoute,
+    BlogArticlesArticleIdRoute,
+  }),
   LoginRoute,
   ProfileRoute,
   RegisterRoute,
@@ -184,7 +243,11 @@ export const routeTree = rootRoute.addChildren({
       ]
     },
     "/blog": {
-      "filePath": "blog.tsx"
+      "filePath": "blog.tsx",
+      "children": [
+        "/blog/",
+        "/blog/articles/$articleId"
+      ]
     },
     "/login": {
       "filePath": "login.tsx"
@@ -197,11 +260,31 @@ export const routeTree = rootRoute.addChildren({
     },
     "/back-office/blog": {
       "filePath": "back-office/blog.tsx",
-      "parent": "/back-office"
+      "parent": "/back-office",
+      "children": [
+        "/back-office/blog/",
+        "/back-office/blog/articles/$articleId"
+      ]
     },
     "/back-office/": {
       "filePath": "back-office/index.tsx",
       "parent": "/back-office"
+    },
+    "/blog/": {
+      "filePath": "blog/index.tsx",
+      "parent": "/blog"
+    },
+    "/blog/articles/$articleId": {
+      "filePath": "blog/articles/$articleId.tsx",
+      "parent": "/blog"
+    },
+    "/back-office/blog/": {
+      "filePath": "back-office/blog/index.tsx",
+      "parent": "/back-office/blog"
+    },
+    "/back-office/blog/articles/$articleId": {
+      "filePath": "back-office/blog/articles/$articleId.tsx",
+      "parent": "/back-office/blog"
     }
   }
 }
