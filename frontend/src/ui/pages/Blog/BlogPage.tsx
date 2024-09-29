@@ -6,6 +6,8 @@ const BlogPage = () => {
   const { data: blogArticles, isLoading } = useGetAllBlogArticles();
   const publishedArticles = blogArticles?.filter((a) => a.isPublished);
 
+  if (isLoading) return <PageLoader isLoading={isLoading} />;
+
   return (
     <>
       <div>
@@ -32,7 +34,6 @@ const BlogPage = () => {
           </div>
         )}
       </div>
-      {isLoading && <PageLoader isLoading={isLoading} />}
     </>
   );
 };
