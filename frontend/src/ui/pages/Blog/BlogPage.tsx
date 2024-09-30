@@ -13,7 +13,7 @@ const BlogPage = () => {
       <div>
         <p>BlogPage</p>
         {!publishedPosts || publishedPosts.length === 0 ? (
-          <p>Aucun post n'a été publié pour le moment !</p>
+          <p>Aucun article n'a été publié pour le moment !</p>
         ) : (
           <div style={{ padding: 24 }}>
             <p style={{ fontSize: 20, color: 'rebeccapurple' }}>
@@ -23,7 +23,7 @@ const BlogPage = () => {
               {publishedPosts.map((post, i) => (
                 <li key={i}>
                   <Link to="/blog/posts/$postId" params={{ postId: post.id }}>
-                    Post {i + 1}
+                    Article {i + 1}
                   </Link>
                 </li>
               ))}
