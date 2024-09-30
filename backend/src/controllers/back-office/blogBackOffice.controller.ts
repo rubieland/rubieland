@@ -1,10 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import i18n from '../../config/i18n';
-import {
-  BlogArticleDocument,
-  BlogArticleData,
-} from '../../models/types/BlogArticle.types';
-import BlogArticle from '../../models/BlogArticle.model';
+import { PostDocument, PostData } from '../../models/types/Post.types';
+import Post from '../../models/Post.model';
 import { DataContext } from '../../validation/types/validation.types';
 import { convertStringToBoolean, trimData } from '../../utils/string.utils';
 import {
@@ -12,77 +9,74 @@ import {
   getMissingOrEmptyFields,
   getMissingOrEmptyFieldsErrorMessage,
 } from '../../utils/validation.utils';
-import { checkBlogArticleData } from '../../validation/BlogArticle.validators';
+import { checkPostData } from '../../validation/Post.validators';
 import { fileURLToPath } from 'url';
 import path from 'path';
 import { deleteFile as deletePicture } from '../../utils/file.utils';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const blogArticlesPicturesDir = path.join(
-  __dirname,
-  '../../uploads/blog/pictures',
-);
-const context: DataContext = DataContext.BLOG_ARTICLE;
+const postsPicturesDir = path.join(__dirname, '../../uploads/blog/pictures');
+const context: DataContext = DataContext.POST;
 
-export const getAllBlogArticles = async (
+export const getAllPosts = async (
   req: Request,
   res: Response,
   next: NextFunction,
 ) => {
   try {
-    // retrieve all blog articles
-    const articles: BlogArticleDocument[] = await BlogArticle.find({});
+    // retrieve all blog posts
+    const posts: PostDocument[] = await Post.find({});
 
-    if (!articles || articles.length === 0) {
+    if (!posts || posts.length === 0) {
       return res.status(404).json({
-        error: i18n.t('common.error.blogArticlesFound_zero', {
+        error: i18n.t('common.error.postsFound_zero', {
           count: 0,
         }),
       });
     }
 
     const message =
-      articles.length === 1
-        ? i18n.t('common.success.blogArticlesFound_one', { count: 1 })
-        : i18n.t('common.success.blogArticlesFound_other', {
-            count: articles.length,
+      posts.length === 1
+        ? i18n.t('common.success.postsFound_one', { count: 1 })
+        : i18n.t('common.success.postsFound_other', {
+            count: posts.length,
           });
 
     res.status(200).json({
       message,
-      articles,
+      posts,
     });
   } catch (error: unknown) {
     next(error);
   }
 };
 
-export const getBlogArticle = async (
+export const getPost = async (
   req: Request,
   res: Response,
   next: NextFunction,
 ) => {
   try {
     const id = req.params?.id;
-    const article: BlogArticleDocument | null = await BlogArticle.findById(id);
+    const post: PostDocument | null = await Post.findById(id);
 
-    if (!article) {
+    if (!post) {
       return res.status(404).json({
-        error: i18n.t('common.error.blogArticleDoesNotExist'),
+        error: i18n.t('common.error.postDoesNotExist'),
       });
     }
 
     res.status(200).json({
-      message: i18n.t('common.success.blogArticlesFound_one', { count: 1 }),
-      article,
+      message: i18n.t('common.success.postsFound_one', { count: 1 }),
+      post,
     });
   } catch (error: unknown) {
     next(error);
   }
 };
 
-export const createBlogArticle = async (
+export const createPost = async (
   req: Request,
   res: Response,
   next: NextFunction,
@@ -92,63 +86,57 @@ export const createBlogArticle = async (
   try {
     const { title, content, isPublished } = trimData(req.body);
 
-    const blogArticleData: BlogArticleData = {
+    const postData: PostData = {
       title,
       content,
       isPublished,
     };
 
     // check for empty or missing fields
-    const missingOrEmptyFields = getMissingOrEmptyFields(blogArticleData);
+    const missingOrEmptyFields = getMissingOrEmptyFields(postData);
 
     if (missingOrEmptyFields && missingOrEmptyFields.length > 0) {
       if (pictureFile)
-        await deletePicture(
-          `${blogArticlesPicturesDir}/${pictureFile?.filename}`,
-        );
+        await deletePicture(`${postsPicturesDir}/${pictureFile?.filename}`);
       const errors = getMissingOrEmptyFieldsErrorMessage(
         context,
         missingOrEmptyFields,
       );
 
       return res.status(400).json({
-        message: i18n.t('blog.error.blogArticleCreationFailed'),
+        message: i18n.t('blog.error.postCreationFailed'),
         errors,
       });
     }
 
     // data validation
-    const blogArticleDataErrors = await checkBlogArticleData(blogArticleData);
+    const postDataErrors = await checkPostData(postData);
 
-    if (blogArticleDataErrors && blogArticleDataErrors.length > 0) {
+    if (postDataErrors && postDataErrors.length > 0) {
       if (pictureFile)
-        await deletePicture(
-          `${blogArticlesPicturesDir}/${pictureFile?.filename}`,
-        );
+        await deletePicture(`${postsPicturesDir}/${pictureFile?.filename}`);
       return res.status(400).json({
-        message: i18n.t('blog.error.blogArticleCreationFailed'),
-        errors: blogArticleDataErrors,
+        message: i18n.t('blog.error.postCreationFailed'),
+        errors: postDataErrors,
       });
     }
 
-    // create new instance of BlogArticle with data from req.body
-    const newBlogArticle = new BlogArticle({
-      ...blogArticleData,
-      isPublished: convertStringToBoolean(blogArticleData.isPublished),
+    // create new instance of Post with data from req.body
+    const newPost = new Post({
+      ...postData,
+      isPublished: convertStringToBoolean(postData.isPublished),
       picture: pictureFile?.filename,
     });
 
-    // save new blog article in database
-    await newBlogArticle.save();
+    // save new blog post in database
+    await newPost.save();
     res.status(201).json({
-      message: i18n.t('blog.success.blogArticleCreationSuccess'),
-      newBlogArticle,
+      message: i18n.t('blog.success.postCreationSuccess'),
+      newPost,
     });
   } catch (error: unknown) {
     if (pictureFile)
-      await deletePicture(
-        `${blogArticlesPicturesDir}/${pictureFile?.filename}`,
-      );
+      await deletePicture(`${postsPicturesDir}/${pictureFile?.filename}`);
     if (error instanceof Error) {
       const messages = extractValidationErrorMessagesFromError(error);
       res.status(400).json({ errors: messages });
@@ -158,7 +146,7 @@ export const createBlogArticle = async (
   }
 };
 
-export const updateBlogArticle = async (
+export const updatePost = async (
   req: Request,
   res: Response,
   next: NextFunction,
@@ -167,94 +155,84 @@ export const updateBlogArticle = async (
 
   try {
     const id = req.params?.id;
-    const article: BlogArticleDocument | null = await BlogArticle.findById(id);
+    const post: PostDocument | null = await Post.findById(id);
     const { title, content, isPublished } = trimData(req.body);
 
-    if (!article) {
+    if (!post) {
       return res.status(404).json({
-        error: i18n.t('common.error.blogArticleDoesNotExist'),
+        error: i18n.t('common.error.postDoesNotExist'),
       });
     }
 
-    const blogArticleData: BlogArticleData = {
+    const postData: PostData = {
       title,
       content,
       isPublished,
     };
 
     // data validation
-    const blogArticleDataErrors = await checkBlogArticleData(blogArticleData);
+    const postDataErrors = await checkPostData(postData);
 
-    if (blogArticleDataErrors && blogArticleDataErrors.length > 0) {
+    if (postDataErrors && postDataErrors.length > 0) {
       if (pictureFile)
-        await deletePicture(
-          `${blogArticlesPicturesDir}/${pictureFile?.filename}`,
-        );
+        await deletePicture(`${postsPicturesDir}/${pictureFile?.filename}`);
       return res.status(400).json({
-        message: i18n.t('blog.error.blogArticleUpdateFailed'),
-        errors: blogArticleDataErrors,
+        message: i18n.t('blog.error.postUpdateFailed'),
+        errors: postDataErrors,
       });
     }
 
     if (pictureFile) {
-      if (article.picture)
-        await deletePicture(
-          `${blogArticlesPicturesDir}/${article.picture}`,
-        ).then(async () => {
-          article.picture = pictureFile?.filename;
-        });
+      if (post.picture)
+        await deletePicture(`${postsPicturesDir}/${post.picture}`).then(
+          async () => {
+            post.picture = pictureFile?.filename;
+          },
+        );
     }
 
-    (Object.keys(blogArticleData) as (keyof BlogArticleData)[]).forEach(
-      (key) => {
-        if (blogArticleData[key] !== undefined) {
-          (article[key] as keyof BlogArticleData) = blogArticleData[
-            key
-          ] as keyof BlogArticleData;
-          article.isPublished = convertStringToBoolean(
-            blogArticleData.isPublished,
-          );
-        }
-      },
-    );
+    (Object.keys(postData) as (keyof PostData)[]).forEach((key) => {
+      if (postData[key] !== undefined) {
+        (post[key] as keyof PostData) = postData[key] as keyof PostData;
+        post.isPublished = convertStringToBoolean(postData.isPublished);
+      }
+    });
 
-    await article.save();
+    await post.save();
 
     res.status(200).json({
-      message: i18n.t('blog.success.blogArticleUpdateSuccess'),
-      article,
+      message: i18n.t('blog.success.postUpdateSuccess'),
+      post,
     });
   } catch (error: unknown) {
     if (pictureFile)
-      await deletePicture(
-        `${blogArticlesPicturesDir}/${pictureFile?.filename}`,
-      );
+      await deletePicture(`${postsPicturesDir}/${pictureFile?.filename}`);
     next(error);
   }
 };
 
-export const deleteBlogArticle = async (
+export const deletePost = async (
   req: Request,
   res: Response,
   next: NextFunction,
 ) => {
   try {
     const id = req.params?.id;
-    const article = await BlogArticle.findById(id);
+    const post = await Post.findById(id);
 
-    if (!article) {
+    if (!post) {
       return res
         .status(404)
-        .json({ error: i18n.t('common.error.blogArticleDoesNotExist') });
+        .json({ error: i18n.t('common.error.postDoesNotExist') });
     }
 
-    await article.deleteOne().then(async () => {
-      if (article.picture)
-        await deletePicture(`${blogArticlesPicturesDir}/${article.picture}`);
+    await post.deleteOne().then(async () => {
+      if (post.picture)
+        await deletePicture(`${postsPicturesDir}/${post.picture}`);
     });
 
     res.status(200).json({
-      message: i18n.t('blog.success.blogArticleDeleteSuccess'),
+      message: i18n.t('blog.success.postDeleteSuccess'),
     });
   } catch (error: unknown) {
     next(error);

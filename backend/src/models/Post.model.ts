@@ -1,13 +1,13 @@
 import { Schema, model } from 'mongoose';
-import { BlogArticleDocument } from './types/BlogArticle.types';
+import { PostDocument } from './types/Post.types';
 import { getValidationErrorMessage } from '../utils/validation.utils';
 import { DataContext, Reason } from '../validation/types/validation.types';
-import { blogArticleDataLengths } from '../validation/BlogArticle.validators';
+import { postDataLengths } from '../validation/Post.validators';
 import { forbiddenCharsRegex } from '../validation/Common.validator';
 
-const context: DataContext = DataContext.BLOG_ARTICLE;
+const context: DataContext = DataContext.POST;
 
-const blogArticleSchema = new Schema<BlogArticleDocument>(
+const postSchema = new Schema<PostDocument>(
   {
     title: {
       type: String,
@@ -21,20 +21,20 @@ const blogArticleSchema = new Schema<BlogArticleDocument>(
         }),
       ],
       maxlength: [
-        blogArticleDataLengths.title.maxLength,
+        postDataLengths.title.maxLength,
         getValidationErrorMessage({
           context,
           field: 'title',
-          maxLength: blogArticleDataLengths.title.maxLength,
+          maxLength: postDataLengths.title.maxLength,
           reason: Reason.MAXLENGTH,
         }),
       ],
       minlength: [
-        blogArticleDataLengths.title.minLength,
+        postDataLengths.title.minLength,
         getValidationErrorMessage({
           context,
           field: 'title',
-          minLength: blogArticleDataLengths.title.minLength,
+          minLength: postDataLengths.title.minLength,
           reason: Reason.MINLENGTH,
         }),
       ],
@@ -59,20 +59,20 @@ const blogArticleSchema = new Schema<BlogArticleDocument>(
         }),
       ],
       maxlength: [
-        blogArticleDataLengths.content.maxLength,
+        postDataLengths.content.maxLength,
         getValidationErrorMessage({
           context,
           field: 'content',
-          maxLength: blogArticleDataLengths.content.maxLength,
+          maxLength: postDataLengths.content.maxLength,
           reason: Reason.MAXLENGTH,
         }),
       ],
       minlength: [
-        blogArticleDataLengths.content.minLength,
+        postDataLengths.content.minLength,
         getValidationErrorMessage({
           context,
           field: 'content',
-          minLength: blogArticleDataLengths.content.minLength,
+          minLength: postDataLengths.content.minLength,
           reason: Reason.MINLENGTH,
         }),
       ],
@@ -106,6 +106,6 @@ const blogArticleSchema = new Schema<BlogArticleDocument>(
   { timestamps: true },
 );
 
-const BlogArticle = model('BlogArticle', blogArticleSchema);
+const Post = model('Post', postSchema);
 
-export default BlogArticle;
+export default Post;

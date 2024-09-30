@@ -4,7 +4,7 @@ import { ChangeEvent, useRef, useState } from 'react';
 import FileInput from '../FileInput';
 
 interface ControlledFileInputProps {
-  pictureType: 'avatar' | 'articlePicture';
+  pictureType: 'avatar' | 'postPicture';
   currentAvatar?: string | null;
   acceptedMimetypes: string;
   isRequired?: boolean;
@@ -30,9 +30,7 @@ const ControlledFileInput = ({
   );
 
   const className =
-    pictureType === 'avatar'
-      ? `edit-avatar-input`
-      : `edit-article-picture-input`;
+    pictureType === 'avatar' ? `edit-avatar-input` : `edit-post-picture-input`;
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement>,

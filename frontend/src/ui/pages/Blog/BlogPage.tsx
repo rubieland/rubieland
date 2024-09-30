@@ -1,10 +1,10 @@
-import { useGetAllBlogArticles } from '../../../api/blog/getAllBlogArticles';
+import { useGetAllPosts } from '../../../api/blog/getAllPosts';
 import PageLoader from '../../components/Loader/PageLoader';
 import { Link } from '@tanstack/react-router';
 
 const BlogPage = () => {
-  const { data: blogArticles, isLoading } = useGetAllBlogArticles();
-  const publishedArticles = blogArticles?.filter((a) => a.isPublished);
+  const { data: posts, isLoading } = useGetAllPosts();
+  const publishedPosts = posts?.filter((a) => a.isPublished);
 
   if (isLoading) return <PageLoader isLoading={isLoading} />;
 
@@ -12,21 +12,18 @@ const BlogPage = () => {
     <>
       <div>
         <p>BlogPage</p>
-        {!publishedArticles || publishedArticles.length === 0 ? (
-          <p>Aucun article n'a été publié pour le moment !</p>
+        {!publishedPosts || publishedPosts.length === 0 ? (
+          <p>Aucun post n'a été publié pour le moment !</p>
         ) : (
           <div style={{ padding: 24 }}>
             <p style={{ fontSize: 20, color: 'rebeccapurple' }}>
-              {publishedArticles.length} articles trouvés !
+              {publishedPosts.length} posts trouvés !
             </p>
             <ul>
-              {publishedArticles.map((article, i) => (
+              {publishedPosts.map((post, i) => (
                 <li key={i}>
-                  <Link
-                    to="/blog/articles/$articleId"
-                    params={{ articleId: article.id }}
-                  >
-                    Article {i + 1}
+                  <Link to="/blog/posts/$postId" params={{ postId: post.id }}>
+                    Post {i + 1}
                   </Link>
                 </li>
               ))}

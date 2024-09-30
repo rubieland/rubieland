@@ -2,7 +2,7 @@ import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import { readFile } from 'fs/promises';
 import User from './src/models/User.model';
-import BlogArticle from './src/models/BlogArticle.model';
+import Post from './src/models/Post.model';
 import Prestation from './src/models/Prestation.model';
 dotenv.config();
 
@@ -29,27 +29,24 @@ async function insertUsers() {
   }
 }
 
-// function to load and insert blogArticles
-async function insertBlogArticles() {
+// function to load and insert posts
+async function insertPosts() {
   try {
-    // read json file with blog articles data
-    const data = await readFile('./data/blogArticles.json', 'utf8');
+    // read json file with blog posts data
+    const data = await readFile('./data/posts.json', 'utf8');
     // parse the data
-    const blogArticlesData = JSON.parse(data);
+    const postsData = JSON.parse(data);
 
-    // loop on all blogArticle and save each article in base
-    for (const blogArticleData of blogArticlesData) {
-      const blogArticle = new BlogArticle(blogArticleData);
-      await blogArticle.save();
+    // loop on all post and save each post in base
+    for (const postData of postsData) {
+      const post = new Post(postData);
+      await post.save();
       console.log(
-        `Blog article with title "${blogArticle.title}" inserted successfully!`,
+        `Blog post with title "${post.title}" inserted successfully!`,
       );
     }
   } catch (err) {
-    console.error(
-      'An error occurred while trying to insert blog articles:',
-      err,
-    );
+    console.error('An error occurred while trying to insert blog posts:', err);
     throw err;
   }
 }
@@ -86,7 +83,7 @@ async function main() {
 
     // execute all the insertData() functions
     await insertUsers();
-    await insertBlogArticles();
+    await insertPosts();
     await insertPrestations();
 
     console.log('All data inserted successfully!');

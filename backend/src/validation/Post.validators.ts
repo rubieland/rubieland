@@ -1,7 +1,4 @@
-import {
-  BlogArticleData,
-  BlogArticleField,
-} from '../models/types/BlogArticle.types';
+import { PostData, PostField } from '../models/types/Post.types';
 import {
   checkMaxLength,
   checkMinLength,
@@ -14,7 +11,7 @@ import {
   Reason,
 } from './types/validation.types';
 
-export const blogArticleDataLengths: StringDataLengths = {
+export const postDataLengths: StringDataLengths = {
   title: {
     minLength: 5,
     maxLength: 100,
@@ -32,15 +29,13 @@ const checkIsPublished = (isPublished: string) => {
   );
 };
 
-export const checkBlogArticleData = async (
-  data: Omit<BlogArticleData, 'picture'>,
-) => {
+export const checkPostData = async (data: Omit<PostData, 'picture'>) => {
   const errors: string[] = [];
-  const context: DataContext = DataContext.BLOG_ARTICLE;
+  const context: DataContext = DataContext.POST;
 
   for (const [key, value] of Object.entries(data)) {
-    if (key in blogArticleDataLengths) {
-      const fieldKey = key as BlogArticleField;
+    if (key in postDataLengths) {
+      const fieldKey = key as PostField;
 
       // check forbidden characters
       if (typeof value === 'string' && hasForbiddenChars(value)) {
@@ -54,24 +49,24 @@ export const checkBlogArticleData = async (
       }
 
       // check maxLengths
-      if (!checkMaxLength(value, blogArticleDataLengths[fieldKey].maxLength)) {
+      if (!checkMaxLength(value, postDataLengths[fieldKey].maxLength)) {
         errors.push(
           getValidationErrorMessage({
             context,
             field: fieldKey,
-            maxLength: blogArticleDataLengths[fieldKey].maxLength,
+            maxLength: postDataLengths[fieldKey].maxLength,
             reason: Reason.MAXLENGTH,
           }),
         );
       }
 
       // check minLengths
-      if (!checkMinLength(value, blogArticleDataLengths[fieldKey].minLength)) {
+      if (!checkMinLength(value, postDataLengths[fieldKey].minLength)) {
         errors.push(
           getValidationErrorMessage({
             context,
             field: fieldKey,
-            minLength: blogArticleDataLengths[fieldKey].minLength,
+            minLength: postDataLengths[fieldKey].minLength,
             reason: Reason.MINLENGTH,
           }),
         );

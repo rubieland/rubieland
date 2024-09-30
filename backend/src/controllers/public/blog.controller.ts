@@ -1,59 +1,59 @@
 import { Request, Response, NextFunction } from 'express';
-import { BlogArticleDocument } from '../../models/types/BlogArticle.types';
-import BlogArticle from '../../models/BlogArticle.model';
+import { PostDocument } from '../../models/types/Post.types';
+import Post from '../../models/Post.model';
 import i18n from '../../config/i18n';
 
-export const getAllBlogArticles = async (
+export const getAllPosts = async (
   req: Request,
   res: Response,
   next: NextFunction,
 ) => {
   try {
-    // retrieve all blog articles
-    const articles: BlogArticleDocument[] = await BlogArticle.find({});
+    // retrieve all blog posts
+    const posts: PostDocument[] = await Post.find({});
 
-    if (!articles || articles.length === 0) {
+    if (!posts || posts.length === 0) {
       return res.status(404).json({
-        error: i18n.t('common.error.blogArticlesFound_zero', {
+        error: i18n.t('common.error.postsFound_zero', {
           count: 0,
         }),
       });
     }
 
     const message =
-      articles.length === 1
-        ? i18n.t('common.success.blogArticlesFound_one', { count: 1 })
-        : i18n.t('common.success.blogArticlesFound_other', {
-            count: articles.length,
+      posts.length === 1
+        ? i18n.t('common.success.postsFound_one', { count: 1 })
+        : i18n.t('common.success.postsFound_other', {
+            count: posts.length,
           });
 
     res.status(200).json({
       message,
-      articles,
+      posts,
     });
   } catch (error: unknown) {
     next(error);
   }
 };
 
-export const getBlogArticle = async (
+export const getPost = async (
   req: Request,
   res: Response,
   next: NextFunction,
 ) => {
   try {
     const id = req.params?.id;
-    const article: BlogArticleDocument | null = await BlogArticle.findById(id);
+    const post: PostDocument | null = await Post.findById(id);
 
-    if (!article) {
+    if (!post) {
       return res.status(404).json({
-        error: i18n.t('common.error.blogArticleDoesNotExist'),
+        error: i18n.t('common.error.postDoesNotExist'),
       });
     }
 
     res.status(200).json({
-      message: i18n.t('common.success.blogArticlesFound_one', { count: 1 }),
-      article,
+      message: i18n.t('common.success.postsFound_one', { count: 1 }),
+      post,
     });
   } catch (error: unknown) {
     next(error);

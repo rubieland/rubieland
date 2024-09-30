@@ -14,8 +14,8 @@
       "resourceDoesNotExist": "This resource does not exist",
       "usersFound_zero": "No user was found",
       "userDoesNotExist": "This user does not exist or does not exist anymore",
-      "blogArticlesFound_zero": "No blog article was found",
-      "blogArticleDoesNotExist": "This blog article does not exist or does not exist anymore",
+      "postsFound_zero": "No blog post was found",
+      "postDoesNotExist": "This blog post does not exist or does not exist anymore",
       "prestationsFound_zero": "No prestation was found",
       "prestationDoesNotExist": "This prestation does not exist or does not exist anymore",
       "dogsFound_zero": "No dog was found",
@@ -24,8 +24,8 @@
     "success": {
       "usersFound_one": "{{count}} user found",
       "usersFound_other": "{{count}} users found",
-      "blogArticlesFound_one": "{{count}} blog article found",
-      "blogArticlesFound_other": "{{count}} blog articles found",
+      "postsFound_one": "{{count}} blog post found",
+      "postsFound_other": "{{count}} blog posts found",
       "prestationsFound_one": "{{count}} prestation found",
       "prestationsFound_other": "{{count}} prestations found",
       "dogsFound_one": "{{count}} dog found",
@@ -46,10 +46,10 @@
         "phone": "Phone number",
         "avatar": "Avatar"
       },
-      "blogArticle": {
-        "title": "Title of the article",
-        "content": "Content of the article",
-        "isPublished": "Publish this article ?"
+      "post": {
+        "title": "Title of the post",
+        "content": "Content of the post",
+        "isPublished": "Publish this post ?"
       },
       "prestation": {
         "title": "Title of the prestation",
@@ -78,7 +78,7 @@
         "passwordsDontMatch": "passwords don't match",
         "newPasswordsDontMatch": "the password you entered in the field Confirm new password does not match with the password you entered in the field New password"
       },
-      "blogArticle": {
+      "post": {
         "isPublished": "it must be of type Boolean, and so, be either true or false"
       },
       "prestation": {
@@ -142,13 +142,13 @@
   },
   "blog": {
     "success": {
-      "blogArticleCreationSuccess": "Article created successfully!",
-      "blogArticleUpdateSuccess": "Article updated successfully!",
-      "blogArticleDeleteSuccess": "Article deleted successfully!"
+      "postCreationSuccess": "Post created successfully!",
+      "postUpdateSuccess": "Post updated successfully!",
+      "postDeleteSuccess": "Post deleted successfully!"
     },
     "error": {
-      "blogArticleCreationFailed": "Blog article creation failed",
-      "blogArticleUpdateFailed": "Blog article update failed"
+      "postCreationFailed": "Blog post creation failed",
+      "postUpdateFailed": "Blog post update failed"
     }
   },
   "prestation": {

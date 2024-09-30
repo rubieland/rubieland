@@ -6,13 +6,13 @@ import {
   getUser,
 } from '../../../controllers/back-office/users.controller';
 import {
-  createBlogArticle,
-  deleteBlogArticle,
-  getAllBlogArticles,
-  getBlogArticle,
-  updateBlogArticle,
+  createPost,
+  deletePost,
+  getAllPosts,
+  getPost,
+  updatePost,
 } from '../../../controllers/back-office/blogBackOffice.controller';
-import { blogArticlePictureUploader } from '../../../middlewares/uploads/uploadBlogArticlePicture.middleware';
+import { postPictureUploader } from '../../../middlewares/uploads/uploadPostPicture.middleware';
 import {
   createPrestation,
   deletePrestation,
@@ -29,37 +29,27 @@ const router = Router();
 
 // blog routes
 router.put(
-  '/blog/articles/:id/update',
+  '/blog/posts/:id/update',
   authMiddleware,
   isAdminMiddleware,
-  blogArticlePictureUploader,
-  updateBlogArticle,
+  postPictureUploader,
+  updatePost,
 );
 router.delete(
-  '/blog/articles/:id/delete',
+  '/blog/posts/:id/delete',
   authMiddleware,
   isAdminMiddleware,
-  deleteBlogArticle,
+  deletePost,
 );
 router.post(
-  '/blog/articles/create',
+  '/blog/posts/create',
   authMiddleware,
   isAdminMiddleware,
-  blogArticlePictureUploader,
-  createBlogArticle,
+  postPictureUploader,
+  createPost,
 );
-router.get(
-  '/blog/articles/all',
-  authMiddleware,
-  isAdminMiddleware,
-  getAllBlogArticles,
-);
-router.get(
-  '/blog/articles/:id',
-  authMiddleware,
-  isAdminMiddleware,
-  getBlogArticle,
-);
+router.get('/blog/posts/all', authMiddleware, isAdminMiddleware, getAllPosts);
+router.get('/blog/posts/:id', authMiddleware, isAdminMiddleware, getPost);
 
 // prestation routes
 router.put(
