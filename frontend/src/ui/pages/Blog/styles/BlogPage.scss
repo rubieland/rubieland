@@ -1,0 +1,17 @@
+@import '../../../../assets/styles/variables';
+@import '../../../../assets/styles/mixins';
+
+.blog-page-main-container {
+  @include flex-column;
+  padding: 1.5rem;
+  width: 100%;
+  gap: 1rem;
+}
+
+// ----- responsive ----- \\
+
+@include respond-to('small') {
+  .blog-page-main-container {
+    align-items: center;
+  }
+}
