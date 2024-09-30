@@ -1,7 +1,7 @@
 import { useNavbarContext } from './providers/NavbarProvider';
 import colors from '../../../assets/styles/colors';
+import { useTranslation } from 'react-i18next';
 import { Link } from '@tanstack/react-router';
-import i18n from '../../../core/i18n';
 import './styles/AuthLinksBlock.scss';
 
 const activeProps = {
@@ -13,6 +13,7 @@ const activeProps = {
 };
 
 const AuthLinksBlock = () => {
+  const { t } = useTranslation();
   const { hideMenu } = useNavbarContext();
 
   const hideOnEscapeKeyDown = (e: React.KeyboardEvent<'a'>) => {
@@ -28,7 +29,7 @@ const AuthLinksBlock = () => {
         onClick={hideMenu}
         to="/login"
       >
-        {i18n.t('nav.login')}
+        {t('nav.login')}
       </Link>
       <Link
         className="navbar-link nav-register-link"
@@ -37,7 +38,7 @@ const AuthLinksBlock = () => {
         onClick={hideMenu}
         to="/register"
       >
-        {i18n.t('nav.register')}
+        {t('nav.register')}
       </Link>
     </div>
   );

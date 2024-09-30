@@ -2,12 +2,13 @@ import { useSessionStoreActions } from '../../../../../stores/SessionStore';
 import { LoginBody } from '../../../../../models/user/user.entity';
 import { usePostLogin } from '../../../../../api/auth/postLogin';
 import { useNavigate } from '@tanstack/react-router';
-import i18n from '../../../../../core/i18n';
+import { useTranslation } from 'react-i18next';
 import { Id, toast } from 'react-toastify';
 import { AxiosError } from 'axios';
 import { useState } from 'react';
 
 const useLogin = () => {
+  const { t } = useTranslation();
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [toastId, setToastId] = useState<Id | null>(null);
   const { setSession } = useSessionStoreActions();
@@ -16,9 +17,9 @@ const useLogin = () => {
   const handleLoginError = (error: AxiosError) => {
     let message;
     if (error.response && error.response.status === 400) {
-      message = i18n.t('auth.error.invalidCredentials');
+      message = t('auth.error.invalidCredentials');
     } else {
-      message = i18n.t('auth.error.loginFailed');
+      message = t('auth.error.loginFailed');
     }
 
     setErrorMessage(message);
@@ -38,13 +39,13 @@ const useLogin = () => {
 
   const { mutateAsync: login, isPending } = usePostLogin({
     onMutate: () => {
-      const id = toast.loading(i18n.t('common.formSending'));
+      const id = toast.loading(t('common.formSending'));
       setToastId(id);
     },
     onSuccess: () => {
       if (toastId) {
         toast.update(toastId, {
-          render: i18n.t('auth.success.loginSuccess'),
+          render: t('auth.success.loginSuccess'),
           type: 'success',
           isLoading: false,
           autoClose: 3000,

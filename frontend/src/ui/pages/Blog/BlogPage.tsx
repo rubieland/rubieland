@@ -6,7 +6,7 @@ import { Link } from '@tanstack/react-router';
 import './styles/BlogPage.scss';
 
 const BlogPage = () => {
-  const { t } = useTranslation('', { keyPrefix: 'pages.blog' });
+  const { t } = useTranslation('translation', { keyPrefix: 'pages.blog' });
   const { data: posts, isLoading } = useGetAllPosts();
   const publishedPosts = posts?.filter((a) => a.isPublished);
   const isBlogEmpty = !publishedPosts || publishedPosts.length === 0;

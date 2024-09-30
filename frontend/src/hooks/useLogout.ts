@@ -2,11 +2,12 @@ import { useSessionStoreActions } from '../stores/SessionStore';
 import { usePostLogout } from '../api/auth/postLogout';
 import { useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from '@tanstack/react-router';
+import { useTranslation } from 'react-i18next';
 import { Id, toast } from 'react-toastify';
 import { useState } from 'react';
-import i18n from '../core/i18n';
 
 const useLogout = () => {
+  const { t } = useTranslation();
   const queryClient = useQueryClient();
   const [toastId, setToastId] = useState<Id | null>(null);
   const { resetSession } = useSessionStoreActions();
@@ -14,7 +15,7 @@ const useLogout = () => {
 
   const { mutateAsync: logout } = usePostLogout({
     onMutate: () => {
-      const id = toast.loading(i18n.t('common.loggingOut'));
+      const id = toast.loading(t('common.loggingOut'));
       setToastId(id);
     },
     onSuccess: () => {
@@ -30,7 +31,7 @@ const useLogout = () => {
       // display toast with success message
       if (toastId) {
         toast.update(toastId, {
-          render: i18n.t('auth.success.logoutSuccess'),
+          render: t('auth.success.logoutSuccess'),
           type: 'success',
           isLoading: false,
           autoClose: 3000,
@@ -44,7 +45,7 @@ const useLogout = () => {
       // if error occurs while logging out, display error toast
       if (toastId) {
         toast.update(toastId, {
-          render: i18n.t('auth.error.logoutFailed'),
+          render: t('auth.error.logoutFailed'),
           type: 'error',
           isLoading: false,
           autoClose: 3000,

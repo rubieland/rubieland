@@ -1,7 +1,7 @@
 import colors from '../../../assets/styles/colors';
 import ImageCircle from '../Icons/ImageCircle';
+import { useTranslation } from 'react-i18next';
 import ImagePen from '../Icons/ImagePen';
-import i18n from '../../../core/i18n';
 
 interface EditPostPictureInputProps {
   previewUrl: string | ArrayBuffer | null;
@@ -12,6 +12,7 @@ const EditPostPictureInput = ({
   previewUrl,
   label,
 }: EditPostPictureInputProps) => {
+  const { t } = useTranslation('translation', { keyPrefix: 'common' });
   const isPreviewUrlString = previewUrl && typeof previewUrl === 'string';
 
   return (
@@ -21,12 +22,12 @@ const EditPostPictureInput = ({
       ) : (
         <>
           <ImageCircle color={colors.grey50} />
-          <p>{i18n.t('common.addPicture')}</p>
+          <p>{t('addPicture')}</p>
         </>
       )}
       <figcaption className="edit-post-picture-figcaption">
         <ImagePen color={colors.white} />
-        <p>{i18n.t('common.edit')}</p>
+        <p>{t('edit')}</p>
       </figcaption>
     </figure>
   );

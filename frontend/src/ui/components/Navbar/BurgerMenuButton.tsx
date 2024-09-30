@@ -1,8 +1,9 @@
 import { useNavbarContext } from './providers/NavbarProvider';
+import { useTranslation } from 'react-i18next';
 import './styles/BurgerMenuButton.scss';
-import i18n from '../../../core/i18n';
 
 const BurgerMenuButton = () => {
+  const { t } = useTranslation('translation', { keyPrefix: 'aria-labels' });
   const { isOpen, toggleIsOpen, hideMenu } = useNavbarContext();
   const burgerBtnClassName = isOpen
     ? 'burger-menu-btn opened'
@@ -31,7 +32,7 @@ const BurgerMenuButton = () => {
 
   return (
     <div
-      aria-label={i18n.t('aria-labels.burger-btn')}
+      aria-label={t('burger-btn')}
       className={burgerBtnClassName}
       onKeyDown={handleKeyDown}
       aria-expanded={isOpen}

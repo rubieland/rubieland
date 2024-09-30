@@ -6,8 +6,8 @@ import CustomButton from '../../../../components/Button/CustomButton';
 import { RegisterBody } from '../../../../../models/user/user.entity';
 import { addAsterisk } from '../../../../../utils/string.utils';
 import { isFormValid } from '../../../../../utils/form.utils';
+import { useTranslation } from 'react-i18next';
 import { FormProvider } from 'react-hook-form';
-import i18n from '../../../../../core/i18n';
 
 const today = new Date();
 const formattedMaxBirthDate = calculateMinDateYYYYMMDD(today, 16);
@@ -18,6 +18,7 @@ interface RegisterFormProps {
 }
 
 const RegisterForm = ({ onSubmit }: RegisterFormProps) => {
+  const { t } = useTranslation();
   const form = useRegisterFormValidation();
   const watchedValues = form.watch([
     'firstName',
@@ -34,45 +35,45 @@ const RegisterForm = ({ onSubmit }: RegisterFormProps) => {
     <FormProvider {...form}>
       <form>
         <ControlledTextInput
-          placeholder={addAsterisk(i18n.t('form.user.firstName'))}
-          label={i18n.t('form.user.firstName')}
+          placeholder={addAsterisk(t('form.user.firstName'))}
+          label={t('form.user.firstName')}
           autocomplete="given-name"
           name="firstName"
         />
         <ControlledTextInput
-          placeholder={addAsterisk(i18n.t('form.user.lastName'))}
-          label={i18n.t('form.user.lastName')}
+          placeholder={addAsterisk(t('form.user.lastName'))}
+          label={t('form.user.lastName')}
           autocomplete="family-name"
           name="lastName"
         />
         <ControlledTextInput
-          placeholder={addAsterisk(i18n.t('form.user.emailLabel'))}
-          label={i18n.t('form.user.emailPlaceholder')}
+          placeholder={addAsterisk(t('form.user.emailLabel'))}
+          label={t('form.user.emailPlaceholder')}
           autocomplete="email"
           name="email"
           type="email"
         />
         <ControlledTextInput
-          placeholder={addAsterisk(i18n.t('form.user.password'))}
-          label={i18n.t('form.user.password')}
+          placeholder={addAsterisk(t('form.user.password'))}
+          label={t('form.user.password')}
           autocomplete="new-password"
           name="password"
           type="password"
         />
         <ControlledTextInput
-          placeholder={addAsterisk(i18n.t('form.user.confirmPassword'))}
-          label={i18n.t('form.user.confirmPassword')}
+          placeholder={addAsterisk(t('form.user.confirmPassword'))}
+          label={t('form.user.confirmPassword')}
           name="confirmPassword"
           type="password"
         />
         <ControlledTextInput
-          placeholder={`${addAsterisk(i18n.t('form.user.phoneLabel'))} (${i18n.t('form.user.phonePlaceholder')})`}
-          label={i18n.t('form.user.phoneLabel')}
+          placeholder={`${addAsterisk(t('form.user.phoneLabel'))} (${t('form.user.phonePlaceholder')})`}
+          label={t('form.user.phoneLabel')}
           autocomplete="tel"
           name="phone"
         />
         <ControlledDatePicker
-          label={addAsterisk(i18n.t('form.user.birthDate'))}
+          label={addAsterisk(t('form.user.birthDate'))}
           maxDate={formattedMaxBirthDate}
           minDate={formattedMinBirthDate}
           autocomplete="bday"
@@ -81,7 +82,7 @@ const RegisterForm = ({ onSubmit }: RegisterFormProps) => {
         <div className="form-input">
           <CustomButton
             onClick={form.handleSubmit(onSubmit)}
-            title={i18n.t('common.register')}
+            title={t('common.register')}
             isDisabled={!isFormFilled}
             type="submit"
           />

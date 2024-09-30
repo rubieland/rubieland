@@ -1,6 +1,6 @@
 import DefaultAvatar from '../Icons/DefaultAvatar';
 import colors from '../../../assets/styles/colors';
-import i18n from '../../../core/i18n';
+import { useTranslation } from 'react-i18next';
 import Camera from '../Icons/Camera';
 
 interface EditAvatarInputProps {
@@ -9,6 +9,7 @@ interface EditAvatarInputProps {
 }
 
 const EditAvatarInput = ({ previewUrl, label }: EditAvatarInputProps) => {
+  const { t } = useTranslation('translation', { keyPrefix: 'common' });
   const isPreviewUrlString = previewUrl && typeof previewUrl === 'string';
 
   return (
@@ -20,7 +21,7 @@ const EditAvatarInput = ({ previewUrl, label }: EditAvatarInputProps) => {
       )}
       <figcaption className="edit-avatar-figcaption">
         <Camera color={colors.white} />
-        <p>{i18n.t('common.edit')}</p>
+        <p>{t('edit')}</p>
       </figcaption>
     </figure>
   );

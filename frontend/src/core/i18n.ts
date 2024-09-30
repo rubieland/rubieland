@@ -22,10 +22,12 @@ const supportedFormats = [
   'relative',
   'ago',
 ];
+
 const defaultLanguage: SupportedLanguages = 'fr';
 const languages: SupportedLanguages[] = ['fr', 'en'];
 const locales = { en: enGB, fr: french };
-const resources = {
+export const defaultNS = 'translation';
+export const resources = {
   fr: {
     translation: fr,
   },
@@ -39,6 +41,7 @@ i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
+    defaultNS,
     fallbackLng: defaultLanguage,
     supportedLngs: languages,
     lng: defaultLanguage,

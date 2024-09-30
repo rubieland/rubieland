@@ -1,5 +1,5 @@
 import { PropsWithChildren, RefObject } from 'react';
-import i18n from '../../../core/i18n';
+import { useTranslation } from 'react-i18next';
 import Cross from '../Icons/Cross';
 import './styles/Modal.scss';
 
@@ -22,6 +22,8 @@ const Modal = ({
   width,
   title,
 }: ModalProps) => {
+  const { t } = useTranslation('translation', { keyPrefix: 'aria-labels' });
+
   // close modal when click on the backdrop
   const handlecloseModal = (
     e: React.MouseEvent<HTMLDialogElement, MouseEvent>,
@@ -49,7 +51,7 @@ const Modal = ({
         {title && <h3 id="modal-title">{title}</h3>}
       </header>
       <div
-        aria-label={i18n.t('aria-labels.close-modal')}
+        aria-label={t('close-modal')}
         className="modal-close-btn"
         onClick={closeModal}
         role="button"

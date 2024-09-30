@@ -1,14 +1,16 @@
+import { useTranslation } from 'react-i18next';
 import { Link } from '@tanstack/react-router';
-import i18n from '../../../core/i18n';
 import './NotFound.scss';
 
 const NotFound = () => {
+  const { t } = useTranslation();
+
   return (
     <section className="not-found-container">
-      <h2>{i18n.t('notFound.title')}</h2>
-      <p>{i18n.t('notFound.content')}</p>
+      <h2>{t('notFound.title')}</h2>
+      <p>{t('notFound.content')}</p>
       <Link className="btn btn-primary back-home-btn" to="/">
-        {i18n.t('common.goBackToHomepage')}
+        {t('common.goBackToHomepage')}
       </Link>
     </section>
   );

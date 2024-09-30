@@ -11,8 +11,8 @@ import { addAsterisk } from '../../../utils/string.utils';
 import { isFormValid } from '../../../utils/form.utils';
 import CustomButton from '../Button/CustomButton';
 import { FormProvider } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 import '../../../assets/styles/form.scss';
-import i18n from '../../../core/i18n';
 
 const mockSelectPlaceholder: SelectItem = {
   value: '',
@@ -39,6 +39,7 @@ const formattedMaxBirthDate = maxBirthDate.split('T')[0];
 const formattedMinBirthDate = minBirthDate.split('T')[0];
 
 const FormTests = () => {
+  const { t } = useTranslation();
   const form = useFormTestsValidation();
   const watchedValues = form.watch([
     'email',
@@ -74,15 +75,15 @@ const FormTests = () => {
           withLabel
         />
         <ControlledTextInput
-          label={addAsterisk(i18n.t('form.user.emailLabel'))}
-          placeholder={i18n.t('form.user.emailPlaceholder')}
+          label={addAsterisk(t('form.user.emailLabel'))}
+          placeholder={t('form.user.emailPlaceholder')}
           name="email"
           type="email"
           withLabel
         />
         <ControlledTextInput
-          label={addAsterisk(i18n.t('form.user.password'))}
-          placeholder={i18n.t('form.user.password')}
+          label={addAsterisk(t('form.user.password'))}
+          placeholder={t('form.user.password')}
           name="password"
           type="password"
           withLabel
@@ -98,7 +99,7 @@ const FormTests = () => {
         <ControlledCheckbox label="Publier cet article ?" name="isPublished" />
         <div className="form-input">
           <CustomButton
-            title={i18n.t('common.send')}
+            title={t('common.send')}
             isDisabled={!isFormFilled}
             type="submit"
             onClick={() => console.log('FORMTEST CLICKED')}
