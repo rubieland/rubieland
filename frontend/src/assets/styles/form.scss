@@ -8,25 +8,22 @@ form {
 }
 
 .form-input {
+  width: min(100%, 36rem);
   @include flex-column;
-  max-width: 36rem;
   gap: 0.125rem;
-  width: 100%;
 }
 
 .checkbox-input {
+  width: min(100%, 36rem);
   @include flex-center-y;
-  max-width: 36rem;
-  width: 100%;
   gap: 1.5rem;
 }
 
 .input-error-message {
   font-family: $primary-font-stack;
+  width: min(100%, 36rem);
   font-size: 0.875rem;
   font-weight: 600;
-  max-width: 36rem;
-  width: 100%;
   color: $red;
 }
 
@@ -76,10 +73,10 @@ form {
 
 .edit-post-picture-input-container {
   font-family: $secondary-font-stack;
+  width: min(100%, 36rem);
   @include flex-column;
-  @include box(100%);
-  max-width: 36rem;
   gap: 0.125rem;
+  height: 100%;
 }
 
 .edit-post-picture-input {
