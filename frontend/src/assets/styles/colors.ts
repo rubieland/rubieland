@@ -1,8 +1,7 @@
 const colors = {
   primary: '#704dab',
   white: '#ffffff',
-  black: '#000000',
-  black90: '#000000e6',
+  black: '#151515',
   blackTransp80: 'rgba(0, 0, 0, 0.8)',
   blackTransp50: 'rgba(0, 0, 0, 0.5)',
   red: '#ef5350',

@@ -3,7 +3,7 @@
 
 .navbar {
   transition: right 0.7s ease-in-out;
-  box-shadow: 0 5px 8px $black90;
+  box-shadow: 0 5px 8px $black;
   @include flex-center-column;
   background-color: $white;
   align-items: center;
@@ -29,7 +29,7 @@
   text-align: center;
   padding: 0.5rem 0;
   font-size: 1rem;
-  color: $black90;
+  color: $black;
   width: 100%;
 
   &:hover {

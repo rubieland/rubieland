@@ -167,7 +167,7 @@ form {
 .edit-avatar-figcaption {
   transition: all ease-in-out 0.3s;
   @include flex-center-column;
-  background-color: $black90;
+  background-color: $black;
   @include box(inherit);
   border-radius: 100%;
   position: absolute;

@@ -22,7 +22,7 @@
 }
 
 %btn-success {
-  @include btn-styles($green, $black90);
+  @include btn-styles($green, $black);
 }
 
 %btn-error {
