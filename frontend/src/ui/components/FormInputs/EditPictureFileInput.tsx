@@ -1,9 +1,9 @@
-import EditArticlePictureInput from './EditArticlePictureInput';
+import EditPostPictureInput from './EditPostPictureInput';
 import EditAvatarInput from './EditAvatarInput';
 
 interface EditPictureFileInputProps {
   previewUrl: string | ArrayBuffer | null;
-  pictureType: 'avatar' | 'articlePicture';
+  pictureType: 'avatar' | 'postPicture';
   label: string;
 }
 
@@ -17,7 +17,7 @@ const EditPictureFileInput = ({
   if (isAvatar) {
     return <EditAvatarInput previewUrl={previewUrl} label={label} />;
   } else {
-    return <EditArticlePictureInput previewUrl={previewUrl} label={label} />;
+    return <EditPostPictureInput previewUrl={previewUrl} label={label} />;
   }
 };
 

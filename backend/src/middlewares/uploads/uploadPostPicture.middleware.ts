@@ -1,6 +1,6 @@
 import createUploaderMiddleware from './createUploaderMiddleware';
 
-export const blogArticlePictureUploader = createUploaderMiddleware({
+export const postPictureUploader = createUploaderMiddleware({
   destination: 'src/uploads/blog/pictures',
   fileTypes: /jpg|png|jpeg|gif|webp|svg/,
   maxFileSizeMB: 10,

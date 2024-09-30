@@ -1,12 +1,9 @@
 import { Router } from 'express';
-import {
-  getAllBlogArticles,
-  getBlogArticle,
-} from '../../controllers/public/blog.controller';
+import { getAllPosts, getPost } from '../../controllers/public/blog.controller';
 
 const router = Router();
 
-router.get('/articles/all', getAllBlogArticles);
-router.get('/articles/:id', getBlogArticle);
+router.get('/posts/all', getAllPosts);
+router.get('/posts/:id', getPost);
 
 export default router;

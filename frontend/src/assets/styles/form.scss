@@ -72,9 +72,9 @@ form {
   gap: 0.5rem;
 }
 
-// ----- edit blog article picture input styles ----- \\
+// ----- edit blog post picture input styles ----- \\
 
-.edit-article-picture-input-container {
+.edit-post-picture-input-container {
   font-family: $secondary-font-stack;
   @include flex-column;
   @include box(100%);
@@ -82,11 +82,11 @@ form {
   gap: 0.125rem;
 }
 
-.edit-article-picture-input {
+.edit-post-picture-input {
   @include edit-picture-input;
 }
 
-.edit-article-picture-figure {
+.edit-post-picture-figure {
   @include box(inherit, 200px);
   @include flex-center-column;
   border-radius: 0.25rem;
@@ -110,7 +110,7 @@ form {
   }
 }
 
-.edit-article-picture-figcaption {
+.edit-post-picture-figcaption {
   transition: all ease-in-out 0.3s;
   @include flex-center-column;
   @include box(100%, inherit);
@@ -203,11 +203,11 @@ form {
     }
   }
 
-  .edit-article-picture-input,
-  .edit-article-picture-figure {
+  .edit-post-picture-input,
+  .edit-post-picture-figure {
     height: 250px;
 
-    .edit-article-picture-figcaption > p {
+    .edit-post-picture-figcaption > p {
       font-size: 1.2rem;
     }
   }

@@ -15,7 +15,7 @@ export enum Reason {
 
 export enum DataContext {
   USER = 'user',
-  BLOG_ARTICLE = 'blogArticle',
+  POST = 'post',
   PRESTATION = 'prestation',
   DOG = 'dog',
 }

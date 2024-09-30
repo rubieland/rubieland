@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-const BlogArticleDtoSchema = z.object({
+const PostDtoSchema = z.object({
   _id: z.string(),
   title: z.string(),
   content: z.string(),
@@ -10,4 +10,4 @@ const BlogArticleDtoSchema = z.object({
   updatedAt: z.date(),
 });
 
-export type BlogArticleDto = z.infer<typeof BlogArticleDtoSchema>;
+export type PostDto = z.infer<typeof PostDtoSchema>;
