@@ -25,7 +25,8 @@ const BlogPage = () => {
             {publishedPosts.map((post, i) => (
               <li key={i}>
                 <Link to="/blog/posts/$postId" params={{ postId: post.id }}>
-                  Article {i + 1}
+                  Article {i + 1} -{' '}
+                  {t('postedOn', { date: new Date(post.createdAt) })}
                 </Link>
               </li>
             ))}
