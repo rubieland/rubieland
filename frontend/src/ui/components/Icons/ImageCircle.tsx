@@ -1,3 +1,4 @@
+import colors from '../../../assets/styles/colors';
 import { SVGProps } from 'react';
 
 const ImageCircle = (props: SVGProps<SVGSVGElement>) => (
@@ -9,7 +10,7 @@ const ImageCircle = (props: SVGProps<SVGSVGElement>) => (
     {...props}
   >
     <path
-      stroke={props.color || '#000'}
+      stroke={props.color || colors.black}
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth={2}

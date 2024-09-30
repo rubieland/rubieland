@@ -3,19 +3,19 @@ import ImageCircle from '../Icons/ImageCircle';
 import ImagePen from '../Icons/ImagePen';
 import i18n from '../../../core/i18n';
 
-interface EditArticlePictureInputProps {
+interface EditPostPictureInputProps {
   previewUrl: string | ArrayBuffer | null;
   label: string;
 }
 
-const EditArticlePictureInput = ({
+const EditPostPictureInput = ({
   previewUrl,
   label,
-}: EditArticlePictureInputProps) => {
+}: EditPostPictureInputProps) => {
   const isPreviewUrlString = previewUrl && typeof previewUrl === 'string';
 
   return (
-    <figure className="edit-article-picture-figure">
+    <figure className="edit-post-picture-figure">
       {isPreviewUrlString ? (
         <img src={previewUrl} alt={label} />
       ) : (
@@ -24,7 +24,7 @@ const EditArticlePictureInput = ({
           <p>{i18n.t('common.addPicture')}</p>
         </>
       )}
-      <figcaption className="edit-article-picture-figcaption">
+      <figcaption className="edit-post-picture-figcaption">
         <ImagePen color={colors.white} />
         <p>{i18n.t('common.edit')}</p>
       </figcaption>
@@ -32,4 +32,4 @@ const EditArticlePictureInput = ({
   );
 };
 
-export default EditArticlePictureInput;
+export default EditPostPictureInput;

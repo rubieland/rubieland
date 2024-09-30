@@ -63,7 +63,7 @@ const FormTests = () => {
         <ControlledFileInput
           acceptedMimetypes={acceptedMimeTypesString}
           label="Modifier l'image de l'article"
-          pictureType="articlePicture"
+          pictureType="postPicture"
           name="avatar"
         />
         <ControlledSelect

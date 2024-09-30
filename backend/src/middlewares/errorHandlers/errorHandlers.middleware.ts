@@ -39,8 +39,8 @@ export const errorHandler = (
     if (err.message.includes('User')) {
       message = i18n.t('common.error.userDoesNotExist');
     }
-    if (err.message.includes('BlogArticle')) {
-      message = i18n.t('common.error.blogArticleDoesNotExist');
+    if (err.message.includes('Post')) {
+      message = i18n.t('common.error.postDoesNotExist');
     }
     if (err.message.includes('Prestation')) {
       message = i18n.t('common.error.prestationDoesNotExist');

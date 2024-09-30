@@ -14,8 +14,8 @@
       "resourceDoesNotExist": "Cette ressource n'existe pas ou n'existe plus",
       "usersFound_zero": "Aucun utilisateur trouvé",
       "userDoesNotExist": "Cet utilisateur n'existe pas ou n'existe plus",
-      "blogArticlesFound_zero": "Aucun article de blog trouvé",
-      "blogArticleDoesNotExist": "Cet article de blog n'existe pas ou n'existe plus",
+      "postsFound_zero": "Aucun article de blog trouvé",
+      "postDoesNotExist": "Cet article de blog n'existe pas ou n'existe plus",
       "prestationsFound_zero": "Aucune prestation trouvée",
       "prestationDoesNotExist": "Cette prestation n'existe pas ou n'existe plus",
       "dogsFound_zero": "Aucun chien trouvé",
@@ -24,8 +24,8 @@
     "success": {
       "usersFound_one": "{{count}} utilisateur trouvé",
       "usersFound_other": "{{count}} utilisateurs trouvés",
-      "blogArticlesFound_one": "{{count}} article de blog trouvé",
-      "blogArticlesFound_other": "{{count}} articles de blog trouvés",
+      "postsFound_one": "{{count}} article de blog trouvé",
+      "postsFound_other": "{{count}} articles de blog trouvés",
       "prestationsFound_one": "{{count}} prestation trouvée",
       "prestationsFound_other": "{{count}} prestations trouvées",
       "dogsFound_one": "{{count}} chien trouvé",
@@ -46,7 +46,7 @@
         "phone": "N° de téléphone",
         "avatar": "Avatar"
       },
-      "blogArticle": {
+      "post": {
         "title": "Titre de l'article",
         "content": "Contenu de l'article",
         "isPublished": "Publier cet article ?"
@@ -78,7 +78,7 @@
         "passwordsDontMatch": "les mots de passe ne correspondent pas",
         "newPasswordsDontMatch": "le mot de passe saisi dans Confirmer le nouveau mot de passe ne correspond pas avec le mot de passe saisi dans le champ Nouveau mot de passe"
       },
-      "blogArticle": {
+      "post": {
         "isPublished": "il doit être de type Boolean, et donc être soit true, soit false"
       },
       "prestation": {
@@ -142,13 +142,13 @@
   },
   "blog": {
     "success": {
-      "blogArticleCreationSuccess": "Article créé avec succès !",
-      "blogArticleUpdateSuccess": "Article modifié avec succès!",
-      "blogArticleDeleteSuccess": "Article supprimé avec succès !"
+      "postCreationSuccess": "Post créé avec succès !",
+      "postUpdateSuccess": "Post modifié avec succès!",
+      "postDeleteSuccess": "Post supprimé avec succès !"
     },
     "error": {
-      "blogArticleCreationFailed": "La création de l'article a échouée",
-      "blogArticleUpdateFailed": "La mise à jour de l'article a échouée"
+      "postCreationFailed": "La création de l'article a échouée",
+      "postUpdateFailed": "La mise à jour de l'article a échouée"
     }
   },
   "prestation": {

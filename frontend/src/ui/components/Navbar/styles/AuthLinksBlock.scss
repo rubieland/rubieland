@@ -6,7 +6,7 @@
   width: 100%;
 
   &::before {
-    background-color: $black90;
+    background-color: $black;
     @include box(3rem, 1.5px);
     margin: 0.5rem;
     content: '';
@@ -26,14 +26,14 @@
   }
 
   .nav-login-link {
-    border: 1px solid $black90;
+    border: 1px solid $black;
     border-radius: 0.25rem;
-    color: $black90;
+    color: $black;
   }
 
   .nav-register-link {
-    border: 1px solid $black90;
+    border: 1px solid $black;
     border-radius: 0.25rem;
-    color: $black90;
+    color: $black;
   }
 }

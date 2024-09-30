@@ -39,7 +39,7 @@
       @include btn-styles(transparent, $green, $green);
 
       &:hover {
-        @include btn-styles($green, $black90);
+        @include btn-styles($green, $black);
       }
     }
   }

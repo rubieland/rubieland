@@ -26,5 +26,5 @@ export type SessionData = {
 };
 
 export const convertUserDtoToEntity = (dto: UserDto): User => {
-  return { ...dto };
+  return { ...dto, id: dto._id };
 };

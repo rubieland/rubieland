@@ -3,7 +3,9 @@
 .not-found-container {
   @include flex-center-y;
   flex-direction: column;
+  align-self: center;
   padding: 1.5rem;
+  width: 100%;
   gap: 2rem;
 }
 
