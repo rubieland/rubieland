@@ -110,6 +110,11 @@
       "loginFormBlock": {
         "title": "Connectez-vous"
       }
+    },
+    "blog": {
+      "title": "Blog",
+      "emptyBlogText": "Aucun article n'a été publié pour le moment.",
+      "allPosts": "Tous les articles"
     }
   }
 }

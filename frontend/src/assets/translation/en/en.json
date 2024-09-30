@@ -110,6 +110,11 @@
       "loginFormBlock": {
         "title": "Log in"
       }
+    },
+    "blog": {
+      "title": "Blog",
+      "emptyBlogText": "No post published yet.",
+      "allPosts": "All posts"
     }
   }
 }
