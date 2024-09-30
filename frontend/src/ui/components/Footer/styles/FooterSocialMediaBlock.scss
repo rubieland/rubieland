@@ -8,6 +8,10 @@
   gap: 1rem;
 }
 
+.footer-social-media-title {
+  text-align: center;
+}
+
 .footer-social-media-icons-container {
   @include flex-center-x;
   gap: 1rem;
