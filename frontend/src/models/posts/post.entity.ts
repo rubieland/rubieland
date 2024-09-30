@@ -6,6 +6,8 @@ export type Post = {
   content: string;
   picture: string | null;
   isPublished: boolean;
+  createdAt: Date;
+  updatedAt: Date;
 };
 
 export const convertPostDtoToEntity = (dto: PostDto): Post => {
