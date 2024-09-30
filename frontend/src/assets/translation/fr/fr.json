@@ -114,7 +114,8 @@
     "blog": {
       "title": "Blog",
       "emptyBlogText": "Aucun article n'a été publié pour le moment.",
-      "allPosts": "Tous les articles"
+      "allPosts": "Tous les articles",
+      "postedOn": "Publié le {{ date, medium }}"
     }
   }
 }
