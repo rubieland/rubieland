@@ -117,7 +117,8 @@
       "allPosts": "Tous les articles",
       "postedOn": "Publié le {{ date, medium }}",
       "postCard": {
-        "date": "{{ date, medium }}"
+        "date": "{{ date, medium }}",
+        "readMore": "Lire la suite"
       }
     }
   }
