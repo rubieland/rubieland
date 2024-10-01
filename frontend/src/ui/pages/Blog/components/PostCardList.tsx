@@ -11,7 +11,6 @@ const PostCardList = ({ posts }: PostCardListProps) => {
   const { t } = useTranslation('translation', { keyPrefix: 'pages.blog' });
   return (
     <section className="post-card-list-container">
-      <h3>{t('allPosts')}</h3>
       <div className="post-card-list">
         {posts.map((post, i) => (
           <PostCard

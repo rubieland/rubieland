@@ -5,6 +5,7 @@
   transition:
     background-color 0.3s ease-in-out,
     transform 0.3s ease-in-out;
+  @include flex-start-y-stretch;
   @include box-shadow-bottom;
   background-color: $grey10;
   border-radius: 0.5rem;
@@ -16,41 +17,41 @@
     transform: translateY(-5px);
     background-color: $white;
   }
+}
 
-  .post-card-image-container {
-    @include box(100%, 200px);
+.post-card-image-container {
+  @include box(100%, 200px);
 
-    > img {
-      @include box(100%);
-      object-fit: cover;
-    }
+  img {
+    @include box(100%);
+    object-fit: cover;
   }
+}
 
-  .post-card-content {
-    padding: 1.5rem;
+.post-card-content {
+  @include flex-start-y-stretch;
+  padding: 1.5rem;
+  gap: 0.725rem;
+  flex: 1;
 
-    .post-card-title {
-      margin: 0 0 8px;
-      color: $black;
-    }
-
-    .post-card-excerpt {
-      color: $grey80;
-      margin: 0 0 1rem;
-    }
+  .post-card-excerpt {
+    @include flex-start-y-stretch;
+    color: $grey80;
+    flex: 1;
   }
 
   .post-card-footer {
     justify-content: space-between;
+    margin-top: 0.5rem;
     display: flex;
 
     .post-card-date {
       font-style: italic;
+      font-size: 0.9rem;
       color: $grey70;
     }
 
     .post-card-read-more {
-      display: inline-block;
       text-decoration: none;
       font-weight: bold;
       color: $primary;

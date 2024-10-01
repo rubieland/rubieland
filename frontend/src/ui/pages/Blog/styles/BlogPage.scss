@@ -3,9 +3,9 @@
 
 .blog-page-main-container {
   @include flex-column;
-  padding: 1.5rem;
+  padding: 2rem 1.5rem;
   width: 100%;
-  gap: 1rem;
+  gap: 2rem;
 }
 
 // ----- responsive ----- \\
@@ -18,6 +18,6 @@
 
 @include respond-to('medium') {
   .blog-page-main-container {
-    padding: 3rem;
+    padding: 2rem 3rem;
   }
 }
