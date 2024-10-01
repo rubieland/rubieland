@@ -1,0 +1,66 @@
+@import '../../../../assets/styles/variables';
+@import '../../../../assets/styles/mixins';
+
+.post-card {
+  transition:
+    background-color 0.3s ease-in-out,
+    transform 0.3s ease-in-out;
+  @include box-shadow-bottom;
+  background-color: $grey10;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  cursor: pointer;
+  width: 100%;
+
+  &:hover {
+    transform: translateY(-5px);
+    background-color: $white;
+  }
+
+  .post-card-image-container {
+    @include box(100%, 200px);
+
+    > img {
+      @include box(100%);
+      object-fit: cover;
+    }
+  }
+
+  .post-card-content {
+    padding: 1.5rem;
+
+    .post-card-title {
+      margin: 0 0 8px;
+      color: $black;
+    }
+
+    .post-card-excerpt {
+      color: $grey80;
+      margin: 0 0 1rem;
+    }
+  }
+
+  .post-card-footer {
+    justify-content: space-between;
+    display: flex;
+
+    .post-card-date {
+      font-style: italic;
+      color: $grey70;
+    }
+
+    .post-card-read-more {
+      display: inline-block;
+      text-decoration: none;
+      font-weight: bold;
+      color: $primary;
+    }
+  }
+}
+
+// ----- responsive ----- \\
+@include respond-to('medium') {
+  .post-card {
+    width: calc(50% - 0.5rem);
+  }
+}

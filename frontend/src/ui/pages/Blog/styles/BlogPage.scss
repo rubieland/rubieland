@@ -15,3 +15,9 @@
     align-items: center;
   }
 }
+
+@include respond-to('medium') {
+  .blog-page-main-container {
+    padding: 3rem;
+  }
+}

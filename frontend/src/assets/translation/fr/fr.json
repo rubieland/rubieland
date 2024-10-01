@@ -115,7 +115,10 @@
       "title": "Blog",
       "emptyBlogText": "Aucun article n'a été publié pour le moment.",
       "allPosts": "Tous les articles",
-      "postedOn": "Publié le {{ date, medium }}"
+      "postedOn": "Publié le {{ date, medium }}",
+      "postCard": {
+        "date": "{{ date, medium }}"
+      }
     }
   }
 }

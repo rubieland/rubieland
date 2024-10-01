@@ -1,8 +1,8 @@
 import { useGetAllPosts } from '../../../api/blog/getAllPosts';
 import EmptyBlogSection from './components/EmptyBlogSection';
 import PageLoader from '../../components/Loader/PageLoader';
+import PostCardList from './components/PostCardList';
 import { useTranslation } from 'react-i18next';
-import { Link } from '@tanstack/react-router';
 import './styles/BlogPage.scss';
 
 const BlogPage = () => {
@@ -19,19 +19,7 @@ const BlogPage = () => {
       {isBlogEmpty ? (
         <EmptyBlogSection />
       ) : (
-        <div>
-          <h3>{t('allPosts')}</h3>
-          <ul>
-            {publishedPosts.map((post, i) => (
-              <li key={i}>
-                <Link to="/blog/posts/$postId" params={{ postId: post.id }}>
-                  Article {i + 1} -{' '}
-                  {t('postedOn', { date: new Date(post.createdAt) })}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
+        <PostCardList posts={publishedPosts} />
       )}
     </div>
   );
