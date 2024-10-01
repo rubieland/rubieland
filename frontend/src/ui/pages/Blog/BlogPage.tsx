@@ -10,8 +10,11 @@ const BlogPage = () => {
   const { data: posts, isLoading } = useGetAllPosts();
   const publishedPosts = posts?.filter((a) => a.isPublished);
   const isBlogEmpty = !publishedPosts || publishedPosts.length === 0;
+  const { data: posts, isLoading, error, refetch } = useGetAllPosts();
 
   if (isLoading) return <PageLoader isLoading={isLoading} />;
+  if (error)
+    return <ErrorComponent message={error.message} onRetry={() => refetch()} />;
 
   return (
     <div className="blog-page-main-container">

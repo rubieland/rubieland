@@ -1,0 +1,19 @@
+@import '../../../assets/styles/variables.scss';
+@import '../../../assets/styles/mixins.scss';
+
+.error-component-section {
+  @include flex-center-column;
+  width: 100%;
+}
+
+.error-box {
+  @include flex-center-column;
+  background-color: $lightPink;
+  width: min(100%, 400px);
+  border: 1px solid $red;
+  align-self: center;
+  border-radius: 5px;
+  padding: 1.25rem;
+  color: $red;
+  gap: 1rem;
+}

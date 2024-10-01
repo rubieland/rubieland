@@ -3,6 +3,8 @@
     "send": "Send",
     "edit": "Edit",
     "cancel": "Cancel",
+    "error": "Error",
+    "retry": "Retry",
     "addPicture": "Add a picture",
     "goBackToHomepage": "Go back to homepage",
     "register": "Register",
