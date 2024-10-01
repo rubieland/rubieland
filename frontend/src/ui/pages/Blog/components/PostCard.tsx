@@ -2,12 +2,14 @@ import defaultImgMedium from '../../../../assets/illustrations/blog_default_img_
 import defaultImgSmall from '../../../../assets/illustrations/blog_default_img_small.png';
 import { API_BLOG_PICTURES_PATH, API_URL } from '../../../../core/envConfig';
 import ResponsiveImage from '../../../components/Image/ResponsiveImage';
+import { useNavigate } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import '../styles/PostCard.scss';
 
 interface PostCardProps {
   imageUrl: string | null;
   excerpt: string;
+  postId: string;
   title: string;
   date: string;
 }
@@ -16,13 +18,24 @@ const imageSources = [
   { media: '(min-width: 500px)', srcSet: defaultImgMedium },
 ];
 
-const PostCard = ({ title, excerpt, date, imageUrl }: PostCardProps) => {
+const PostCard = ({
+  imageUrl,
+  excerpt,
+  postId,
+  title,
+  date,
+}: PostCardProps) => {
   const { t } = useTranslation('translation', {
     keyPrefix: 'pages.blog.postCard',
   });
+  const navigate = useNavigate();
+
+  const navigateToPostDetail = () => {
+    navigate({ to: `/blog/posts/${postId}` });
+  };
 
   return (
-    <article className="post-card">
+    <article className="post-card" onClick={navigateToPostDetail}>
       <div className="post-card-image-container">
         {!imageUrl ? (
           <ResponsiveImage
