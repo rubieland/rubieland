@@ -4,10 +4,10 @@ import ResponsiveImage from '../../../components/Image/ResponsiveImage';
 import { useTranslation } from 'react-i18next';
 import '../styles/EmptyBlogSection.scss';
 
-const imageSources = [{ media: '(min-width: 500px)', src: imgMedium }];
+const imageSources = [{ media: '(min-width: 500px)', srcSet: imgMedium }];
 
 const EmptyBlogSection = () => {
-  const { t } = useTranslation('', { keyPrefix: 'pages.blog' });
+  const { t } = useTranslation('translation', { keyPrefix: 'pages.blog' });
 
   return (
     <section className="empty-blog-section">

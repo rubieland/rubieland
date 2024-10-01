@@ -19,7 +19,7 @@ const ResponsiveImage = ({
   return (
     <picture>
       {srcSet.map((src, index) => (
-        <source key={index} media={src.media} srcSet={src.src} />
+        <source key={index} media={src.media} srcSet={src.srcSet} />
       ))}
       <img src={defaultSrc} alt={alt} loading={loading} />
     </picture>
