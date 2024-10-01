@@ -9,16 +9,18 @@ interface PostCardListProps {
 
 const PostCardList = ({ posts }: PostCardListProps) => {
   const { t } = useTranslation('translation', { keyPrefix: 'pages.blog' });
+
   return (
     <section className="post-card-list-container">
       <div className="post-card-list">
         {posts.map((post, i) => (
           <PostCard
-            key={i}
-            title={post.title}
-            imageUrl={post.picture}
-            excerpt={`${post.content.substring(0, 100)}...`}
             date={t('postCard.date', { date: new Date(post.createdAt) })}
+            excerpt={`${post.content.substring(0, 100)}...`}
+            imageUrl={post.picture}
+            title={post.title}
+            postId={post.id}
+            key={i}
           />
         ))}
       </div>
