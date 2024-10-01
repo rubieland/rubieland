@@ -1,16 +1,23 @@
+import ErrorComponent from '../../components/ErrorComponent/ErrorComponent';
 import { useGetAllPosts } from '../../../api/blog/getAllPosts';
 import EmptyBlogSection from './components/EmptyBlogSection';
 import PageLoader from '../../components/Loader/PageLoader';
+import { useIsAdmin } from '../../../stores/SessionStore';
+import { Post } from '../../../models/posts/post.entity';
 import PostCardList from './components/PostCardList';
 import { useTranslation } from 'react-i18next';
+import {
+  filterPublishedPosts,
+  checkIsBlogEmpty,
+} from '../../../utils/blog.utils';
 import './styles/BlogPage.scss';
 
 const BlogPage = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'pages.blog' });
-  const { data: posts, isLoading } = useGetAllPosts();
-  const publishedPosts = posts?.filter((a) => a.isPublished);
-  const isBlogEmpty = !publishedPosts || publishedPosts.length === 0;
   const { data: posts, isLoading, error, refetch } = useGetAllPosts();
+  const publishedPosts: Post[] = filterPublishedPosts(posts) || [];
+  const isBlogEmpty: boolean = checkIsBlogEmpty(posts);
+  const isAdmin: boolean = useIsAdmin();
 
   if (isLoading) return <PageLoader isLoading={isLoading} />;
   if (error)
@@ -22,7 +29,7 @@ const BlogPage = () => {
       {isBlogEmpty ? (
         <EmptyBlogSection />
       ) : (
-        <PostCardList posts={publishedPosts} />
+        <PostCardList posts={isAdmin ? posts || [] : publishedPosts} />
       )}
     </div>
   );
