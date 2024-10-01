@@ -26,7 +26,7 @@ export const loadExpress = async ({ server }: { server: Express }) => {
   try {
     // middlewares
     server.use(i18nextMiddleware(i18n));
-    server.use(express.static(path.join(__dirname, '../..', 'public')));
+    server.use(express.static(path.join(__dirname, '../uploads')));
     server.use(cookieParser());
     server.use(express.json());
     server.use(express.urlencoded({ extended: false }));
