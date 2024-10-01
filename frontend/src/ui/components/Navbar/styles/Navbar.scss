@@ -10,7 +10,7 @@
   min-height: 100dvh;
   flex-wrap: wrap;
   position: fixed;
-  padding: 1rem;
+  padding: 0.5rem 1rem;
   width: 80dvw;
   z-index: 99;
   right: 0;
@@ -26,9 +26,9 @@
   font-family: $secondary-font-stack;
   display: inline-block;
   letter-spacing: 1px;
+  font-size: 0.875rem;
   text-align: center;
   padding: 0.5rem 0;
-  font-size: 1rem;
   color: $black;
   width: 100%;
 
@@ -46,7 +46,7 @@
     flex-direction: row;
     align-items: center;
     box-shadow: none;
-    min-height: 75px;
+    min-height: 2rem;
     position: sticky;
     height: auto;
     gap: 0;
