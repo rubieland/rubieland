@@ -16,7 +16,7 @@ const activeProps = {
 };
 
 const Navbar = () => {
-  const { t } = useTranslation('', { keyPrefix: 'nav' });
+  const { t } = useTranslation('translation', { keyPrefix: 'nav' });
   const { isOpen, hideMenu } = useNavbarContext();
   const className = isOpen ? 'navbar' : 'navbar hidden';
   const isConnected = useIsConnected();
