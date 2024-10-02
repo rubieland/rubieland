@@ -16,8 +16,8 @@ const PostCardList = ({ posts }: PostCardListProps) => {
         {posts.map((post, i) => (
           <PostCard
             date={t('postCard.date', { date: new Date(post.createdAt) })}
-            excerpt={`${post.content.substring(0, 100)}...`}
             imageUrl={post.picture}
+            content={post.content}
             title={post.title}
             postId={post.id}
             key={i}

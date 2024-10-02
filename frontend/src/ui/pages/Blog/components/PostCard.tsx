@@ -9,7 +9,7 @@ import '../styles/PostCard.scss';
 
 interface PostCardProps {
   imageUrl: string | null;
-  excerpt: string;
+  content: string;
   postId: string;
   title: string;
   date: string;
@@ -21,7 +21,7 @@ const imageSources = [
 
 const PostCard = ({
   imageUrl,
-  excerpt,
+  content,
   postId,
   title,
   date,
@@ -30,6 +30,7 @@ const PostCard = ({
     keyPrefix: 'pages.blog.postCard',
   });
   const navigate = useNavigate();
+  const excerpt = content.slice(0, 100) + '...';
 
   const navigateToPostDetail = () => {
     navigate({ to: `/blog/posts/${postId}` });
