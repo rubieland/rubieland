@@ -19,7 +19,7 @@ const Header = () => {
     <header className={className}>
       <div className="app-logo-container">
         <Link to="/" aria-label={t('app-logo')} role="link">
-          <Logo color={colors.primary} />
+          <Logo color={colors.primary} width={120} />
         </Link>
       </div>
       <NavbarProvider>
