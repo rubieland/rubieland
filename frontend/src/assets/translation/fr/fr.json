@@ -27,7 +27,8 @@
     "blog": "Blog",
     "register": "M'inscrire",
     "login": "Me connecter",
-    "profile": "Profil"
+    "profile": "Profil",
+    "backOffice": "Back office"
   },
 
   "footer": {

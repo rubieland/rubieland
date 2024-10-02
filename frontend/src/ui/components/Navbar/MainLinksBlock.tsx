@@ -1,3 +1,4 @@
+import { useIsAdmin } from '../../../stores/SessionStore';
 import colors from '../../../assets/styles/colors';
 import { useTranslation } from 'react-i18next';
 import { Link } from '@tanstack/react-router';
@@ -18,10 +19,11 @@ const activeProps = {
 
 // we use memo to prevent too many re-renders of the component
 const MainLinksBlock = memo(function ({
-  hideMenu,
   isConnected,
+  hideMenu,
 }: MainLinksBlockProps) {
   const { t } = useTranslation('translation', { keyPrefix: 'nav' });
+  const isAdmin = useIsAdmin();
 
   // we use useMemo to prevent re-creating the mainLinks array on every render
   const mainLinks = useMemo(
@@ -56,6 +58,17 @@ const MainLinksBlock = memo(function ({
           to="/profile"
         >
           {t('profile')}
+        </Link>
+      )}
+
+      {isConnected && isAdmin && (
+        <Link
+          activeProps={activeProps}
+          className="navbar-link"
+          onClick={hideMenu}
+          to="/back-office"
+        >
+          {t('backOffice')}
         </Link>
       )}
     </>

@@ -1,4 +1,5 @@
-import { createFileRoute, Outlet, redirect } from '@tanstack/react-router';
+import BackOfficeLayout from '../ui/components/Layout/BackOfficeLayout';
+import { createFileRoute, redirect } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/back-office')({
   beforeLoad: async ({ context }) => {
@@ -8,5 +9,5 @@ export const Route = createFileRoute('/back-office')({
       });
     }
   },
-  component: Outlet,
+  component: BackOfficeLayout,
 });
