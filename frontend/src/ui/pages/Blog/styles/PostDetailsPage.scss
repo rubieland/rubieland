@@ -3,7 +3,9 @@
 
 .post-details-main-container {
   @include flex-column;
+  align-self: center;
   padding: 1.5rem;
+  width: 100%;
 }
 
 .post-details-header {
@@ -11,8 +13,8 @@
   width: 100%;
 
   h2 {
-    font-size: 2rem;
     margin-bottom: 1.5rem;
+    font-size: 2rem;
   }
 
   .post-published-date,
@@ -22,8 +24,8 @@
   }
 
   .post-details-image-container {
-    margin-top: 0.25rem;
     @include box(100%, 200px);
+    margin-top: 0.25rem;
 
     img {
       border-radius: 0.5rem;
@@ -41,12 +43,12 @@
 
 .back-to-blog-link {
   transition:
-    opacity 0.3s ease-in-out,
-    transform 0.3s ease-in-out;
+    transform 0.3s ease-in-out,
+    opacity 0.3s ease-in-out;
   @include flex-center;
   width: fit-content;
-  margin: -0.5rem;
   padding: 0.5rem 0;
+  margin: -0.5rem;
   gap: 2px;
 
   span {
@@ -61,8 +63,8 @@
   }
 
   &:hover {
-    opacity: 0.8;
     transform: translateX(-5px);
+    opacity: 0.8;
   }
 }
 
