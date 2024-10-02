@@ -4,7 +4,7 @@ import { SVGProps } from 'react';
 const ImagePen = (props: SVGProps<SVGSVGElement>) => (
   <svg
     width={props.width || 24}
-    height={props.width || 24}
+    height={props.height || 24}
     fill="none"
     viewBox="0 0 24 24"
     {...props}
