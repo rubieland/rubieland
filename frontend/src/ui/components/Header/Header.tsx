@@ -26,7 +26,7 @@ const Header = () => {
     <header ref={headerRef} className="app-header">
       <div className="app-logo-container">
         <Link to="/" aria-label={t('app-logo')} role="link">
-          <Logo color={colors.primary} width={120} />
+          <Logo color={colors.primary} />
         </Link>
       </div>
       <Navbar />
