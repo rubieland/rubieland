@@ -31,20 +31,20 @@ const PostCard = ({
   const navigate = useNavigate();
   const excerpt: string = content.slice(0, 100) + '...';
 
-  const navigateToPostDetail = () => {
+  const navigateToPostDetails = () => {
     navigate({ to: `/blog/posts/${postId}` });
   };
 
-  // navigate to post detail page when Enter key is pressed while the card is focused
+  // navigate to post details page when Enter key is pressed while the card is focused
   const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
     if (e.key === ' ') e.preventDefault();
-    else if (e.key === 'Enter') navigateToPostDetail();
+    else if (e.key === 'Enter') navigateToPostDetails();
   };
 
   return (
     <article
       aria-label={`${t('readMore')} - ${title}`}
-      onClick={navigateToPostDetail}
+      onClick={navigateToPostDetails}
       onKeyDown={handleKeyDown}
       className="post-card"
       tabIndex={0}

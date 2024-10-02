@@ -1,6 +1,6 @@
 import { useParams } from '@tanstack/react-router';
 
-const BackOfficePostDetailPage = () => {
+const BackOfficePostDetailsPage = () => {
   const { postId } = useParams({ strict: false });
   console.log(postId);
 
@@ -11,4 +11,4 @@ const BackOfficePostDetailPage = () => {
   );
 };
 
-export default BackOfficePostDetailPage;
+export default BackOfficePostDetailsPage;

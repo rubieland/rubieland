@@ -4,32 +4,32 @@ import { QueryKeysEnum } from '../../enums/queryKeys';
 import { useQuery } from '@tanstack/react-query';
 import { api } from '../axios';
 
-export const getPostDetail = async (postId: string): Promise<Post> => {
+export const getPostDetails = async (postId: string): Promise<Post> => {
   const response = await api.get(`/blog/posts/${postId}`);
   const post = response.data.post;
 
   return convertPostDtoToEntity(post);
 };
 
-type QueryFnType = typeof getPostDetail;
+type QueryFnType = typeof getPostDetails;
 
-type UseGetPostDetailOptions = {
+type UseGetPostDetailsOptions = {
   postId: string;
   config?: QueryConfig<QueryFnType>;
 };
 
 export const GET_POST_KEY = (id: string) => [
-  QueryKeysEnum.POST_DETAIL,
+  QueryKeysEnum.POST_DETAILS,
   { postId: id },
 ];
 
-export const useGetPostDetail = ({
+export const useGetPostDetails = ({
   postId,
   config,
-}: UseGetPostDetailOptions) => {
+}: UseGetPostDetailsOptions) => {
   return useQuery<ExtractFnReturnType<QueryFnType>>({
     ...config,
     queryKey: GET_POST_KEY(postId),
-    queryFn: () => getPostDetail(postId),
+    queryFn: () => getPostDetails(postId),
   });
 };
