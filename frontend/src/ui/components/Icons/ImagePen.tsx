@@ -7,10 +7,10 @@ const ImagePen = (props: SVGProps<SVGSVGElement>) => (
     height={props.height || 24}
     fill="none"
     viewBox="0 0 24 24"
+    stroke={props.color || colors.black}
     {...props}
   >
     <path
-      stroke={props.color || colors.black}
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth={2}

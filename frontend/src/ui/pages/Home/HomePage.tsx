@@ -1,10 +1,13 @@
 import CropPictureModal from '../../components/Modal/CropPictureModal';
 import { useModalStoreActions } from '../../../stores/ModalStore';
+import ArrowLeft from '../../components/Icons/Arrows/ArrowLeft';
 import CustomButton from '../../components/Button/CustomButton';
-import FormTests from '../../components/FormTests/FormTests';
-import { useRef } from 'react';
 import { useIsConnected } from '../../../stores/SessionStore';
+import FormTests from '../../components/FormTests/FormTests';
 import useLogout from '../../../hooks/useLogout';
+import { useRef } from 'react';
+import Cross from '../../components/Icons/Cross';
+import ChevronLeft from '../../components/Icons/Arrows/ChevronLeft';
 
 const Home = () => {
   const cropPictureModalRef = useRef<HTMLDialogElement>(null);
@@ -24,6 +27,8 @@ const Home = () => {
       >
         {isConnected && (
           <CustomButton
+            icon={<ArrowLeft />}
+            iconStyle="fill"
             title="Déconnexion"
             onClick={() => logout(undefined)}
             width={20}
@@ -33,6 +38,8 @@ const Home = () => {
         <CustomButton
           title="Ouvrir Crop Picture Modal"
           onClick={() => openModal('cropPictureModal')}
+          icon={<ChevronLeft />}
+          iconPosition="right"
           width={20}
         />
       </div>
