@@ -120,6 +120,11 @@
       "postCard": {
         "date": "{{ date, medium }}",
         "readMore": "Read more"
+      },
+      "postDetailsPage": {
+        "postedOn": "Posted on {{ date, medium }}",
+        "updatedOn": "Updated on {{ date, mediumWithTime }}",
+        "backToBlog": "Go back to blog"
       }
     }
   }
