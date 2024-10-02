@@ -1,3 +1,4 @@
+import { handleKeyDownAction } from '../../../utils/keyboard.utils';
 import { useNavbarContext } from './providers/NavbarProvider';
 import { useTranslation } from 'react-i18next';
 import './styles/BurgerMenuButton.scss';
@@ -10,24 +11,15 @@ const BurgerMenuButton = () => {
     : 'burger-menu-btn';
   const btnBarclassName = isOpen ? 'burger-menu-bar opened' : 'burger-menu-bar';
 
-  const handleToggleIsOpen = (e: React.KeyboardEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    toggleIsOpen();
-  };
-
   // ACCESSIBILITY: handle keyboard events to show/hide menu
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    switch (event.key) {
-      case 'Enter':
-      case ' ':
-        handleToggleIsOpen(event);
-        break;
-      case 'Escape':
-        hideMenu();
-        break;
-      default:
-        break;
-    }
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    handleKeyDownAction({
+      e,
+      keys: ['Enter'],
+      action: toggleIsOpen,
+      additionalKeys: ['Escape'],
+      additionalAction: hideMenu,
+    });
   };
 
   return (

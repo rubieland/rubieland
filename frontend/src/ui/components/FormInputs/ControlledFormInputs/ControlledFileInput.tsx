@@ -2,6 +2,7 @@ import { Controller, useFormContext } from 'react-hook-form';
 import EditPictureFileInput from '../EditPictureFileInput';
 import { ChangeEvent, useRef, useState } from 'react';
 import FileInput from '../FileInput';
+import { handleKeyDownAction } from '../../../../utils/keyboard.utils';
 
 interface ControlledFileInputProps {
   pictureType: 'avatar' | 'postPicture';
@@ -59,10 +60,12 @@ const ControlledFileInput = ({
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
-    if (e.key === ' ' || e.key === 'Enter') {
-      e.preventDefault();
-      handleClick();
-    }
+    e.preventDefault();
+    handleKeyDownAction({
+      e,
+      keys: ['Enter', ' '],
+      action: handleClick,
+    });
   };
 
   return (

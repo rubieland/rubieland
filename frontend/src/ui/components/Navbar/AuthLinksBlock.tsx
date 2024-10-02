@@ -3,6 +3,7 @@ import colors from '../../../assets/styles/colors';
 import { useTranslation } from 'react-i18next';
 import { Link } from '@tanstack/react-router';
 import './styles/AuthLinksBlock.scss';
+import { handleKeyDownAction } from '../../../utils/keyboard.utils';
 
 const activeProps = {
   style: {
@@ -17,7 +18,11 @@ const AuthLinksBlock = () => {
   const { hideMenu } = useNavbarContext();
 
   const hideOnEscapeKeyDown = (e: React.KeyboardEvent<'a'>) => {
-    if (e.key === 'Escape') hideMenu();
+    handleKeyDownAction({
+      e,
+      keys: ['Enter', 'Escape'],
+      action: hideMenu,
+    });
   };
 
   return (

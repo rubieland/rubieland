@@ -2,6 +2,7 @@ import { PropsWithChildren, RefObject } from 'react';
 import { useTranslation } from 'react-i18next';
 import Cross from '../Icons/Cross';
 import './styles/Modal.scss';
+import { handleKeyDownAction } from '../../../utils/keyboard.utils';
 
 interface ModalProps extends PropsWithChildren {
   modalRef: RefObject<HTMLDialogElement>;
@@ -25,7 +26,7 @@ const Modal = ({
   const { t } = useTranslation('translation', { keyPrefix: 'aria-labels' });
 
   // close modal when click on the backdrop
-  const handlecloseModal = (
+  const handleCloseModal = (
     e: React.MouseEvent<HTMLDialogElement, MouseEvent>,
   ) => {
     if (e.currentTarget === e.target) {
@@ -33,16 +34,20 @@ const Modal = ({
     }
   };
 
-  // close modal when spacebar in pressed (when the X icon button is focused)
+  // close modal when Enter key is pressed (when the X icon button is focused)
   const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
-    if (e.key === ' ') {
-      closeModal();
-    }
+    if (e.key === 'Enter') e.preventDefault();
+
+    handleKeyDownAction({
+      e,
+      keys: ['Enter'],
+      action: closeModal,
+    });
   };
 
   return (
     <dialog
-      onClick={(e) => handlecloseModal(e)}
+      onClick={handleCloseModal}
       style={{ height, width }}
       ref={modalRef}
       role="dialog"
@@ -53,10 +58,10 @@ const Modal = ({
       <div
         aria-label={t('close-modal')}
         className="modal-close-btn"
+        onKeyDown={handleKeyDown}
         onClick={closeModal}
         role="button"
         tabIndex={0}
-        onKeyDown={handleKeyDown}
       >
         <Cross />
       </div>

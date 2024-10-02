@@ -2,6 +2,7 @@ import { useNavbarContext } from './providers/NavbarProvider';
 import colors from '../../../assets/styles/colors';
 import '../../../assets/styles/_variables.scss';
 import { Link } from '@tanstack/react-router';
+import { handleKeyDownAction } from '../../../utils/keyboard.utils';
 
 interface NavbarItemProps {
   title: string;
@@ -18,13 +19,17 @@ const activeProps = {
 const NavbarItem = ({ title, to }: NavbarItemProps) => {
   const { hideMenu } = useNavbarContext();
 
-  const hideOnEscapeKeyDown = (e: React.KeyboardEvent<'a'>) => {
-    if (e.key === 'Escape') hideMenu();
+  const handleKeyDown = (e: React.KeyboardEvent<'a'>) => {
+    handleKeyDownAction({
+      e,
+      keys: ['Enter', 'Escape'],
+      action: hideMenu,
+    });
   };
 
   return (
     <Link
-      onKeyDown={hideOnEscapeKeyDown}
+      onKeyDown={handleKeyDown}
       activeProps={activeProps}
       className="navbar-link"
       onClick={hideMenu}

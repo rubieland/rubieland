@@ -2,6 +2,7 @@ import defaultImgMedium from '../../../../assets/illustrations/blog_default_img_
 import defaultImgSmall from '../../../../assets/illustrations/blog_default_img_small.png';
 import { API_BLOG_PICTURES_PATH, API_URL } from '../../../../core/envConfig';
 import ResponsiveImage from '../../../components/Image/ResponsiveImage';
+import { handleKeyDownAction } from '../../../../utils/keyboard.utils';
 import { useNavigate } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import '../styles/PostCard.scss';
@@ -34,8 +35,24 @@ const PostCard = ({
     navigate({ to: `/blog/posts/${postId}` });
   };
 
+  // navigate to post detail page when Enter key is pressed while the card is focused
+  const handkeKeysDown = (e: React.KeyboardEvent) => {
+    handleKeyDownAction({
+      e,
+      keys: ['Enter'],
+      action: navigateToPostDetail,
+    });
+  };
+
   return (
-    <article className="post-card" onClick={navigateToPostDetail}>
+    <article
+      aria-label={`${t('readMore')} - ${title}`}
+      onClick={navigateToPostDetail}
+      onKeyDown={handkeKeysDown}
+      className="post-card"
+      tabIndex={0}
+      role="link"
+    >
       <div className="post-card-image-container">
         {!imageUrl ? (
           <ResponsiveImage
