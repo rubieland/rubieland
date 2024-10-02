@@ -2,7 +2,6 @@ import { PropsWithChildren, RefObject } from 'react';
 import { useTranslation } from 'react-i18next';
 import Cross from '../Icons/Cross';
 import './styles/Modal.scss';
-import { handleKeyDownAction } from '../../../utils/keyboard.utils';
 
 interface ModalProps extends PropsWithChildren {
   modalRef: RefObject<HTMLDialogElement>;
@@ -36,13 +35,11 @@ const Modal = ({
 
   // close modal when Enter key is pressed (when the X icon button is focused)
   const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
-    if (e.key === 'Enter') e.preventDefault();
-
-    handleKeyDownAction({
-      e,
-      keys: ['Enter'],
-      action: closeModal,
-    });
+    if (e.key === ' ') e.preventDefault();
+    else if (e.key === 'Enter') {
+      e.preventDefault();
+      closeModal();
+    }
   };
 
   return (

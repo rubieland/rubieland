@@ -1,32 +1,38 @@
-import { handleKeyDownAction } from '../../../utils/keyboard.utils';
-import { useNavbarContext } from './providers/NavbarProvider';
 import { useTranslation } from 'react-i18next';
 import './styles/BurgerMenuButton.scss';
+import classNames from 'classnames';
+import { memo } from 'react';
 
-const BurgerMenuButton = () => {
+interface BurgerMenuButtonProps {
+  toggleIsOpen: () => void;
+  isOpen: boolean;
+}
+
+const BurgerMenuButton = memo(function ({
+  isOpen,
+  toggleIsOpen,
+}: BurgerMenuButtonProps) {
   const { t } = useTranslation('translation', { keyPrefix: 'aria-labels' });
-  const { isOpen, toggleIsOpen, hideMenu } = useNavbarContext();
-  const burgerBtnClassName = isOpen
-    ? 'burger-menu-btn opened'
-    : 'burger-menu-btn';
-  const btnBarclassName = isOpen ? 'burger-menu-bar opened' : 'burger-menu-bar';
 
-  // ACCESSIBILITY: handle keyboard events to show/hide menu
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
-    handleKeyDownAction({
-      e,
-      keys: ['Enter'],
-      action: toggleIsOpen,
-      additionalKeys: ['Escape'],
-      additionalAction: hideMenu,
-    });
+  const burgerBtnClassName = classNames('burger-menu-btn', {
+    opened: isOpen,
+  });
+  const btnBarclassName = classNames('burger-menu-bar', {
+    opened: isOpen,
+  });
+
+  const toggleMenuOnKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === ' ') e.preventDefault();
+    else if (e.key === 'Enter') {
+      toggleIsOpen();
+    }
   };
 
   return (
     <div
-      aria-label={t('burger-btn')}
+      onKeyDown={toggleMenuOnKeyDown}
       className={burgerBtnClassName}
-      onKeyDown={handleKeyDown}
+      aria-label={t('burger-btn')}
       aria-expanded={isOpen}
       onClick={toggleIsOpen}
       role="button"
@@ -37,6 +43,6 @@ const BurgerMenuButton = () => {
       <div className={btnBarclassName}></div>
     </div>
   );
-};
+});
 
 export default BurgerMenuButton;

@@ -1,9 +1,9 @@
 import { useIsConnected } from '../../../stores/SessionStore';
-import { useNavbarContext } from './providers/NavbarProvider';
 import colors from '../../../assets/styles/colors';
 import BurgerMenuButton from './BurgerMenuButton';
 import { useTranslation } from 'react-i18next';
 import AuthLinksBlock from './AuthLinksBlock';
+import { useCallback, useMemo, useState } from 'react';
 import { Link } from '@tanstack/react-router';
 import NavbarItem from './NavbarItem';
 import './styles/Navbar.scss';
@@ -17,42 +17,54 @@ const activeProps = {
 
 const Navbar = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'nav' });
-  const { isOpen, hideMenu } = useNavbarContext();
-  const className = isOpen ? 'navbar' : 'navbar hidden';
-  const isConnected = useIsConnected();
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const isConnected: boolean = useIsConnected();
 
-  const hideOnEscapeKeyDown = (e: React.KeyboardEvent<'a'>) => {
-    if (e.key === 'Escape') hideMenu();
-  };
+  const toggleIsOpen = useCallback(() => {
+    setIsOpen((prev) => !prev);
+  }, []);
 
-  const mainLinks = [
-    {
-      title: t('home'),
-      to: '/',
-    },
-    {
-      title: t('about'),
-      to: '/about',
-    },
-    {
-      title: t('blog'),
-      to: '/blog',
-    },
-  ];
+  const hideMenu = useCallback(() => {
+    setIsOpen(false);
+  }, []);
+
+  const className: string = isOpen ? 'navbar' : 'navbar hidden';
+
+  const mainLinks = useMemo(
+    () => [
+      {
+        title: t('home'),
+        to: '/',
+      },
+      {
+        title: t('about'),
+        to: '/about',
+      },
+      {
+        title: t('blog'),
+        to: '/blog',
+      },
+    ],
+    [t],
+  );
 
   return (
     <nav className={className}>
-      <BurgerMenuButton />
+      <BurgerMenuButton isOpen={isOpen} toggleIsOpen={toggleIsOpen} />
       {mainLinks.map((link, i) => (
-        <NavbarItem key={i} to={link.to} title={link.title} />
+        <NavbarItem
+          key={i}
+          to={link.to}
+          title={link.title}
+          hideMenu={hideMenu}
+        />
       ))}
 
       {!isConnected ? (
-        <AuthLinksBlock />
+        <AuthLinksBlock hideMenu={hideMenu} />
       ) : (
         <Link
           className="navbar-link"
-          onKeyDown={hideOnEscapeKeyDown}
           activeProps={activeProps}
           onClick={hideMenu}
           to="/profile"

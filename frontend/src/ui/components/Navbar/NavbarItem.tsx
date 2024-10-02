@@ -1,10 +1,9 @@
-import { useNavbarContext } from './providers/NavbarProvider';
 import colors from '../../../assets/styles/colors';
-import '../../../assets/styles/_variables.scss';
 import { Link } from '@tanstack/react-router';
-import { handleKeyDownAction } from '../../../utils/keyboard.utils';
+import { memo } from 'react';
 
 interface NavbarItemProps {
+  hideMenu: () => void;
   title: string;
   to: string;
 }
@@ -16,15 +15,11 @@ const activeProps = {
   },
 };
 
-const NavbarItem = ({ title, to }: NavbarItemProps) => {
-  const { hideMenu } = useNavbarContext();
-
+const NavbarItem = memo(function ({ title, to, hideMenu }: NavbarItemProps) {
   const handleKeyDown = (e: React.KeyboardEvent<'a'>) => {
-    handleKeyDownAction({
-      e,
-      keys: ['Enter', 'Escape'],
-      action: hideMenu,
-    });
+    if (['Enter', 'Escape'].includes(e.key)) {
+      hideMenu();
+    }
   };
 
   return (
@@ -38,6 +33,6 @@ const NavbarItem = ({ title, to }: NavbarItemProps) => {
       {title}
     </Link>
   );
-};
+});
 
 export default NavbarItem;

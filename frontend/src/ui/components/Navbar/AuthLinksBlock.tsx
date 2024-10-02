@@ -1,9 +1,8 @@
-import { useNavbarContext } from './providers/NavbarProvider';
 import colors from '../../../assets/styles/colors';
 import { useTranslation } from 'react-i18next';
 import { Link } from '@tanstack/react-router';
 import './styles/AuthLinksBlock.scss';
-import { handleKeyDownAction } from '../../../utils/keyboard.utils';
+import { memo } from 'react';
 
 const activeProps = {
   style: {
@@ -13,23 +12,24 @@ const activeProps = {
   },
 };
 
-const AuthLinksBlock = () => {
-  const { t } = useTranslation();
-  const { hideMenu } = useNavbarContext();
+interface AuthLinksBlockProps {
+  hideMenu: () => void;
+}
 
-  const hideOnEscapeKeyDown = (e: React.KeyboardEvent<'a'>) => {
-    handleKeyDownAction({
-      e,
-      keys: ['Enter', 'Escape'],
-      action: hideMenu,
-    });
+const AuthLinksBlock = memo(function ({ hideMenu }: AuthLinksBlockProps) {
+  const { t } = useTranslation();
+
+  const hideMenuOnKeyDown = (e: React.KeyboardEvent<'a'>) => {
+    if (['Enter', 'Escape'].includes(e.key)) {
+      hideMenu();
+    }
   };
 
   return (
     <div className="navbar-auth-links-container">
       <Link
         className="navbar-link nav-login-link"
-        onKeyDown={hideOnEscapeKeyDown}
+        onKeyDown={hideMenuOnKeyDown}
         activeProps={activeProps}
         onClick={hideMenu}
         to="/login"
@@ -38,7 +38,7 @@ const AuthLinksBlock = () => {
       </Link>
       <Link
         className="navbar-link nav-register-link"
-        onKeyDown={hideOnEscapeKeyDown}
+        onKeyDown={hideMenuOnKeyDown}
         activeProps={activeProps}
         onClick={hideMenu}
         to="/register"
@@ -47,6 +47,6 @@ const AuthLinksBlock = () => {
       </Link>
     </div>
   );
-};
+});
 
 export default AuthLinksBlock;
