@@ -18,6 +18,7 @@ const supportedFormats = [
   'shortest',
   'short',
   'medium',
+  'mediumWithTime',
   'long',
   'relative',
   'ago',
@@ -86,6 +87,8 @@ i18n
             return formatDate(value, 'PP', { locale });
           case 'medium':
             return formatDate(value, 'PPP', { locale });
+          case 'mediumWithTime':
+            return formatDate(value, 'PPPp', { locale });
           case 'long':
             return formatDate(value, 'PPPP', { locale });
           case 'relative':
