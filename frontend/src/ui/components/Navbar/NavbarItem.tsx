@@ -15,6 +15,7 @@ const activeProps = {
   },
 };
 
+// we use memo to prevent too many re-renders of the component
 const NavbarItem = memo(function ({ title, to, hideMenu }: NavbarItemProps) {
   const handleKeyDown = (e: React.KeyboardEvent<'a'>) => {
     if (['Enter', 'Escape'].includes(e.key)) {

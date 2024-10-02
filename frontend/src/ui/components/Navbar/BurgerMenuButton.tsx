@@ -8,6 +8,7 @@ interface BurgerMenuButtonProps {
   isOpen: boolean;
 }
 
+// we use memo to prevent too many re-renders of the component
 const BurgerMenuButton = memo(function ({
   isOpen,
   toggleIsOpen,

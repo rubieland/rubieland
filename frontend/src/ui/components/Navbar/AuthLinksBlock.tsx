@@ -16,6 +16,7 @@ interface AuthLinksBlockProps {
   hideMenu: () => void;
 }
 
+// we use memo to prevent too many re-renders of the component
 const AuthLinksBlock = memo(function ({ hideMenu }: AuthLinksBlockProps) {
   const { t } = useTranslation();
 
