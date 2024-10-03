@@ -3,15 +3,15 @@
 
 .navbar {
   transition: right 0.7s ease-in-out;
-  box-shadow: 0 5px 8px $black;
   @include flex-center-column;
+  @include box-shadow-left;
   background-color: $white;
+  padding: 0.5rem 1rem;
   align-items: center;
   min-height: 100dvh;
   flex-wrap: wrap;
   position: fixed;
-  padding: 0.5rem 1rem;
-  width: 80dvw;
+  width: 50dvw;
   z-index: 99;
   right: 0;
   top: 0;
