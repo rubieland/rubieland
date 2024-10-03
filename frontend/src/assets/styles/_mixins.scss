@@ -40,6 +40,12 @@
   display: flex;
 }
 
+@mixin flex-start-center-x {
+  justify-content: flex-start;
+  align-items: center;
+  display: flex;
+}
+
 // ----- shadows ----- \\
 
 @mixin box-shadow {

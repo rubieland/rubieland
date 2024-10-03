@@ -20,7 +20,8 @@
     "instagram-icon": "Link to the Instagram page",
     "close-modal": "Close modal",
     "auth-links": "Links to the authentication pages",
-    "sidebar-toggle-btn": "Toggle sidebar"
+    "sidebar-toggle-btn": "Toggle sidebar",
+    "linkTo": "Link to {{page}}"
   },
 
   "nav": {
@@ -31,14 +32,6 @@
     "login": "Log in",
     "profile": "Profile",
     "backOffice": "Back office"
-  },
-
-  "backOfficeSidebar": {
-    "headerTitle": "Back office",
-    "links": {
-      "dashboard": "Dashboard",
-      "blogPosts": "Blog posts"
-    }
   },
 
   "footer": {
@@ -136,6 +129,22 @@
         "postedOn": "Posted on {{ date, medium }}",
         "updatedOn": "Updated on {{ date, mediumWithTime }}",
         "backToBlog": "Go back to blog"
+      }
+    },
+    "backOffice": {
+      "backOfficeSidebar": {
+        "headerTitle": "Back office",
+        "links": {
+          "dashboard": "Dashboard",
+          "blog": "Blog"
+        }
+      },
+      "dashboard": {
+        "title": "Dashboard",
+        "welcome": "Welcome {{firstName}} {{lastName}} !"
+      },
+      "blog": {
+        "title": "Blog"
       }
     }
   }

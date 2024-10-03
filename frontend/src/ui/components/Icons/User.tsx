@@ -1,7 +1,7 @@
 import { SVGProps } from 'react';
-import colors from '../../../../assets/styles/colors';
+import colors from '../../../assets/styles/colors';
 
-const ChevronRightDouble = (props: SVGProps<SVGSVGElement>) => (
+const User = (props: SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={props.width || 24}
@@ -12,12 +12,11 @@ const ChevronRightDouble = (props: SVGProps<SVGSVGElement>) => (
     {...props}
   >
     <path
-      stroke={props.color || colors.black}
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth={2}
-      d="m6 17 5-5-5-5m7 10 5-5-5-5"
+      d="M16 7a4 4 0 1 1-8 0 4 4 0 0 1 8 0ZM12 14a7 7 0 0 0-7 7h14a7 7 0 0 0-7-7Z"
     />
   </svg>
 );
-export default ChevronRightDouble;
+export default User;

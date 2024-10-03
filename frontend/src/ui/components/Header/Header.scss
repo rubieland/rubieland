@@ -4,6 +4,7 @@
 .app-header {
   transition: box-shadow 500ms ease-in-out;
   justify-content: space-between;
+  height: $app-header-height;
   @include flex-center-y;
   position: sticky;
   z-index: 100;

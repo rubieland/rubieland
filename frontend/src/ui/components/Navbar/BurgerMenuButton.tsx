@@ -5,12 +5,13 @@ import { memo } from 'react';
 
 interface BurgerMenuButtonProps {
   toggleIsOpen: () => void;
+  hideMenu: () => void;
   isOpen: boolean;
 }
 
 // we use memo to prevent too many re-renders of the component
 const BurgerMenuButton = memo(
-  ({ isOpen, toggleIsOpen }: BurgerMenuButtonProps) => {
+  ({ toggleIsOpen, hideMenu, isOpen }: BurgerMenuButtonProps) => {
     const { t } = useTranslation('translation', { keyPrefix: 'aria-labels' });
 
     const burgerBtnClassName = classNames('burger-menu-btn', {
@@ -24,6 +25,8 @@ const BurgerMenuButton = memo(
       if (e.key === ' ') e.preventDefault();
       else if (e.key === 'Enter') {
         toggleIsOpen();
+      } else if (e.key === 'Escape') {
+        hideMenu();
       }
     };
 
