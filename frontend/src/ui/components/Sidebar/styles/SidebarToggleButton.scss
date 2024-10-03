@@ -1,0 +1,31 @@
+@import '../../../../assets/styles/variables';
+@import '../../../../assets/styles/mixins';
+
+.sidebar-toggle-btn {
+  transition: background-color 0.5s ease-in-out;
+  background-color: transparent;
+  @include flex-center;
+  @include box(2rem);
+  position: absolute;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 1000;
+  right: 0;
+  top: 0;
+
+  &:hover {
+    transition: background-color 0.5s ease-in-out;
+    background-color: $grey20;
+  }
+
+  > svg {
+    transition: transform 0.5s ease-in-out;
+  }
+
+  &.hidden {
+    > svg {
+      transition: transform 0.5s ease-in-out;
+      transform: rotate(180deg);
+    }
+  }
+}

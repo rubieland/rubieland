@@ -1,0 +1,19 @@
+@import '../../../../assets/styles/variables';
+@import '../../../../assets/styles/mixins';
+
+.sidebar {
+  transition: width 0.5s ease-in-out;
+  border-radius: 0 1rem 1rem 0;
+  @include box-shadow-right;
+  @include flex-column;
+  padding: 0.5rem 1rem;
+  min-height: 100dvh;
+  position: relative;
+  width: 20dvw;
+
+  &.hidden {
+    transition: width 0.5s ease-in-out;
+    padding: 0;
+    width: 5rem;
+  }
+}

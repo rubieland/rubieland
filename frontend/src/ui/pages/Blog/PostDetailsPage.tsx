@@ -4,7 +4,7 @@ import ErrorComponent from '../../components/ErrorComponent/ErrorComponent';
 import { API_BLOG_PICTURES_PATH, API_URL } from '../../../core/envConfig';
 import { useGetPostDetails } from '../../../api/blog/getPostDetails';
 import ResponsiveImage from '../../components/Image/ResponsiveImage';
-import ChevronLeft from '../../components/Icons/Arrows/ChevronLeft';
+import ChevronLeft from '../../components/Icons/Chevrons/ChevronLeft';
 import { Link, Navigate, useParams } from '@tanstack/react-router';
 import PageLoader from '../../components/Loader/PageLoader';
 import { useIsAdmin } from '../../../stores/SessionStore';
