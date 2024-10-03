@@ -18,61 +18,60 @@ const activeProps = {
 };
 
 // we use memo to prevent too many re-renders of the component
-const MainLinksBlock = memo(function ({
-  isConnected,
-  hideMenu,
-}: MainLinksBlockProps) {
-  const { t } = useTranslation('translation', { keyPrefix: 'nav' });
-  const isAdmin = useIsAdmin();
+const MainLinksBlock = memo(
+  ({ isConnected, hideMenu }: MainLinksBlockProps) => {
+    const { t } = useTranslation('translation', { keyPrefix: 'nav' });
+    const isAdmin = useIsAdmin();
 
-  // we use useMemo to prevent re-creating the mainLinks array on every render
-  const mainLinks = useMemo(
-    () => [
-      {
-        title: t('home'),
-        to: '/',
-      },
-      {
-        title: t('about'),
-        to: '/about',
-      },
-      {
-        title: t('blog'),
-        to: '/blog',
-      },
-    ],
-    [t],
-  );
+    // we use useMemo to prevent re-creating the mainLinks array on every render
+    const mainLinks = useMemo(
+      () => [
+        {
+          title: t('home'),
+          to: '/',
+        },
+        {
+          title: t('about'),
+          to: '/about',
+        },
+        {
+          title: t('blog'),
+          to: '/blog',
+        },
+      ],
+      [t],
+    );
 
-  return (
-    <>
-      {mainLinks.map(({ title, to }) => (
-        <NavbarItem key={to} title={title} to={to} hideMenu={hideMenu} />
-      ))}
+    return (
+      <>
+        {mainLinks.map(({ title, to }) => (
+          <NavbarItem key={to} title={title} to={to} hideMenu={hideMenu} />
+        ))}
 
-      {isConnected && (
-        <Link
-          activeProps={activeProps}
-          className="navbar-link"
-          onClick={hideMenu}
-          to="/profile"
-        >
-          {t('profile')}
-        </Link>
-      )}
+        {isConnected && (
+          <Link
+            activeProps={activeProps}
+            className="navbar-link"
+            onClick={hideMenu}
+            to="/profile"
+          >
+            {t('profile')}
+          </Link>
+        )}
 
-      {isConnected && isAdmin && (
-        <Link
-          activeProps={activeProps}
-          className="navbar-link"
-          onClick={hideMenu}
-          to="/back-office"
-        >
-          {t('backOffice')}
-        </Link>
-      )}
-    </>
-  );
-});
+        {isConnected && isAdmin && (
+          <Link
+            activeProps={activeProps}
+            className="navbar-link"
+            onClick={hideMenu}
+            to="/back-office"
+          >
+            {t('backOffice')}
+          </Link>
+        )}
+      </>
+    );
+  },
+);
 
 export default MainLinksBlock;
