@@ -1,11 +1,11 @@
 import colors from '../../../assets/styles/colors';
+import { LinkType } from '../../../types/links';
 import { Link } from '@tanstack/react-router';
 import { memo } from 'react';
 
 interface NavbarItemProps {
   hideMenu: () => void;
-  title: string;
-  to: string;
+  link: LinkType;
 }
 
 const activeProps = {
@@ -16,7 +16,7 @@ const activeProps = {
 };
 
 // we use memo to prevent too many re-renders of the component
-const NavbarItem = memo(({ title, to, hideMenu }: NavbarItemProps) => {
+const NavbarItem = memo(({ link, hideMenu }: NavbarItemProps) => {
   const handleKeyDown = (e: React.KeyboardEvent<'a'>) => {
     if (['Enter', 'Escape'].includes(e.key)) {
       hideMenu();
@@ -29,9 +29,9 @@ const NavbarItem = memo(({ title, to, hideMenu }: NavbarItemProps) => {
       activeProps={activeProps}
       className="navbar-link"
       onClick={hideMenu}
-      to={to}
+      to={link.to}
     >
-      {title}
+      {link.title}
     </Link>
   );
 });

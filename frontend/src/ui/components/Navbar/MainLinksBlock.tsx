@@ -1,9 +1,10 @@
 import { useIsAdmin } from '../../../stores/SessionStore';
 import colors from '../../../assets/styles/colors';
+import { LinkType } from '../../../types/links';
 import { useTranslation } from 'react-i18next';
 import { Link } from '@tanstack/react-router';
-import { memo, useMemo } from 'react';
 import NavbarItem from './NavbarItem';
+import { memo } from 'react';
 
 interface MainLinksBlockProps {
   isConnected: boolean;
@@ -23,29 +24,25 @@ const MainLinksBlock = memo(
     const { t } = useTranslation('translation', { keyPrefix: 'nav' });
     const isAdmin = useIsAdmin();
 
-    // we use useMemo to prevent re-creating the mainLinks array on every render
-    const mainLinks = useMemo(
-      () => [
-        {
-          title: t('home'),
-          to: '/',
-        },
-        {
-          title: t('about'),
-          to: '/about',
-        },
-        {
-          title: t('blog'),
-          to: '/blog',
-        },
-      ],
-      [t],
-    );
+    const mainLinks: LinkType[] = [
+      {
+        title: t('home'),
+        to: '/',
+      },
+      {
+        title: t('about'),
+        to: '/about',
+      },
+      {
+        title: t('blog'),
+        to: '/blog',
+      },
+    ];
 
     return (
       <>
-        {mainLinks.map(({ title, to }) => (
-          <NavbarItem key={to} title={title} to={to} hideMenu={hideMenu} />
+        {mainLinks.map((link, i) => (
+          <NavbarItem key={i} link={link} hideMenu={hideMenu} />
         ))}
 
         {isConnected && (
