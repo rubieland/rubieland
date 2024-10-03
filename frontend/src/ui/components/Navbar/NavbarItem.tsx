@@ -27,7 +27,6 @@ const NavbarItem = memo(({ link, hideMenu }: NavbarItemProps) => {
     <Link
       onKeyDown={handleKeyDown}
       activeProps={activeProps}
-      className="navbar-link"
       onClick={hideMenu}
       to={link.to}
     >

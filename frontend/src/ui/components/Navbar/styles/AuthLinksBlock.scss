@@ -18,22 +18,20 @@
 @include respond-to('large') {
   .navbar-auth-links-container {
     flex-direction: row;
-    gap: 1rem;
     width: auto;
+    gap: 1rem;
+
     &::before {
       @include box(1.5px, 1.5rem);
     }
   }
 
-  .nav-login-link {
-    border: 1px solid $black;
-    border-radius: 0.25rem;
-    color: $black;
-  }
-
-  .nav-register-link {
-    border: 1px solid $black;
-    border-radius: 0.25rem;
-    color: $black;
+  .navbar-auth-link {
+    a {
+      border: 1px solid $black;
+      border-radius: 0.25rem;
+      display: inline-block;
+      color: $black;
+    }
   }
 }

@@ -18,7 +18,8 @@
     "burger-btn": "Toggle menu",
     "facebook-icon": "Link to the Facebook page",
     "instagram-icon": "Link to the Instagram page",
-    "close-modal": "Close modal"
+    "close-modal": "Close modal",
+    "auth-links": "Links to the authentication pages"
   },
 
   "nav": {

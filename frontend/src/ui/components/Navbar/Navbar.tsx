@@ -20,11 +20,13 @@ const Navbar = memo(() => {
   }, []);
 
   return (
-    <nav className={className}>
-      <BurgerMenuButton isOpen={isOpen} toggleIsOpen={toggleIsOpen} />
-      <MainLinksBlock isConnected={isConnected} hideMenu={hideMenu} />
+    <nav>
+      <ul className={className}>
+        <BurgerMenuButton isOpen={isOpen} toggleIsOpen={toggleIsOpen} />
+        <MainLinksBlock isConnected={isConnected} hideMenu={hideMenu} />
 
-      {!isConnected && <AuthLinksBlock hideMenu={hideMenu} />}
+        {!isConnected && <AuthLinksBlock hideMenu={hideMenu} />}
+      </ul>
     </nav>
   );
 });

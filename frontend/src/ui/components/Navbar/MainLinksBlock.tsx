@@ -42,29 +42,29 @@ const MainLinksBlock = memo(
     return (
       <>
         {mainLinks.map((link, i) => (
-          <NavbarItem key={i} link={link} hideMenu={hideMenu} />
+          <li key={i} className="navbar-link">
+            <NavbarItem link={link} hideMenu={hideMenu} />
+          </li>
         ))}
 
         {isConnected && (
-          <Link
-            activeProps={activeProps}
-            className="navbar-link"
-            onClick={hideMenu}
-            to="/profile"
-          >
-            {t('profile')}
-          </Link>
+          <li className="navbar-link">
+            <Link activeProps={activeProps} onClick={hideMenu} to="/profile">
+              {t('profile')}
+            </Link>
+          </li>
         )}
 
         {isConnected && isAdmin && (
-          <Link
-            activeProps={activeProps}
-            className="navbar-link"
-            onClick={hideMenu}
-            to="/back-office"
-          >
-            {t('backOffice')}
-          </Link>
+          <li className="navbar-link">
+            <Link
+              activeProps={activeProps}
+              onClick={hideMenu}
+              to="/back-office"
+            >
+              {t('backOffice')}
+            </Link>
+          </li>
         )}
       </>
     );
