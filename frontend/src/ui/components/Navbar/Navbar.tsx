@@ -1,13 +1,15 @@
 import { useIsConnected } from '../../../stores/SessionStore';
+import { memo, useCallback, useState } from 'react';
 import BurgerMenuButton from './BurgerMenuButton';
-import { useCallback, useState } from 'react';
 import AuthLinksBlock from './AuthLinksBlock';
 import MainLinksBlock from './MainLinksBlock';
 import './styles/Navbar.scss';
 
-const Navbar = () => {
+// its parent (Header) is re-rendered many times, so we use memo to prevent re-rendering of this component
+const Navbar = memo(() => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const isConnected: boolean = useIsConnected();
+  const className: string = isOpen ? 'navbar' : 'navbar hidden';
 
   const toggleIsOpen = useCallback(() => {
     setIsOpen((prev) => !prev);
@@ -17,8 +19,6 @@ const Navbar = () => {
     setIsOpen(false);
   }, []);
 
-  const className: string = isOpen ? 'navbar' : 'navbar hidden';
-
   return (
     <nav className={className}>
       <BurgerMenuButton isOpen={isOpen} toggleIsOpen={toggleIsOpen} />
@@ -27,6 +27,6 @@ const Navbar = () => {
       {!isConnected && <AuthLinksBlock hideMenu={hideMenu} />}
     </nav>
   );
-};
+});
 
 export default Navbar;
