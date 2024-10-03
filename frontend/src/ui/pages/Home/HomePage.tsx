@@ -1,5 +1,4 @@
 import CropPictureModal from '../../components/Modal/CropPictureModal';
-import ChevronLeft from '../../components/Icons/Arrows/ChevronLeft';
 import { useModalStoreActions } from '../../../stores/ModalStore';
 import ArrowLeft from '../../components/Icons/Arrows/ArrowLeft';
 import CustomButton from '../../components/Button/CustomButton';
@@ -7,6 +6,7 @@ import { useIsConnected } from '../../../stores/SessionStore';
 import FormTests from '../../components/FormTests/FormTests';
 import useLogout from '../../../hooks/useLogout';
 import { useRef } from 'react';
+import ChevronLeft from '../../components/Icons/Chevrons/ChevronLeft';
 
 const Home = () => {
   const cropPictureModalRef = useRef<HTMLDialogElement>(null);
