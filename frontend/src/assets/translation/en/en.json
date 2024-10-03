@@ -19,7 +19,8 @@
     "facebook-icon": "Link to the Facebook page",
     "instagram-icon": "Link to the Instagram page",
     "close-modal": "Close modal",
-    "auth-links": "Links to the authentication pages"
+    "auth-links": "Links to the authentication pages",
+    "sidebar-toggle-btn": "Toggle sidebar"
   },
 
   "nav": {
@@ -30,6 +31,14 @@
     "login": "Log in",
     "profile": "Profile",
     "backOffice": "Back office"
+  },
+
+  "backOfficeSidebar": {
+    "headerTitle": "Back office",
+    "links": {
+      "dashboard": "Dashboard",
+      "blogPosts": "Blog posts"
+    }
   },
 
   "footer": {
