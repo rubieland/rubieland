@@ -21,26 +21,23 @@ const Sidebar = memo(({ links, title }: SidebarProps) => {
     setIsOpen(false);
   }, []);
 
-  const sidebarClassName = classNames('sidebar', {
-    opened: isOpen,
-  });
-
-  const sidebarHeaderClassName = classNames('sidebar-header', {
-    opened: isOpen,
-  });
+  const getClassNames = (baseClassName: string) =>
+    classNames(baseClassName, {
+      opened: isOpen,
+    });
 
   return (
-    <aside className={sidebarClassName}>
-      <header className={sidebarHeaderClassName}>
+    <aside className={getClassNames('sidebar')}>
+      <header className={getClassNames('sidebar-header')}>
         <SidebarToggleButton
           toggleIsOpen={toggleIsOpen}
           hideSidebar={hideSidebar}
           isOpen={isOpen}
         />
-        <p className="sidebar-title">{title}</p>
+        <p className={getClassNames('sidebar-title')}>{title}</p>
       </header>
       <nav>
-        <ul className="sidebar-links-container">
+        <ul className={getClassNames('sidebar-links-container')}>
           {links.map((link, i) => (
             <SidebarLinkItem
               hideSidebar={hideSidebar}
