@@ -34,6 +34,7 @@
       opacity 0.3s ease,
       width 0.3s ease;
     display: inline-block;
+    font-size: 0.875rem;
     white-space: nowrap;
     overflow: hidden;
     opacity: 0;
@@ -44,7 +45,7 @@
     position: relative;
     overflow: hidden;
     display: block;
-    height: 4rem;
+    height: $closed-sidebar-width;
     padding: 0;
     gap: 1rem;
 
@@ -59,7 +60,7 @@
     }
 
     .sidebar-title {
-      font-size: 1.2rem;
+      font-size: 1rem;
     }
 
     &.opened {
@@ -78,7 +79,7 @@
     .sidebar-toggle-btn {
       transition: transform 0.3s ease;
       @include flex-center;
-      @include box(64px);
+      @include box($closed-sidebar-width);
       cursor: pointer;
 
       &:hover {
@@ -89,7 +90,7 @@
         transform: rotate(180deg);
         margin-right: 0.5rem;
         border-radius: 50%;
-        @include box(48px);
+        @include box(2rem);
       }
     }
   }

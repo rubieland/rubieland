@@ -16,12 +16,12 @@ const BackOfficeLayout = () => {
     {
       title: t('backOfficeSidebar.links.dashboard'),
       to: '/back-office',
-      icon: <DashboardIcon width={32} height={32} stroke={colors.grey80} />,
+      icon: <DashboardIcon width={24} height={24} stroke={colors.grey80} />,
     },
     {
       title: t('backOfficeSidebar.links.blog'),
       to: '/back-office/blog',
-      icon: <BookOpen width={32} height={32} stroke={colors.grey80} />,
+      icon: <BookOpen width={24} height={24} stroke={colors.grey80} />,
     },
   ];
 
