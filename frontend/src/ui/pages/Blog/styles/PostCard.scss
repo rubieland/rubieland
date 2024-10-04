@@ -60,8 +60,15 @@
 }
 
 // ----- responsive ----- \\
+
 @include respond-to('medium') {
   .post-card {
     width: calc(50% - 0.5rem);
+  }
+}
+
+@include respond-to('large') {
+  .post-card {
+    width: calc(33% - 0.5rem);
   }
 }

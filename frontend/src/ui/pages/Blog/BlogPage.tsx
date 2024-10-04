@@ -14,10 +14,17 @@ import './styles/BlogPage.scss';
 
 const BlogPage = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'pages.blog' });
-  const { data: posts, isLoading, error, refetch } = useGetAllPosts();
-  const publishedPosts: Post[] = filterPublishedPosts(posts) || [];
-  const isBlogEmpty: boolean = checkIsBlogEmpty(posts);
+  const { data: allPosts, isLoading, error, refetch } = useGetAllPosts();
   const isAdmin: boolean = useIsAdmin();
+
+  // a simple user must not see unpublished posts so we have to filter them
+  const publishedPosts: Post[] = filterPublishedPosts(allPosts) || [];
+
+  // if the user is a simple user, we need to check if there are published posts
+  const hasNoPublishedPosts: boolean = checkIsBlogEmpty(publishedPosts);
+
+  // if the user is an admin, we don't need to filter the posts, we just check if there are posts already created
+  const isBlogEmpty: boolean = checkIsBlogEmpty(allPosts);
 
   if (isLoading) return <PageLoader isLoading={isLoading} />;
   if (error)
@@ -26,10 +33,22 @@ const BlogPage = () => {
   return (
     <div className="blog-page-main-container">
       <h2 className="main-title">{t('title')}</h2>
-      {isBlogEmpty ? (
-        <EmptyBlogSection />
+      {isAdmin ? (
+        <>
+          {isBlogEmpty ? (
+            <EmptyBlogSection />
+          ) : (
+            <PostCardList posts={allPosts || []} />
+          )}
+        </>
       ) : (
-        <PostCardList posts={isAdmin ? posts || [] : publishedPosts} />
+        <>
+          {hasNoPublishedPosts ? (
+            <EmptyBlogSection />
+          ) : (
+            <PostCardList posts={publishedPosts} />
+          )}
+        </>
       )}
     </div>
   );

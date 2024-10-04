@@ -13,6 +13,7 @@
   overflow: hidden;
   position: fixed;
   height: auto;
+  z-index: 99;
 
   &.opened {
     width: 15rem;
@@ -138,3 +139,11 @@
     }
   }
 }
+
+// ----- responsive ----- \\
+
+// @include respond-to('medium') {
+//   .sidebar {
+//     top: $app-header-height;
+//   }
+// }
