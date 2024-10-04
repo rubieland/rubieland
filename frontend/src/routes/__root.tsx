@@ -1,5 +1,4 @@
-import { createRootRouteWithContext } from '@tanstack/react-router';
-import Layout from '../ui/components/Layout/Layout';
+import { createRootRouteWithContext, Outlet } from '@tanstack/react-router';
 
 export interface RouterContext {
   isConnected: boolean;
@@ -7,5 +6,5 @@ export interface RouterContext {
 }
 
 export const Route = createRootRouteWithContext<RouterContext>()({
-  component: Layout,
+  component: Outlet,
 });

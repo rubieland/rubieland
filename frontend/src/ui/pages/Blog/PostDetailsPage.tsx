@@ -17,7 +17,7 @@ const imageSources = [
 
 const PostDetailsPage = () => {
   const { t } = useTranslation();
-  const { postId } = useParams({ from: '/blog/posts/$postId' });
+  const { postId } = useParams({ from: '/_app/blog/posts/$postId' });
   const isAdmin = useIsAdmin();
 
   const {

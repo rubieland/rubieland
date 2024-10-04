@@ -11,60 +11,31 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
-import { Route as RegisterImport } from './routes/register'
-import { Route as ProfileImport } from './routes/profile'
-import { Route as LoginImport } from './routes/login'
-import { Route as BlogImport } from './routes/blog'
 import { Route as BackOfficeImport } from './routes/back-office'
-import { Route as AboutImport } from './routes/about'
-import { Route as IndexImport } from './routes/index'
-import { Route as BlogIndexImport } from './routes/blog/index'
+import { Route as AppImport } from './routes/_app'
 import { Route as BackOfficeIndexImport } from './routes/back-office/index'
+import { Route as AppIndexImport } from './routes/_app/index'
 import { Route as BackOfficeBlogImport } from './routes/back-office/blog'
+import { Route as AppRegisterImport } from './routes/_app/register'
+import { Route as AppProfileImport } from './routes/_app/profile'
+import { Route as AppLoginImport } from './routes/_app/login'
+import { Route as AppBlogImport } from './routes/_app/blog'
+import { Route as AppAboutImport } from './routes/_app/about'
 import { Route as BackOfficeBlogIndexImport } from './routes/back-office/blog/index'
-import { Route as BlogPostsPostIdImport } from './routes/blog/posts/$postId'
+import { Route as AppBlogIndexImport } from './routes/_app/blog/index'
 import { Route as BackOfficeBlogPostsPostIdImport } from './routes/back-office/blog/posts/$postId'
+import { Route as AppBlogPostsPostIdImport } from './routes/_app/blog/posts/$postId'
 
 // Create/Update Routes
-
-const RegisterRoute = RegisterImport.update({
-  path: '/register',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const ProfileRoute = ProfileImport.update({
-  path: '/profile',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const LoginRoute = LoginImport.update({
-  path: '/login',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const BlogRoute = BlogImport.update({
-  path: '/blog',
-  getParentRoute: () => rootRoute,
-} as any)
 
 const BackOfficeRoute = BackOfficeImport.update({
   path: '/back-office',
   getParentRoute: () => rootRoute,
 } as any)
 
-const AboutRoute = AboutImport.update({
-  path: '/about',
+const AppRoute = AppImport.update({
+  id: '/_app',
   getParentRoute: () => rootRoute,
-} as any)
-
-const IndexRoute = IndexImport.update({
-  path: '/',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const BlogIndexRoute = BlogIndexImport.update({
-  path: '/',
-  getParentRoute: () => BlogRoute,
 } as any)
 
 const BackOfficeIndexRoute = BackOfficeIndexImport.update({
@@ -72,9 +43,39 @@ const BackOfficeIndexRoute = BackOfficeIndexImport.update({
   getParentRoute: () => BackOfficeRoute,
 } as any)
 
+const AppIndexRoute = AppIndexImport.update({
+  path: '/',
+  getParentRoute: () => AppRoute,
+} as any)
+
 const BackOfficeBlogRoute = BackOfficeBlogImport.update({
   path: '/blog',
   getParentRoute: () => BackOfficeRoute,
+} as any)
+
+const AppRegisterRoute = AppRegisterImport.update({
+  path: '/register',
+  getParentRoute: () => AppRoute,
+} as any)
+
+const AppProfileRoute = AppProfileImport.update({
+  path: '/profile',
+  getParentRoute: () => AppRoute,
+} as any)
+
+const AppLoginRoute = AppLoginImport.update({
+  path: '/login',
+  getParentRoute: () => AppRoute,
+} as any)
+
+const AppBlogRoute = AppBlogImport.update({
+  path: '/blog',
+  getParentRoute: () => AppRoute,
+} as any)
+
+const AppAboutRoute = AppAboutImport.update({
+  path: '/about',
+  getParentRoute: () => AppRoute,
 } as any)
 
 const BackOfficeBlogIndexRoute = BackOfficeBlogIndexImport.update({
@@ -82,9 +83,9 @@ const BackOfficeBlogIndexRoute = BackOfficeBlogIndexImport.update({
   getParentRoute: () => BackOfficeBlogRoute,
 } as any)
 
-const BlogPostsPostIdRoute = BlogPostsPostIdImport.update({
-  path: '/posts/$postId',
-  getParentRoute: () => BlogRoute,
+const AppBlogIndexRoute = AppBlogIndexImport.update({
+  path: '/',
+  getParentRoute: () => AppBlogRoute,
 } as any)
 
 const BackOfficeBlogPostsPostIdRoute = BackOfficeBlogPostsPostIdImport.update({
@@ -92,22 +93,20 @@ const BackOfficeBlogPostsPostIdRoute = BackOfficeBlogPostsPostIdImport.update({
   getParentRoute: () => BackOfficeBlogRoute,
 } as any)
 
+const AppBlogPostsPostIdRoute = AppBlogPostsPostIdImport.update({
+  path: '/posts/$postId',
+  getParentRoute: () => AppBlogRoute,
+} as any)
+
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexImport
-      parentRoute: typeof rootRoute
-    }
-    '/about': {
-      id: '/about'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof AboutImport
+    '/_app': {
+      id: '/_app'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof AppImport
       parentRoute: typeof rootRoute
     }
     '/back-office': {
@@ -117,33 +116,40 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BackOfficeImport
       parentRoute: typeof rootRoute
     }
-    '/blog': {
-      id: '/blog'
+    '/_app/about': {
+      id: '/_app/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AppAboutImport
+      parentRoute: typeof AppImport
+    }
+    '/_app/blog': {
+      id: '/_app/blog'
       path: '/blog'
       fullPath: '/blog'
-      preLoaderRoute: typeof BlogImport
-      parentRoute: typeof rootRoute
+      preLoaderRoute: typeof AppBlogImport
+      parentRoute: typeof AppImport
     }
-    '/login': {
-      id: '/login'
+    '/_app/login': {
+      id: '/_app/login'
       path: '/login'
       fullPath: '/login'
-      preLoaderRoute: typeof LoginImport
-      parentRoute: typeof rootRoute
+      preLoaderRoute: typeof AppLoginImport
+      parentRoute: typeof AppImport
     }
-    '/profile': {
-      id: '/profile'
+    '/_app/profile': {
+      id: '/_app/profile'
       path: '/profile'
       fullPath: '/profile'
-      preLoaderRoute: typeof ProfileImport
-      parentRoute: typeof rootRoute
+      preLoaderRoute: typeof AppProfileImport
+      parentRoute: typeof AppImport
     }
-    '/register': {
-      id: '/register'
+    '/_app/register': {
+      id: '/_app/register'
       path: '/register'
       fullPath: '/register'
-      preLoaderRoute: typeof RegisterImport
-      parentRoute: typeof rootRoute
+      preLoaderRoute: typeof AppRegisterImport
+      parentRoute: typeof AppImport
     }
     '/back-office/blog': {
       id: '/back-office/blog'
@@ -152,6 +158,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BackOfficeBlogImport
       parentRoute: typeof BackOfficeImport
     }
+    '/_app/': {
+      id: '/_app/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof AppIndexImport
+      parentRoute: typeof AppImport
+    }
     '/back-office/': {
       id: '/back-office/'
       path: '/'
@@ -159,19 +172,12 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BackOfficeIndexImport
       parentRoute: typeof BackOfficeImport
     }
-    '/blog/': {
-      id: '/blog/'
+    '/_app/blog/': {
+      id: '/_app/blog/'
       path: '/'
       fullPath: '/blog/'
-      preLoaderRoute: typeof BlogIndexImport
-      parentRoute: typeof BlogImport
-    }
-    '/blog/posts/$postId': {
-      id: '/blog/posts/$postId'
-      path: '/posts/$postId'
-      fullPath: '/blog/posts/$postId'
-      preLoaderRoute: typeof BlogPostsPostIdImport
-      parentRoute: typeof BlogImport
+      preLoaderRoute: typeof AppBlogIndexImport
+      parentRoute: typeof AppBlogImport
     }
     '/back-office/blog/': {
       id: '/back-office/blog/'
@@ -179,6 +185,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/back-office/blog/'
       preLoaderRoute: typeof BackOfficeBlogIndexImport
       parentRoute: typeof BackOfficeBlogImport
+    }
+    '/_app/blog/posts/$postId': {
+      id: '/_app/blog/posts/$postId'
+      path: '/posts/$postId'
+      fullPath: '/blog/posts/$postId'
+      preLoaderRoute: typeof AppBlogPostsPostIdImport
+      parentRoute: typeof AppBlogImport
     }
     '/back-office/blog/posts/$postId': {
       id: '/back-office/blog/posts/$postId'
@@ -193,8 +206,17 @@ declare module '@tanstack/react-router' {
 // Create and export the route tree
 
 export const routeTree = rootRoute.addChildren({
-  IndexRoute,
-  AboutRoute,
+  AppRoute: AppRoute.addChildren({
+    AppAboutRoute,
+    AppBlogRoute: AppBlogRoute.addChildren({
+      AppBlogIndexRoute,
+      AppBlogPostsPostIdRoute,
+    }),
+    AppLoginRoute,
+    AppProfileRoute,
+    AppRegisterRoute,
+    AppIndexRoute,
+  }),
   BackOfficeRoute: BackOfficeRoute.addChildren({
     BackOfficeBlogRoute: BackOfficeBlogRoute.addChildren({
       BackOfficeBlogIndexRoute,
@@ -202,10 +224,6 @@ export const routeTree = rootRoute.addChildren({
     }),
     BackOfficeIndexRoute,
   }),
-  BlogRoute: BlogRoute.addChildren({ BlogIndexRoute, BlogPostsPostIdRoute }),
-  LoginRoute,
-  ProfileRoute,
-  RegisterRoute,
 })
 
 /* prettier-ignore-end */
@@ -216,20 +234,20 @@ export const routeTree = rootRoute.addChildren({
     "__root__": {
       "filePath": "__root.tsx",
       "children": [
-        "/",
-        "/about",
-        "/back-office",
-        "/blog",
-        "/login",
-        "/profile",
-        "/register"
+        "/_app",
+        "/back-office"
       ]
     },
-    "/": {
-      "filePath": "index.tsx"
-    },
-    "/about": {
-      "filePath": "about.tsx"
+    "/_app": {
+      "filePath": "_app.tsx",
+      "children": [
+        "/_app/about",
+        "/_app/blog",
+        "/_app/login",
+        "/_app/profile",
+        "/_app/register",
+        "/_app/"
+      ]
     },
     "/back-office": {
       "filePath": "back-office.tsx",
@@ -238,21 +256,29 @@ export const routeTree = rootRoute.addChildren({
         "/back-office/"
       ]
     },
-    "/blog": {
-      "filePath": "blog.tsx",
+    "/_app/about": {
+      "filePath": "_app/about.tsx",
+      "parent": "/_app"
+    },
+    "/_app/blog": {
+      "filePath": "_app/blog.tsx",
+      "parent": "/_app",
       "children": [
-        "/blog/",
-        "/blog/posts/$postId"
+        "/_app/blog/",
+        "/_app/blog/posts/$postId"
       ]
     },
-    "/login": {
-      "filePath": "login.tsx"
+    "/_app/login": {
+      "filePath": "_app/login.tsx",
+      "parent": "/_app"
     },
-    "/profile": {
-      "filePath": "profile.tsx"
+    "/_app/profile": {
+      "filePath": "_app/profile.tsx",
+      "parent": "/_app"
     },
-    "/register": {
-      "filePath": "register.tsx"
+    "/_app/register": {
+      "filePath": "_app/register.tsx",
+      "parent": "/_app"
     },
     "/back-office/blog": {
       "filePath": "back-office/blog.tsx",
@@ -262,21 +288,25 @@ export const routeTree = rootRoute.addChildren({
         "/back-office/blog/posts/$postId"
       ]
     },
+    "/_app/": {
+      "filePath": "_app/index.tsx",
+      "parent": "/_app"
+    },
     "/back-office/": {
       "filePath": "back-office/index.tsx",
       "parent": "/back-office"
     },
-    "/blog/": {
-      "filePath": "blog/index.tsx",
-      "parent": "/blog"
-    },
-    "/blog/posts/$postId": {
-      "filePath": "blog/posts/$postId.tsx",
-      "parent": "/blog"
+    "/_app/blog/": {
+      "filePath": "_app/blog/index.tsx",
+      "parent": "/_app/blog"
     },
     "/back-office/blog/": {
       "filePath": "back-office/blog/index.tsx",
       "parent": "/back-office/blog"
+    },
+    "/_app/blog/posts/$postId": {
+      "filePath": "_app/blog/posts/$postId.tsx",
+      "parent": "/_app/blog"
     },
     "/back-office/blog/posts/$postId": {
       "filePath": "back-office/blog/posts/$postId.tsx",

@@ -5,6 +5,7 @@ import DashboardIcon from '../Icons/Dashboard';
 import { useTranslation } from 'react-i18next';
 import Sidebar from '../Sidebar/Sidebar';
 import BookOpen from '../Icons/BookOpen';
+import Header from '../Header/Header';
 
 const BackOfficeLayout = () => {
   const { t } = useTranslation('translation', {
@@ -26,9 +27,11 @@ const BackOfficeLayout = () => {
 
   return (
     <div className="back-office-layout-container">
-      <h2>Welcome on back-office!</h2>
-      <Sidebar links={links} title={t('backOfficeSidebar.headerTitle')} />
-      <Outlet />
+      <Header />
+      <main className="back-office-layout-content">
+        <Sidebar links={links} title={t('backOfficeSidebar.headerTitle')} />
+        <Outlet />
+      </main>
     </div>
   );
 };
