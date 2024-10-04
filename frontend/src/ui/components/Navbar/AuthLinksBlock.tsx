@@ -39,10 +39,10 @@ const AuthLinksBlock = memo(({ hideMenu }: AuthLinksBlockProps) => {
   };
 
   return (
-    <span
+    <ul
       className="navbar-auth-links-container"
-      role="navigation"
       aria-label="Auth links"
+      role="navigation"
     >
       {authLinks.map((link, i) => (
         <li key={i} className="navbar-link navbar-auth-link">
@@ -56,7 +56,7 @@ const AuthLinksBlock = memo(({ hideMenu }: AuthLinksBlockProps) => {
           </Link>
         </li>
       ))}
-    </span>
+    </ul>
   );
 });
 
