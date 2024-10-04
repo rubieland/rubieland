@@ -1,18 +1,23 @@
 import { SVGProps } from 'react';
-import colors from '../../../../assets/styles/colors';
 
-const ChevronRightDouble = (props: SVGProps<SVGSVGElement>) => (
+const ChevronRightDouble = ({
+  width = '1em',
+  height = '1em',
+  fill = 'none',
+  stroke = 'currentColor',
+
+  ...props
+}: SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width={props.width || 24}
-    height={props.width || 24}
-    stroke={props.color || colors.black}
-    fill="none"
+    width={width}
+    height={height}
+    fill={fill}
     viewBox="0 0 24 24"
     {...props}
   >
     <path
-      stroke={props.color || colors.black}
+      stroke={stroke}
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth={2}

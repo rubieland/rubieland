@@ -121,6 +121,13 @@
       &.active {
         background-color: $primaryLight;
         font-weight: 700;
+
+        p {
+          color: $primary;
+        }
+        svg path {
+          stroke: $primary;
+        }
       }
 
       &.opened {

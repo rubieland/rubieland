@@ -38,7 +38,7 @@ const SidebarToggleButton = ({
       role="button"
       tabIndex={0}
     >
-      <ChevronRightDouble width={28} color={colors.grey80} />
+      <ChevronRightDouble width={32} height={32} stroke={colors.grey80} />
     </div>
   );
 };

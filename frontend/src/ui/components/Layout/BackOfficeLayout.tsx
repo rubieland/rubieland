@@ -4,7 +4,7 @@ import { LinkType } from '../../../types/links';
 import DashboardIcon from '../Icons/Dashboard';
 import { useTranslation } from 'react-i18next';
 import Sidebar from '../Sidebar/Sidebar';
-import Book from '../Icons/Book';
+import BookOpen from '../Icons/BookOpen';
 
 const BackOfficeLayout = () => {
   const { t } = useTranslation('translation', {
@@ -15,12 +15,12 @@ const BackOfficeLayout = () => {
     {
       title: t('backOfficeSidebar.links.dashboard'),
       to: '/back-office',
-      icon: <DashboardIcon width={32} color={colors.grey80} />,
+      icon: <DashboardIcon width={32} height={32} stroke={colors.grey80} />,
     },
     {
       title: t('backOfficeSidebar.links.blog'),
       to: '/back-office/blog',
-      icon: <Book width={32} stroke={colors.grey80} />,
+      icon: <BookOpen width={32} height={32} stroke={colors.grey80} />,
     },
   ];
 
