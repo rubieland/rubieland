@@ -139,6 +139,20 @@
           "blog": "Blog"
         }
       },
+      "tables": {
+        "posts": {
+          "title": "Posts",
+          "columnsHeaders": {
+            "id": "ID",
+            "title": "Title",
+            "content": "Content",
+            "isPublished": "Published",
+            "picture": "Picture",
+            "createdAt": "Created at",
+            "updatedAt": "Updated at"
+          }
+        }
+      },
       "dashboard": {
         "title": "Dashboard",
         "welcome": "Welcome {{firstName}} {{lastName}} !"

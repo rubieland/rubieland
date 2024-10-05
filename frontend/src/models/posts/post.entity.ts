@@ -11,5 +11,13 @@ export type Post = {
 };
 
 export const convertPostDtoToEntity = (dto: PostDto): Post => {
-  return { ...dto, id: dto._id };
+  return {
+    id: dto._id,
+    title: dto.title,
+    content: dto.content,
+    picture: dto.picture,
+    isPublished: dto.isPublished,
+    createdAt: dto.createdAt,
+    updatedAt: dto.updatedAt,
+  };
 };

@@ -8,6 +8,7 @@ import './assets/styles/index.scss';
 import './assets/styles/fonts.scss';
 import React from 'react';
 import App from './App';
+import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
