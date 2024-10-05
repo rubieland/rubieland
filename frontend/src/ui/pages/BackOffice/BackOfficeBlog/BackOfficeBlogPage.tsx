@@ -9,7 +9,7 @@ const BackOfficeBlogPage = () => {
 
   if (isLoading) return <PageLoader isLoading={isLoading} />;
   if (error)
-    return <ErrorComponent message={error.message} onRetry={() => refetch()} />;
+    return <ErrorComponent message={error.message} onRetry={refetch} />;
 
   return (
     <div className="bo-blog-page-main-container">

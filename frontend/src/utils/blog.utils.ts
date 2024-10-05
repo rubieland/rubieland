@@ -6,13 +6,7 @@ import { Post } from '../models/posts/post.entity';
  * @returns boolean  returns true if posts is undefined or if the list of posts is empty, otherwise false
  */
 export const checkIsBlogEmpty = (posts: Post[] | undefined): boolean => {
-  const publishedPosts = filterPublishedPosts(posts);
-  return (
-    !posts ||
-    posts.length === 0 ||
-    !publishedPosts ||
-    publishedPosts.length === 0
-  );
+  return !posts || posts.length === 0;
 };
 
 /**

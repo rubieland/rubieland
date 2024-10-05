@@ -28,7 +28,7 @@ const BlogPage = () => {
 
   if (isLoading) return <PageLoader isLoading={isLoading} />;
   if (error)
-    return <ErrorComponent message={error.message} onRetry={() => refetch()} />;
+    return <ErrorComponent message={error.message} onRetry={refetch} />;
 
   return (
     <div className="blog-page-main-container">

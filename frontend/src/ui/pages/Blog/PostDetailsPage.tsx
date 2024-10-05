@@ -37,7 +37,7 @@ const PostDetailsPage = () => {
     );
 
   if (error)
-    return <ErrorComponent message={error.message} onRetry={() => refetch()} />;
+    return <ErrorComponent message={error.message} onRetry={refetch} />;
 
   // check if the post is published and if the user is admin. If not, redirect user because he should not be able to see the post
   if (!post?.isPublished && !isAdmin) return <Navigate to="/blog" />;
