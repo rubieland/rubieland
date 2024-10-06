@@ -22,6 +22,12 @@ body {
   font-weight: normal;
 }
 
+html,
+body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
 h1,
 h2,
 h3,
@@ -29,6 +35,31 @@ h4,
 h5,
 h6 {
   font-family: $secondary-font-stack;
+  font-weight: 600;
+}
+
+h1 {
+  font-size: $h1-font-size;
+}
+
+h2 {
+  font-size: $h2-font-size;
+}
+
+h3 {
+  font-size: $h3-font-size;
+}
+
+h4 {
+  font-size: $h4-font-size;
+}
+
+h5 {
+  font-size: $h5-font-size;
+}
+
+h6 {
+  font-size: $h6-font-size;
 }
 
 .main-title {
