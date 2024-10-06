@@ -141,16 +141,22 @@
       },
       "tables": {
         "posts": {
-          "title": "Articles de blog",
-          "columnsHeaders": {
-            "id": "ID",
-            "title": "Titre",
-            "content": "Contenu",
-            "isPublished": "Publié",
-            "picture": "Image",
-            "createdAt": "Date de création",
-            "updatedAt": "Date de mise à jour"
-          }
+          "title": "Titre",
+          "content": "Contenu",
+          "status": "Statut",
+          "picture": "Image",
+          "pictureAlt": "Image de l'article",
+          "createdAt": "Créé le",
+          "updatedAt": "Mis à jour le",
+          "noImage": "Pas d'image",
+          "published": "Publié",
+          "unpublished": "Non publié",
+          "createdAtDate": "{{ date, short }}",
+          "updatedAtDate": "{{ date, mediumWithTime }}",
+          "actions": "Actions",
+          "edit": "Modifier",
+          "delete": "Supprimer",
+          "noPosts": "Aucun article n'a été créé pour le moment."
         }
       },
       "dashboard": {
@@ -158,7 +164,7 @@
         "welcome": "Bienvenue {{firstName}} {{lastName}} !"
       },
       "blog": {
-        "title": "Blog"
+        "title": "Mes articles de blog"
       }
     }
   }
