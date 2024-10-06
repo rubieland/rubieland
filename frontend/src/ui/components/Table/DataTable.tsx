@@ -1,71 +1,98 @@
-import { Post } from '@/models/posts/post.entity';
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { useReactTable } from '@tanstack/react-table';
-import { useMemo } from 'react';
-import { use } from 'i18next';
+import {
+  ColumnDef,
+  flexRender,
+  getCoreRowModel,
+  useReactTable,
+} from '@tanstack/react-table';
 import { useTranslation } from 'react-i18next';
 
-// DOCS: https://tanstack.com/table/latest/docs/faq
+// DOCS: https://ui.shadcn.com/docs/components/data-table
 
-interface DataTableProps {
-  //   dataType: 'posts';
-  //   data: Post[];
+interface DataTableProps<TData, TValue> {
+  columns: ColumnDef<TData, TValue>[];
+  data: TData[];
 }
 
-const DataTable = ({ dataType, data }: DataTableProps) => {
-  //   const keyPrefix = `pages.backOffice.tables.${dataType}`;
-  //   const { t } = useTranslation('translation', {
-  //     keyPrefix,
-  //   });
+const DataTable = <TData, TValue>({
+  columns,
+  data,
+}: DataTableProps<TData, TValue>) => {
+  const table = useReactTable({
+    data,
+    columns,
+    getCoreRowModel: getCoreRowModel(),
+    columnResizeMode: 'onChange',
+  });
 
-  //   const columns = useMemo(
-  //     () =>
-  //       data.length > 0
-  //         ? Object.keys(data[0]).map((key) => ({
-  //             header: t(`columnsHeaders.${key}`),
-  //             accessorKey: key,
-  //           }))
-  //         : [],
-  //     [data],
-  //   );
+  const { t } = useTranslation('translation', {
+    keyPrefix: 'pages.backOffice.tables.posts',
+  });
 
-  console.log('columns', columns);
-
-  // const table = useReactTable({
-  //   data,
-  //   columns,
-  // });
   return (
-    <Table>
-      <TableCaption>Table Caption</TableCaption>
-      <TableHead>
-        <TableRow>
-          <TableHeader>Header 1</TableHeader>
-          <TableHeader>Header 2</TableHeader>
-          <TableHeader>Header 3</TableHeader>
-        </TableRow>
-      </TableHead>
-      <TableBody>
-        <TableRow>
-          <TableCell>Cell 1</TableCell>
-          <TableCell>Cell 2</TableCell>
-          <TableCell>Cell 3</TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell>Cell 4</TableCell>
-          <TableCell>Cell 5</TableCell>
-          <TableCell>Cell 6</TableCell>
-        </TableRow>
-      </TableBody>
-    </Table>
+    <div className="tw-w-full tw-rounded-md tw-border">
+      <Table>
+        <TableHeader>
+          {table.getHeaderGroups().map((headerGroup) => (
+            <TableRow key={headerGroup.id}>
+              {headerGroup.headers.map((header) => {
+                return (
+                  <TableHead
+                    key={header.id}
+                    className="tw-relative"
+                    style={{ width: header.getSize() }}
+                  >
+                    {header.isPlaceholder
+                      ? null
+                      : flexRender(
+                          header.column.columnDef.header,
+                          header.getContext(),
+                        )}
+                    <div
+                      onMouseDown={header.getResizeHandler()}
+                      onTouchStart={header.getResizeHandler()}
+                      className={`resizer ${header.column.getIsResizing() ? 'resizing' : ''}`}
+                    ></div>
+                  </TableHead>
+                );
+              })}
+            </TableRow>
+          ))}
+        </TableHeader>
+        <TableBody>
+          {table.getRowModel().rows?.length ? (
+            table.getRowModel().rows.map((row) => (
+              <TableRow
+                key={row.id}
+                data-state={row.getIsSelected() && 'selected'}
+              >
+                {row.getVisibleCells().map((cell) => (
+                  <TableCell key={cell.id}>
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </TableCell>
+                ))}
+              </TableRow>
+            ))
+          ) : (
+            <TableRow>
+              <TableCell
+                colSpan={columns.length}
+                className="tw-h-24 tw-text-center"
+              >
+                {t('noPosts')}
+              </TableCell>
+            </TableRow>
+          )}
+        </TableBody>
+      </Table>
+    </div>
   );
 };
 
