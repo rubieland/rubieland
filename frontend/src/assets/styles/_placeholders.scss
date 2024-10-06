@@ -11,7 +11,7 @@
 }
 
 %btn-secondary {
-  @include btn-styles($secondary, $white);
+  @include btn-styles($black, $white);
 }
 
 %btn-disabled {
@@ -27,10 +27,6 @@
 
 %btn-error {
   @include btn-styles($red, $white);
-
-  &-outlined {
-    @include btn-styles(transparent, $red, $red);
-  }
 }
 
 // ----- form inputs ----- \\
