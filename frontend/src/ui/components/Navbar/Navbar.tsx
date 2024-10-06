@@ -16,17 +16,17 @@ const Navbar = memo(() => {
   }, []);
 
   const hideMenu = useCallback(() => {
-    setIsOpen(false);
+    setTimeout(() => setIsOpen(false), 50);
   }, []);
 
   return (
     <nav>
+      <BurgerMenuButton
+        isOpen={isOpen}
+        toggleIsOpen={toggleIsOpen}
+        hideMenu={hideMenu}
+      />
       <ul className={className}>
-        <BurgerMenuButton
-          isOpen={isOpen}
-          toggleIsOpen={toggleIsOpen}
-          hideMenu={hideMenu}
-        />
         <MainLinksBlock isConnected={isConnected} hideMenu={hideMenu} />
 
         {!isConnected && <AuthLinksBlock hideMenu={hideMenu} />}
