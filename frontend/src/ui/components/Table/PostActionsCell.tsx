@@ -11,13 +11,14 @@ interface PostActionsCellProps {
 
 const PostActionsCell = ({ postId }: PostActionsCellProps) => {
   const { t } = useTranslation('translation', {
-    keyPrefix: 'pages.backOffice.tables.posts',
+    keyPrefix: 'common',
   });
 
   return (
     <div className="post-actions-cell">
       <CustomButton
         icon={<PenSquare width={24} height={24} stroke={colors.white} />}
+        // TODO: replace with edit post function
         onClick={() => console.log(t('edit'), 'postId:', postId)}
         iconPosition="right"
         title={t('edit')}
@@ -25,6 +26,7 @@ const PostActionsCell = ({ postId }: PostActionsCellProps) => {
       />
       <CustomButton
         icon={<Bin width={24} height={24} stroke={colors.white} />}
+        // TODO: replace with delete post function
         onClick={() => console.log(t('delete'), 'postId:', postId)}
         iconPosition="right"
         title={t('delete')}

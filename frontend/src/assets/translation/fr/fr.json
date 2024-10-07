@@ -2,6 +2,7 @@
   "common": {
     "send": "Envoyer",
     "edit": "Modifier",
+    "delete": "Supprimer",
     "cancel": "Annuler",
     "error": "Erreur",
     "retry": "Réessayer",
@@ -10,7 +11,8 @@
     "register": "M'inscrire",
     "login": "Me connecter",
     "formSending": "Envoi en cours...",
-    "loggingOut": "Déconnexion en cours..."
+    "loggingOut": "Déconnexion en cours...",
+    "preview": "Prévisualisation"
   },
 
   "aria-labels": {
@@ -154,8 +156,6 @@
           "createdAtDate": "{{ date, shortestWithTime }}",
           "updatedAtDate": "{{ date, shortestWithTime }}",
           "actions": "Actions",
-          "edit": "Modifier",
-          "delete": "Supprimer",
           "noPosts": "Aucun article n'a été créé pour le moment."
         }
       },

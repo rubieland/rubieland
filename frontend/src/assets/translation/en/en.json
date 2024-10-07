@@ -2,6 +2,7 @@
   "common": {
     "send": "Send",
     "edit": "Edit",
+    "delete": "Delete",
     "cancel": "Cancel",
     "error": "Error",
     "retry": "Retry",
@@ -10,7 +11,8 @@
     "register": "Register",
     "login": "Log in",
     "formSending": "Sending...",
-    "loggingOut": "Logging out..."
+    "loggingOut": "Logging out...",
+    "preview": "Preview"
   },
 
   "aria-labels": {
@@ -154,8 +156,6 @@
           "createdAtDate": "{{ date, shortestWithTime }}",
           "updatedAtDate": "{{ date, shortestWithTime }}",
           "actions": "Actions",
-          "edit": "Edit",
-          "delete": "Delete",
           "noPosts": "No post created yet."
         }
       },
