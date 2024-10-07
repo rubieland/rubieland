@@ -13,7 +13,6 @@ const colors = {
   $successText: '#155724',
   lightBlue: '#e7eefe',
   lightPink: '#ffe6e6',
-  secondary: '#1e3d7a',
   grey10: '#f5f5f5',
   grey20: '#eeeeee',
   grey30: '#e0e0e0',

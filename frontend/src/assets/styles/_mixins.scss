@@ -7,6 +7,12 @@
   width: $width;
 }
 
+@mixin flex-center-between {
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+}
+
 @mixin flex-column {
   flex-direction: column;
   display: flex;
