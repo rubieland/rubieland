@@ -10,6 +10,13 @@ export type Post = {
   updatedAt: Date;
 };
 
+export type PostBody = {
+  title: string;
+  content: string;
+  picture: string | null;
+  isPublished: boolean;
+};
+
 export const convertPostDtoToEntity = (dto: PostDto): Post => {
   return {
     id: dto._id,
