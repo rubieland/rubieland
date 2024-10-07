@@ -1,7 +1,11 @@
+import CreatePostTabs from './CreatePostTabs';
+import '../styles/CreatePostPage.scss';
+
 const CreatePostPage = () => {
   return (
-    <section>
+    <section className="create-post-section">
       <p>CreatePostPage</p>
+      <CreatePostTabs />
     </section>
   );
 };
