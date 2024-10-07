@@ -77,6 +77,13 @@
       "birthDate": "Birth date",
       "phoneLabel": "Phone",
       "phonePlaceholder": "ex: +44 7500 123456"
+    },
+
+    "post": {
+      "title": "Title of the post",
+      "content": "Content of the post",
+      "picture": "Image of the post",
+      "isPublished": "Publish the post"
     }
   },
 

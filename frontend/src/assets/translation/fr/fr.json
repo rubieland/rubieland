@@ -77,6 +77,13 @@
       "birthDate": "Date de naissance",
       "phoneLabel": "Téléphone",
       "phonePlaceholder": "ex: +33 7 12 34 56 78"
+    },
+
+    "post": {
+      "title": "Titre de l'article",
+      "content": "Contenu de l'article",
+      "picture": "Image de l'article",
+      "isPublished": "Publier l'article"
     }
   },
 
