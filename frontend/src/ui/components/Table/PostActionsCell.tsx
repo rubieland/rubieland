@@ -21,8 +21,7 @@ const PostActionsCell = ({ postId }: PostActionsCellProps) => {
         onClick={() => console.log(t('edit'), 'postId:', postId)}
         iconPosition="right"
         title={t('edit')}
-        style="secondary"
-        outlined
+        style="primary"
       />
       <CustomButton
         icon={<Bin width={24} height={24} stroke={colors.white} />}
@@ -30,6 +29,7 @@ const PostActionsCell = ({ postId }: PostActionsCellProps) => {
         iconPosition="right"
         title={t('delete')}
         style="error"
+        outlined
       />
     </div>
   );
