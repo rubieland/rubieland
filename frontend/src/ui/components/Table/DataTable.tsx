@@ -13,6 +13,7 @@ import {
   useReactTable,
 } from '@tanstack/react-table';
 import { useTranslation } from 'react-i18next';
+import './styles/DataTable.scss';
 
 // DOCS: https://ui.shadcn.com/docs/components/data-table
 
@@ -37,7 +38,7 @@ const DataTable = <TData, TValue>({
   });
 
   return (
-    <div className="tw-w-full tw-rounded-md tw-border">
+    <div className="tw-w-full tw-overflow-x-auto tw-rounded-md tw-border tw-shadow">
       <Table>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
@@ -46,7 +47,7 @@ const DataTable = <TData, TValue>({
                 return (
                   <TableHead
                     key={header.id}
-                    className="tw-relative"
+                    className="tw-relative tw-whitespace-nowrap tw-text-center tw-font-semibold"
                     style={{ width: header.getSize() }}
                   >
                     {header.isPlaceholder

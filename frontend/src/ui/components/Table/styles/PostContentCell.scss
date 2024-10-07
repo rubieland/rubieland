@@ -1,0 +1,14 @@
+@import '../../../../assets/styles/variables';
+@import '../../../../assets/styles/mixins';
+
+.post-content-cell {
+  white-space: nowrap;
+}
+
+// ----- responsive ----- \\
+
+@include respond-to('large') {
+  .post-content-cell {
+    white-space: normal;
+  }
+}

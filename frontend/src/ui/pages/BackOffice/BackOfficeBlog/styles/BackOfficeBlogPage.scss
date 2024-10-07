@@ -1,29 +1,6 @@
 @import '../../../../../assets/styles/variables';
 @import '../../../../../assets/styles/mixins';
 
-.resizer {
-  position: absolute;
-  opacity: 0;
-  top: 0;
-  right: 0;
-  height: 100%;
-  width: 5px;
-  background-color: $primary;
-  cursor: col-resize;
-  user-select: none;
-  touch-action: none;
-  border-radius: 6px;
-
-  &:hover {
-    opacity: 1;
-  }
-
-  &.resizing {
-    background-color: $green;
-    opacity: 1;
-  }
-}
-
 .bo-blog-page-main-container {
   padding: 1rem 1rem 1rem calc($closed-sidebar-width + 1rem);
   max-width: 100%;
