@@ -24,6 +24,4 @@ const BackOfficeBlogPageHeader = () => {
   );
 };
 
-//66fa8416687366787d002aab
-
 export default BackOfficeBlogPageHeader;
