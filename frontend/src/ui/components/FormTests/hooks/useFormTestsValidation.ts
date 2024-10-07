@@ -3,7 +3,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import {
   acceptedMimeTypes,
   acceptedMimeTypesString,
-  maxFileSize,
+  maxAvatarFileSize,
 } from '../../../../core/fileUploadConfig';
 import { useForm } from 'react-hook-form';
 import i18n from '../../../../core/i18n';
@@ -93,7 +93,7 @@ export const FormTestsSchema = z.object({
     )
     .refine(
       (files) => {
-        return files.every((file) => file.size <= maxFileSize);
+        return files.every((file) => file.size <= maxAvatarFileSize);
       },
       {
         message: i18n.t('form.errors.fileTooLarge', { limit: 3 }),
