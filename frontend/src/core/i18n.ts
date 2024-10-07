@@ -16,6 +16,7 @@ export type SupportedLanguages = keyof typeof locales;
 
 const supportedFormats = [
   'shortest',
+  'shortestWithTime',
   'short',
   'medium',
   'mediumWithTime',
@@ -84,6 +85,8 @@ i18n
         switch (format) {
           case 'shortest':
             return formatDate(value, 'P', { locale }); // 04/29/1453
+          case 'shortestWithTime':
+            return formatDate(value, 'Pp', { locale }); // 04/29/1453, 4:30 AM
           case 'short':
             return formatDate(value, 'PP', { locale }); // Apr 29, 1453
           case 'medium':
