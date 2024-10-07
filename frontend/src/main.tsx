@@ -1,3 +1,4 @@
+import './index.css';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { ToastContainer } from 'react-toastify';
 import { queryClient } from './api/reactQuery';
@@ -8,7 +9,6 @@ import './assets/styles/index.scss';
 import './assets/styles/fonts.scss';
 import React from 'react';
 import App from './App';
-import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
