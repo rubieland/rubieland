@@ -164,7 +164,8 @@
         "welcome": "Bienvenue {{firstName}} {{lastName}} !"
       },
       "blog": {
-        "title": "Mes articles de blog"
+        "title": "Mes articles de blog",
+        "createPost": "Écrire un article"
       }
     }
   }

@@ -164,7 +164,8 @@
         "welcome": "Welcome {{firstName}} {{lastName}} !"
       },
       "blog": {
-        "title": "My blog posts"
+        "title": "My blog posts",
+        "createPost": "Write a post"
       }
     }
   }
