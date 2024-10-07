@@ -16,6 +16,8 @@ const SidebarLinkItem = ({
 }: SidebarLinkItemProps) => {
   const { t } = useTranslation('translation', { keyPrefix: 'aria-labels' });
   const navigate = useNavigate();
+
+  // TODO: fix active style not working on nested routes
   const className = classNames('sidebar-link', {
     opened: isOpen,
     active: window.location.pathname === link.to,
