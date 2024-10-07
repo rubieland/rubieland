@@ -1,4 +1,4 @@
-import CreatePostForm from '../BackOfficeBlog/components/CreatePostForm';
+import CreatePostFormTab from '../BackOfficeBlog/components/CreatePostFormTab';
 import PostPreview from '../BackOfficeBlog/components/PostPreview';
 import { useTranslation } from 'react-i18next';
 import { TabType } from '@/types/tabs';
@@ -10,7 +10,7 @@ export const useCreatePostTabs = () => {
     {
       label: t('pages.backOffice.blog.createPost'),
       value: 'form',
-      component: <CreatePostForm />,
+      component: <CreatePostFormTab />,
     },
     {
       label: t('common.preview'),

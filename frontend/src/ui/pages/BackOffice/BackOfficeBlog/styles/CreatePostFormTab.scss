@@ -1,0 +1,18 @@
+@import '../../../../../assets/styles/variables';
+@import '../../../../../assets/styles/mixins';
+
+.create-post-tab {
+  @include flex-center-column;
+  padding: 1rem;
+  width: 100%;
+
+  h2 {
+    font-size: clamp(1.125rem, 4vw, 1.5rem);
+    width: min(100%, 36rem);
+    padding: 0 0 1rem 0;
+  }
+
+  form {
+    width: min(100%, 40rem);
+  }
+}
