@@ -17,18 +17,18 @@ const PostActionsCell = ({ postId }: PostActionsCellProps) => {
   return (
     <div className="post-actions-cell">
       <CustomButton
+        icon={<PenSquare width={24} height={24} stroke={colors.white} />}
         onClick={() => console.log(t('edit'), 'postId:', postId)}
+        iconPosition="right"
         title={t('edit')}
         style="secondary"
-        icon={<PenSquare width={24} height={24} stroke={colors.white} />}
-        iconPosition="right"
         outlined
       />
       <CustomButton
-        onClick={() => console.log(t('delete'), 'postId:', postId)}
-        title={t('delete')}
         icon={<Bin width={24} height={24} stroke={colors.white} />}
+        onClick={() => console.log(t('delete'), 'postId:', postId)}
         iconPosition="right"
+        title={t('delete')}
         style="error"
       />
     </div>
