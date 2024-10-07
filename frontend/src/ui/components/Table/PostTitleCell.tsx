@@ -9,7 +9,7 @@ interface PostTitleCellProps {
 const PostTitleCell = ({ postId, title }: PostTitleCellProps) => {
   return (
     <span className="post-title-cell">
-      <Link to={`/back-office/blog/posts/${postId}`}>{title}</Link>
+      <Link to={`/blog/posts/${postId}`}>{title}</Link>
     </span>
   );
 };
