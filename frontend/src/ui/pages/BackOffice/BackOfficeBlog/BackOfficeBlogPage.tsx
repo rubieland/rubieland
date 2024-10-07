@@ -1,11 +1,11 @@
 import { useGetAllPostsBackOffice } from '../../../../api/backOffice/blog/getAllPostsBackOffice';
 import ErrorComponent from '../../../components/ErrorComponent/ErrorComponent';
+import BackOfficeBlogPageHeader from './components/BackOfficeBlogPageHeader';
 import PageLoader from '../../../components/Loader/PageLoader';
 import { usePostColumns } from '../hooks/usePostColumns';
 import DataTable from '@/ui/components/Table/DataTable';
 import './styles/BackOfficeBlogPage.scss';
 import { useMemo } from 'react';
-import BackOfficeBlogPageHeader from './components/BackOfficeBlogPageHeader';
 
 const BackOfficeBlogPage = () => {
   const { data: posts, isLoading, error, refetch } = useGetAllPostsBackOffice();
