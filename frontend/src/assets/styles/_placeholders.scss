@@ -7,11 +7,11 @@
 }
 
 %btn-primary {
-  @include btn-styles($primary, $white);
+  @include btn-styles($primaryLight, $primary);
 }
 
 %btn-secondary {
-  @include btn-styles($secondary, $white);
+  @include btn-styles($black, $white);
 }
 
 %btn-disabled {
@@ -22,15 +22,11 @@
 }
 
 %btn-success {
-  @include btn-styles($green, $black);
+  @include btn-styles($successBg, $successText);
 }
 
 %btn-error {
-  @include btn-styles($red, $white);
-
-  &-outlined {
-    @include btn-styles(transparent, $red, $red);
-  }
+  @include btn-styles($errorBg, $errorText);
 }
 
 // ----- form inputs ----- \\

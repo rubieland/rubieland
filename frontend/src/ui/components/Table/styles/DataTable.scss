@@ -1,0 +1,25 @@
+@import '../../../../assets/styles/variables';
+@import '../../../../assets/styles/mixins';
+
+.resizer {
+  background-color: $primary;
+  border-radius: 6px;
+  touch-action: none;
+  position: absolute;
+  cursor: col-resize;
+  user-select: none;
+  height: 100%;
+  opacity: 0;
+  width: 5px;
+  right: 0;
+  top: 0;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  &.resizing {
+    background-color: $green;
+    opacity: 1;
+  }
+}

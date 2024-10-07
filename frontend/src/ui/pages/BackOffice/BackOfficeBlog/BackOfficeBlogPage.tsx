@@ -1,25 +1,26 @@
 import { useGetAllPostsBackOffice } from '../../../../api/backOffice/blog/getAllPostsBackOffice';
 import ErrorComponent from '../../../components/ErrorComponent/ErrorComponent';
-import BackOfficePostCard from './components/BackOfficePostCard';
 import PageLoader from '../../../components/Loader/PageLoader';
+import { usePostColumns } from '../hooks/usePostColumns';
+import DataTable from '@/ui/components/Table/DataTable';
 import './styles/BackOfficeBlogPage.scss';
+import { useMemo } from 'react';
+import BackOfficeBlogPageHeader from './components/BackOfficeBlogPageHeader';
 
 const BackOfficeBlogPage = () => {
   const { data: posts, isLoading, error, refetch } = useGetAllPostsBackOffice();
+  const postColumns = usePostColumns();
+  const columns = useMemo(() => postColumns, []);
 
   if (isLoading) return <PageLoader isLoading={isLoading} />;
   if (error)
     return <ErrorComponent message={error.message} onRetry={refetch} />;
 
   return (
-    <div className="bo-blog-page-main-container">
-      <p>BackOfficeBlogPage</p>
-      <section className="posts-list">
-        {posts &&
-          posts.length > 0 &&
-          posts.map((post, i) => <BackOfficePostCard post={post} key={i} />)}
-      </section>
-    </div>
+    <section className="bo-blog-section">
+      <BackOfficeBlogPageHeader />
+      <DataTable columns={columns} data={posts ?? []} />
+    </section>
   );
 };
 

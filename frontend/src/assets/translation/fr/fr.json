@@ -139,12 +139,33 @@
           "blog": "Blog"
         }
       },
+      "tables": {
+        "posts": {
+          "title": "Titre",
+          "content": "Contenu",
+          "status": "Statut",
+          "picture": "Image",
+          "pictureAlt": "Image de l'article",
+          "createdAt": "Créé le",
+          "updatedAt": "Mis à jour le",
+          "noImage": "Pas d'image",
+          "published": "Publié",
+          "unpublished": "Non publié",
+          "createdAtDate": "{{ date, shortestWithTime }}",
+          "updatedAtDate": "{{ date, shortestWithTime }}",
+          "actions": "Actions",
+          "edit": "Modifier",
+          "delete": "Supprimer",
+          "noPosts": "Aucun article n'a été créé pour le moment."
+        }
+      },
       "dashboard": {
         "title": "Dashboard",
         "welcome": "Bienvenue {{firstName}} {{lastName}} !"
       },
       "blog": {
-        "title": "Blog"
+        "title": "Mes articles de blog",
+        "createPost": "Écrire un article"
       }
     }
   }

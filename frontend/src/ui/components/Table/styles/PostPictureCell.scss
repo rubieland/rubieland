@@ -1,0 +1,18 @@
+@import '../../../../assets/styles/variables';
+@import '../../../../assets/styles/mixins';
+
+.post-picture-cell {
+  @include box(150px, 100px);
+  @include flex-center;
+  overflow: hidden;
+
+  img {
+    border-radius: 0.5rem;
+    @include box(100%);
+    object-fit: cover;
+  }
+
+  .noImage {
+    text-align: center;
+  }
+}

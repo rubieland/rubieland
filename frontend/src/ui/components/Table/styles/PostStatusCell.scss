@@ -1,0 +1,19 @@
+@import '../../../../assets/styles/variables';
+@import '../../../../assets/styles/mixins';
+
+.post-status-cell {
+  @include flex-center;
+
+  .post-status {
+    @include status-style(null, null);
+    white-space: nowrap;
+
+    &.post-status-published {
+      @include status-style($successBg, $successText);
+    }
+
+    &.post-status-unpublished {
+      @include status-style($errorBg, $errorText);
+    }
+  }
+}

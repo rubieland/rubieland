@@ -139,12 +139,33 @@
           "blog": "Blog"
         }
       },
+      "tables": {
+        "posts": {
+          "title": "Title",
+          "content": "Content",
+          "status": "Status",
+          "picture": "Image",
+          "pictureAlt": "Post image",
+          "createdAt": "Created on",
+          "updatedAt": "Updated on",
+          "noImage": "No image",
+          "published": "Published",
+          "unpublished": "Unpublished",
+          "createdAtDate": "{{ date, shortestWithTime }}",
+          "updatedAtDate": "{{ date, shortestWithTime }}",
+          "actions": "Actions",
+          "edit": "Edit",
+          "delete": "Delete",
+          "noPosts": "No post created yet."
+        }
+      },
       "dashboard": {
         "title": "Dashboard",
         "welcome": "Welcome {{firstName}} {{lastName}} !"
       },
       "blog": {
-        "title": "Blog"
+        "title": "My blog posts",
+        "createPost": "Write a post"
       }
     }
   }

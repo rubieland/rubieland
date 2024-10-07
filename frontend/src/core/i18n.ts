@@ -16,6 +16,7 @@ export type SupportedLanguages = keyof typeof locales;
 
 const supportedFormats = [
   'shortest',
+  'shortestWithTime',
   'short',
   'medium',
   'mediumWithTime',
@@ -57,6 +58,7 @@ i18n
       escapeValue: false, // react escapes by default so we can set it to false
 
       // we use date-fns lib combined with i18n to format dates depending on locales and supported languages
+      // DOCS: https://date-fns.org/v2.21.3/docs/format
       format: (value, format = 'P', lng = defaultLanguage) => {
         // handle invalid date
         if (!isDate(value) || isNaN(value.getTime())) {
@@ -82,22 +84,24 @@ i18n
         // handle format
         switch (format) {
           case 'shortest':
-            return formatDate(value, 'P', { locale });
+            return formatDate(value, 'P', { locale }); // 04/29/1453
+          case 'shortestWithTime':
+            return formatDate(value, 'Pp', { locale }); // 04/29/1453, 4:30 AM
           case 'short':
-            return formatDate(value, 'PP', { locale });
+            return formatDate(value, 'PP', { locale }); // Apr 29, 1453
           case 'medium':
-            return formatDate(value, 'PPP', { locale });
+            return formatDate(value, 'PPP', { locale }); // April 29th, 1453
           case 'mediumWithTime':
-            return formatDate(value, 'PPPp', { locale });
+            return formatDate(value, 'PPPp', { locale }); // April 29th, 1453 at ...
           case 'long':
-            return formatDate(value, 'PPPP', { locale });
+            return formatDate(value, 'PPPP', { locale }); // Friday, April 29th, 1453
           case 'relative':
-            return formatRelative(value, new Date(), { locale });
+            return formatRelative(value, new Date(), { locale }); // last Sunday at 04:30 AM
           case 'ago':
             return formatDistance(value, new Date(), {
               locale,
               addSuffix: true,
-            });
+            }); // 2 hours ago
           default:
             // default format
             return formatDate(value, format, { locale });

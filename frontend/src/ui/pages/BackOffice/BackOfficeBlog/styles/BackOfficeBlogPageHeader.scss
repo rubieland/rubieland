@@ -1,0 +1,14 @@
+@import '../../../../../assets/styles/variables';
+@import '../../../../../assets/styles/mixins';
+
+.bo-blog-section-header {
+  @include flex-center-between;
+  padding: 1.5rem 0;
+}
+
+// ----- responsive ----- \\
+// @include respond-to('large') {
+//   .bo-blog-section-header {
+//     padding: 1rem 1rem 1rem calc($closed-sidebar-width + 1rem);
+//   }
+// }
