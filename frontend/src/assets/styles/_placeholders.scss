@@ -22,11 +22,11 @@
 }
 
 %btn-success {
-  @include btn-styles($green, $black);
+  @include btn-styles($successBg, $successText);
 }
 
 %btn-error {
-  @include btn-styles($red, $white);
+  @include btn-styles($errorBg, $errorText);
 }
 
 // ----- form inputs ----- \\
