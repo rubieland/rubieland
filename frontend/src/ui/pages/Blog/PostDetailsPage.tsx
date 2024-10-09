@@ -45,7 +45,7 @@ const PostDetailsPage = () => {
   return (
     <article className="post-details-main-container">
       <header className="post-details-header">
-        <h2>{post.title}</h2>
+        <h2 className="post-details-title">{post.title}</h2>
         <p className="post-published-date">
           {`${t('pages.blog.postDetailsPage.postedOn', {
             date: new Date(post.createdAt),
