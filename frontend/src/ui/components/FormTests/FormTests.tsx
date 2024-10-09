@@ -4,7 +4,6 @@ import ControlledTextInput from '../FormInputs/ControlledFormInputs/ControlledTe
 import ControlledCheckbox from '../FormInputs/ControlledFormInputs/ControlledCheckbox';
 import ControlledTextarea from '../FormInputs/ControlledFormInputs/ControlledTextarea';
 import ControlledSelect from '../FormInputs/ControlledFormInputs/ControlledSelect';
-import { acceptedMimeTypesString } from '../../../core/fileUploadConfig';
 import { useFormTestsValidation } from './hooks/useFormTestsValidation';
 import { SelectItem } from '../FormInputs/types/FormInputsTypes';
 import { addAsterisk } from '../../../utils/string.utils';
@@ -56,13 +55,11 @@ const FormTests = () => {
     <FormProvider {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
         <ControlledFileInput
-          acceptedMimetypes={acceptedMimeTypesString}
           label="Modifier la photo de profil"
           pictureType="avatar"
           name="avatar"
         />
         <ControlledFileInput
-          acceptedMimetypes={acceptedMimeTypesString}
           label="Modifier l'image de l'article"
           pictureType="postPicture"
           name="avatar"

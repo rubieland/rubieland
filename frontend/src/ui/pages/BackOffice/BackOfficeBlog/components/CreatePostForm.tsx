@@ -3,7 +3,6 @@ import ControlledFileInput from '@/ui/components/FormInputs/ControlledFormInputs
 import ControlledTextarea from '@/ui/components/FormInputs/ControlledFormInputs/ControlledTextarea';
 import ControlledCheckbox from '@/ui/components/FormInputs/ControlledFormInputs/ControlledCheckbox';
 import { CreatePostSchemaFormData } from '../../hooks/useCreatePostFormValidation';
-import { acceptedMimeTypesString } from '@/core/fileUploadConfig';
 import CustomButton from '@/ui/components/Button/CustomButton';
 import { UseFormHandleSubmit } from 'react-hook-form';
 import { addAsterisk } from '@/utils/string.utils';
@@ -24,9 +23,7 @@ const CreatePostForm = ({
 
   return (
     <form>
-      {/* TODO: see how to implement file upload input */}
       <ControlledFileInput
-        acceptedMimetypes={acceptedMimeTypesString}
         label={t('form.post.picture')}
         pictureType="postPicture"
         name="picture"
