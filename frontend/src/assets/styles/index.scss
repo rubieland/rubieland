@@ -63,5 +63,5 @@ h6 {
 }
 
 .main-title {
-  font-size: $main-title-font-size;
+  font-size: clamp(1.25rem, 2vw + 1rem, $main-title-font-size);
 }

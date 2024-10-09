@@ -13,7 +13,7 @@ export type Post = {
 export type PostBody = {
   title: string;
   content: string;
-  picture: string | null;
+  picture: File | null;
   isPublished: boolean;
 };
 

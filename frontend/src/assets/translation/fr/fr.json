@@ -2,6 +2,7 @@
   "common": {
     "send": "Envoyer",
     "edit": "Modifier",
+    "delete": "Supprimer",
     "cancel": "Annuler",
     "error": "Erreur",
     "retry": "Réessayer",
@@ -10,7 +11,8 @@
     "register": "M'inscrire",
     "login": "Me connecter",
     "formSending": "Envoi en cours...",
-    "loggingOut": "Déconnexion en cours..."
+    "loggingOut": "Déconnexion en cours...",
+    "preview": "Prévisualisation"
   },
 
   "aria-labels": {
@@ -75,6 +77,13 @@
       "birthDate": "Date de naissance",
       "phoneLabel": "Téléphone",
       "phonePlaceholder": "ex: +33 7 12 34 56 78"
+    },
+
+    "post": {
+      "title": "Titre de l'article",
+      "content": "Contenu de l'article",
+      "picture": "Image de l'article",
+      "isPublished": "Publier l'article"
     }
   },
 
@@ -154,8 +163,6 @@
           "createdAtDate": "{{ date, shortestWithTime }}",
           "updatedAtDate": "{{ date, shortestWithTime }}",
           "actions": "Actions",
-          "edit": "Modifier",
-          "delete": "Supprimer",
           "noPosts": "Aucun article n'a été créé pour le moment."
         }
       },

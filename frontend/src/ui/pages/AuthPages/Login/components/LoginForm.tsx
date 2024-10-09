@@ -16,6 +16,7 @@ const LoginForm = ({ onSubmit }: LoginFormProps) => {
   const form = useLoginFormValidation();
   const watchedValues = form.watch(['email', 'password']);
   const isFormFilled = isFormValid(watchedValues);
+
   return (
     <FormProvider {...form}>
       <form>

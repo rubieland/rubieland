@@ -1,0 +1,12 @@
+@import '../../../../../assets/styles/variables';
+@import '../../../../../assets/styles/mixins';
+
+.create-post-tab-form {
+  @include flex-center;
+  padding-bottom: 1.5rem;
+  width: 100%;
+
+  form {
+    width: 100%;
+  }
+}
