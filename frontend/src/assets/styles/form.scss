@@ -73,9 +73,9 @@ form {
 
 .edit-post-picture-input-container {
   font-family: $secondary-font-stack;
-  height: clamp(100px, 15vw, 200px);
   width: min(100%, 36rem);
   @include flex-column;
+  height: 200px;
   gap: 0.125rem;
 
   .edit-post-picture-input {
@@ -84,7 +84,7 @@ form {
     .edit-post-picture-figure {
       transition: background-color ease-in-out 0.3s;
       @include flex-center-column;
-      border-radius: 0.25rem;
+      border-radius: 0.5rem;
       @include box(inherit);
       position: relative;
       gap: 0.5rem;
