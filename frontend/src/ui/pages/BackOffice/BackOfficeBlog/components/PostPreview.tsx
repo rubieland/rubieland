@@ -39,14 +39,14 @@ const PostPreview = ({ formMethods }: PostPreviewProps) => {
             <div className="post-details-image-container">
               {!picture ? (
                 <ResponsiveImage
-                  alt={`${t('common.preview')} - ${title}`}
                   defaultSrc={defaultImgSmall}
+                  alt={t('common.preview')}
                   srcSet={imageSources}
                 />
               ) : (
                 <img
                   src={URL.createObjectURL(picture[0])}
-                  alt={`${t('common.preview')} - ${title}`}
+                  alt={t('common.preview')}
                   loading="lazy"
                 />
               )}
