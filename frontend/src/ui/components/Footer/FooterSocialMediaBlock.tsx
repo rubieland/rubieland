@@ -9,9 +9,8 @@ const FooterSocialMediaBlock = () => {
 
   return (
     <section className="footer-social-media-container">
-      <div className="footer-social-media-title">
-        <h3>{t('footer.socialMedia')}</h3>
-      </div>
+      <p className="footer-social-media-title">{t('footer.socialMedia')}</p>
+
       <div className="footer-social-media-icons-container">
         <a
           aria-label={t('aria-labels.facebook-icon')}
