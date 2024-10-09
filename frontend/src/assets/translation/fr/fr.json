@@ -12,7 +12,8 @@
     "login": "Me connecter",
     "formSending": "Envoi en cours...",
     "loggingOut": "Déconnexion en cours...",
-    "preview": "Prévisualisation"
+    "preview": "Prévisualisation",
+    "genericError": "Une erreur est survenue. Veuillez réessayer plus tard."
   },
 
   "aria-labels": {
@@ -83,7 +84,13 @@
       "title": "Titre de l'article",
       "content": "Contenu de l'article",
       "picture": "Image de l'article",
-      "isPublished": "Publier l'article"
+      "isPublished": "Publier l'article",
+      "errors": {
+        "postCreationFailed": "Une erreur est survenue lors de la création de l'article"
+      },
+      "success": {
+        "postCreationSuccess": "L'article a bien été créé !"
+      }
     }
   },
 

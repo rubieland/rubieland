@@ -12,7 +12,8 @@
     "login": "Log in",
     "formSending": "Sending...",
     "loggingOut": "Logging out...",
-    "preview": "Preview"
+    "preview": "Preview",
+    "genericError": "An error occurred. Please try again later."
   },
 
   "aria-labels": {
@@ -83,7 +84,13 @@
       "title": "Title of the post",
       "content": "Content of the post",
       "picture": "Image of the post",
-      "isPublished": "Publish the post"
+      "isPublished": "Publish the post",
+      "errors": {
+        "postCreationFailed": "An error occurred while creating the post"
+      },
+      "success": {
+        "postCreationSuccess": "Post created successfully!"
+      }
     }
   },
 
