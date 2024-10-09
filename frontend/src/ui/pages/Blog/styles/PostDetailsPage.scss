@@ -2,10 +2,11 @@
 @import '../../../../assets/styles/mixins';
 
 .post-details-main-container {
+  width: min(100%, 60rem);
   @include flex-column;
   align-self: center;
   padding: 1.5rem;
-  width: 100%;
+  margin: 0 auto;
 }
 
 .post-details-header {
@@ -74,17 +75,5 @@
 @include respond-to('small') {
   .post-details-main-container {
     align-items: center;
-  }
-}
-
-@include respond-to('medium') {
-  .post-details-main-container {
-    padding: 2rem 3rem;
-  }
-}
-
-@include respond-to('large') {
-  .post-details-main-container {
-    padding: 2rem 12rem;
   }
 }

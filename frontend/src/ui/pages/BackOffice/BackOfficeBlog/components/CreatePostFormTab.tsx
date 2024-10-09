@@ -1,4 +1,5 @@
 import { CreatePostSchemaFormData } from '../../hooks/useCreatePostFormValidation';
+import CreatePostTabsHeader from './CreatePostTabsHeader';
 import { isFormValid } from '@/utils/form.utils';
 import { UseFormReturn } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
@@ -24,13 +25,15 @@ const CreatePostFormTab = ({ formMethods }: CreatePostFormTabProps) => {
   };
 
   return (
-    <section className="create-post-tab">
-      <h2>{t('createPost')}</h2>
-      <CreatePostForm
-        handleSubmit={handleSubmit}
-        isFormFilled={isFormFilled}
-        onSubmit={onSubmit}
-      />
+    <section>
+      <CreatePostTabsHeader title={t('createPost')} />
+      <div className="create-post-tab-form">
+        <CreatePostForm
+          handleSubmit={handleSubmit}
+          isFormFilled={isFormFilled}
+          onSubmit={onSubmit}
+        />
+      </div>
     </section>
   );
 };
