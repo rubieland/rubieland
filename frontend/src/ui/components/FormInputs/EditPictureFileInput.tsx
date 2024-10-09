@@ -3,21 +3,21 @@ import EditAvatarInput from './EditAvatarInput';
 
 interface EditPictureFileInputProps {
   pictureType: 'avatar' | 'postPicture';
-  pictureFile: File | string | null;
+  imageSource: File | string | null;
   label: string;
 }
 
 const EditPictureFileInput = ({
   pictureType,
-  pictureFile,
+  imageSource,
   label,
 }: EditPictureFileInputProps) => {
   const isAvatar = pictureType === 'avatar';
 
   if (isAvatar) {
-    return <EditAvatarInput pictureFile={pictureFile} label={label} />;
+    return <EditAvatarInput imageSource={imageSource} label={label} />;
   } else {
-    return <EditPostPictureInput pictureFile={pictureFile} label={label} />;
+    return <EditPostPictureInput imageSource={imageSource} label={label} />;
   }
 };
 

@@ -1,12 +1,12 @@
 import { acceptedMimeTypesString } from '@/core/fileUploadConfig';
 import { Controller, useFormContext } from 'react-hook-form';
 import EditPictureFileInput from '../EditPictureFileInput';
-import { ChangeEvent, useRef } from 'react';
+import { ChangeEvent, useRef, useState } from 'react';
 import FileInput from '../FileInput';
 
 interface ControlledFileInputProps {
   pictureType: 'avatar' | 'postPicture';
-  currentImage?: string | null;
+  existingImage?: string | null;
   isRequired?: boolean;
   multiple?: boolean;
   label: string;
@@ -14,7 +14,7 @@ interface ControlledFileInputProps {
 }
 
 const ControlledFileInput = ({
-  currentImage = null,
+  existingImage = null,
   isRequired = false,
   multiple = false,
   pictureType,
@@ -22,10 +22,15 @@ const ControlledFileInput = ({
   name,
 }: ControlledFileInputProps) => {
   const inputFileRef = useRef<HTMLInputElement | null>(null);
-
   const { control, getValues } = useFormContext();
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
-  const pictureFile: File | null = getValues(name) ? getValues(name)[0] : null;
+  // imageSource is the image that will be displayed in the input
+  // it can be a File if the user has uploaded a file using the input,
+  // a string if the image already exists in backend
+  // or null if there is no image
+  const imageSource: File | string | null =
+    selectedFile || existingImage || (getValues(name) && getValues(name)[0]);
 
   const className =
     pictureType === 'avatar' ? `edit-avatar-input` : `edit-post-picture-input`;
@@ -34,14 +39,18 @@ const ControlledFileInput = ({
     e: ChangeEvent<HTMLInputElement>,
     onChange: (...event: any[]) => void,
   ) => {
+    // get the file from the input
     const target = e.target as HTMLInputElement & {
       files: FileList;
     };
 
-    const selectedFile = target.files[0];
+    // get the first file from the file list
+    const file = target.files[0];
 
-    if (selectedFile) {
-      onChange([selectedFile]);
+    // if the user has selected a file, set it as the selected file
+    if (file) {
+      setSelectedFile(file);
+      onChange([file]);
     }
   };
 
@@ -82,7 +91,7 @@ const ControlledFileInput = ({
               name={name}
             />
             <EditPictureFileInput
-              pictureFile={currentImage ?? pictureFile}
+              imageSource={imageSource}
               pictureType={pictureType}
               label={label}
             />

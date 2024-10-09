@@ -4,32 +4,33 @@ import ImageCircle from '../Icons/ImageCircle';
 import { useTranslation } from 'react-i18next';
 
 interface EditPostPictureInputProps {
-  pictureFile: File | string | null;
+  imageSource: File | string | null;
   label: string;
 }
 
 const EditPostPictureInput = ({
-  pictureFile,
+  imageSource,
   label,
 }: EditPostPictureInputProps) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('translation', { keyPrefix: 'common' });
 
-  // if pictureFile is a string, it means that the picture is already uploaded and we should get it from the server
+  // if imageSource is a string, it means that the picture already exists and we should get it from the server
   // if it is a File, it means that the user has selected a new picture and we should display it
-  const imgSrc = pictureFile
-    ? typeof pictureFile === 'string'
-      ? `${API_URL}/${API_BLOG_PICTURES_PATH}/${pictureFile}`
-      : URL.createObjectURL(pictureFile)
-    : '';
+  // if it is null, it means that there is no picture from the server or the user has not selected a new picture yet
+  const imgSrc = imageSource
+    ? typeof imageSource === 'string'
+      ? `${API_URL}/${API_BLOG_PICTURES_PATH}/${imageSource}`
+      : URL.createObjectURL(imageSource)
+    : null;
 
   return (
     <figure className="edit-post-picture-figure">
-      {pictureFile ? (
-        <img src={imgSrc} alt={label} />
+      {imgSrc ? (
+        <img src={imgSrc} alt={label} loading="lazy" />
       ) : (
         <>
           <ImageCircle color={colors.grey60} />
-          <p>{t('common.addPicture')}</p>
+          <p>{t('addPicture')}</p>
         </>
       )}
     </figure>
