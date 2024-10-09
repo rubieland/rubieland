@@ -2,61 +2,58 @@ import ControlledTextInput from '@/ui/components/FormInputs/ControlledFormInputs
 import ControlledFileInput from '@/ui/components/FormInputs/ControlledFormInputs/ControlledFileInput';
 import ControlledTextarea from '@/ui/components/FormInputs/ControlledFormInputs/ControlledTextarea';
 import ControlledCheckbox from '@/ui/components/FormInputs/ControlledFormInputs/ControlledCheckbox';
-import { useCreatePostFormValidation } from '../../hooks/useCreatePostFormValidation';
+import { CreatePostSchemaFormData } from '../../hooks/useCreatePostFormValidation';
 import { acceptedMimeTypesString } from '@/core/fileUploadConfig';
 import CustomButton from '@/ui/components/Button/CustomButton';
+import { UseFormHandleSubmit } from 'react-hook-form';
 import { addAsterisk } from '@/utils/string.utils';
-import { isFormValid } from '@/utils/form.utils';
-import { FormProvider } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
 interface CreatePostFormProps {
-  onSubmit: () => void;
+  handleSubmit: UseFormHandleSubmit<CreatePostSchemaFormData>;
+  onSubmit: (data: CreatePostSchemaFormData) => void;
+  isFormFilled: boolean;
 }
 
-const CreatePostForm = ({ onSubmit }: CreatePostFormProps) => {
+const CreatePostForm = ({
+  handleSubmit,
+  isFormFilled,
+  onSubmit,
+}: CreatePostFormProps) => {
   const { t } = useTranslation();
-  const form = useCreatePostFormValidation();
-  const watchedValues = form.watch(['title', 'content']);
-  const isFormFilled = isFormValid(watchedValues);
-
-  // TODO: remove console.log
-  console.log(form.getValues());
 
   return (
-    <FormProvider {...form}>
-      <form>
-        {/* TODO: see how to implement file upload input */}
-        <ControlledFileInput
-          acceptedMimetypes={acceptedMimeTypesString}
-          label={t('form.post.picture')}
-          pictureType="postPicture"
-          name="picture"
+    <form>
+      {/* TODO: see how to implement file upload input */}
+      <ControlledFileInput
+        acceptedMimetypes={acceptedMimeTypesString}
+        label={t('form.post.picture')}
+        pictureType="postPicture"
+        name="picture"
+      />
+      <ControlledTextInput
+        placeholder={addAsterisk(t('form.post.title'))}
+        label={t('form.post.title')}
+        name="title"
+      />
+      <ControlledTextarea
+        placeholder={addAsterisk(t('form.post.content'))}
+        label={t('form.post.content')}
+        name="content"
+      />
+      <ControlledCheckbox
+        label={t('form.post.isPublished')}
+        name="isPublished"
+      />
+      <div className="form-input">
+        <CustomButton
+          onClick={handleSubmit(onSubmit)}
+          isDisabled={!isFormFilled}
+          title={t('common.send')}
+          type="submit"
         />
-        <ControlledTextInput
-          placeholder={addAsterisk(t('form.post.title'))}
-          label={t('form.post.title')}
-          name="title"
-        />
-        <ControlledTextarea
-          placeholder={addAsterisk(t('form.post.content'))}
-          label={t('form.post.content')}
-          name="content"
-        />
-        <ControlledCheckbox
-          label={t('form.post.isPublished')}
-          name="isPublished"
-        />
-        <div className="form-input">
-          <CustomButton
-            onClick={form.handleSubmit(onSubmit)}
-            isDisabled={!isFormFilled}
-            title={t('common.send')}
-            type="submit"
-          />
-        </div>
-      </form>
-    </FormProvider>
+      </div>
+    </form>
   );
 };
 
