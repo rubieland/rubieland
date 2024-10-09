@@ -1,12 +1,12 @@
+import { acceptedMimeTypesString } from '@/core/fileUploadConfig';
 import { Controller, useFormContext } from 'react-hook-form';
 import EditPictureFileInput from '../EditPictureFileInput';
-import { ChangeEvent, useRef, useState } from 'react';
+import { ChangeEvent, useRef } from 'react';
 import FileInput from '../FileInput';
 
 interface ControlledFileInputProps {
   pictureType: 'avatar' | 'postPicture';
-  currentAvatar?: string | null;
-  acceptedMimetypes: string;
+  currentImage?: string | null;
   isRequired?: boolean;
   multiple?: boolean;
   label: string;
@@ -14,9 +14,8 @@ interface ControlledFileInputProps {
 }
 
 const ControlledFileInput = ({
-  currentAvatar = null,
+  currentImage = null,
   isRequired = false,
-  acceptedMimetypes,
   multiple = false,
   pictureType,
   label,
@@ -24,10 +23,9 @@ const ControlledFileInput = ({
 }: ControlledFileInputProps) => {
   const inputFileRef = useRef<HTMLInputElement | null>(null);
 
-  const { control } = useFormContext();
-  const [previewUrl, setPreviewUrl] = useState<string | ArrayBuffer | null>(
-    currentAvatar,
-  );
+  const { control, getValues } = useFormContext();
+
+  const pictureFile: File | null = getValues(name) ? getValues(name)[0] : null;
 
   const className =
     pictureType === 'avatar' ? `edit-avatar-input` : `edit-post-picture-input`;
@@ -41,13 +39,8 @@ const ControlledFileInput = ({
     };
 
     const selectedFile = target.files[0];
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setPreviewUrl(reader.result);
-    };
 
     if (selectedFile) {
-      reader.readAsDataURL(selectedFile);
       onChange([selectedFile]);
     }
   };
@@ -80,7 +73,7 @@ const ControlledFileInput = ({
           >
             <FileInput
               onChange={(e) => handleChange(e, onChange)}
-              acceptedMimetypes={acceptedMimetypes}
+              acceptedMimetypes={acceptedMimeTypesString}
               isRequired={isRequired}
               isInvalid={!!error}
               multiple={multiple}
@@ -88,9 +81,8 @@ const ControlledFileInput = ({
               label={label}
               name={name}
             />
-
             <EditPictureFileInput
-              previewUrl={previewUrl}
+              pictureFile={currentImage ?? pictureFile}
               pictureType={pictureType}
               label={label}
             />
