@@ -17,18 +17,22 @@ const CreatePostFormTab = ({ formMethods }: CreatePostFormTabProps) => {
   });
 
   const { onSubmit } = useCreateNewPost();
-  const { handleSubmit, watch } = formMethods;
+  const { handleSubmit, watch, formState, reset } = formMethods;
   const watchedValues = watch(['title', 'content']);
   const isFormFilled = isFormValid(watchedValues);
+
+  const isSubmitSuccessful = formState.isSubmitSuccessful;
 
   return (
     <section>
       <CreatePostTabsHeader title={t('createPost')} />
       <div className="create-post-tab-form">
         <CreatePostForm
+          isSubmitSuccessful={isSubmitSuccessful}
           handleSubmit={handleSubmit}
           isFormFilled={isFormFilled}
           onSubmit={onSubmit}
+          reset={reset}
         />
       </div>
     </section>

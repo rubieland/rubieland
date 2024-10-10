@@ -4,22 +4,34 @@ import ControlledTextarea from '@/ui/components/FormInputs/ControlledFormInputs/
 import ControlledCheckbox from '@/ui/components/FormInputs/ControlledFormInputs/ControlledCheckbox';
 import { CreatePostSchemaFormData } from '../../hooks/useCreatePostFormValidation';
 import CustomButton from '@/ui/components/Button/CustomButton';
-import { UseFormHandleSubmit } from 'react-hook-form';
+import { UseFormHandleSubmit, UseFormReset } from 'react-hook-form';
 import { addAsterisk } from '@/utils/string.utils';
 import { useTranslation } from 'react-i18next';
+import { useEffect } from 'react';
 
 interface CreatePostFormProps {
   handleSubmit: UseFormHandleSubmit<CreatePostSchemaFormData>;
   onSubmit: (data: CreatePostSchemaFormData) => void;
+  reset: UseFormReset<CreatePostSchemaFormData>;
+  isSubmitSuccessful: boolean;
   isFormFilled: boolean;
 }
 
 const CreatePostForm = ({
+  isSubmitSuccessful,
   handleSubmit,
   isFormFilled,
   onSubmit,
+  reset,
 }: CreatePostFormProps) => {
   const { t } = useTranslation();
+
+  // reset form when the post is successfully created
+  useEffect(() => {
+    if (isSubmitSuccessful) {
+      reset();
+    }
+  }, [isSubmitSuccessful, reset]);
 
   return (
     <form>
