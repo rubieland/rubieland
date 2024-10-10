@@ -1,22 +1,30 @@
 import { PostSchemaFormData } from '../../hooks/usePostFormValidation';
 import useCreateNewPost from '../../hooks/useCreateNewPost';
+import { PostBody } from '@/models/posts/post.entity';
 import { useNavigate } from '@tanstack/react-router';
 import { isFormValid } from '@/utils/form.utils';
 import { UseFormReturn } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import CreatePostForm from './CreatePostForm';
+import UpdatePostForm from './UpdatePostForm';
 import PostTabsHeader from './PostTabsHeader';
 import '../styles/PostFormTab.scss';
 import { useEffect } from 'react';
 
-interface CreatePostFormTabProps {
+interface UpdatePostFormTabProps {
   formMethods: UseFormReturn<PostSchemaFormData>;
+  existingPostData: PostBody;
 }
 
-const CreatePostFormTab = ({ formMethods }: CreatePostFormTabProps) => {
+const UpdatePostFormTab = ({
+  formMethods,
+  existingPostData,
+}: UpdatePostFormTabProps) => {
   const { t } = useTranslation('translation', {
     keyPrefix: 'pages.backOffice.blog',
   });
+
+  // TODO: add defaultValues props and remove console.log()
+  console.log('existing post data -- ', existingPostData);
 
   const navigate = useNavigate();
 
@@ -27,7 +35,7 @@ const CreatePostFormTab = ({ formMethods }: CreatePostFormTabProps) => {
 
   const isSubmitSuccessful = formState.isSubmitSuccessful;
 
-  // reset form when the post is successfully created and navigate back to the blog page
+  // reset form when the post is successfully updated and navigate back to the blog page
   useEffect(() => {
     if (isSubmitSuccessful) {
       reset();
@@ -37,9 +45,9 @@ const CreatePostFormTab = ({ formMethods }: CreatePostFormTabProps) => {
 
   return (
     <section>
-      <PostTabsHeader title={t('createPost')} />
+      <PostTabsHeader title={t('updatePost')} />
       <div className="post-tab-form">
-        <CreatePostForm
+        <UpdatePostForm
           handleSubmit={handleSubmit}
           isFormFilled={isFormFilled}
           onSubmit={onSubmit}
@@ -49,4 +57,4 @@ const CreatePostFormTab = ({ formMethods }: CreatePostFormTabProps) => {
   );
 };
 
-export default CreatePostFormTab;
+export default UpdatePostFormTab;

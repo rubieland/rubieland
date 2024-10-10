@@ -15,7 +15,8 @@
     "loggingOut": "Logging out...",
     "preview": "Preview",
     "genericError": "An error occurred. Please try again later.",
-    "deleting": "Deleting..."
+    "deleting": "Deleting...",
+    "updating": "Updating..."
   },
 
   "aria-labels": {
@@ -90,11 +91,13 @@
       "isPublished": "Publish the post",
       "errors": {
         "postCreationFailed": "An error occurred while creating the post",
-        "postDeletionFailed": "An error occurred while deleting the post"
+        "postDeletionFailed": "An error occurred while deleting the post",
+        "postUpdateFailed": "An error occurred while updating the post"
       },
       "success": {
         "postCreationSuccess": "Post created successfully!",
-        "postDeletionSuccess": "Post deleted successfully!"
+        "postDeletionSuccess": "Post deleted successfully!",
+        "postUpdateSuccess": "Post updated successfully!"
       },
       "confirmation": {
         "confirmPostDelete": "Are you sure you want to delete this post? <strong>This action cannot be undone.</strong>"
@@ -182,7 +185,8 @@
       },
       "blog": {
         "title": "My blog posts",
-        "createPost": "Write a post"
+        "createPost": "Write a post",
+        "updatePost": "Edit post"
       }
     }
   }

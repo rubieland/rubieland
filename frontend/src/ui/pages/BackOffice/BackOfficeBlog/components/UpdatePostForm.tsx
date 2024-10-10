@@ -8,18 +8,20 @@ import { UseFormHandleSubmit } from 'react-hook-form';
 import { addAsterisk } from '@/utils/string.utils';
 import { useTranslation } from 'react-i18next';
 
-interface CreatePostFormProps {
+interface UpdatePostFormProps {
   handleSubmit: UseFormHandleSubmit<PostSchemaFormData>;
   onSubmit: (data: PostSchemaFormData) => void;
   isFormFilled: boolean;
 }
 
-const CreatePostForm = ({
+const UpdatePostForm = ({
   handleSubmit,
   isFormFilled,
   onSubmit,
-}: CreatePostFormProps) => {
+}: UpdatePostFormProps) => {
   const { t } = useTranslation();
+
+  // TODO: add defaultValues props
 
   return (
     <form>
@@ -54,4 +56,4 @@ const CreatePostForm = ({
   );
 };
 
-export default CreatePostForm;
+export default UpdatePostForm;

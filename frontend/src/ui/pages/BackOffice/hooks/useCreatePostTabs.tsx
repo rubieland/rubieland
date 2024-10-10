@@ -1,12 +1,12 @@
 import CreatePostFormTab from '../BackOfficeBlog/components/CreatePostFormTab';
-import { CreatePostSchemaFormData } from './useCreatePostFormValidation';
 import PostPreview from '../BackOfficeBlog/components/PostPreview';
+import { PostSchemaFormData } from './usePostFormValidation';
 import { UseFormReturn } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { TabType } from '@/types/tabs';
 
 interface UseCreatePostTabsType {
-  formMethods: UseFormReturn<CreatePostSchemaFormData>;
+  formMethods: UseFormReturn<PostSchemaFormData>;
 }
 
 export const useCreatePostTabs = ({ formMethods }: UseCreatePostTabsType) => {

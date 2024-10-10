@@ -1,5 +1,6 @@
 import useDeletePostModal from '@/ui/pages/BackOffice/hooks/useDeletePostModal';
 import DeletePostModal from '../Modal/DeletePostModal';
+import { useNavigate } from '@tanstack/react-router';
 import CustomButton from '../Button/CustomButton';
 import { useTranslation } from 'react-i18next';
 import colors from '@/assets/styles/colors';
@@ -17,6 +18,16 @@ const PostActionsCell = ({ postId }: PostActionsCellProps) => {
     keyPrefix: 'common',
   });
 
+  console.log('PostActionsCell post id', postId);
+
+  const navigate = useNavigate();
+
+  const handleNavigateToEditPost = () => {
+    navigate({
+      to: `/back-office/blog/update-post/${postId}`,
+    });
+  };
+
   const modalRef = useRef<HTMLDialogElement>(null);
   const { isModalOpen, handleOpenModal, handleCloseModal, handleDeletePost } =
     useDeletePostModal({ postId });
@@ -25,8 +36,7 @@ const PostActionsCell = ({ postId }: PostActionsCellProps) => {
     <div className="post-actions-cell">
       <CustomButton
         icon={<PenSquare width={24} height={24} stroke={colors.white} />}
-        // TODO: replace with edit post function
-        onClick={() => console.log(t('edit'), 'postId:', postId)}
+        onClick={handleNavigateToEditPost}
         iconPosition="right"
         title={t('edit')}
         style="primary"

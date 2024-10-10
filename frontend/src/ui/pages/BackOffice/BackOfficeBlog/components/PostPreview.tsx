@@ -1,10 +1,10 @@
 import defaultImgMedium from '../../../../../assets/illustrations/blog_default_img_medium.png';
 import defaultImgSmall from '../../../../../assets/illustrations/blog_default_img_small.png';
-import { CreatePostSchemaFormData } from '../../hooks/useCreatePostFormValidation';
+import { PostSchemaFormData } from '../../hooks/usePostFormValidation';
 import ResponsiveImage from '@/ui/components/Image/ResponsiveImage';
-import CreatePostTabsHeader from './CreatePostTabsHeader';
 import { UseFormReturn } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
+import PostTabsHeader from './PostTabsHeader';
 import '../styles/PostPreview.scss';
 
 const imageSources = [
@@ -12,7 +12,7 @@ const imageSources = [
 ];
 
 interface PostPreviewProps {
-  formMethods: UseFormReturn<CreatePostSchemaFormData>;
+  formMethods: UseFormReturn<PostSchemaFormData>;
 }
 
 const PostPreview = ({ formMethods }: PostPreviewProps) => {
@@ -23,7 +23,7 @@ const PostPreview = ({ formMethods }: PostPreviewProps) => {
 
   return (
     <section>
-      <CreatePostTabsHeader title={t('common.preview')} />
+      <PostTabsHeader title={t('common.preview')} />
       <div className="post-preview-article-container">
         <article className="post-preview-article">
           <header className="post-details-header">

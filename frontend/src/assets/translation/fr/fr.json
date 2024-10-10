@@ -15,7 +15,8 @@
     "loggingOut": "Déconnexion en cours...",
     "preview": "Prévisualisation",
     "genericError": "Une erreur est survenue. Veuillez réessayer plus tard.",
-    "deleting": "Suppression en cours..."
+    "deleting": "Suppression en cours...",
+    "updating": "Modification en cours..."
   },
 
   "aria-labels": {
@@ -90,11 +91,13 @@
       "isPublished": "Publier l'article",
       "errors": {
         "postCreationFailed": "Une erreur est survenue lors de la création de l'article",
-        "postDeletionFailed": "Une erreur est survenue lors de la suppression de l'article"
+        "postDeletionFailed": "Une erreur est survenue lors de la suppression de l'article",
+        "postUpdateFailed": "Une erreur est survenue lors de la modification de l'article"
       },
       "success": {
         "postCreationSuccess": "L'article a bien été créé !",
-        "postDeletionSuccess": "L'article a bien été supprimé !"
+        "postDeletionSuccess": "L'article a bien été supprimé !",
+        "postUpdateSuccess": "L'article a bien été modifié !"
       },
       "confirmation": {
         "confirmPostDelete": "Êtes-vous sûr(e) de vouloir supprimer cet article ? <strong>Cette action est irréversible.</strong>"
@@ -182,7 +185,8 @@
       },
       "blog": {
         "title": "Mes articles de blog",
-        "createPost": "Écrire un article"
+        "createPost": "Écrire un article",
+        "updatePost": "Modifier l'article"
       }
     }
   }

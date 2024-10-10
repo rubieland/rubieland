@@ -24,6 +24,7 @@ import { Route as AppAboutImport } from './routes/_app/about'
 import { Route as BackOfficeBlogIndexImport } from './routes/back-office/blog/index'
 import { Route as AppBlogIndexImport } from './routes/_app/blog/index'
 import { Route as BackOfficeBlogCreatePostImport } from './routes/back-office/blog/create-post'
+import { Route as BackOfficeBlogUpdatePostPostIdImport } from './routes/back-office/blog/update-post.$postId'
 import { Route as BackOfficeBlogPostsPostIdImport } from './routes/back-office/blog/posts/$postId'
 import { Route as AppBlogPostsPostIdImport } from './routes/_app/blog/posts/$postId'
 
@@ -93,6 +94,12 @@ const BackOfficeBlogCreatePostRoute = BackOfficeBlogCreatePostImport.update({
   path: '/create-post',
   getParentRoute: () => BackOfficeBlogRoute,
 } as any)
+
+const BackOfficeBlogUpdatePostPostIdRoute =
+  BackOfficeBlogUpdatePostPostIdImport.update({
+    path: '/update-post/$postId',
+    getParentRoute: () => BackOfficeBlogRoute,
+  } as any)
 
 const BackOfficeBlogPostsPostIdRoute = BackOfficeBlogPostsPostIdImport.update({
   path: '/posts/$postId',
@@ -213,6 +220,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BackOfficeBlogPostsPostIdImport
       parentRoute: typeof BackOfficeBlogImport
     }
+    '/back-office/blog/update-post/$postId': {
+      id: '/back-office/blog/update-post/$postId'
+      path: '/update-post/$postId'
+      fullPath: '/back-office/blog/update-post/$postId'
+      preLoaderRoute: typeof BackOfficeBlogUpdatePostPostIdImport
+      parentRoute: typeof BackOfficeBlogImport
+    }
   }
 }
 
@@ -235,6 +249,7 @@ export const routeTree = rootRoute.addChildren({
       BackOfficeBlogCreatePostRoute,
       BackOfficeBlogIndexRoute,
       BackOfficeBlogPostsPostIdRoute,
+      BackOfficeBlogUpdatePostPostIdRoute,
     }),
     BackOfficeIndexRoute,
   }),
@@ -300,7 +315,8 @@ export const routeTree = rootRoute.addChildren({
       "children": [
         "/back-office/blog/create-post",
         "/back-office/blog/",
-        "/back-office/blog/posts/$postId"
+        "/back-office/blog/posts/$postId",
+        "/back-office/blog/update-post/$postId"
       ]
     },
     "/_app/": {
@@ -329,6 +345,10 @@ export const routeTree = rootRoute.addChildren({
     },
     "/back-office/blog/posts/$postId": {
       "filePath": "back-office/blog/posts/$postId.tsx",
+      "parent": "/back-office/blog"
+    },
+    "/back-office/blog/update-post/$postId": {
+      "filePath": "back-office/blog/update-post.$postId.tsx",
       "parent": "/back-office/blog"
     }
   }

@@ -1,6 +1,6 @@
 import { Post, convertPostDtoToEntity } from '../../models/posts/post.entity';
 import { ExtractFnReturnType, QueryConfig } from '../reactQuery';
-import { QueryKeysEnum } from '../../enums/queryKeys';
+import { GET_POST_KEY } from '../../enums/queryKeys';
 import { useQuery } from '@tanstack/react-query';
 import { api } from '../axios';
 
@@ -17,11 +17,6 @@ type UseGetPostDetailsOptions = {
   postId: string;
   config?: QueryConfig<QueryFnType>;
 };
-
-export const GET_POST_KEY = (id: string) => [
-  QueryKeysEnum.POST_DETAILS,
-  { postId: id },
-];
 
 export const useGetPostDetails = ({
   postId,

@@ -9,7 +9,7 @@ import i18n from '@/core/i18n';
 import { z } from 'zod';
 import { forbiddenCharsRegex } from '@/utils/string.utils';
 
-export const CreatePostSchema = z.object({
+export const PostSchema = z.object({
   title: z
     .string()
     .min(5, { message: i18n.t('form.errors.inputMinLength', { minLength: 5 }) })
@@ -42,17 +42,17 @@ export const CreatePostSchema = z.object({
   isPublished: z.boolean(),
 });
 
-export type CreatePostSchemaFormData = z.infer<typeof CreatePostSchema>;
+export type PostSchemaFormData = z.infer<typeof PostSchema>;
 
-export const useCreatePostFormValidation = () => {
-  return useForm<CreatePostSchemaFormData>({
+export const usePostFormValidation = () => {
+  return useForm<PostSchemaFormData>({
     defaultValues: {
       title: '',
       content: '',
       picture: null,
       isPublished: false,
     },
-    resolver: zodResolver(CreatePostSchema),
+    resolver: zodResolver(PostSchema),
     mode: 'onBlur',
   });
 };
