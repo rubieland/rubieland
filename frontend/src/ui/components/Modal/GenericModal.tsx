@@ -1,39 +1,30 @@
-import { PropsWithChildren, RefObject, useEffect } from 'react';
+import React, { PropsWithChildren, RefObject, useEffect } from 'react';
 import CustomButton from '../Button/CustomButton';
 import { useTranslation } from 'react-i18next';
 import Cross from '../Icons/Cross';
 import './styles/Modal.scss';
 
-interface ModalProps extends PropsWithChildren {
+interface GenericModalProps extends PropsWithChildren {
   modalRef: RefObject<HTMLDialogElement>;
   confirmButtonTitle?: string;
-  cancelButtonTitle?: string;
-  hasCancelButton?: boolean;
   confirmAction: () => void;
-  cancelAction?: () => void;
   closeModal: () => void;
   isOpen: boolean;
-  height?: string;
-  width?: string;
   title?: string;
 }
 
-const Modal = ({
+const GenericModal = ({
   confirmButtonTitle,
-  cancelButtonTitle,
-  hasCancelButton,
   confirmAction,
-  cancelAction,
   closeModal,
   modalRef,
   children,
   isOpen,
-  height,
-  width,
   title,
-}: ModalProps) => {
+}: GenericModalProps) => {
   const { t } = useTranslation();
 
+  // show or hide the modal
   useEffect(() => {
     if (modalRef.current) {
       if (isOpen) {
@@ -63,14 +54,9 @@ const Modal = ({
   };
 
   return (
-    <dialog
-      onClick={handleCloseModal}
-      style={{ height, width }}
-      ref={modalRef}
-      role="dialog"
-    >
+    <dialog onClick={handleCloseModal} ref={modalRef} role="dialog">
       <header className="modal-header">
-        {title && <h3 id="modal-title">{title}</h3>}
+        {title && <p id="modal-title">{title}</p>}
       </header>
       <div
         aria-label={t('aria-labels.close-modal')}
@@ -86,20 +72,19 @@ const Modal = ({
         {children}
       </section>
       <footer className="modal-footer">
-        {hasCancelButton && (
-          <CustomButton
-            title={cancelButtonTitle || t('common.cancel')}
-            onClick={cancelAction || closeModal}
-            style="error"
-          />
-        )}
+        <CustomButton
+          title={t('common.cancel')}
+          onClick={closeModal}
+          style="error"
+        />
         <CustomButton
           title={confirmButtonTitle || t('common.confirm')}
           onClick={confirmAction}
+          style="success"
         />
       </footer>
     </dialog>
   );
 };
 
-export default Modal;
+export default GenericModal;
