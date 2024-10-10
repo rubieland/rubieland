@@ -75,7 +75,6 @@ form {
   font-family: $secondary-font-stack;
   width: min(100%, 36rem);
   @include flex-column;
-  height: 200px;
   gap: 0.125rem;
 
   .edit-post-picture-input {
