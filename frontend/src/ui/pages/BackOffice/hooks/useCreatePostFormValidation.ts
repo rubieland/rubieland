@@ -22,33 +22,15 @@ export const CreatePostSchema = z.object({
       message: i18n.t('form.errors.inputMaxLength', { max: 10000 }),
     }),
   picture: z
-    .array(z.instanceof(File))
-    .refine(
-      (files) => {
-        return files.length === 1;
-      },
-      {
-        message: i18n.t('form.errors.oneFileLimit'),
-      },
-    )
-    .refine(
-      (files) => {
-        return files.every((file) => acceptedMimeTypes.includes(file.type));
-      },
-      {
-        message: i18n.t('form.errors.invalidFileType', {
-          types: acceptedMimeTypesString,
-        }),
-      },
-    )
-    .refine(
-      (files) => {
-        return files.every((file) => file.size <= postPictureMaxFileSize);
-      },
-      {
-        message: i18n.t('form.errors.fileTooLarge', { limit: 10 }),
-      },
-    )
+    .instanceof(File)
+    .refine((file) => acceptedMimeTypes.includes(file.type), {
+      message: i18n.t('form.errors.invalidFileType', {
+        types: acceptedMimeTypesString,
+      }),
+    })
+    .refine((file) => file.size <= postPictureMaxFileSize, {
+      message: i18n.t('form.errors.fileTooLarge', { limit: 10 }),
+    })
     .nullable(),
   isPublished: z.boolean(),
 });
