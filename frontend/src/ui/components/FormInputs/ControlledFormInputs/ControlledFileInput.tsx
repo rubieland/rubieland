@@ -30,7 +30,7 @@ const ControlledFileInput = ({
   // a string if the image already exists in backend
   // or null if there is no image
   const imageSource: File | string | null =
-    selectedFile || existingImage || (getValues(name) && getValues(name)[0]);
+    selectedFile || existingImage || getValues(name) || null;
 
   const className =
     pictureType === 'avatar' ? `edit-avatar-input` : `edit-post-picture-input`;
@@ -50,7 +50,7 @@ const ControlledFileInput = ({
     // if the user has selected a file, set it as the selected file
     if (file) {
       setSelectedFile(file);
-      onChange([file]);
+      onChange(file);
     }
   };
 

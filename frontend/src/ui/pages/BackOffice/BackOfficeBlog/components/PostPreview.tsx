@@ -45,7 +45,7 @@ const PostPreview = ({ formMethods }: PostPreviewProps) => {
                 />
               ) : (
                 <img
-                  src={URL.createObjectURL(picture[0])}
+                  src={URL.createObjectURL(picture)}
                   alt={t('common.preview')}
                   loading="lazy"
                 />
