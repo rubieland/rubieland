@@ -66,7 +66,8 @@
       "minLowercase": "Le mot de passe doit contenir au moins 1 minuscule",
       "minUppercase": "Le mot de passe doit contenir au moins 1 majuscule",
       "minNumbers": "Le mot de passe doit contenir au moins 1 chiffre",
-      "minSymbols": "Le mot de passe doit contenir au moins 1 caractère spécial"
+      "minSymbols": "Le mot de passe doit contenir au moins 1 caractère spécial",
+      "hasForbiddenChars": "Ce champ ne doit contenir aucun des caractères suivants: <, >, {, }, ^, ~, |, \\"
     },
 
     "user": {

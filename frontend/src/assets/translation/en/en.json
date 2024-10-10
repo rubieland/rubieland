@@ -66,7 +66,8 @@
       "minLowercase": "The password must contain at least 1 lowercase",
       "minUppercase": "The password must contain at least 1 uppercase",
       "minNumbers": "The password must contain at least 1 number",
-      "minSymbols": "The password must contain at least 1 special character"
+      "minSymbols": "The password must contain at least 1 special character",
+      "hasForbiddenChars": "This field must not contain any of the following special characters: <, >, {, }, ^, ~, |, \\"
     },
 
     "user": {
