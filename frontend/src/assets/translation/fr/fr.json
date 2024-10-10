@@ -109,11 +109,6 @@
     }
   },
 
-  "cropPictureModal": {
-    "title": "Redimensionner l'image",
-    "cropButtonTitle": "Redimensionner"
-  },
-
   "pages": {
     "register": {
       "alreadyRegisteredBlock": {

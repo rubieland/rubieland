@@ -109,11 +109,6 @@
     }
   },
 
-  "cropPictureModal": {
-    "title": "Crop picture",
-    "cropButtonTitle": "Crop"
-  },
-
   "pages": {
     "register": {
       "alreadyRegisteredBlock": {
