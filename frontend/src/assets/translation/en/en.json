@@ -4,6 +4,7 @@
     "edit": "Edit",
     "delete": "Delete",
     "cancel": "Cancel",
+    "confirm": "Confirm",
     "error": "Error",
     "retry": "Retry",
     "addPicture": "Add a picture",
@@ -107,11 +108,6 @@
       "loginFailed": "Log in failed",
       "logoutFailed": "An error occured while logging out"
     }
-  },
-
-  "cropPictureModal": {
-    "title": "Crop picture",
-    "cropButtonTitle": "Crop"
   },
 
   "pages": {

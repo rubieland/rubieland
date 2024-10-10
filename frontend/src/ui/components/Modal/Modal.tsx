@@ -1,12 +1,17 @@
-import { PropsWithChildren, RefObject } from 'react';
+import { PropsWithChildren, RefObject, useEffect } from 'react';
+import CustomButton from '../Button/CustomButton';
 import { useTranslation } from 'react-i18next';
 import Cross from '../Icons/Cross';
 import './styles/Modal.scss';
 
 interface ModalProps extends PropsWithChildren {
   modalRef: RefObject<HTMLDialogElement>;
+  confirmButtonTitle?: string;
+  cancelButtonTitle?: string;
+  hasCancelButton?: boolean;
+  confirmAction: () => void;
+  cancelAction?: () => void;
   closeModal: () => void;
-  footer?: React.ReactNode;
   isOpen: boolean;
   height?: string;
   width?: string;
@@ -14,15 +19,30 @@ interface ModalProps extends PropsWithChildren {
 }
 
 const Modal = ({
+  confirmButtonTitle,
+  cancelButtonTitle,
+  hasCancelButton,
+  confirmAction,
+  cancelAction,
   closeModal,
   modalRef,
   children,
-  footer,
+  isOpen,
   height,
   width,
   title,
 }: ModalProps) => {
-  const { t } = useTranslation('translation', { keyPrefix: 'aria-labels' });
+  const { t } = useTranslation();
+
+  useEffect(() => {
+    if (modalRef.current) {
+      if (isOpen) {
+        modalRef.current.showModal();
+      } else {
+        modalRef.current.close();
+      }
+    }
+  }, [isOpen, modalRef]);
 
   // close modal when click on the backdrop
   const handleCloseModal = (
@@ -53,7 +73,7 @@ const Modal = ({
         {title && <h3 id="modal-title">{title}</h3>}
       </header>
       <div
-        aria-label={t('close-modal')}
+        aria-label={t('aria-labels.close-modal')}
         className="modal-close-btn"
         onKeyDown={handleKeyDown}
         onClick={closeModal}
@@ -65,7 +85,19 @@ const Modal = ({
       <section className="modal-content" id="modal-content">
         {children}
       </section>
-      {footer && <footer className="modal-footer">{footer}</footer>}
+      <footer className="modal-footer">
+        {hasCancelButton && (
+          <CustomButton
+            title={cancelButtonTitle || t('common.cancel')}
+            onClick={cancelAction || closeModal}
+            style="error"
+          />
+        )}
+        <CustomButton
+          title={confirmButtonTitle || t('common.confirm')}
+          onClick={confirmAction}
+        />
+      </footer>
     </dialog>
   );
 };
