@@ -14,7 +14,8 @@
     "formSending": "Envoi en cours...",
     "loggingOut": "Déconnexion en cours...",
     "preview": "Prévisualisation",
-    "genericError": "Une erreur est survenue. Veuillez réessayer plus tard."
+    "genericError": "Une erreur est survenue. Veuillez réessayer plus tard.",
+    "deleting": "Suppression en cours..."
   },
 
   "aria-labels": {
@@ -88,10 +89,15 @@
       "picture": "Image de l'article",
       "isPublished": "Publier l'article",
       "errors": {
-        "postCreationFailed": "Une erreur est survenue lors de la création de l'article"
+        "postCreationFailed": "Une erreur est survenue lors de la création de l'article",
+        "postDeletionFailed": "Une erreur est survenue lors de la suppression de l'article"
       },
       "success": {
-        "postCreationSuccess": "L'article a bien été créé !"
+        "postCreationSuccess": "L'article a bien été créé !",
+        "postDeletionSuccess": "L'article a bien été supprimé !"
+      },
+      "confirmation": {
+        "confirmPostDelete": "Êtes-vous sûr(e) de vouloir supprimer cet article ? <strong>Cette action est irréversible.</strong>"
       }
     }
   },

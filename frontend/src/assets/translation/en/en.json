@@ -14,7 +14,8 @@
     "formSending": "Sending...",
     "loggingOut": "Logging out...",
     "preview": "Preview",
-    "genericError": "An error occurred. Please try again later."
+    "genericError": "An error occurred. Please try again later.",
+    "deleting": "Deleting..."
   },
 
   "aria-labels": {
@@ -88,10 +89,15 @@
       "picture": "Image of the post",
       "isPublished": "Publish the post",
       "errors": {
-        "postCreationFailed": "An error occurred while creating the post"
+        "postCreationFailed": "An error occurred while creating the post",
+        "postDeletionFailed": "An error occurred while deleting the post"
       },
       "success": {
-        "postCreationSuccess": "Post created successfully!"
+        "postCreationSuccess": "Post created successfully!",
+        "postDeletionSuccess": "Post deleted successfully!"
+      },
+      "confirmation": {
+        "confirmPostDelete": "Are you sure you want to delete this post? <strong>This action cannot be undone.</strong>"
       }
     }
   },
