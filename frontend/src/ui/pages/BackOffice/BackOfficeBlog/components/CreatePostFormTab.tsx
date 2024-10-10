@@ -6,6 +6,7 @@ import { UseFormReturn } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import CreatePostForm from './CreatePostForm';
 import '../styles/CreatePostFormTab.scss';
+import { useEffect } from 'react';
 
 interface CreatePostFormTabProps {
   formMethods: UseFormReturn<CreatePostSchemaFormData>;
@@ -23,16 +24,21 @@ const CreatePostFormTab = ({ formMethods }: CreatePostFormTabProps) => {
 
   const isSubmitSuccessful = formState.isSubmitSuccessful;
 
+  // reset form when the post is successfully created
+  useEffect(() => {
+    if (isSubmitSuccessful) {
+      reset();
+    }
+  }, [isSubmitSuccessful, reset]);
+
   return (
     <section>
       <CreatePostTabsHeader title={t('createPost')} />
       <div className="create-post-tab-form">
         <CreatePostForm
-          isSubmitSuccessful={isSubmitSuccessful}
           handleSubmit={handleSubmit}
           isFormFilled={isFormFilled}
           onSubmit={onSubmit}
-          reset={reset}
         />
       </div>
     </section>
