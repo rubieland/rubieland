@@ -64,7 +64,14 @@ const useCreateNewPost = () => {
   });
 
   const onSubmit = async (data: PostBody) => {
-    createPost(data);
+    try {
+      const response = await createPost(data);
+
+      return response;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
   };
 
   return { onSubmit, errorMessage, isPending };

@@ -1,4 +1,5 @@
 import { CreatePostSchemaFormData } from '../../hooks/useCreatePostFormValidation';
+import useCreateNewPost from '../../hooks/useCreateNewPost';
 import CreatePostTabsHeader from './CreatePostTabsHeader';
 import { isFormValid } from '@/utils/form.utils';
 import { UseFormReturn } from 'react-hook-form';
@@ -15,14 +16,10 @@ const CreatePostFormTab = ({ formMethods }: CreatePostFormTabProps) => {
     keyPrefix: 'pages.backOffice.blog',
   });
 
+  const { onSubmit } = useCreateNewPost();
   const { handleSubmit, watch } = formMethods;
   const watchedValues = watch(['title', 'content']);
   const isFormFilled = isFormValid(watchedValues);
-
-  const onSubmit = (data: CreatePostSchemaFormData) => {
-    console.log('Submit create post form');
-    console.log('Data submitted:  ', data);
-  };
 
   return (
     <section>
