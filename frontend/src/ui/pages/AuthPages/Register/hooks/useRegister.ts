@@ -4,9 +4,13 @@ import { useTranslation } from 'react-i18next';
 import { Id, toast } from 'react-toastify';
 import { AxiosError } from 'axios';
 import { useState } from 'react';
+import { queryClient } from '@/api/reactQuery';
+import { QueryKeysEnum } from '@/enums/queryKeys';
+import { useNavigate } from '@tanstack/react-router';
 
 const useRegister = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [toastId, setToastId] = useState<Id | null>(null);
 
@@ -38,7 +42,10 @@ const useRegister = () => {
       const id = toast.loading(t('common.formSending'));
       setToastId(id);
     },
-    onSuccess: () => {
+    onSuccess: async () => {
+      // update the users list received from api after successful register
+      await queryClient.invalidateQueries({ queryKey: [QueryKeysEnum.USERS] });
+
       if (toastId) {
         toast.update(toastId, {
           render: t('auth.success.registerSuccess'),
@@ -50,6 +57,8 @@ const useRegister = () => {
           draggable: true,
         });
       }
+
+      navigate({ from: '/register', to: '/login' });
     },
     onError: handleRegisterError,
     onSettled: () => {

@@ -1,7 +1,6 @@
 import { RegisterBody } from '../../models/user/user.entity';
-import { MutationConfig, queryClient } from '../reactQuery';
 import { useMutation } from '@tanstack/react-query';
-import { QueryKeysEnum } from '@/enums/queryKeys';
+import { MutationConfig } from '../reactQuery';
 import { api } from '../axios';
 
 const postRegister = async (body: RegisterBody) => {
@@ -16,8 +15,5 @@ export const usePostRegister = (config: UseRegisterBodyOptions = {}) => {
   return useMutation({
     ...config,
     mutationFn: (data: RegisterBody) => postRegister(data),
-    onSuccess: async () =>
-      // update the users list received from api after successful register
-      await queryClient.invalidateQueries({ queryKey: [QueryKeysEnum.USERS] }),
   });
 };
