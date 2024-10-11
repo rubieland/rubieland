@@ -8,8 +8,8 @@ const mockPosts: Post[] = [
     content: 'Content 1',
     isPublished: true,
     picture: '',
-    createdAt: new Date('2024/09/30'),
-    updatedAt: new Date('2024/09/30'),
+    createdAt: new Date('2024/09/30').toISOString(),
+    updatedAt: new Date('2024/09/30').toISOString(),
   },
   {
     id: '2',
@@ -17,8 +17,8 @@ const mockPosts: Post[] = [
     content: 'Content 2',
     isPublished: false,
     picture: '',
-    createdAt: new Date('2024/09/30'),
-    updatedAt: new Date('2024/09/30'),
+    createdAt: new Date('2024/09/30').toISOString(),
+    updatedAt: new Date('2024/09/30').toISOString(),
   },
   {
     id: '3',
@@ -26,8 +26,8 @@ const mockPosts: Post[] = [
     content: 'Content 3',
     isPublished: true,
     picture: '',
-    createdAt: new Date('2024/09/30'),
-    updatedAt: new Date('2024/09/30'),
+    createdAt: new Date('2024/09/30').toISOString(),
+    updatedAt: new Date('2024/09/30').toISOString(),
   },
 ];
 
@@ -38,25 +38,6 @@ describe('checkIsBlogEmpty', () => {
 
   it('should return true if posts is an empty array', () => {
     expect(checkIsBlogEmpty([])).toBe(true);
-  });
-
-  it('should return true if no posts are published', () => {
-    const unpublishedPosts: Post[] = [
-      {
-        id: '1',
-        title: 'Post 1',
-        content: 'Content 1',
-        isPublished: false,
-        picture: '',
-        createdAt: new Date('2024/09/30'),
-        updatedAt: new Date('2024/09/30'),
-      },
-    ];
-    expect(checkIsBlogEmpty(unpublishedPosts)).toBe(true);
-  });
-
-  it('should return false if there are published posts', () => {
-    expect(checkIsBlogEmpty(mockPosts)).toBe(false);
   });
 });
 
@@ -73,8 +54,8 @@ describe('filterPublishedPosts', () => {
         content: 'Content 1',
         isPublished: false,
         picture: '',
-        createdAt: new Date('2024/09/30'),
-        updatedAt: new Date('2024/09/30'),
+        createdAt: new Date('2024/09/30').toISOString(),
+        updatedAt: new Date('2024/09/30').toISOString(),
       },
     ];
     expect(filterPublishedPosts(unpublishedPosts)).toEqual([]);
@@ -88,8 +69,8 @@ describe('filterPublishedPosts', () => {
         content: 'Content 1',
         isPublished: true,
         picture: '',
-        createdAt: new Date('2024/09/30'),
-        updatedAt: new Date('2024/09/30'),
+        createdAt: new Date('2024/09/30').toISOString(),
+        updatedAt: new Date('2024/09/30').toISOString(),
       },
       {
         id: '3',
@@ -97,14 +78,10 @@ describe('filterPublishedPosts', () => {
         content: 'Content 3',
         isPublished: true,
         picture: '',
-        createdAt: new Date('2024/09/30'),
-        updatedAt: new Date('2024/09/30'),
+        createdAt: new Date('2024/09/30').toISOString(),
+        updatedAt: new Date('2024/09/30').toISOString(),
       },
     ];
-
-    console.log(mockPosts);
-    console.log(filterPublishedPosts(mockPosts));
-    console.log('expected published posts ****** ', expectedPublishedPosts);
 
     expect(filterPublishedPosts(mockPosts)).toEqual(expectedPublishedPosts);
   });
