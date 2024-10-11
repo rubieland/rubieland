@@ -1,6 +1,7 @@
-import { api } from '@/api/axios';
-import { MutationConfig } from '@/api/reactQuery';
+import { MutationConfig, queryClient } from '@/api/reactQuery';
 import { useMutation } from '@tanstack/react-query';
+import { QueryKeysEnum } from '@/enums/queryKeys';
+import { api } from '@/api/axios';
 
 const deleteBlogPost = async (id: string) => {
   const response = await api.delete(`/back-office/blog/posts/${id}/delete`);
@@ -13,5 +14,8 @@ export const useDeleteBlogPost = (config: UseDeleteBlogPostOptions = {}) => {
   return useMutation({
     ...config,
     mutationFn: (id: string) => deleteBlogPost(id),
+    // update the posts list received from api after successful post is deleted
+    onSuccess: async () =>
+      await queryClient.invalidateQueries({ queryKey: [QueryKeysEnum.POSTS] }),
   });
 };

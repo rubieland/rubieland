@@ -1,6 +1,7 @@
+import { MutationConfig, queryClient } from '@/api/reactQuery';
 import { PostBody } from '@/models/posts/post.entity';
 import { useMutation } from '@tanstack/react-query';
-import { MutationConfig } from '@/api/reactQuery';
+import { QueryKeysEnum } from '@/enums/queryKeys';
 import { api } from '@/api/axios';
 
 const postCreateBlogPost = async (data: PostBody) => {
@@ -29,5 +30,8 @@ export const usePostCreateBlogPost = (
   return useMutation({
     ...config,
     mutationFn: (data: PostBody) => postCreateBlogPost(data),
+    // update the posts list received from api after successful post creation
+    onSuccess: async () =>
+      await queryClient.invalidateQueries({ queryKey: [QueryKeysEnum.POSTS] }),
   });
 };

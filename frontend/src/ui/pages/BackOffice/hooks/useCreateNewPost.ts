@@ -1,7 +1,5 @@
 import { usePostCreateBlogPost } from '@/api/backOffice/blog/postCreateBlogPost';
 import { PostBody } from '@/models/posts/post.entity';
-import { QueryKeysEnum } from '@/enums/queryKeys';
-import { queryClient } from '@/api/reactQuery';
 import { useTranslation } from 'react-i18next';
 import { Id, toast } from 'react-toastify';
 import { AxiosError } from 'axios';
@@ -40,10 +38,7 @@ const useCreateNewPost = () => {
       const id = toast.loading(t('common.formSending'));
       setToastId(id);
     },
-    onSuccess: async () => {
-      // update the posts list received from api after successful post creation
-      await queryClient.invalidateQueries({ queryKey: [QueryKeysEnum.POSTS] });
-
+    onSuccess: () => {
       if (toastId) {
         toast.update(toastId, {
           render: t('form.post.success.postCreationSuccess'),

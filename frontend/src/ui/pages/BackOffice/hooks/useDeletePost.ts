@@ -1,7 +1,5 @@
 import { useDeleteBlogPost } from '@/api/backOffice/blog/deleteBlogPost';
-import { QueryKeysEnum } from '@/enums/queryKeys';
 import { useTranslation } from 'react-i18next';
-import { queryClient } from '@/api/reactQuery';
 import { Id, toast } from 'react-toastify';
 import { AxiosError } from 'axios';
 import { useState } from 'react';
@@ -43,10 +41,7 @@ const useDeletePost = ({ postId }: UseDeletePostType) => {
       const id = toast.loading(t('common.deleting'));
       setToastId(id);
     },
-    onSuccess: async () => {
-      // update the posts list received from api after successful post is deleted
-      await queryClient.invalidateQueries({ queryKey: [QueryKeysEnum.POSTS] });
-
+    onSuccess: () => {
       if (toastId) {
         toast.update(toastId, {
           render: t('form.post.success.postDeletionSuccess'),
