@@ -183,12 +183,14 @@ export const updatePost = async (
     }
 
     if (pictureFile) {
-      if (post.picture)
+      if (post.picture) {
         await deletePicture(`${postsPicturesDir}/${post.picture}`).then(
           async () => {
             post.picture = pictureFile?.filename;
           },
         );
+      }
+      post.picture = pictureFile?.filename;
     }
 
     (Object.keys(postData) as (keyof PostData)[]).forEach((key) => {
