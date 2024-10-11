@@ -6,8 +6,8 @@ export type Post = {
   content: string;
   picture: string | null;
   isPublished: boolean;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string;
+  updatedAt: string;
 };
 
 export type PostBody = {
