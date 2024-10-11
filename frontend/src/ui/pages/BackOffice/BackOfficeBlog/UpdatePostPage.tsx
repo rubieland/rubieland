@@ -19,7 +19,6 @@ const UpdatePostPage = () => {
 
   const tabs = useUpdatePostTabs({
     formMethods,
-    // TODO: fix type error => picture can be a string if it comes from backend
     existingPostData: existingPostData ?? defaultValues,
   });
 

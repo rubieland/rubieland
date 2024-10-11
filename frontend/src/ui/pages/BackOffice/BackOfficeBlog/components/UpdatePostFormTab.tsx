@@ -23,9 +23,6 @@ const UpdatePostFormTab = ({
     keyPrefix: 'pages.backOffice.blog',
   });
 
-  // TODO: add defaultValues props and remove console.log()
-  console.log('existing post data -- ', existingPostData);
-
   const navigate = useNavigate();
 
   const { onSubmit } = useCreateNewPost();

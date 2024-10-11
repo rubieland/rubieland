@@ -21,8 +21,6 @@ const UpdatePostForm = ({
 }: UpdatePostFormProps) => {
   const { t } = useTranslation();
 
-  // TODO: add defaultValues props
-
   return (
     <form>
       <ControlledFileInput
