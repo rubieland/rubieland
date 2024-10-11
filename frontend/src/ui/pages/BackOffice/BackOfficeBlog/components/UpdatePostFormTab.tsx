@@ -1,39 +1,26 @@
 import { PostSchemaFormData } from '../../hooks/usePostFormValidation';
-import useCreateNewPost from '../../hooks/useCreateNewPost';
-import { useNavigate } from '@tanstack/react-router';
+import useUpdatePost from '../../hooks/useUpdatePost';
 import { isFormValid } from '@/utils/form.utils';
 import { UseFormReturn } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import UpdatePostForm from './UpdatePostForm';
 import PostTabsHeader from './PostTabsHeader';
 import '../styles/PostFormTab.scss';
-import { useEffect } from 'react';
 
 interface UpdatePostFormTabProps {
   formMethods: UseFormReturn<PostSchemaFormData>;
+  postId: string;
 }
 
-const UpdatePostFormTab = ({ formMethods }: UpdatePostFormTabProps) => {
+const UpdatePostFormTab = ({ formMethods, postId }: UpdatePostFormTabProps) => {
   const { t } = useTranslation('translation', {
     keyPrefix: 'pages.backOffice.blog',
   });
 
-  const navigate = useNavigate();
-
-  const { onSubmit } = useCreateNewPost();
-  const { handleSubmit, watch, formState, reset } = formMethods;
+  const { onSubmit } = useUpdatePost({ postId });
+  const { handleSubmit, watch } = formMethods;
   const watchedValues = watch(['title', 'content']);
   const isFormFilled = isFormValid(watchedValues);
-
-  const isSubmitSuccessful = formState.isSubmitSuccessful;
-
-  // reset form when the post is successfully updated and navigate back to the blog page
-  useEffect(() => {
-    if (isSubmitSuccessful) {
-      reset();
-      navigate({ to: '/back-office/blog' });
-    }
-  }, [isSubmitSuccessful, reset, navigate]);
 
   return (
     <section>

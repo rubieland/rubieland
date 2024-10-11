@@ -20,6 +20,7 @@ const UpdatePostPage = () => {
   const tabs = useUpdatePostTabs({
     existingPostData,
     formMethods,
+    postId,
   });
 
   if (isPending) return <PageLoader isLoading={isPending} />;

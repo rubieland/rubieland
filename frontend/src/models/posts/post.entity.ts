@@ -1,5 +1,10 @@
 import { PostDto } from './post.dto';
 
+export type ApiPostResponse = {
+  message: string;
+  post: PostDto;
+};
+
 export type Post = {
   id: string;
   title: string;
@@ -13,7 +18,7 @@ export type Post = {
 export type PostBody = {
   title: string;
   content: string;
-  picture: File | null;
+  picture: File | string | null;
   isPublished: boolean;
 };
 

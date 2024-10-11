@@ -15,7 +15,7 @@ const imageSources = [
 
 interface PostPreviewProps {
   formMethods: UseFormReturn<PostSchemaFormData>;
-  existingPostData: Post | undefined;
+  existingPostData?: Post | undefined;
 }
 
 const PostPreview = ({ existingPostData, formMethods }: PostPreviewProps) => {

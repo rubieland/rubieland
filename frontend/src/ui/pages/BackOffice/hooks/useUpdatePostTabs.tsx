@@ -9,11 +9,13 @@ import { TabType } from '@/types/tabs';
 interface UseUpdatePostTabsType {
   formMethods: UseFormReturn<PostSchemaFormData>;
   existingPostData: Post | undefined;
+  postId: string;
 }
 
 export const useUpdatePostTabs = ({
   existingPostData,
   formMethods,
+  postId,
 }: UseUpdatePostTabsType) => {
   const { t } = useTranslation();
 
@@ -21,7 +23,9 @@ export const useUpdatePostTabs = ({
     {
       label: t('pages.backOffice.blog.updatePost'),
       value: 'form',
-      component: <UpdatePostFormTab formMethods={formMethods} />,
+      component: (
+        <UpdatePostFormTab formMethods={formMethods} postId={postId} />
+      ),
     },
     {
       label: t('common.preview'),

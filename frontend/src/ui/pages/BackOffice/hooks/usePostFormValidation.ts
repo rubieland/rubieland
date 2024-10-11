@@ -29,17 +29,19 @@ export const PostSchema = z.object({
     .refine((value) => !forbiddenCharsRegex.test(value), {
       message: i18n.t('form.errors.hasForbiddenChars'),
     }),
-  picture: z
-    .instanceof(File)
-    .refine((file) => acceptedMimeTypes.includes(file.type), {
-      message: i18n.t('form.errors.invalidFileType', {
-        types: acceptedMimeTypesString,
+  picture: z.union([
+    z
+      .instanceof(File)
+      .refine((file) => acceptedMimeTypes.includes(file.type), {
+        message: i18n.t('form.errors.invalidFileType', {
+          types: acceptedMimeTypesString,
+        }),
+      })
+      .refine((file) => file.size <= postPictureMaxFileSize, {
+        message: i18n.t('form.errors.fileTooLarge', { limit: 10 }),
       }),
-    })
-    .refine((file) => file.size <= postPictureMaxFileSize, {
-      message: i18n.t('form.errors.fileTooLarge', { limit: 10 }),
-    })
-    .nullable(),
+    z.string().nullable(),
+  ]),
   isPublished: z.boolean(),
 });
 

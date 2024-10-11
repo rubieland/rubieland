@@ -1,14 +1,25 @@
+import {
+  ApiPostResponse,
+  convertPostDtoToEntity,
+  PostBody,
+} from '@/models/posts/post.entity';
 import { useUpdateBlogPost } from '@/api/backOffice/blog/updateBlogPost';
-import { PostBody } from '@/models/posts/post.entity';
-import { QueryKeysEnum } from '@/enums/queryKeys';
+import { GET_POST_KEY, QueryKeysEnum } from '@/enums/queryKeys';
+import { useNavigate } from '@tanstack/react-router';
+import { AxiosError, AxiosResponse } from 'axios';
+import { PostDto } from '@/models/posts/post.dto';
 import { queryClient } from '@/api/reactQuery';
 import { useTranslation } from 'react-i18next';
 import { Id, toast } from 'react-toastify';
-import { AxiosError } from 'axios';
 import { useState } from 'react';
 
-const useUpdatePost = () => {
+type UseUpdatePostType = {
+  postId: string;
+};
+
+const useUpdatePost = ({ postId }: UseUpdatePostType) => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [toastId, setToastId] = useState<Id | null>(null);
 
@@ -40,8 +51,18 @@ const useUpdatePost = () => {
       const id = toast.loading(t('common.updating'));
       setToastId(id);
     },
-    onSuccess: async () => {
-      await queryClient.invalidateQueries({ queryKey: [QueryKeysEnum.POSTS] });
+    onSuccess: async (data: AxiosResponse<ApiPostResponse>, variables) => {
+      await queryClient.invalidateQueries({
+        queryKey: [QueryKeysEnum.POSTS],
+      });
+      await queryClient.invalidateQueries({
+        queryKey: [GET_POST_KEY(variables.postId)],
+      });
+
+      await queryClient.setQueryData(
+        GET_POST_KEY(variables.postId),
+        convertPostDtoToEntity(data.data.post),
+      );
 
       if (toastId) {
         toast.update(toastId, {
@@ -54,6 +75,8 @@ const useUpdatePost = () => {
           draggable: true,
         });
       }
+
+      navigate({ to: '/back-office/blog' });
     },
     onError: handleUpdatePostError,
     onSettled: () => {
@@ -62,11 +85,14 @@ const useUpdatePost = () => {
     },
   });
 
-  const onSubmit = async (data: PostBody, postId: string) => {
+  const onSubmit = async (data: PostBody): Promise<PostDto | undefined> => {
     try {
-      const response = await updatePost({ newData: data, postId });
+      const response: AxiosResponse<ApiPostResponse> = await updatePost({
+        newData: data,
+        postId,
+      });
 
-      return response;
+      return response.data.post;
     } catch (error) {
       console.error(error);
     }
