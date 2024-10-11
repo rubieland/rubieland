@@ -54,7 +54,7 @@ const useLogin = () => {
           draggable: true,
         });
       }
-      navigate({ to: '/' });
+      navigate({ from: '/login', to: '/' });
     },
     onError: handleLoginError,
     onSettled: () => {
