@@ -4,6 +4,8 @@ import { useTranslation } from 'react-i18next';
 import { Id, toast } from 'react-toastify';
 import { AxiosError } from 'axios';
 import { useState } from 'react';
+import { queryClient } from '@/api/reactQuery';
+import { QueryKeysEnum } from '@/enums/queryKeys';
 
 const useCreateNewPost = () => {
   const { t } = useTranslation();
@@ -38,7 +40,10 @@ const useCreateNewPost = () => {
       const id = toast.loading(t('common.formSending'));
       setToastId(id);
     },
-    onSuccess: () => {
+    onSuccess: async () => {
+      // update the posts list received from api after successful post creation
+      await queryClient.invalidateQueries({ queryKey: [QueryKeysEnum.POSTS] });
+
       if (toastId) {
         toast.update(toastId, {
           render: t('form.post.success.postCreationSuccess'),
