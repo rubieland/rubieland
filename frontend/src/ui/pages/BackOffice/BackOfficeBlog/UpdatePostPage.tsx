@@ -2,24 +2,24 @@ import { useGetPostDetailsBackOffice } from '@/api/backOffice/blog/getPostDetail
 import { usePostFormValidation } from '../hooks/usePostFormValidation';
 import TabsComponent from '@/ui/components/Tabs/TabsComponent';
 import { useUpdatePostTabs } from '../hooks/useUpdatePostTabs';
+import PageLoader from '@/ui/components/Loader/PageLoader';
 import { useParams } from '@tanstack/react-router';
 import { FormProvider } from 'react-hook-form';
 import './styles/PostPage.scss';
-import PageLoader from '@/ui/components/Loader/PageLoader';
 
 const UpdatePostPage = () => {
-  const formMethods = usePostFormValidation();
   const { postId } = useParams({
     from: '/back-office/blog/update-post/$postId',
   });
   const { data: existingPostData, isPending } = useGetPostDetailsBackOffice({
     postId,
   });
-  const defaultValues = formMethods.getValues();
+
+  const formMethods = usePostFormValidation({ existingPostData });
 
   const tabs = useUpdatePostTabs({
+    existingPostData,
     formMethods,
-    existingPostData: existingPostData ?? defaultValues,
   });
 
   if (isPending) return <PageLoader isLoading={isPending} />;

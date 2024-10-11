@@ -2,6 +2,8 @@ import defaultImgMedium from '../../../../../assets/illustrations/blog_default_i
 import defaultImgSmall from '../../../../../assets/illustrations/blog_default_img_small.png';
 import { PostSchemaFormData } from '../../hooks/usePostFormValidation';
 import ResponsiveImage from '@/ui/components/Image/ResponsiveImage';
+import { API_BLOG_PICTURES_PATH, API_URL } from '@/core/envConfig';
+import { Post } from '@/models/posts/post.entity';
 import { UseFormReturn } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import PostTabsHeader from './PostTabsHeader';
@@ -13,13 +15,21 @@ const imageSources = [
 
 interface PostPreviewProps {
   formMethods: UseFormReturn<PostSchemaFormData>;
+  existingPostData: Post | undefined;
 }
 
-const PostPreview = ({ formMethods }: PostPreviewProps) => {
+const PostPreview = ({ existingPostData, formMethods }: PostPreviewProps) => {
   const { t } = useTranslation();
   const { getValues } = formMethods;
   const { title, content, picture } = getValues();
   const now = new Date();
+  const createdAt = new Date(existingPostData?.createdAt ?? now);
+
+  const imgSrc = picture
+    ? typeof picture === 'string'
+      ? `${API_URL}/${API_BLOG_PICTURES_PATH}/${picture}`
+      : URL.createObjectURL(picture)
+    : null;
 
   return (
     <section>
@@ -32,23 +42,19 @@ const PostPreview = ({ formMethods }: PostPreviewProps) => {
             </h3>
             <p className="post-published-date">
               {`${t('pages.blog.postDetailsPage.postedOn', {
-                date: now,
+                date: createdAt,
               })}`}
             </p>
             <p className="post-updated-date">{`${t('pages.blog.postDetailsPage.updatedOn', { date: now })}`}</p>
             <div className="post-details-image-container">
-              {!picture ? (
+              {!imgSrc ? (
                 <ResponsiveImage
                   defaultSrc={defaultImgSmall}
                   alt={t('common.preview')}
                   srcSet={imageSources}
                 />
               ) : (
-                <img
-                  src={URL.createObjectURL(picture)}
-                  alt={t('common.preview')}
-                  loading="lazy"
-                />
+                <img src={imgSrc} alt={t('common.preview')} loading="lazy" />
               )}
             </div>
           </header>

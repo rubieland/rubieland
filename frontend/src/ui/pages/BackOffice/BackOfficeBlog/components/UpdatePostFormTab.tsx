@@ -1,6 +1,5 @@
 import { PostSchemaFormData } from '../../hooks/usePostFormValidation';
 import useCreateNewPost from '../../hooks/useCreateNewPost';
-import { PostBody } from '@/models/posts/post.entity';
 import { useNavigate } from '@tanstack/react-router';
 import { isFormValid } from '@/utils/form.utils';
 import { UseFormReturn } from 'react-hook-form';
@@ -12,13 +11,9 @@ import { useEffect } from 'react';
 
 interface UpdatePostFormTabProps {
   formMethods: UseFormReturn<PostSchemaFormData>;
-  existingPostData: PostBody;
 }
 
-const UpdatePostFormTab = ({
-  formMethods,
-  existingPostData,
-}: UpdatePostFormTabProps) => {
+const UpdatePostFormTab = ({ formMethods }: UpdatePostFormTabProps) => {
   const { t } = useTranslation('translation', {
     keyPrefix: 'pages.backOffice.blog',
   });

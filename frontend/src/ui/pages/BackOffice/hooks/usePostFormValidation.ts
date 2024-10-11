@@ -1,3 +1,4 @@
+import { forbiddenCharsRegex } from '@/utils/string.utils';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import {
@@ -5,9 +6,9 @@ import {
   acceptedMimeTypesString,
   postPictureMaxFileSize,
 } from '@/core/fileUploadConfig';
+import { useEffect } from 'react';
 import i18n from '@/core/i18n';
 import { z } from 'zod';
-import { forbiddenCharsRegex } from '@/utils/string.utils';
 
 export const PostSchema = z.object({
   title: z
@@ -44,8 +45,14 @@ export const PostSchema = z.object({
 
 export type PostSchemaFormData = z.infer<typeof PostSchema>;
 
-export const usePostFormValidation = () => {
-  return useForm<PostSchemaFormData>({
+type UsePostFormValidationType = {
+  existingPostData?: Omit<PostSchemaFormData, 'picture'>;
+};
+
+export const usePostFormValidation = ({
+  existingPostData,
+}: UsePostFormValidationType = {}) => {
+  const formMethods = useForm<PostSchemaFormData>({
     defaultValues: {
       title: '',
       content: '',
@@ -55,4 +62,12 @@ export const usePostFormValidation = () => {
     resolver: zodResolver(PostSchema),
     mode: 'onBlur',
   });
+
+  useEffect(() => {
+    if (existingPostData) {
+      formMethods.reset(existingPostData);
+    }
+  }, [existingPostData, formMethods]);
+
+  return formMethods;
 };
