@@ -42,6 +42,8 @@ const PostDetailsPage = () => {
   // check if the post is published and if the user is admin. If not, redirect user because he should not be able to see the post
   if (!post?.isPublished && !isAdmin) return <Navigate to="/blog" />;
 
+  console.log(typeof post.createdAt);
+
   return (
     <article className="post-details-main-container">
       <header className="post-details-header">

@@ -18,8 +18,6 @@ const PostActionsCell = ({ postId }: PostActionsCellProps) => {
     keyPrefix: 'common',
   });
 
-  console.log('PostActionsCell post id', postId);
-
   const navigate = useNavigate();
 
   const handleNavigateToEditPost = () => {
