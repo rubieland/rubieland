@@ -27,10 +27,10 @@ export const getAdaptableSize = ({
 
   const ratio = originalHeight / originalWidth;
   const w = Number(currentWidth) || originalWidth;
-  const h = w * ratio + 1;
+  const h = w * ratio;
 
   return {
-    h,
-    w,
+    h: parseFloat(h.toFixed(2)),
+    w: parseFloat(w.toFixed(2)),
   };
 };
