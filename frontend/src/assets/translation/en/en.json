@@ -19,6 +19,33 @@
     "updating": "Updating..."
   },
 
+  "SEO": {
+    "home": {
+      "title": "Rubieland - Dog daycare in Vendée",
+      "description": "Welcome to Rubieland, the dog daycare in Vendée. Discover my services, my facilities and my commitment."
+    },
+    "about": {
+      "title": "About Rubieland - Dog daycare in Vendée",
+      "description": "Discover the story of Rubieland, a dog daycare in Vendée. Learn more about my mission, my values and my journey."
+    },
+    "blog": {
+      "title": "Rubieland Blog - News from Rubieland daycare, stories and tips for dog care",
+      "description": "Discover practical tips on dog care, news about Rubieland and tips for taking care of your pet."
+    },
+    "register": {
+      "title": "Registration at Rubieland - Sign up and book a place in dog daycare in Vendée",
+      "description": "Create your account on Rubieland to access your personal space and make reservations for your dog(s)."
+    },
+    "login": {
+      "title": "Login to Rubieland - Access your personal space and book a place in dog daycare in Vendée",
+      "description": "Log in to your Rubieland account to access your personal space and make reservations for your dog(s)."
+    },
+    "profile": {
+      "title": "Rubieland user profile - Manage your personal information and your dog daycare reservations in Vendée",
+      "description": "Access your Rubieland personal space to view your reservations, modify your information, manage your account and the profile(s) of your dog(s)."
+    }
+  },
+
   "aria-labels": {
     "app-logo": "Rubieland logo (link to the home page)",
     "burger-btn": "Toggle menu",

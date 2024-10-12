@@ -19,6 +19,33 @@
     "updating": "Modification en cours..."
   },
 
+  "SEO": {
+    "home": {
+      "title": "Rubieland - Garderie pour chiens en Vendée",
+      "description": "Bienvenue à Rubieland, la garderie pour chiens en Vendée. Découvrez mes services, mes installations et mon engagement."
+    },
+    "about": {
+      "title": "À propos de Rubieland - Garderie canine en Vendée",
+      "description": "Découvrez l'histoire de Rubieland, une garderie pour chiens en Vendée. Apprenez-en plus sur ma mission, mes valeurs et mon parcours."
+    },
+    "blog": {
+      "title": "Blog Rubieland - Actualités de la garderie Rubieland, histoires et conseils pour la garde de chiens",
+      "description": "Découvrez des conseils pratiques sur la garde de chiens, des actualités sur Rubieland et des astuces pour prendre soin de votre animal."
+    },
+    "register": {
+      "title": "Inscription à Rubieland - Inscrivez-vous et réservez une place en garderie canine en Vendée",
+      "description": "Créez votre compte sur Rubieland pour accéder à votre espace personnel et effectuer des réservations pour votre ou vos chien(s)."
+    },
+    "login": {
+      "title": "Connexion à Rubieland - Accédez à votre espace personnel et réservez une place en garderie canine en Vendée",
+      "description": "Connectez-vous à votre compte Rubieland pour accéder à votre espace personnel et effectuer des réservations pour pour votre ou vos chien(s)."
+    },
+    "profile": {
+      "title": "Profil utilisateur Rubieland - Gérez vos informations personnelles et vos réservations de garde canine en Vendée",
+      "description": "Accédez à votre espace personnel Rubieland pour consulter vos réservations, modifier vos informations, gérer votre compte et le(s) profil(s) de votre ou vos chien(s)."
+    }
+  },
+
   "aria-labels": {
     "app-logo": "Logo de Rubieland (lien vers la page d'accueil)",
     "burger-btn": "Ouvrir/Fermer le menu",
