@@ -29,8 +29,6 @@ const SidebarToggleButton = memo(
       [toggleIsOpen, hideSidebar],
     );
 
-    console.log('render SidebarToggleButton');
-
     return (
       <div
         aria-label={t('sidebar-toggle-btn')}
