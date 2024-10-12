@@ -5,12 +5,19 @@ import PageLoader from '../../../components/Loader/PageLoader';
 import colors from '../../../../assets/styles/colors';
 import useRegister from './hooks/useRegister';
 import '../styles/AuthPages.scss';
+import { Helmet } from 'react-helmet-async';
+import { useTranslation } from 'react-i18next';
 
 const RegisterPage = () => {
   const { isPending } = useRegister();
+  const { t } = useTranslation();
 
   return (
     <>
+      <Helmet>
+        <title>{t('SEO.register.title')}</title>
+        <meta name="description" content={t('SEO.register.description')} />
+      </Helmet>
       <div className="auth-page-main-container">
         <RegisterFormBlock />
         <div className="separator-container">

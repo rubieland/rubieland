@@ -5,6 +5,7 @@ import PageLoader from '../../components/Loader/PageLoader';
 import { Post } from '../../../models/posts/post.entity';
 import PostCardList from './components/PostCardList';
 import { useTranslation } from 'react-i18next';
+import { Helmet } from 'react-helmet-async';
 import {
   filterPublishedPosts,
   checkIsBlogEmpty,
@@ -12,7 +13,7 @@ import {
 import './styles/BlogPage.scss';
 
 const BlogPage = () => {
-  const { t } = useTranslation('translation', { keyPrefix: 'pages.blog' });
+  const { t } = useTranslation();
   const { data: allPosts, isLoading, error, refetch } = useGetAllPosts();
 
   // we only show the published posts
@@ -25,7 +26,11 @@ const BlogPage = () => {
 
   return (
     <div className="blog-page-main-container">
-      <h2 className="main-title">{t('title')}</h2>
+      <Helmet>
+        <title>{t('SEO.blog.title')}</title>
+        <meta name="description" content={t('SEO.blog.description')} />
+      </Helmet>
+      <h2 className="main-title">{t('pages.blog.title')}</h2>
       {hasNoPublishedPosts ? (
         <EmptyBlogSection />
       ) : (
