@@ -1,9 +1,9 @@
+import CustomButton from '@/ui/components/Button/CustomButton';
+import ArrowLeft from '@/ui/components/Icons/Arrows/ArrowLeft';
 import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet-async';
-import './styles/ProfilePage.scss';
 import useLogout from '@/hooks/useLogout';
-import ArrowLeft from '@/ui/components/Icons/Arrows/ArrowLeft';
-import CustomButton from '@/ui/components/Button/CustomButton';
+import './styles/ProfilePage.scss';
 
 const ProfilePage = () => {
   const { t } = useTranslation();
