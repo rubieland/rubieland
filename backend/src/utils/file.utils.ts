@@ -15,7 +15,6 @@ export const ensureDirectoryExists = async (
       recursive: true,
     });
   } catch (error: unknown) {
-    // TODO: replace by t()
     throw new Error(`Failed to create directory: ${error}`);
   }
 };
@@ -23,7 +22,6 @@ export const ensureDirectoryExists = async (
 // generate a random name for uploaded files
 export const generateRandomFilename = (originalFilename: string | null) => {
   if (!originalFilename) {
-    // TODO: replace by t()
     throw new Error('Original filename is undefined');
   }
   const fileExtension = originalFilename.split('.').pop();
@@ -46,7 +44,6 @@ export const copyFile = async (
     await fsPromises.copyFile(oldpath, `src/uploads/${newpath}`);
     return newpath;
   } catch (error: unknown) {
-    // TODO: replace by t()
     throw new Error(`Failed to copy file: ${error}`);
   }
 };
@@ -57,7 +54,6 @@ export const copyFiles = async (
   destinationPath: string,
 ): Promise<string[]> => {
   if (!files) {
-    // TODO: replace by t()
     throw new Error('No files to copy');
   }
 
