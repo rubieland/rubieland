@@ -1,14 +1,15 @@
 import FooterSocialMediaBlock from './FooterSocialMediaBlock';
 import { currentYear } from '../../../utils/date.utils';
-import i18n from '../../../core/i18n';
+import { useTranslation } from 'react-i18next';
 import './styles/Footer.scss';
 
 const Footer = () => {
+  const { t } = useTranslation('translation', { keyPrefix: 'footer' });
   return (
     <footer className="app-footer">
       <FooterSocialMediaBlock />
       <p className="footer-copyright">
-        {i18n.t('footer.copyright', { year: currentYear })}
+        {t('copyright', { year: currentYear })}
       </p>
     </footer>
   );

@@ -5,29 +5,31 @@ import { LoginBody } from '../../../../../models/user/user.entity';
 import { addAsterisk } from '../../../../../utils/string.utils';
 import { isFormValid } from '../../../../../utils/form.utils';
 import { FormProvider } from 'react-hook-form';
-import i18n from '../../../../../core/i18n';
+import { useTranslation } from 'react-i18next';
 
 interface LoginFormProps {
   onSubmit: (data: LoginBody) => void;
 }
 
 const LoginForm = ({ onSubmit }: LoginFormProps) => {
+  const { t } = useTranslation();
   const form = useLoginFormValidation();
   const watchedValues = form.watch(['email', 'password']);
   const isFormFilled = isFormValid(watchedValues);
+
   return (
     <FormProvider {...form}>
       <form>
         <ControlledTextInput
-          placeholder={addAsterisk(i18n.t('form.user.emailLabel'))}
-          label={i18n.t('form.user.emailPlaceholder')}
+          placeholder={addAsterisk(t('form.user.emailLabel'))}
+          label={t('form.user.emailPlaceholder')}
           autocomplete="email"
           name="email"
           type="email"
         />
         <ControlledTextInput
-          placeholder={addAsterisk(i18n.t('form.user.password'))}
-          label={i18n.t('form.user.password')}
+          placeholder={addAsterisk(t('form.user.password'))}
+          label={t('form.user.password')}
           autocomplete="new-password"
           name="password"
           type="password"
@@ -35,7 +37,7 @@ const LoginForm = ({ onSubmit }: LoginFormProps) => {
         <div className="form-input">
           <CustomButton
             onClick={form.handleSubmit(onSubmit)}
-            title={i18n.t('common.login')}
+            title={t('common.login')}
             isDisabled={!isFormFilled}
             type="submit"
           />

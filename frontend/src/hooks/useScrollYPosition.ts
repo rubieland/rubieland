@@ -1,20 +1,29 @@
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 
-// this hook tracks the window vertical scroll and returns the scroll Y value
-// which is useful to add styles, animations or elements (like a scroll-to-top button)
-export const useScrollYPosition = () => {
-  const [scrollYPosition, setScrollYPosition] = useState<number>(0);
+type UseScrollPositionType = (threshold?: number) => number;
+
+const useScrollPosition: UseScrollPositionType = (threshold = 40) => {
+  const [scrollY, setScrollY] = useState<number>(window.scrollY);
 
   useEffect(() => {
-    const updatePosition = () => {
-      setScrollYPosition(window.scrollY);
+    let lastKnownScrollY: number = window.scrollY;
+
+    const handleScroll = () => {
+      const currentScrollY: number = window.scrollY;
+      if (Math.abs(currentScrollY - lastKnownScrollY) > threshold) {
+        setScrollY(currentScrollY);
+        lastKnownScrollY = currentScrollY;
+      }
     };
-    window.addEventListener('scroll', updatePosition);
 
-    updatePosition();
+    window.addEventListener('scroll', handleScroll);
 
-    return () => window.addEventListener('scroll', updatePosition);
-  }, []);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [threshold]);
 
-  return scrollYPosition;
+  return scrollY;
 };
+
+export default useScrollPosition;

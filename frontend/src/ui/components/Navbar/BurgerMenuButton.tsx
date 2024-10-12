@@ -1,49 +1,51 @@
-import { useNavbarContext } from './providers/NavbarProvider';
+import { useTranslation } from 'react-i18next';
 import './styles/BurgerMenuButton.scss';
-import i18n from '../../../core/i18n';
+import classNames from 'classnames';
+import { memo } from 'react';
 
-const BurgerMenuButton = () => {
-  const { isOpen, toggleIsOpen, hideMenu } = useNavbarContext();
-  const burgerBtnClassName = isOpen
-    ? 'burger-menu-btn opened'
-    : 'burger-menu-btn';
-  const btnBarclassName = isOpen ? 'burger-menu-bar opened' : 'burger-menu-bar';
+interface BurgerMenuButtonProps {
+  toggleIsOpen: () => void;
+  hideMenu: () => void;
+  isOpen: boolean;
+}
 
-  const handleToggleIsOpen = (e: React.KeyboardEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    toggleIsOpen();
-  };
+// we use memo to prevent too many re-renders of the component
+const BurgerMenuButton = memo(
+  ({ toggleIsOpen, hideMenu, isOpen }: BurgerMenuButtonProps) => {
+    const { t } = useTranslation('translation', { keyPrefix: 'aria-labels' });
 
-  // ACCESSIBILITY: handle keyboard events to show/hide menu
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    switch (event.key) {
-      case 'Enter':
-      case ' ':
-        handleToggleIsOpen(event);
-        break;
-      case 'Escape':
+    const burgerBtnClassName = classNames('burger-menu-btn', {
+      opened: isOpen,
+    });
+    const btnBarclassName = classNames('burger-menu-bar', {
+      opened: isOpen,
+    });
+
+    const toggleMenuOnKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+      if (e.key === ' ') e.preventDefault();
+      else if (e.key === 'Enter') {
+        toggleIsOpen();
+      } else if (e.key === 'Escape') {
         hideMenu();
-        break;
-      default:
-        break;
-    }
-  };
+      }
+    };
 
-  return (
-    <div
-      aria-label={i18n.t('aria-labels.burger-btn')}
-      className={burgerBtnClassName}
-      onKeyDown={handleKeyDown}
-      aria-expanded={isOpen}
-      onClick={toggleIsOpen}
-      role="button"
-      tabIndex={0}
-    >
-      <div className={btnBarclassName}></div>
-      <div className={btnBarclassName}></div>
-      <div className={btnBarclassName}></div>
-    </div>
-  );
-};
+    return (
+      <div
+        onKeyDown={toggleMenuOnKeyDown}
+        className={burgerBtnClassName}
+        aria-label={t('burger-btn')}
+        aria-expanded={isOpen}
+        onClick={toggleIsOpen}
+        role="button"
+        tabIndex={0}
+      >
+        <div className={btnBarclassName}></div>
+        <div className={btnBarclassName}></div>
+        <div className={btnBarclassName}></div>
+      </div>
+    );
+  },
+);
 
 export default BurgerMenuButton;

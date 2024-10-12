@@ -9,6 +9,9 @@ interface CustomButtonProps {
   isDisabled?: boolean;
   outlined?: boolean;
   title: string;
+  icon?: React.ReactNode;
+  iconPosition?: 'left' | 'right' | 'replace';
+  iconStyle?: 'stroke' | 'fill';
 }
 
 const CustomButton = ({
@@ -19,6 +22,9 @@ const CustomButton = ({
   width = '100%',
   onClick,
   title,
+  icon,
+  iconPosition = 'left',
+  iconStyle = 'stroke',
 }: CustomButtonProps) => {
   const className = classNames('btn', {
     [`btn-${style}-outlined`]: outlined,
@@ -37,7 +43,38 @@ const CustomButton = ({
       onClick={onClick}
       type={type}
     >
-      {title}
+      {icon && iconPosition === 'left' && (
+        <span
+          className={
+            iconStyle && iconStyle === 'fill' ? 'icon-left fill' : 'icon-left'
+          }
+        >
+          {icon}
+        </span>
+      )}
+      {iconPosition !== 'replace' && (
+        <span className="button-title">{title}</span>
+      )}
+      {icon && iconPosition === 'right' && (
+        <span
+          className={
+            iconStyle && iconStyle === 'fill' ? 'icon-left fill' : 'icon-right'
+          }
+        >
+          {icon}
+        </span>
+      )}
+      {icon && iconPosition === 'replace' && (
+        <span
+          className={
+            iconStyle && iconStyle === 'fill'
+              ? 'icon-left fill'
+              : 'icon-replace'
+          }
+        >
+          {icon}
+        </span>
+      )}
     </button>
   );
 };

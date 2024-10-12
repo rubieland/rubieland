@@ -1,0 +1,39 @@
+@import '../../../../../assets/styles/variables';
+@import '../../../../../assets/styles/mixins';
+
+.bo-blog-section-header {
+  @include flex-center-between;
+  padding: 1.5rem 0;
+
+  h2 {
+    font-size: clamp(1.125rem, 4vw, 1.5rem);
+  }
+
+  button {
+    min-height: auto;
+    padding: 0.25rem;
+
+    // we remove the button title on small screens
+    .button-title {
+      display: none;
+    }
+  }
+}
+
+// ----- responsive ----- \\
+
+@include respond-to('small') {
+  .bo-blog-section-header {
+    button {
+      padding: 0.375rem 1rem;
+
+      svg {
+        min-height: 1rem;
+      }
+
+      .button-title {
+        display: inline-block;
+      }
+    }
+  }
+}

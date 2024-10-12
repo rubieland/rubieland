@@ -4,13 +4,13 @@ import { SVGProps } from 'react';
 const ImagePen = (props: SVGProps<SVGSVGElement>) => (
   <svg
     width={props.width || 24}
-    height={props.width || 24}
+    height={props.height || 24}
     fill="none"
     viewBox="0 0 24 24"
+    stroke={props.color || colors.black}
     {...props}
   >
     <path
-      stroke={props.color || colors.black}
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth={2}

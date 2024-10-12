@@ -1,37 +1,37 @@
+import ErrorComponent from '../../components/ErrorComponent/ErrorComponent';
 import { useGetAllPosts } from '../../../api/blog/getAllPosts';
+import EmptyBlogSection from './components/EmptyBlogSection';
 import PageLoader from '../../components/Loader/PageLoader';
-import { Link } from '@tanstack/react-router';
+import { Post } from '../../../models/posts/post.entity';
+import PostCardList from './components/PostCardList';
+import { useTranslation } from 'react-i18next';
+import {
+  filterPublishedPosts,
+  checkIsBlogEmpty,
+} from '../../../utils/blog.utils';
+import './styles/BlogPage.scss';
 
 const BlogPage = () => {
-  const { data: posts, isLoading } = useGetAllPosts();
-  const publishedPosts = posts?.filter((a) => a.isPublished);
+  const { t } = useTranslation('translation', { keyPrefix: 'pages.blog' });
+  const { data: allPosts, isLoading, error, refetch } = useGetAllPosts();
+
+  // we only show the published posts
+  const publishedPosts: Post[] = filterPublishedPosts(allPosts) || [];
+  const hasNoPublishedPosts: boolean = checkIsBlogEmpty(publishedPosts);
 
   if (isLoading) return <PageLoader isLoading={isLoading} />;
+  if (error)
+    return <ErrorComponent message={error.message} onRetry={refetch} />;
 
   return (
-    <>
-      <div>
-        <p>BlogPage</p>
-        {!publishedPosts || publishedPosts.length === 0 ? (
-          <p>Aucun article n'a été publié pour le moment !</p>
-        ) : (
-          <div style={{ padding: 24 }}>
-            <p style={{ fontSize: 20, color: 'rebeccapurple' }}>
-              {publishedPosts.length} posts trouvés !
-            </p>
-            <ul>
-              {publishedPosts.map((post, i) => (
-                <li key={i}>
-                  <Link to="/blog/posts/$postId" params={{ postId: post.id }}>
-                    Article {i + 1}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-      </div>
-    </>
+    <div className="blog-page-main-container">
+      <h2 className="main-title">{t('title')}</h2>
+      {hasNoPublishedPosts ? (
+        <EmptyBlogSection />
+      ) : (
+        <PostCardList posts={publishedPosts} />
+      )}
+    </div>
   );
 };
 

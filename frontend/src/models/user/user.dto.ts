@@ -9,6 +9,9 @@ const UserDtoSchema = z.object({
   avatar: z.string().nullable(),
   phone: z.string(),
   role: z.enum(['user', 'admin']).default('user'),
+  createdAt: z.date(),
+  updatedAt: z.date(),
+  __v: z.number(),
 });
 
 export type UserDto = z.infer<typeof UserDtoSchema>;

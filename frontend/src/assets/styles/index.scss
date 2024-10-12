@@ -1,3 +1,6 @@
+@import './form.scss';
+@import './fonts.scss';
+@import './buttons.scss';
 @import './placeholders';
 @import './variables';
 @import './mixins';
@@ -22,6 +25,12 @@ body {
   font-weight: normal;
 }
 
+html,
+body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
 h1,
 h2,
 h3,
@@ -29,12 +38,33 @@ h4,
 h5,
 h6 {
   font-family: $secondary-font-stack;
-  text-align: center;
   font-weight: 600;
 }
 
 h1 {
-  font-size: clamp(1.5rem, 2vw + 1rem, 3rem);
-  font-weight: bold;
-  color: $primary;
+  font-size: $h1-font-size;
+}
+
+h2 {
+  font-size: $h2-font-size;
+}
+
+h3 {
+  font-size: $h3-font-size;
+}
+
+h4 {
+  font-size: $h4-font-size;
+}
+
+h5 {
+  font-size: $h5-font-size;
+}
+
+h6 {
+  font-size: $h6-font-size;
+}
+
+.main-title {
+  font-size: clamp(1.25rem, 2vw + 1rem, $main-title-font-size);
 }

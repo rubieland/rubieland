@@ -8,15 +8,12 @@
   width: 100%;
 
   > h2 {
-    font-size: 1.125rem;
-    max-width: 36rem;
+    width: min(100%, 36rem);
     text-align: left;
     color: $primary;
-    width: inherit;
   }
 
   > form {
-    max-width: 40rem;
-    width: 100%;
+    width: min(100%, 40rem);
   }
 }

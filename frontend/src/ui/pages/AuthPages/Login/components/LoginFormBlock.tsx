@@ -1,14 +1,17 @@
-import i18n from '../../../../../core/i18n';
+import { useTranslation } from 'react-i18next';
 import useLogin from '../hooks/useLogin';
 import '../../styles/AuthBlocks.scss';
 import LoginForm from './LoginForm';
 
 const LoginFormBlock = () => {
+  const { t } = useTranslation('translation', {
+    keyPrefix: 'pages.login.loginFormBlock',
+  });
   const { onSubmit } = useLogin();
 
   return (
     <section className="auth-form-container">
-      <h2>{i18n.t('pages.login.loginFormBlock.title')}</h2>
+      <h2>{t('title')}</h2>
       <LoginForm onSubmit={onSubmit} />
     </section>
   );

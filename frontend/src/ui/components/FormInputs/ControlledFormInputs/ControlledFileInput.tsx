@@ -1,3 +1,4 @@
+import { acceptedMimeTypesString } from '@/core/fileUploadConfig';
 import { Controller, useFormContext } from 'react-hook-form';
 import EditPictureFileInput from '../EditPictureFileInput';
 import { ChangeEvent, useRef, useState } from 'react';
@@ -5,8 +6,7 @@ import FileInput from '../FileInput';
 
 interface ControlledFileInputProps {
   pictureType: 'avatar' | 'postPicture';
-  currentAvatar?: string | null;
-  acceptedMimetypes: string;
+  existingImage?: string | null;
   isRequired?: boolean;
   multiple?: boolean;
   label: string;
@@ -14,20 +14,23 @@ interface ControlledFileInputProps {
 }
 
 const ControlledFileInput = ({
-  currentAvatar = null,
+  existingImage = null,
   isRequired = false,
-  acceptedMimetypes,
   multiple = false,
   pictureType,
   label,
   name,
 }: ControlledFileInputProps) => {
   const inputFileRef = useRef<HTMLInputElement | null>(null);
+  const { control, getValues } = useFormContext();
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
-  const { control } = useFormContext();
-  const [previewUrl, setPreviewUrl] = useState<string | ArrayBuffer | null>(
-    currentAvatar,
-  );
+  // imageSource is the image that will be displayed in the input
+  // it can be a File if the user has uploaded a file using the input,
+  // a string if the image already exists in backend
+  // or null if there is no image
+  const imageSource: File | string | null =
+    selectedFile || existingImage || getValues(name) || null;
 
   const className =
     pictureType === 'avatar' ? `edit-avatar-input` : `edit-post-picture-input`;
@@ -36,19 +39,18 @@ const ControlledFileInput = ({
     e: ChangeEvent<HTMLInputElement>,
     onChange: (...event: any[]) => void,
   ) => {
+    // get the file from the input
     const target = e.target as HTMLInputElement & {
       files: FileList;
     };
 
-    const selectedFile = target.files[0];
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setPreviewUrl(reader.result);
-    };
+    // get the first file from the file list
+    const file = target.files[0];
 
-    if (selectedFile) {
-      reader.readAsDataURL(selectedFile);
-      onChange([selectedFile]);
+    // if the user has selected a file, set it as the selected file
+    if (file) {
+      setSelectedFile(file);
+      onChange(file);
     }
   };
 
@@ -59,8 +61,8 @@ const ControlledFileInput = ({
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
-    if (e.key === ' ' || e.key === 'Enter') {
-      e.preventDefault();
+    if (e.key === ' ') e.preventDefault();
+    else if (e.key === 'Enter') {
       handleClick();
     }
   };
@@ -80,7 +82,7 @@ const ControlledFileInput = ({
           >
             <FileInput
               onChange={(e) => handleChange(e, onChange)}
-              acceptedMimetypes={acceptedMimetypes}
+              acceptedMimetypes={acceptedMimeTypesString}
               isRequired={isRequired}
               isInvalid={!!error}
               multiple={multiple}
@@ -88,9 +90,8 @@ const ControlledFileInput = ({
               label={label}
               name={name}
             />
-
             <EditPictureFileInput
-              previewUrl={previewUrl}
+              imageSource={imageSource}
               pictureType={pictureType}
               label={label}
             />

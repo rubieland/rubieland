@@ -8,8 +8,6 @@ export const getAllPosts = async (): Promise<Post[]> => {
   const response = await api.get(`/blog/posts/all`);
   const posts = response.data.posts;
 
-  console.log(posts);
-
   return posts.map(convertPostDtoToEntity);
 };
 

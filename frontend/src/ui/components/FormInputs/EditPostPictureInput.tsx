@@ -1,33 +1,38 @@
+import { API_BLOG_PICTURES_PATH, API_URL } from '@/core/envConfig';
 import colors from '../../../assets/styles/colors';
 import ImageCircle from '../Icons/ImageCircle';
-import ImagePen from '../Icons/ImagePen';
-import i18n from '../../../core/i18n';
+import { useTranslation } from 'react-i18next';
 
 interface EditPostPictureInputProps {
-  previewUrl: string | ArrayBuffer | null;
+  imageSource: File | string | null;
   label: string;
 }
 
 const EditPostPictureInput = ({
-  previewUrl,
+  imageSource,
   label,
 }: EditPostPictureInputProps) => {
-  const isPreviewUrlString = previewUrl && typeof previewUrl === 'string';
+  const { t } = useTranslation('translation', { keyPrefix: 'common' });
+
+  // if imageSource is a string, it means that the picture already exists and we should get it from the server
+  // if it is a File, it means that the user has selected a new picture and we should display it
+  // if it is null, it means that there is no picture from the server or the user has not selected a new picture yet
+  const imgSrc = imageSource
+    ? typeof imageSource === 'string'
+      ? `${API_URL}/${API_BLOG_PICTURES_PATH}/${imageSource}`
+      : URL.createObjectURL(imageSource)
+    : null;
 
   return (
     <figure className="edit-post-picture-figure">
-      {isPreviewUrlString ? (
-        <img src={previewUrl} alt={label} />
+      {imgSrc ? (
+        <img src={imgSrc} alt={label} loading="lazy" />
       ) : (
         <>
-          <ImageCircle color={colors.grey50} />
-          <p>{i18n.t('common.addPicture')}</p>
+          <ImageCircle color={colors.grey60} />
+          <p>{t('addPicture')}</p>
         </>
       )}
-      <figcaption className="edit-post-picture-figcaption">
-        <ImagePen color={colors.white} />
-        <p>{i18n.t('common.edit')}</p>
-      </figcaption>
     </figure>
   );
 };

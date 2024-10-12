@@ -1,4 +1,4 @@
-import BackOfficePostDetailPage from '../../../../ui/pages/BackOffice/BackOfficeBlog/BackOfficePostDetailPage';
+import BackOfficePostDetailsPage from '../../../../ui/pages/BackOffice/BackOfficeBlog/BackOfficePostDetailsPage';
 import { createFileRoute } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/back-office/blog/posts/$postId')({
@@ -6,5 +6,5 @@ export const Route = createFileRoute('/back-office/blog/posts/$postId')({
   // loader: async ({ params }) => {
   //     return getPost(params.postId)
   //   },
-  component: BackOfficePostDetailPage,
+  component: BackOfficePostDetailsPage,
 });

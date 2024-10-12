@@ -6,8 +6,9 @@ const PostDtoSchema = z.object({
   content: z.string(),
   picture: z.string().nullable(),
   isPublished: z.boolean(),
-  createdAt: z.date(),
-  updatedAt: z.date(),
+  createdAt: z.string(),
+  updatedAt: z.string(),
+  __v: z.number(),
 });
 
 export type PostDto = z.infer<typeof PostDtoSchema>;

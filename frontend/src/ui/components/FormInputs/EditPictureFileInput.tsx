@@ -2,22 +2,22 @@ import EditPostPictureInput from './EditPostPictureInput';
 import EditAvatarInput from './EditAvatarInput';
 
 interface EditPictureFileInputProps {
-  previewUrl: string | ArrayBuffer | null;
   pictureType: 'avatar' | 'postPicture';
+  imageSource: File | string | null;
   label: string;
 }
 
 const EditPictureFileInput = ({
   pictureType,
-  previewUrl,
+  imageSource,
   label,
 }: EditPictureFileInputProps) => {
   const isAvatar = pictureType === 'avatar';
 
   if (isAvatar) {
-    return <EditAvatarInput previewUrl={previewUrl} label={label} />;
+    return <EditAvatarInput imageSource={imageSource} label={label} />;
   } else {
-    return <EditPostPictureInput previewUrl={previewUrl} label={label} />;
+    return <EditPostPictureInput imageSource={imageSource} label={label} />;
   }
 };
 

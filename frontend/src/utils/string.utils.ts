@@ -1,3 +1,5 @@
+export const forbiddenCharsRegex: RegExp = /[<>^~|\\{}]/;
+
 /**
  * Adds an asterisk at the end of a text if there isn't already one
  * @param text the text to which an asterisk will be added
@@ -9,4 +11,8 @@ export const addAsterisk = (text: string): string => {
   } else {
     return text + ' *';
   }
+};
+
+export const hasForbiddenChars = (fieldValue: string) => {
+  return forbiddenCharsRegex.test(fieldValue);
 };

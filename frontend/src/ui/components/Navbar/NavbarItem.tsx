@@ -1,11 +1,11 @@
-import { useNavbarContext } from './providers/NavbarProvider';
 import colors from '../../../assets/styles/colors';
-import '../../../assets/styles/_variables.scss';
+import { LinkType } from '../../../types/links';
 import { Link } from '@tanstack/react-router';
+import { memo } from 'react';
 
 interface NavbarItemProps {
-  title: string;
-  to: string;
+  hideMenu: () => void;
+  link: LinkType;
 }
 
 const activeProps = {
@@ -15,24 +15,24 @@ const activeProps = {
   },
 };
 
-const NavbarItem = ({ title, to }: NavbarItemProps) => {
-  const { hideMenu } = useNavbarContext();
-
-  const hideOnEscapeKeyDown = (e: React.KeyboardEvent<'a'>) => {
-    if (e.key === 'Escape') hideMenu();
+// we use memo to prevent too many re-renders of the component
+const NavbarItem = memo(({ link, hideMenu }: NavbarItemProps) => {
+  const handleKeyDown = (e: React.KeyboardEvent<'a'>) => {
+    if (['Enter', 'Escape'].includes(e.key)) {
+      hideMenu();
+    }
   };
 
   return (
     <Link
-      onKeyDown={hideOnEscapeKeyDown}
+      onKeyDown={handleKeyDown}
       activeProps={activeProps}
-      className="navbar-link"
       onClick={hideMenu}
-      to={to}
+      to={link.to}
     >
-      {title}
+      {link.title}
     </Link>
   );
-};
+});
 
 export default NavbarItem;

@@ -20,10 +20,10 @@
     @extend %btn-secondary;
 
     &-outlined {
-      @include btn-styles(transparent, $secondary, $secondary);
+      @include btn-styles(transparent, $black, $black);
 
       &:hover {
-        @include btn-styles($secondary, $white);
+        @include btn-styles($black, $white);
       }
     }
   }
@@ -48,7 +48,7 @@
     @extend %btn-error;
 
     &-outlined {
-      @include btn-styles(transparent, $red, $red);
+      @include btn-styles(transparent, $red, $red, $red, $red);
 
       &:hover {
         @include btn-styles($red, $white);

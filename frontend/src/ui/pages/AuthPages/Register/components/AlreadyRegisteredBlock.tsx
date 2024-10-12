@@ -1,13 +1,17 @@
+import { useTranslation } from 'react-i18next';
 import { Link } from '@tanstack/react-router';
-import i18n from '../../../../../core/i18n';
 import '../../styles/AuthBlocks.scss';
 
 const AlreadyRegisteredBlock = () => {
+  const { t } = useTranslation('translation', {
+    keyPrefix: 'pages.register.alreadyRegisteredBlock',
+  });
+
   return (
     <section className="auth-link-container">
-      <p>{i18n.t('pages.register.alreadyRegisteredBlock.title')} </p>
+      <p>{t('title')} </p>
       <Link className="auth-link" to="/login">
-        {i18n.t('pages.register.alreadyRegisteredBlock.linkTitle')}
+        {t('linkTitle')}
       </Link>
     </section>
   );
