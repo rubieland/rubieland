@@ -1,7 +1,8 @@
-import Banner from '@/ui/components/Banner/Banner';
+import PresentationSection from './components/PresentationSection';
 import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet-async';
-import './HomePage.scss';
+import Banner from './components/Banner';
+import './styles/HomePage.scss';
 
 const Home = () => {
   const { t } = useTranslation();
@@ -13,6 +14,7 @@ const Home = () => {
         <meta name="description" content={t('SEO.home.description')} />
       </Helmet>
       <Banner />
+      <PresentationSection />
     </div>
   );
 };
