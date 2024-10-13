@@ -10,7 +10,16 @@ form {
 .form-input {
   width: min(100%, 36rem);
   @include flex-column;
+  position: relative;
   gap: 0.125rem;
+}
+
+.input-icon {
+  transform: translateY(-50%);
+  position: absolute;
+  cursor: pointer;
+  right: 0.5rem;
+  top: 50%;
 }
 
 .checkbox-input {
