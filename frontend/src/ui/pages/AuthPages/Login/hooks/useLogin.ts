@@ -3,81 +3,52 @@ import { LoginBody } from '../../../../../models/user/user.entity';
 import { usePostLogin } from '../../../../../api/auth/postLogin';
 import { useNavigate } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
-import { Id, toast } from 'react-toastify';
 import { AxiosError } from 'axios';
-import { useState } from 'react';
+import { toast } from 'sonner';
 
 const useLogin = () => {
   const { t } = useTranslation();
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const [toastId, setToastId] = useState<Id | null>(null);
   const { setSession } = useSessionStoreActions();
   const navigate = useNavigate({ from: '/login' });
 
-  const handleLoginError = (error: AxiosError) => {
-    let message;
-    if (error.response && error.response.status === 400) {
-      message = t('auth.error.invalidCredentials');
-    } else {
-      message = t('auth.error.loginFailed');
+  const handleLoginError = (error: unknown) => {
+    if (error instanceof AxiosError) {
+      if (error.response?.status === 400) {
+        return toast.error(t('auth.error.invalidCredentials'));
+      }
+      return toast.error(t('auth.error.loginFailed'));
     }
 
-    setErrorMessage(message);
-
-    if (toastId) {
-      toast.update(toastId, {
-        render: message,
-        type: 'error',
-        isLoading: false,
-        autoClose: 3000,
-        pauseOnHover: false,
-        closeOnClick: true,
-        draggable: true,
-      });
-    }
+    console.error('Unexpected error:', error);
+    return toast.error(t('common.genericError'));
   };
 
   const { mutateAsync: login, isPending } = usePostLogin({
-    onMutate: () => {
-      const id = toast.loading(t('common.formSending'));
-      setToastId(id);
-    },
     onSuccess: () => {
-      if (toastId) {
-        toast.update(toastId, {
-          render: t('auth.success.loginSuccess'),
-          type: 'success',
-          isLoading: false,
-          autoClose: 3000,
-          pauseOnHover: false,
-          closeOnClick: true,
-          draggable: true,
-        });
-      }
+      toast.success(t('auth.success.loginSuccess'));
       navigate({ from: '/login', to: '/' });
     },
     onError: handleLoginError,
-    onSettled: () => {
-      setToastId(null);
-      toast.clearWaitingQueue();
-    },
   });
 
   const onSubmit = async (data: LoginBody) => {
+    const loadingToastId = toast.loading(t('auth.loading.loginLoading'));
+
     try {
       const loginResponse = await login(data);
       const { accessToken, user } = loginResponse.data;
 
       setSession({ accessToken, user });
 
+      toast.dismiss(loadingToastId);
       return loginResponse;
     } catch (error) {
-      console.error(error);
+      toast.dismiss(loadingToastId);
       throw error;
     }
   };
 
-  return { onSubmit, errorMessage, isPending };
+  return { onSubmit, isPending };
 };
 
 export default useLogin;
