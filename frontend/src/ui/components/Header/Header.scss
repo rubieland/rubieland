@@ -2,16 +2,33 @@
 @import '../../../assets/styles/mixins';
 
 .app-header {
-  transition: box-shadow 500ms ease-in-out;
+  transition:
+    background-color 0.3s ease-in-out,
+    box-shadow 0.3s ease-in-out;
   justify-content: space-between;
   height: $app-header-height;
+  background-color: $white;
   @include flex-center-y;
-  position: sticky;
   z-index: 100;
   inset: 0;
 
   &.header-scrolled {
+    background-color: rgba(255, 255, 255, 0.5);
+    transition:
+      background-color 0.3s ease-in-out,
+      box-shadow 0.3s ease-in-out;
     @include box-shadow-bottom;
-    backdrop-filter: blur(5px);
+    position: sticky;
+
+    &::before {
+      backdrop-filter: blur(10px);
+      position: absolute;
+      content: '';
+      z-index: -1;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      top: 0;
+    }
   }
 }

@@ -3,7 +3,7 @@
 
 .auth-page-main-container {
   @include flex-center-column;
-  background-color: $white;
+  background-color: $grey10;
   @include box-shadow;
   margin: 2rem auto;
   width: 100%;

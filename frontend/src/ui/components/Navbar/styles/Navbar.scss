@@ -2,7 +2,7 @@
 @import '../../../../assets/styles/mixins';
 
 .navbar {
-  transition: transform 0.7s ease-in-out;
+  transition: transform 0.3s ease-in-out;
   @include flex-center-column;
   @include box-shadow-left;
   background-color: $white;
@@ -18,7 +18,7 @@
   transform: translateX(100%);
 
   &.opened {
-    transition: transform 0.7s ease-in-out;
+    transition: transform 0.3s ease-in-out;
     transform: translateX(0);
   }
 }
