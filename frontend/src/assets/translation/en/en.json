@@ -192,6 +192,30 @@
         "backToBlog": "Go back to blog"
       }
     },
+    "about": {
+      "title": "About Rubieland",
+      "sections": {
+        "aboutRubieland": {
+          "title": "What is Rubieland?",
+          "content": "Rubieland is a dog daycare that offers a safe and entertaining environment for your companions."
+        },
+        "facilities": {
+          "title": "Facility Details",
+          "content": "My facilities include a large outdoor play area, a comfortable rest room, and 24/7 surveillance service."
+        },
+        "location": {
+          "title": "Where is Rubieland?",
+          "content": "Rubieland is located in a peaceful area near the city, easily accessible by car."
+        },
+        "prestations": {
+          "title": "Services and Rates",
+          "content": {
+            "fullDay": "Full-day daycare: 30€",
+            "halfDay": "Half-day daycare: 18€"
+          }
+        }
+      }
+    },
     "backOffice": {
       "backOfficeSidebar": {
         "headerTitle": "Back office",
