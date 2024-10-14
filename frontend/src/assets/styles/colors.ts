@@ -1,6 +1,6 @@
 const colors = {
-  primary: '#704dab',
-  primarylight: '#e0d5ed',
+  primary: '#5a3d8a',
+  primarylight: '#ede7f5',
   white: '#ffffff',
   black: '#151515',
   blackTransp80: 'rgba(0, 0, 0, 0.8)',
@@ -10,7 +10,7 @@ const colors = {
   $errorText: '#721c24',
   $green: '#66bb6a',
   $successBg: '#d4edda',
-  $successText: '#155724',
+  $successText: '#124d1f',
   lightBlue: '#e7eefe',
   lightPink: '#ffe6e6',
   grey10: '#f5f5f5',
