@@ -23,7 +23,7 @@
   "SEO": {
     "home": {
       "title": "Rubieland - Dog daycare in Vendée",
-      "description": "Welcome to Rubieland, the dog daycare in Vendée. Discover my services, my facilities and my commitment."
+      "description": "Welcome to Rubieland, the dog daycare in Vendée. Discover my services, my amenities and my commitment."
     },
     "about": {
       "title": "About Rubieland - Dog daycare in Vendée",
@@ -213,9 +213,9 @@
           "title": "What is Rubieland?",
           "content": "Rubieland is a dog daycare that offers a safe and entertaining environment for your companions."
         },
-        "facilities": {
+        "amenities": {
           "title": "Facility Details",
-          "content": "My facilities include a large outdoor play area, a comfortable rest room, and 24/7 surveillance service."
+          "content": "My amenities include a large outdoor play area, a comfortable rest room, and 24/7 surveillance service."
         },
         "location": {
           "title": "Where is Rubieland?",
