@@ -160,6 +160,19 @@
   },
 
   "pages": {
+    "home": {
+      "banner": {
+        "bannerTitle": "Welcome to Rubieland!",
+        "bannerText": "The best place for your dog!",
+        "bannerCTA": "Discover Rubieland",
+        "bannerImgAlt": "A black labrador retriever having its tongue hanging out"
+      },
+      "presentation": {
+        "title": "Welcome to Rubieland",
+        "firstDesc": "At Rubieland, your furry friend will find more than just a daycare - they'll find a second home. Whether it's for half a day or a full day, I'm here to provide services focused on your dog's happiness and well-being. Everything here is designed to offer them a fun and safe environment where they can thrive with confidence.",
+        "secondDesc": "Every dog is unique, which is why I focus on personalized care, with activities tailored to their needs and preferences. Trust me to take care of your beloved companion with all the love and attention they deserve. Here, they'll be pampered just like at home!"
+      }
+    },
     "register": {
       "alreadyRegisteredBlock": {
         "title": "Already have an account?",
