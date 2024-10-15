@@ -26,8 +26,6 @@ const Sidebar = memo(({ links, title }: SidebarProps) => {
       opened: isOpen,
     });
 
-  // TODO: add submenus for nested routes
-
   return (
     <aside className={getClassNames('sidebar')}>
       <header className={getClassNames('sidebar-header')}>

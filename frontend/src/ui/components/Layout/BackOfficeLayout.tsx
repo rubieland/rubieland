@@ -12,6 +12,9 @@ const BackOfficeLayout = () => {
     keyPrefix: 'pages.backOffice',
   });
 
+  // TODO: add submenus for nested routes
+  // TODO: add logout button
+
   const links: LinkType[] = [
     {
       title: t('backOfficeSidebar.links.dashboard'),
