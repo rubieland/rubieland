@@ -16,6 +16,8 @@ const BackOfficeBlogPage = () => {
   if (error)
     return <ErrorComponent message={error.message} onRetry={refetch} />;
 
+  // TODO: add pagination when InfiniteQuery is implemented
+
   return (
     <section className="bo-blog-section">
       <BackOfficeBlogPageHeader />
