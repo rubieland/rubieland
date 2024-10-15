@@ -18,6 +18,7 @@ type UseGetAllPostsOptions = {
 };
 
 export const useGetAllPosts = ({ config }: UseGetAllPostsOptions = {}) => {
+  // TODO: replace with InfiniteQuery to have pagination
   return useQuery<ExtractFnReturnType<QueryFnType>>({
     ...config,
     queryKey: [QueryKeysEnum.POSTS],

@@ -9,6 +9,7 @@
   height: $app-header-height;
   background-color: $white;
   @include flex-center-y;
+  position: sticky;
   z-index: 100;
   inset: 0;
 
@@ -18,7 +19,6 @@
       background-color 0.3s ease-in-out,
       box-shadow 0.3s ease-in-out;
     @include box-shadow-bottom;
-    position: sticky;
 
     &::before {
       backdrop-filter: blur(10px);

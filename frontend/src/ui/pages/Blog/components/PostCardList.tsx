@@ -10,6 +10,8 @@ interface PostCardListProps {
 const PostCardList = ({ posts }: PostCardListProps) => {
   const { t } = useTranslation('translation', { keyPrefix: 'pages.blog' });
 
+  // TODO: add pagination when InfiniteQuery is implemented
+
   return (
     <section className="post-card-list-container">
       <div className="post-card-list">
