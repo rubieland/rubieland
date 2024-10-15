@@ -106,6 +106,7 @@
   }
 
   span {
+    @include flex-center-y;
     color: $text-color;
 
     svg {

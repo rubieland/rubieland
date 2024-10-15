@@ -11,6 +11,7 @@
     "goBackToHomepage": "Revenir à l'accueil",
     "register": "M'inscrire",
     "login": "Me connecter",
+    "logout": "Me déconnecter",
     "formSending": "Envoi en cours...",
     "preview": "Prévisualisation",
     "genericError": "Une erreur inattendue est survenue. Veuillez réessayer plus tard.",
@@ -174,38 +175,6 @@
         "imageAlt": "Un chien souriant dans un jardin"
       }
     },
-    "register": {
-      "alreadyRegisteredBlock": {
-        "title": "Vous avez déjà un compte ?",
-        "linkTitle": "Connectez-vous"
-      },
-      "registerFormBlock": {
-        "title": "Créez votre compte"
-      }
-    },
-    "login": {
-      "notRegisteredYetBlock": {
-        "title": "Pas encore de compte ?",
-        "linkTitle": "Créez votre compte"
-      },
-      "loginFormBlock": {
-        "title": "Connectez-vous"
-      }
-    },
-    "blog": {
-      "title": "Blog",
-      "emptyBlogText": "Aucun article n'a été publié pour le moment.",
-      "allPosts": "Tous les articles",
-      "postCard": {
-        "date": "{{ date, medium }}",
-        "readMore": "Lire la suite"
-      },
-      "postDetailsPage": {
-        "postedOn": "Publié le {{ date, medium }}",
-        "updatedOn": "Mis à jour le {{ date, mediumWithTime }}",
-        "backToBlog": "Revenir au blog"
-      }
-    },
     "about": {
       "title": "À propos de Rubieland",
       "sections": {
@@ -228,6 +197,43 @@
             "halfDay": "Garderie à la demi-journée: 18€"
           }
         }
+      }
+    },
+    "blog": {
+      "title": "Blog",
+      "emptyBlogText": "Aucun article n'a été publié pour le moment.",
+      "allPosts": "Tous les articles",
+      "postCard": {
+        "date": "{{ date, medium }}",
+        "readMore": "Lire la suite"
+      },
+      "postDetailsPage": {
+        "postedOn": "Publié le {{ date, medium }}",
+        "updatedOn": "Mis à jour le {{ date, mediumWithTime }}",
+        "backToBlog": "Revenir au blog"
+      }
+    },
+    "profile": {
+      "title": "Mon profil",
+      "personalInfo": "Informations personnelles",
+      "accountInfo": "Informations de compte"
+    },
+    "login": {
+      "notRegisteredYetBlock": {
+        "title": "Pas encore de compte ?",
+        "linkTitle": "Créez votre compte"
+      },
+      "loginFormBlock": {
+        "title": "Connectez-vous"
+      }
+    },
+    "register": {
+      "alreadyRegisteredBlock": {
+        "title": "Vous avez déjà un compte ?",
+        "linkTitle": "Connectez-vous"
+      },
+      "registerFormBlock": {
+        "title": "Créez votre compte"
       }
     },
     "backOffice": {

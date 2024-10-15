@@ -11,6 +11,7 @@
     "goBackToHomepage": "Go back to homepage",
     "register": "Register",
     "login": "Log in",
+    "logout": "Log out",
     "formSending": "Sending...",
     "preview": "Preview",
     "genericError": "An error occurred. Please try again later.",
@@ -174,38 +175,6 @@
         "imageAlt": "A smiling dog in a garden"
       }
     },
-    "register": {
-      "alreadyRegisteredBlock": {
-        "title": "Already have an account?",
-        "linkTitle": "Log in"
-      },
-      "registerFormBlock": {
-        "title": "Create your account"
-      }
-    },
-    "login": {
-      "notRegisteredYetBlock": {
-        "title": "No account yet?",
-        "linkTitle": "Create your account"
-      },
-      "loginFormBlock": {
-        "title": "Log in"
-      }
-    },
-    "blog": {
-      "title": "Blog",
-      "emptyBlogText": "No post published yet.",
-      "allPosts": "All posts",
-      "postCard": {
-        "date": "{{ date, medium }}",
-        "readMore": "Read more"
-      },
-      "postDetailsPage": {
-        "postedOn": "Posted on {{ date, medium }}",
-        "updatedOn": "Updated on {{ date, mediumWithTime }}",
-        "backToBlog": "Go back to blog"
-      }
-    },
     "about": {
       "title": "About Rubieland",
       "sections": {
@@ -228,6 +197,43 @@
             "halfDay": "Half-day daycare: 18€"
           }
         }
+      }
+    },
+    "blog": {
+      "title": "Blog",
+      "emptyBlogText": "No post published yet.",
+      "allPosts": "All posts",
+      "postCard": {
+        "date": "{{ date, medium }}",
+        "readMore": "Read more"
+      },
+      "postDetailsPage": {
+        "postedOn": "Posted on {{ date, medium }}",
+        "updatedOn": "Updated on {{ date, mediumWithTime }}",
+        "backToBlog": "Go back to blog"
+      }
+    },
+    "profile": {
+      "title": "My profile",
+      "personalInfo": "Personal information",
+      "accountInfo": "Account information"
+    },
+    "login": {
+      "notRegisteredYetBlock": {
+        "title": "No account yet?",
+        "linkTitle": "Create your account"
+      },
+      "loginFormBlock": {
+        "title": "Log in"
+      }
+    },
+    "register": {
+      "alreadyRegisteredBlock": {
+        "title": "Already have an account?",
+        "linkTitle": "Log in"
+      },
+      "registerFormBlock": {
+        "title": "Create your account"
       }
     },
     "backOffice": {
