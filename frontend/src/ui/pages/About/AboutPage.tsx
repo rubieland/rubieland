@@ -36,8 +36,8 @@ const AboutPage = () => {
         <section className="about-section" id="services">
           <h3>{t('pages.about.sections.prestations.title')}</h3>
           <div className="about-section-content">
-            {t('pages.about.sections.prestations.content.fullDay')}
-            {t('pages.about.sections.prestations.content.halfDay')}
+            <p>{t('pages.about.sections.prestations.content.fullDay')}</p>
+            <p>{t('pages.about.sections.prestations.content.halfDay')}</p>
           </div>
         </section>
       </div>

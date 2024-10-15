@@ -1,7 +1,7 @@
 import PresentationSection from './components/PresentationSection';
 import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet-async';
-import Banner from './components/Banner';
+import HeroImage from './components/HeroImage';
 import './styles/HomePage.scss';
 
 const Home = () => {
@@ -13,7 +13,7 @@ const Home = () => {
         <title>{t('SEO.home.title')}</title>
         <meta name="description" content={t('SEO.home.description')} />
       </Helmet>
-      <Banner />
+      <HeroImage />
       <PresentationSection />
     </div>
   );
