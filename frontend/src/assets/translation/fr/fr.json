@@ -161,16 +161,17 @@
 
   "pages": {
     "home": {
-      "banner": {
-        "bannerTitle": "Sa garderie préférée",
-        "bannerText": "L'aventure commence ici !",
-        "bannerCTA": "Découvrir Rubieland",
-        "bannerImageAlt": "Un labrador retriever noir ayant la langue pendante"
+      "heroImage": {
+        "heroImageTitle": "Sa garderie préférée",
+        "heroImageText": "L'aventure commence ici !",
+        "heroImageCTA": "Découvrir Rubieland",
+        "heroImageImageAlt": "Un labrador retriever noir ayant la langue pendante"
       },
       "presentation": {
         "title": "Bienvenue à Rubieland !",
         "firstDesc": "Chez Rubieland, votre fidèle compagnon à quatre pattes trouvera bien plus qu'une simple garderie : il y trouvera une seconde maison. Que ce soit pour une demi-journée ou toute une journée, je veille à offrir des services dédiés au bonheur et au bien-être de vos chiens. Ici, tout est pensé pour leur offrir un environnement à la fois amusant et sécurisé, où ils pourront s'épanouir en toute confiance.",
-        "secondDesc": "Chaque chien est unique, et c'est pour cela que je privilégie un accompagnement personnalisé, avec des activités adaptées à leurs besoins et à leurs envies. Faites-moi confiance pour prendre soin de votre compagnon avec toute l'affection et l'attention qu'il mérite. Ici, il sera chouchouté comme à la maison !"
+        "secondDesc": "Chaque chien est unique, et c'est pour cela que je privilégie un accompagnement personnalisé, avec des activités adaptées à leurs besoins et à leurs envies. Faites-moi confiance pour prendre soin de votre compagnon avec toute l'affection et l'attention qu'il mérite. Ici, il sera chouchouté comme à la maison !",
+        "imageAlt": "Un chien souriant dans un jardin"
       }
     },
     "register": {
