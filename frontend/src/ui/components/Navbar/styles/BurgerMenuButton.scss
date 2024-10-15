@@ -2,7 +2,7 @@
 
 // burger menu button
 .burger-menu-btn {
-  transition: all 0.7s ease-in-out;
+  transition: all 0.3s ease-in-out;
   @include flex-column;
   border-radius: 50%;
   cursor: pointer;
@@ -28,17 +28,17 @@
   // burger menu button bars animations
   .burger-menu-bar.opened:nth-child(1) {
     transform: rotate(45deg) translate(5px, 5px);
-    transition: all 0.7s ease-out;
+    transition: all 0.3s ease-out;
   }
 
   .burger-menu-bar.opened:nth-child(2) {
-    transition: all 0.7s ease-out;
+    transition: all 0.3s ease-out;
     transform: scale(0.1);
   }
 
   .burger-menu-bar.opened:nth-child(3) {
     transform: rotate(135deg) translate(-7.5px, 7.5px);
-    transition: all 0.7s ease-out;
+    transition: all 0.3s ease-out;
   }
 }
 

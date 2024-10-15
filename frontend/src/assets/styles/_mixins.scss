@@ -99,6 +99,7 @@
 ) {
   background-color: $bg-color;
   border-color: $border-color;
+  color: $text-color;
 
   &:hover {
     opacity: 0.85;

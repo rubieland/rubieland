@@ -192,6 +192,30 @@
         "backToBlog": "Revenir au blog"
       }
     },
+    "about": {
+      "title": "À propos de Rubieland",
+      "sections": {
+        "aboutRubieland": {
+          "title": "Rubieland, c'est quoi ?",
+          "content": "Rubieland est une garderie pour chiens qui offre un environnement sécurisé et divertissant pour vos compagnons."
+        },
+        "facilities": {
+          "title": "Détail des aménagements",
+          "content": "Mes installations incluent un vaste espace de jeux extérieur, une salle de repos confortable, et un service de surveillance 24/7."
+        },
+        "location": {
+          "title": "Où se trouve Rubieland ?",
+          "content": " Rubieland est situé dans un endroit paisible à proximité de la ville, accessible facilement en voiture."
+        },
+        "prestations": {
+          "title": "Prestations et tarifs",
+          "content": {
+            "fullDay": "Garderie à la journée: 30€",
+            "halfDay": "Garderie à la demi-journée: 18€"
+          }
+        }
+      }
+    },
     "backOffice": {
       "backOfficeSidebar": {
         "headerTitle": "Back office",

@@ -3,10 +3,10 @@ import Separator from '../../../components/Separator/Separator';
 import RegisterFormBlock from './components/RegisterFormBlock';
 import PageLoader from '../../../components/Loader/PageLoader';
 import colors from '../../../../assets/styles/colors';
-import useRegister from './hooks/useRegister';
-import '../styles/AuthPages.scss';
-import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
+import useRegister from './hooks/useRegister';
+import { Helmet } from 'react-helmet-async';
+import '../styles/AuthPages.scss';
 
 const RegisterPage = () => {
   const { isPending } = useRegister();

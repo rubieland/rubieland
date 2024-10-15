@@ -7,7 +7,7 @@
 }
 
 %btn-primary {
-  @include btn-styles($primaryLight, $primary);
+  @include btn-styles($primary, $primaryLight);
 }
 
 %btn-secondary {
