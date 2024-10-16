@@ -214,9 +214,15 @@
       }
     },
     "profile": {
-      "title": "Mon profil",
-      "personalInfo": "Informations personnelles",
-      "accountInfo": "Informations de compte"
+      "profileSection": {
+        "title": "Mon profil",
+        "personalInfo": "Informations personnelles",
+        "accountInfo": "Informations de compte"
+      },
+      "settingsSection": {
+        "title": "Paramètres",
+        "language": "Langue"
+      }
     },
     "login": {
       "notRegisteredYetBlock": {
