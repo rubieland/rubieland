@@ -11,10 +11,10 @@ const useLogout = () => {
   const { resetSession } = useSessionStoreActions();
   const navigate = useNavigate();
 
-  const { mutateAsync: logout } = usePostLogout({
-    onSuccess: () => {
+  const { mutateAsync: logout, isPending } = usePostLogout({
+    onSuccess: async () => {
       // redirect user to /login
-      navigate({ to: '/login' });
+      await navigate({ to: '/login' });
 
       // reset session store data
       resetSession();
@@ -32,7 +32,22 @@ const useLogout = () => {
     },
   });
 
-  return { logout };
+  const handleLogout = async () => {
+    const loadingToastId = toast.loading(t('auth.loading.logoutLoading'));
+
+    try {
+      const response = await logout(undefined);
+      toast.dismiss(loadingToastId);
+
+      return response;
+    } catch (error) {
+      console.error('Unexpected error:', error);
+      toast.dismiss(loadingToastId);
+      throw error;
+    }
+  };
+
+  return { handleLogout, isPending };
 };
 
 export default useLogout;

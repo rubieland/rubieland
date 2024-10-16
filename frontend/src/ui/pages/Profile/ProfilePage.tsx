@@ -1,4 +1,5 @@
 import CustomButton from '@/ui/components/Button/CustomButton';
+import PageLoader from '@/ui/components/Loader/PageLoader';
 import SettingsSection from './components/SettingsSection';
 import ProfileSection from './components/ProfileSection';
 import LogoutIcon from '@/ui/components/Icons/Logout';
@@ -13,12 +14,11 @@ const ProfilePage = () => {
   const { t } = useTranslation();
   const user = useUserInfo();
   const navigate = useNavigate();
-  const { logout } = useLogout();
+  const { handleLogout, isPending } = useLogout();
 
-  if (!user) {
-    navigate({ to: '/login' });
-    return null;
-  }
+  if (!user) return navigate({ to: '/login' });
+
+  if (isPending) return <PageLoader isLoading={isPending} />;
 
   // TODO: add logout modal to ask user for confirmation before logging out
 
@@ -33,7 +33,7 @@ const ProfilePage = () => {
       <div className="logout-button">
         <CustomButton
           icon={<LogoutIcon width={16} height={16} />}
-          onClick={() => logout(undefined)}
+          onClick={handleLogout}
           title={t('common.logout')}
           iconPosition="right"
           style="error"
