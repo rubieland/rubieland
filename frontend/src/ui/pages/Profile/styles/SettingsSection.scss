@@ -1,0 +1,34 @@
+@import '../../../../assets/styles/variables.scss';
+@import '../../../../assets/styles/mixins.scss';
+
+.settings-section-main-container {
+  @include flex-column;
+  border-radius: 0.5rem;
+  @include box-shadow;
+  padding: 1rem;
+  width: 100%;
+
+  .settings-section-content {
+    @include flex-column;
+    width: 100%;
+
+    .language-block {
+      @include flex-column;
+      padding: 0.5rem;
+      gap: 6px;
+
+      select {
+        width: 100%;
+      }
+    }
+  }
+}
+
+// ----- responsive ----- \\
+@include respond-to('small') {
+  .settings-section-main-container {
+    align-items: center;
+    max-width: 36rem;
+    width: 50%;
+  }
+}
