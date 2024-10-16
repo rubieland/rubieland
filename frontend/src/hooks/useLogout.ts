@@ -13,14 +13,14 @@ const useLogout = () => {
 
   const { mutateAsync: logout } = usePostLogout({
     onSuccess: () => {
+      // redirect user to /login
+      navigate({ to: '/login' });
+
       // reset session store data
       resetSession();
 
       // invalidate cached queries
       queryClient.removeQueries();
-
-      // redirect user to /login
-      navigate({ to: '/login' });
 
       // display toast with success message
       toast.success(t('auth.success.logoutSuccess'));
