@@ -1,0 +1,56 @@
+@import '../../../../assets/styles/variables.scss';
+@import '../../../../assets/styles/mixins.scss';
+
+.profile-section-main-container {
+  border-radius: 0.5rem;
+  @include flex-column;
+  @include box-shadow;
+  padding: 1rem;
+  width: 100%;
+
+  .profile-section-content {
+    @include flex-column;
+
+    .personal-info-section {
+      @include flex-center-column;
+
+      .personal-info-content {
+        @include flex-center-column;
+        padding: 1rem 0;
+        gap: 1rem;
+
+        .avatar {
+          @include box-shadow;
+          @include box(100px);
+          border-radius: 50%;
+
+          img {
+            border-radius: 50%;
+            @include img;
+          }
+        }
+        .username {
+          font-size: 1.125rem;
+          font-weight: 600;
+        }
+      }
+    }
+
+    .account-info-section {
+      padding: 1rem 0;
+
+      .account-info-content {
+        padding-top: 1rem;
+      }
+    }
+  }
+}
+
+// ----- responsive ----- \\
+@include respond-to('small') {
+  .profile-section-main-container {
+    align-items: center;
+    max-width: 36rem;
+    width: 50%;
+  }
+}

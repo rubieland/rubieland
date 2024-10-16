@@ -11,12 +11,41 @@
     "goBackToHomepage": "Go back to homepage",
     "register": "Register",
     "login": "Log in",
+    "logout": "Log out",
     "formSending": "Sending...",
-    "loggingOut": "Logging out...",
     "preview": "Preview",
     "genericError": "An error occurred. Please try again later.",
+    "serverError": "A server error occurred. Please try again later.",
     "deleting": "Deleting...",
-    "updating": "Updating..."
+    "updating": "Updating...",
+    "readMore": "Read more"
+  },
+
+  "SEO": {
+    "home": {
+      "title": "Rubieland - Dog daycare in Vendée",
+      "description": "Welcome to Rubieland, the dog daycare in Vendée. Discover my services, my amenities and my commitment."
+    },
+    "about": {
+      "title": "About Rubieland - Dog daycare in Vendée",
+      "description": "Discover the story of Rubieland, a dog daycare in Vendée. Learn more about my mission, my values and my journey."
+    },
+    "blog": {
+      "title": "Rubieland Blog - News from Rubieland daycare, stories and tips for dog care",
+      "description": "Discover practical tips on dog care, news about Rubieland and tips for taking care of your pet."
+    },
+    "register": {
+      "title": "Registration at Rubieland - Sign up and book a place in dog daycare in Vendée",
+      "description": "Create your account on Rubieland to access your personal space and make reservations for your dog(s)."
+    },
+    "login": {
+      "title": "Login to Rubieland - Access your personal space and book a place in dog daycare in Vendée",
+      "description": "Log in to your Rubieland account to access your personal space and make reservations for your dog(s)."
+    },
+    "profile": {
+      "title": "Rubieland user profile - Manage your personal information and your dog daycare reservations in Vendée",
+      "description": "Access your Rubieland personal space to view your reservations, modify your information, manage your account and the profile(s) of your dog(s)."
+    }
   },
 
   "aria-labels": {
@@ -89,10 +118,16 @@
       "content": "Content of the post",
       "picture": "Image of the post",
       "isPublished": "Publish the post",
+      "loading": {
+        "postCreationLoading": "Creating the post...",
+        "postDeletionLoading": "Deleting the post...",
+        "postUpdateLoading": "Updating the post..."
+      },
       "errors": {
         "postCreationFailed": "An error occurred while creating the post",
         "postDeletionFailed": "An error occurred while deleting the post",
-        "postUpdateFailed": "An error occurred while updating the post"
+        "postUpdateFailed": "An error occurred while updating the post",
+        "postNotFound": "Post not found"
       },
       "success": {
         "postCreationSuccess": "Post created successfully!",
@@ -106,6 +141,11 @@
   },
 
   "auth": {
+    "loading": {
+      "registerLoading": "Creating your account...",
+      "loginLoading": "Logging in...",
+      "logoutLoading": "Logging out..."
+    },
     "success": {
       "registerSuccess": "Registration successful!",
       "loginSuccess": "You are logged in!",
@@ -121,22 +161,42 @@
   },
 
   "pages": {
-    "register": {
-      "alreadyRegisteredBlock": {
-        "title": "Already have an account?",
-        "linkTitle": "Log in"
+    "home": {
+      "heroImage": {
+        "heroImageTitle": "His favorite daycare",
+        "heroImageText": "The adventure starts here!",
+        "heroImageCTA": "Discover Rubieland",
+        "heroImageImgAlt": "A black labrador retriever having its tongue hanging out"
       },
-      "registerFormBlock": {
-        "title": "Create your account"
+      "presentation": {
+        "title": "Welcome to Rubieland",
+        "firstDesc": "At Rubieland, your furry friend will find more than just a daycare - they'll find a second home. Whether it's for half a day or a full day, I'm here to provide services focused on your dog's happiness and well-being. Everything here is designed to offer them a fun and safe environment where they can thrive with confidence.",
+        "secondDesc": "Every dog is unique, which is why I focus on personalized care, with activities tailored to their needs and preferences. Trust me to take care of your beloved companion with all the love and attention they deserve. Here, they'll be pampered just like at home!",
+        "imageAlt": "A smiling dog in a garden"
       }
     },
-    "login": {
-      "notRegisteredYetBlock": {
-        "title": "No account yet?",
-        "linkTitle": "Create your account"
-      },
-      "loginFormBlock": {
-        "title": "Log in"
+    "about": {
+      "title": "About Rubieland",
+      "sections": {
+        "aboutRubieland": {
+          "title": "What is Rubieland?",
+          "content": "Rubieland is a dog daycare that offers a safe and entertaining environment for your companions."
+        },
+        "amenities": {
+          "title": "Facility Details",
+          "content": "My amenities include a large outdoor play area, a comfortable rest room, and 24/7 surveillance service."
+        },
+        "location": {
+          "title": "Where is Rubieland?",
+          "content": "Rubieland is located in a peaceful area near the city, easily accessible by car."
+        },
+        "prestations": {
+          "title": "Services and Rates",
+          "content": {
+            "fullDay": "Full-day daycare: 30€",
+            "halfDay": "Half-day daycare: 18€"
+          }
+        }
       }
     },
     "blog": {
@@ -151,6 +211,35 @@
         "postedOn": "Posted on {{ date, medium }}",
         "updatedOn": "Updated on {{ date, mediumWithTime }}",
         "backToBlog": "Go back to blog"
+      }
+    },
+    "profile": {
+      "profileSection": {
+        "title": "My profile",
+        "personalInfo": "Personal information",
+        "accountInfo": "Account information"
+      },
+      "settingsSection": {
+        "title": "Settings",
+        "language": "Language"
+      }
+    },
+    "login": {
+      "notRegisteredYetBlock": {
+        "title": "No account yet?",
+        "linkTitle": "Create your account"
+      },
+      "loginFormBlock": {
+        "title": "Log in"
+      }
+    },
+    "register": {
+      "alreadyRegisteredBlock": {
+        "title": "Already have an account?",
+        "linkTitle": "Log in"
+      },
+      "registerFormBlock": {
+        "title": "Create your account"
       }
     },
     "backOffice": {

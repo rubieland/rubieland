@@ -1,6 +1,7 @@
 import ControlledDatePicker from '../../../../components/FormInputs/ControlledFormInputs/ControlledDatePicker';
 import ControlledTextInput from '../../../../components/FormInputs/ControlledFormInputs/ControlledTextInput';
 import { useRegisterFormValidation } from '../hooks/useRegisterFormValidation';
+import usePasswordVisibility from '../../Login/hooks/usePasswordVisibility';
 import { calculateMinDateYYYYMMDD } from '../../../../../utils/date.utils';
 import CustomButton from '../../../../components/Button/CustomButton';
 import { RegisterBody } from '../../../../../models/user/user.entity';
@@ -19,6 +20,12 @@ interface RegisterFormProps {
 
 const RegisterForm = ({ onSubmit }: RegisterFormProps) => {
   const { t } = useTranslation();
+  const {
+    togglePasswordVisibility,
+    toggleConfirmPasswordVisibility,
+    isConfirmPasswordVisible,
+    isPasswordVisible,
+  } = usePasswordVisibility();
   const form = useRegisterFormValidation();
   const watchedValues = form.watch([
     'firstName',
@@ -54,14 +61,18 @@ const RegisterForm = ({ onSubmit }: RegisterFormProps) => {
           type="email"
         />
         <ControlledTextInput
+          togglePasswordVisibility={togglePasswordVisibility}
           placeholder={addAsterisk(t('form.user.password'))}
+          isPasswordVisible={isPasswordVisible}
           label={t('form.user.password')}
           autocomplete="new-password"
           name="password"
           type="password"
         />
         <ControlledTextInput
+          togglePasswordVisibility={toggleConfirmPasswordVisibility}
           placeholder={addAsterisk(t('form.user.confirmPassword'))}
+          isPasswordVisible={isConfirmPasswordVisible}
           label={t('form.user.confirmPassword')}
           name="confirmPassword"
           type="password"

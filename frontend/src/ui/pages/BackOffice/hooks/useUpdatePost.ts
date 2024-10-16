@@ -10,8 +10,7 @@ import { AxiosError, AxiosResponse } from 'axios';
 import { PostDto } from '@/models/posts/post.dto';
 import { queryClient } from '@/api/reactQuery';
 import { useTranslation } from 'react-i18next';
-import { Id, toast } from 'react-toastify';
-import { useState } from 'react';
+import { toast } from 'sonner';
 
 type UseUpdatePostType = {
   postId: string;
@@ -20,37 +19,25 @@ type UseUpdatePostType = {
 const useUpdatePost = ({ postId }: UseUpdatePostType) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const [toastId, setToastId] = useState<Id | null>(null);
 
-  const handleUpdatePostError = (error: AxiosError) => {
-    let message;
-    if (error.response && error.response.status === 400) {
-      message = t('form.post.errors.postUpdateFailed');
-    } else {
-      message = t('common.genericError');
+  const handleUpdatePostError = (error: unknown) => {
+    if (error instanceof AxiosError) {
+      switch (error.response?.status) {
+        case 400:
+          return toast.error(t('form.post.errors.postUpdateFailed'));
+        case 404:
+          return toast.error(t('form.post.errors.postNotFound'));
+        case 500:
+          return toast.error(t('common.serverError'));
+        default:
+          return toast.error(t('common.genericError'));
+      }
     }
-
-    setErrorMessage(message);
-
-    if (toastId) {
-      toast.update(toastId, {
-        render: message,
-        type: 'error',
-        isLoading: false,
-        autoClose: 3000,
-        pauseOnHover: false,
-        closeOnClick: true,
-        draggable: true,
-      });
-    }
+    console.error('Unexpected error:', error);
+    return toast.error(t('common.genericError'));
   };
 
   const { mutateAsync: updatePost, isPending } = useUpdateBlogPost({
-    onMutate: () => {
-      const id = toast.loading(t('common.updating'));
-      setToastId(id);
-    },
     onSuccess: async (data: AxiosResponse<ApiPostResponse>, variables) => {
       await queryClient.invalidateQueries({
         queryKey: [QueryKeysEnum.POSTS],
@@ -64,41 +51,32 @@ const useUpdatePost = ({ postId }: UseUpdatePostType) => {
         convertPostDtoToEntity(data.data.post),
       );
 
-      if (toastId) {
-        toast.update(toastId, {
-          render: t('form.post.success.postUpdateSuccess'),
-          type: 'success',
-          isLoading: false,
-          autoClose: 3000,
-          pauseOnHover: false,
-          closeOnClick: true,
-          draggable: true,
-        });
-      }
+      toast.success(t('form.post.success.postUpdateSuccess'));
 
       navigate({ to: '/back-office/blog' });
     },
     onError: handleUpdatePostError,
-    onSettled: () => {
-      setToastId(null);
-      toast.clearWaitingQueue();
-    },
   });
 
   const onSubmit = async (data: PostBody): Promise<PostDto | undefined> => {
+    const loadingToastId = toast.loading(
+      t('form.post.loading.postUpdateLoading'),
+    );
     try {
       const response: AxiosResponse<ApiPostResponse> = await updatePost({
         newData: data,
         postId,
       });
 
+      toast.dismiss(loadingToastId);
       return response.data.post;
     } catch (error) {
-      console.error(error);
+      toast.dismiss(loadingToastId);
+      throw error;
     }
   };
 
-  return { onSubmit, isPending, errorMessage };
+  return { onSubmit, isPending };
 };
 
 export default useUpdatePost;
