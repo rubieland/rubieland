@@ -46,11 +46,6 @@ const PostDetailsPage = () => {
     <article className="post-details-main-container">
       <header className="post-details-header">
         <h2 className="post-details-title">{post.title}</h2>
-        <p className="post-published-date">
-          {`${t('pages.blog.postDetailsPage.postedOn', {
-            date: new Date(post.createdAt),
-          })}`}
-        </p>
         <p className="post-updated-date">{`${t('pages.blog.postDetailsPage.updatedOn', { date: new Date(post.updatedAt) })}`}</p>
         <div className="post-details-image-container">
           {!post.picture ? (

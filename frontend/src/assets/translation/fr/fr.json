@@ -208,7 +208,6 @@
         "readMore": "Lire la suite"
       },
       "postDetailsPage": {
-        "postedOn": "Publié le {{ date, medium }}",
         "updatedOn": "Mis à jour le {{ date, mediumWithTime }}",
         "backToBlog": "Revenir au blog"
       }
@@ -257,12 +256,10 @@
           "status": "Statut",
           "picture": "Image",
           "pictureAlt": "Image de l'article",
-          "createdAt": "Créé le",
           "updatedAt": "Mis à jour le",
           "noImage": "Pas d'image",
           "published": "Publié",
           "unpublished": "Non publié",
-          "createdAtDate": "{{ date, shortestWithTime }}",
           "updatedAtDate": "{{ date, shortestWithTime }}",
           "actions": "Actions",
           "noPosts": "Aucun article n'a été créé pour le moment."

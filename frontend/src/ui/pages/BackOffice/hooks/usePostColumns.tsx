@@ -38,18 +38,9 @@ export const usePostColumns = () => {
       cell: (info) => <PostStatusCell value={info.getValue()} />,
     },
     {
-      header: () => t('createdAt'),
-      accessorKey: 'createdAt',
-      cell: (info) => (
-        <PostDateCell dateString={info.getValue()} dateType="createdAt" />
-      ),
-    },
-    {
       header: () => t('updatedAt'),
       accessorKey: 'updatedAt',
-      cell: (info) => (
-        <PostDateCell dateString={info.getValue()} dateType="updatedAt" />
-      ),
+      cell: (info) => <PostDateCell dateString={info.getValue()} />,
     },
     {
       header: () => t('actions'),
