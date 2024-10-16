@@ -1,6 +1,6 @@
 const colors = {
   primary: '#5a3d8a',
-  primarylight: '#ede7f5',
+  primaryLight: '#ede7f5',
   white: '#ffffff',
   black: '#151515',
   blackTransp80: 'rgba(0, 0, 0, 0.8)',

@@ -25,9 +25,6 @@ export const PostSchema = z.object({
     })
     .max(10000, {
       message: i18n.t('form.errors.inputMaxLength', { max: 10000 }),
-    })
-    .refine((value) => !forbiddenCharsRegex.test(value), {
-      message: i18n.t('form.errors.hasForbiddenChars'),
     }),
   picture: z.union([
     z

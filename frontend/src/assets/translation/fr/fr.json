@@ -79,6 +79,10 @@
     "content": "Cette page n'existe pas."
   },
 
+  "textEditor": {
+    "defaultPlaceholder": "Commencez à écrire ici..."
+  },
+
   "form": {
     "errors": {
       "requiredField": "Ce champ est obligatoire",

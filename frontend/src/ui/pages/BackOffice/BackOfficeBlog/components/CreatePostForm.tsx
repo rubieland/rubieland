@@ -1,6 +1,6 @@
+import ControlledTextEditor from '@/ui/components/FormInputs/ControlledFormInputs/ControlledTextEditor';
 import ControlledTextInput from '@/ui/components/FormInputs/ControlledFormInputs/ControlledTextInput';
 import ControlledFileInput from '@/ui/components/FormInputs/ControlledFormInputs/ControlledFileInput';
-import ControlledTextarea from '@/ui/components/FormInputs/ControlledFormInputs/ControlledTextarea';
 import ControlledCheckbox from '@/ui/components/FormInputs/ControlledFormInputs/ControlledCheckbox';
 import { PostSchemaFormData } from '../../hooks/usePostFormValidation';
 import CustomButton from '@/ui/components/Button/CustomButton';
@@ -22,7 +22,7 @@ const CreatePostForm = ({
   const { t } = useTranslation();
 
   return (
-    <form>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <ControlledFileInput
         label={t('form.post.picture')}
         pictureType="postPicture"
@@ -33,11 +33,9 @@ const CreatePostForm = ({
         label={t('form.post.title')}
         name="title"
       />
-      <ControlledTextarea
-        placeholder={addAsterisk(t('form.post.content'))}
-        label={t('form.post.content')}
-        name="content"
-      />
+
+      <ControlledTextEditor name="content" />
+
       <ControlledCheckbox
         label={t('form.post.isPublished')}
         name="isPublished"
