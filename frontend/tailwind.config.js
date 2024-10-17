@@ -15,6 +15,7 @@ export default {
       colors: {
         primary: colors.primary,
         primaryLight: colors.primaryLight,
+        grey50: colors.grey50,
       },
     },
   },
