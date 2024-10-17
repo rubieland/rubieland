@@ -17,6 +17,7 @@
   "include": [
     "src/**/*.ts", // Includes TypeScript files in the 'src' directory and its subdirectories.
     "server.ts", // Includes the server file if it's in the root directory.
-    "addDataToDatabase.ts"
+    "addDataToDatabase.ts", // Includes the script file to add a set of data to database.
+    "addPostsToDatabase.ts" // Includes the script file to add a set of blog posts to database.
   ]
 }
