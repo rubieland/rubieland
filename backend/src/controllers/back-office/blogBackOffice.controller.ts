@@ -36,10 +36,11 @@ export const getAllPosts = async (
     const posts: PostDocument[] = await Post.find({});
 
     if (!posts || posts.length === 0) {
-      return res.status(404).json({
-        error: i18n.t('common.error.postsFound_zero', {
+      return res.status(200).json({
+        message: i18n.t('common.success.postsFound_zero', {
           count: 0,
         }),
+        posts: [],
       });
     }
 
