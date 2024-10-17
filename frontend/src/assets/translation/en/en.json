@@ -209,7 +209,7 @@
       "allPosts": "All posts",
       "postCard": {
         "date": "{{ date, medium }}",
-        "readMore": "Read more"
+        "tag": "News"
       },
       "postDetailsPage": {
         "updatedOn": "Updated on {{ date, mediumWithTime }}",

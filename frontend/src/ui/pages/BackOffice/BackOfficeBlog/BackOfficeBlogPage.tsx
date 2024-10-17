@@ -1,5 +1,4 @@
 import { useGetAllPostsBackOffice } from '../../../../api/backOffice/blog/getAllPostsBackOffice';
-import ErrorComponent from '../../../components/ErrorComponent/ErrorComponent';
 import BackOfficeBlogPageHeader from './components/BackOfficeBlogPageHeader';
 import PageLoader from '../../../components/Loader/PageLoader';
 import { usePostColumns } from '../hooks/usePostColumns';
@@ -8,13 +7,11 @@ import './styles/BackOfficeBlogPage.scss';
 import { useMemo } from 'react';
 
 const BackOfficeBlogPage = () => {
-  const { data: posts, isLoading, error, refetch } = useGetAllPostsBackOffice();
+  const { data: posts, isLoading } = useGetAllPostsBackOffice();
   const postColumns = usePostColumns();
   const columns = useMemo(() => postColumns, []);
 
   if (isLoading) return <PageLoader isLoading={isLoading} />;
-  if (error)
-    return <ErrorComponent message={error.message} onRetry={refetch} />;
 
   // TODO: add pagination when InfiniteQuery is implemented
 

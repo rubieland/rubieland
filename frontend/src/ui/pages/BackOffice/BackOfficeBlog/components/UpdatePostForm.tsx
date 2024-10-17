@@ -7,6 +7,7 @@ import CustomButton from '@/ui/components/Button/CustomButton';
 import { UseFormHandleSubmit } from 'react-hook-form';
 import { addAsterisk } from '@/utils/string.utils';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from '@tanstack/react-router';
 
 interface UpdatePostFormProps {
   handleSubmit: UseFormHandleSubmit<PostSchemaFormData>;
@@ -20,6 +21,14 @@ const UpdatePostForm = ({
   onSubmit,
 }: UpdatePostFormProps) => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
+
+  const handleNavigate = () => {
+    navigate({
+      from: '/back-office/blog/update-post/$postId',
+      to: '/back-office/blog',
+    });
+  };
 
   return (
     <form>
@@ -46,6 +55,14 @@ const UpdatePostForm = ({
           isDisabled={!isFormFilled}
           title={t('common.send')}
           type="submit"
+        />
+      </div>
+      <div className="form-input">
+        <CustomButton
+          onClick={handleNavigate}
+          title={t('common.cancel')}
+          type="button"
+          style="error"
         />
       </div>
     </form>
