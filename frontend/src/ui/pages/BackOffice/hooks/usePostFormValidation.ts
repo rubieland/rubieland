@@ -14,7 +14,9 @@ export const PostSchema = z.object({
   title: z
     .string()
     .min(5, { message: i18n.t('form.errors.inputMinLength', { minLength: 5 }) })
-    .max(100, { message: i18n.t('form.errors.inputMaxLength', { max: 100 }) })
+    .max(100, {
+      message: i18n.t('form.errors.inputMaxLength', { maxLength: 100 }),
+    })
     .refine((value) => !forbiddenCharsRegex.test(value), {
       message: i18n.t('form.errors.hasForbiddenChars'),
     }),
@@ -24,10 +26,7 @@ export const PostSchema = z.object({
       message: i18n.t('form.errors.inputMinLength', { minLength: 100 }),
     })
     .max(10000, {
-      message: i18n.t('form.errors.inputMaxLength', { max: 10000 }),
-    })
-    .refine((value) => !forbiddenCharsRegex.test(value), {
-      message: i18n.t('form.errors.hasForbiddenChars'),
+      message: i18n.t('form.errors.inputMaxLength', { maxLength: 10000 }),
     }),
   picture: z.union([
     z

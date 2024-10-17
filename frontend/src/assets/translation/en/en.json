@@ -79,6 +79,10 @@
     "content": "This page does not exist."
   },
 
+  "textEditor": {
+    "defaultPlaceholder": "Start writing here..."
+  },
+
   "form": {
     "errors": {
       "requiredField": "This field is required",
@@ -205,10 +209,9 @@
       "allPosts": "All posts",
       "postCard": {
         "date": "{{ date, medium }}",
-        "readMore": "Read more"
+        "tag": "News"
       },
       "postDetailsPage": {
-        "postedOn": "Posted on {{ date, medium }}",
         "updatedOn": "Updated on {{ date, mediumWithTime }}",
         "backToBlog": "Go back to blog"
       }
@@ -257,12 +260,10 @@
           "status": "Status",
           "picture": "Image",
           "pictureAlt": "Post image",
-          "createdAt": "Created on",
           "updatedAt": "Updated on",
           "noImage": "No image",
           "published": "Published",
           "unpublished": "Unpublished",
-          "createdAtDate": "{{ date, shortestWithTime }}",
           "updatedAtDate": "{{ date, shortestWithTime }}",
           "actions": "Actions",
           "noPosts": "No post created yet."

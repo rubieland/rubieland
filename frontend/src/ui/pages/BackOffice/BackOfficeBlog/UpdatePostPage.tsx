@@ -18,7 +18,6 @@ const UpdatePostPage = () => {
   const formMethods = usePostFormValidation({ existingPostData });
 
   const tabs = useUpdatePostTabs({
-    existingPostData,
     formMethods,
     postId,
   });

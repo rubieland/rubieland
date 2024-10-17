@@ -1,6 +1,5 @@
 import PostPictureCell from '@/ui/components/Table/PostPictureCell';
 import PostActionsCell from '@/ui/components/Table/PostActionsCell';
-import PostContentCell from '@/ui/components/Table/PostContentCell';
 import PostStatusCell from '@/ui/components/Table/PostStatusCell';
 import PostTitleCell from '@/ui/components/Table/PostTitleCell';
 import PostDateCell from '@/ui/components/Table/PostDateCell';
@@ -27,29 +26,14 @@ export const usePostColumns = () => {
       ),
     },
     {
-      header: () => t('content'),
-      accessorKey: 'content',
-      cell: (info) => <PostContentCell content={info.getValue()} />,
-      size: 150,
-    },
-    {
       header: () => t('status'),
       accessorKey: 'isPublished',
       cell: (info) => <PostStatusCell value={info.getValue()} />,
     },
     {
-      header: () => t('createdAt'),
-      accessorKey: 'createdAt',
-      cell: (info) => (
-        <PostDateCell dateString={info.getValue()} dateType="createdAt" />
-      ),
-    },
-    {
       header: () => t('updatedAt'),
       accessorKey: 'updatedAt',
-      cell: (info) => (
-        <PostDateCell dateString={info.getValue()} dateType="updatedAt" />
-      ),
+      cell: (info) => <PostDateCell dateString={info.getValue()} />,
     },
     {
       header: () => t('actions'),

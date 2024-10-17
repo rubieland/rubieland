@@ -25,13 +25,16 @@ export const getAllPrestations = async (
   try {
     // retrieve all prestations
     const prestations: PrestationDocument[] = await Prestation.find({});
+
     if (!prestations || prestations.length === 0) {
-      return res.status(404).json({
-        error: i18n.t('common.error.prestationsFound_zero', {
+      return res.status(200).json({
+        message: i18n.t('common.success.prestationsFound_zero', {
           count: 0,
         }),
+        prestations: [],
       });
     }
+
     const message =
       prestations.length === 1
         ? i18n.t('common.success.prestationsFound_one', { count: 1 })
