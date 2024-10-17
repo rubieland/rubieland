@@ -51,8 +51,18 @@
     margin-left: 0;
   }
 
+  h3 {
+    margin: 1rem 0;
+  }
+
+  p {
+    margin-bottom: 0.5rem;
+  }
+
   p.is-editor-empty:first-child::before {
-    color: #adb5bd;
+    font-size: 0.875rem;
+    font-weight: normal;
+    color: #999;
     content: attr(data-placeholder);
     float: left;
     height: 0;

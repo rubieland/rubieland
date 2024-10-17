@@ -11,7 +11,7 @@ const colors = {
   $green: '#66bb6a',
   $successBg: '#d4edda',
   $successText: '#124d1f',
-  lightBlue: '#e7eefe',
+  lightBlue: '#D2E0FB',
   lightPink: '#ffe6e6',
   grey10: '#f5f5f5',
   grey20: '#eeeeee',
