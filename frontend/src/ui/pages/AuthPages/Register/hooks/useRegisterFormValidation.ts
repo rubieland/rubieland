@@ -1,12 +1,7 @@
-import {
-  isAtLeastNYearsOld,
-  isInFuture,
-} from '../../../../../utils/date.utils';
 import { validatePhoneNumber } from '../../../../../utils/phone.utils';
 import { zodResolver } from '@hookform/resolvers/zod';
 import i18n from '../../../../../core/i18n';
 import { useForm } from 'react-hook-form';
-import { isBefore } from 'date-fns';
 import { z } from 'zod';
 
 export const nameRegex: RegExp = /^[a-zA-ZÀ-ÖØ-öø-ÿ' -]+$/i; // accepts only letters, hyphens, spaces, and apostrophes
@@ -63,41 +58,6 @@ export const RegisterFormSchema = z
         message: i18n.t('form.errors.minSymbols'),
       }),
     confirmPassword: z.string(),
-    birthDate: z
-      .string()
-      .refine(
-        (value) => {
-          if (!value) return true;
-          return isAtLeastNYearsOld(value, 16);
-        },
-        {
-          message: i18n.t('form.errors.minBirthDate', { min: 16 }),
-        },
-      )
-      .refine(
-        (value) => {
-          if (!value) return true;
-          return !isInFuture(value);
-        },
-        {
-          message: i18n.t('form.errors.birthDateInFuture'),
-        },
-      )
-      .refine(
-        (value) => {
-          const today = new Date();
-          const minBirthDate = new Date(
-            today.setFullYear(today.getFullYear() - 99),
-          ).toISOString();
-          const formattedMinBirthDate = minBirthDate.split('T')[0];
-
-          if (!value) return true;
-          return !isBefore(value, formattedMinBirthDate);
-        },
-        {
-          message: i18n.t('form.errors.maxBirthDate', { max: 99 }),
-        },
-      ),
     phone: z.string().refine(
       (value) => {
         return validatePhoneNumber(value);
@@ -127,7 +87,6 @@ export const useRegisterFormValidation = () => {
       email: '',
       password: '',
       confirmPassword: '',
-      birthDate: '',
       phone: '',
     },
     resolver: zodResolver(RegisterFormSchema),
