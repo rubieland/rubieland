@@ -5,12 +5,12 @@ import {
   Italic,
   List,
   ListOrdered,
-  Heading2,
   Underline,
   Quote,
   Undo,
   Redo,
   Code,
+  Heading3,
 } from 'lucide-react';
 
 interface ToolbarProps {
@@ -24,7 +24,7 @@ const Toolbar = ({ editor }: ToolbarProps) => {
   return (
     <div
       className="tw-px-4 tw-py-3 tw-rounded-tl-md tw-rounded-tr-md tw-flex tw-justify-between tw-items-start
-    tw-gap-5 tw-w-full tw-max-w-xl tw-flex-wrap tw-border tw-border-gray-700"
+    tw-gap-5 tw-w-full tw-max-w-xl tw-flex-wrap tw-border tw-border-grey50"
     >
       <div className="tw-flex tw-justify-start tw-items-center tw-gap-5 tw-w-full tw-lg:w-10/12 tw-flex-wrap">
         <button
@@ -35,7 +35,7 @@ const Toolbar = ({ editor }: ToolbarProps) => {
           className={
             editor.isActive('bold')
               ? 'tw-bg-primary tw-rounded-lg tw-p-1'
-              : 'tw-p-1'
+              : 'tw-p-1 tw-rounded-lg hover:tw-bg-primaryLight'
           }
         >
           <Bold
@@ -54,7 +54,7 @@ const Toolbar = ({ editor }: ToolbarProps) => {
           className={
             editor.isActive('italic')
               ? 'tw-bg-primary tw-p-1 tw-rounded-lg'
-              : 'tw-p-1'
+              : 'tw-p-1 tw-rounded-lg hover:tw-bg-primaryLight'
           }
         >
           <Italic
@@ -73,7 +73,7 @@ const Toolbar = ({ editor }: ToolbarProps) => {
           className={
             editor.isActive('underline')
               ? 'tw-bg-primary tw-p-1 tw-rounded-lg'
-              : 'tw-p-1'
+              : 'tw-p-1 tw-rounded-lg hover:tw-bg-primaryLight'
           }
         >
           <Underline
@@ -92,7 +92,7 @@ const Toolbar = ({ editor }: ToolbarProps) => {
           className={
             editor.isActive('strike')
               ? 'tw-bg-primary tw-p-1 tw-rounded-lg'
-              : 'tw-p-1'
+              : 'tw-p-1 tw-rounded-lg hover:tw-bg-primaryLight'
           }
         >
           <Strikethrough
@@ -106,17 +106,17 @@ const Toolbar = ({ editor }: ToolbarProps) => {
         <button
           onClick={(e) => {
             e.preventDefault();
-            editor.chain().focus().toggleHeading({ level: 2 }).run();
+            editor.chain().focus().toggleHeading({ level: 3 }).run();
           }}
           className={
-            editor.isActive('heading', { level: 2 })
+            editor.isActive('heading', { level: 3 })
               ? 'tw-bg-primary tw-p-1 tw-rounded-lg'
-              : 'tw-p-1'
+              : 'tw-p-1 tw-rounded-lg hover:tw-bg-primaryLight'
           }
         >
-          <Heading2
+          <Heading3
             className={
-              editor.isActive('heading', { level: 2 })
+              editor.isActive('heading', { level: 3 })
                 ? ' tw-stroke-primaryLight tw-w-5 tw-h-5'
                 : 'tw-stroke-black tw-w-5 tw-h-5'
             }
@@ -131,7 +131,7 @@ const Toolbar = ({ editor }: ToolbarProps) => {
           className={
             editor.isActive('bulletList')
               ? 'tw-bg-primary tw-p-1 tw-rounded-lg'
-              : 'tw-p-1'
+              : 'tw-p-1 tw-rounded-lg hover:tw-bg-primaryLight'
           }
         >
           <List
@@ -150,7 +150,7 @@ const Toolbar = ({ editor }: ToolbarProps) => {
           className={
             editor.isActive('orderedList')
               ? 'tw-bg-primary tw-p-1 tw-rounded-lg'
-              : 'tw-p-1'
+              : 'tw-p-1 tw-rounded-lg hover:tw-bg-primaryLight'
           }
         >
           <ListOrdered
@@ -169,7 +169,7 @@ const Toolbar = ({ editor }: ToolbarProps) => {
           className={
             editor.isActive('blockquote')
               ? 'tw-bg-primary tw-p-1 tw-rounded-lg'
-              : 'tw-p-1'
+              : 'tw-p-1 tw-rounded-lg hover:tw-bg-primaryLight'
           }
         >
           <Quote
@@ -188,7 +188,7 @@ const Toolbar = ({ editor }: ToolbarProps) => {
           className={
             editor.isActive('codeBlock')
               ? 'tw-bg-primary tw-p-1 tw-rounded-lg'
-              : 'tw-p-1'
+              : 'tw-p-1 tw-rounded-lg hover:tw-bg-primaryLight'
           }
         >
           <Code
@@ -204,7 +204,7 @@ const Toolbar = ({ editor }: ToolbarProps) => {
             e.preventDefault();
             editor.chain().focus().undo().run();
           }}
-          className="tw-p-1 tw-rounded-lg  hover:tw-bg-primary tw-group"
+          className="tw-p-1 tw-rounded-lg hover:tw-bg-primaryLight"
         >
           <Undo className="tw-w-5 tw-h-5 tw-stroke-black group-hover:tw-stroke-primaryLight" />
         </button>
@@ -213,7 +213,7 @@ const Toolbar = ({ editor }: ToolbarProps) => {
             e.preventDefault();
             editor.chain().focus().redo().run();
           }}
-          className="tw-p-1 tw-rounded-lg hover:tw-bg-primary tw-group"
+          className="tw-p-1 tw-rounded-lg hover:tw-bg-primaryLight"
         >
           <Redo className="tw-w-5 tw-h-5 tw-stroke-black group-hover:tw-stroke-primaryLight" />
         </button>

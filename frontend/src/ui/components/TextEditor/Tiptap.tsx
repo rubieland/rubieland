@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import StarterKit from '@tiptap/starter-kit';
 import { memo, useEffect } from 'react';
 import Toolbar from './Toolbar';
+import { addAsterisk } from '@/utils/string.utils';
 
 interface TiptapProps {
   onContentChange: (content: string) => void;
@@ -19,14 +20,14 @@ const Tiptap = memo(({ onContentChange, content }: TiptapProps) => {
       StarterKit,
       Underline,
       Placeholder.configure({
-        placeholder: t('textEditor.defaultPlaceholder'),
+        placeholder: addAsterisk(t('form.post.content')),
       }),
     ],
     content,
     editorProps: {
       attributes: {
         class:
-          'tw-flex tw-flex-col tw-px-4 tw-py-3 tw-justify-start tw-border-b tw-border-r tw-border-l tw-border-gray-700 tw-text-gray-400 tw-items-start tw-w-full tw-gap-3 tw-font-medium tw-text-[16px] tw-pt-4 tw-rounded-bl-md tw-rounded-br-md !tw-outline-none',
+          'tw-flex tw-flex-col tw-min-h-[200px] tw-px-4 tw-py-3 tw-justify-start tw-border-b tw-border-r tw-border-l tw-border-grey50 tw-text-gray-400 tw-items-start tw-w-full tw-gap-3 tw-font-medium tw-text-[16px] tw-pt-4 tw-rounded-bl-md tw-rounded-br-md !tw-outline-none',
       },
     },
     onUpdate: ({ editor }) => {
