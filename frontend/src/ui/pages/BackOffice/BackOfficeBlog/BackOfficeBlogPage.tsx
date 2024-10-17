@@ -9,7 +9,7 @@ import { useMemo } from 'react';
 const BackOfficeBlogPage = () => {
   const { data: posts, isLoading } = useGetAllPostsBackOffice();
   const postColumns = usePostColumns();
-  const columns = useMemo(() => postColumns, []);
+  const columns = useMemo(() => postColumns, [posts]);
 
   if (isLoading) return <PageLoader isLoading={isLoading} />;
 
