@@ -21,6 +21,7 @@ import { Route as AppProfileImport } from './routes/_app/profile'
 import { Route as AppLoginImport } from './routes/_app/login'
 import { Route as AppBlogImport } from './routes/_app/blog'
 import { Route as AppAboutImport } from './routes/_app/about'
+import { Route as BackOfficeUsersIndexImport } from './routes/back-office/users/index'
 import { Route as BackOfficeBlogIndexImport } from './routes/back-office/blog/index'
 import { Route as AppBlogIndexImport } from './routes/_app/blog/index'
 import { Route as BackOfficeBlogCreatePostImport } from './routes/back-office/blog/create-post'
@@ -78,6 +79,11 @@ const AppBlogRoute = AppBlogImport.update({
 const AppAboutRoute = AppAboutImport.update({
   path: '/about',
   getParentRoute: () => AppRoute,
+} as any)
+
+const BackOfficeUsersIndexRoute = BackOfficeUsersIndexImport.update({
+  path: '/users/',
+  getParentRoute: () => BackOfficeRoute,
 } as any)
 
 const BackOfficeBlogIndexRoute = BackOfficeBlogIndexImport.update({
@@ -206,6 +212,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BackOfficeBlogIndexImport
       parentRoute: typeof BackOfficeBlogImport
     }
+    '/back-office/users/': {
+      id: '/back-office/users/'
+      path: '/users'
+      fullPath: '/back-office/users'
+      preLoaderRoute: typeof BackOfficeUsersIndexImport
+      parentRoute: typeof BackOfficeImport
+    }
     '/_app/blog/posts/$postId': {
       id: '/_app/blog/posts/$postId'
       path: '/posts/$postId'
@@ -252,6 +265,7 @@ export const routeTree = rootRoute.addChildren({
       BackOfficeBlogUpdatePostPostIdRoute,
     }),
     BackOfficeIndexRoute,
+    BackOfficeUsersIndexRoute,
   }),
 })
 
@@ -282,7 +296,8 @@ export const routeTree = rootRoute.addChildren({
       "filePath": "back-office.tsx",
       "children": [
         "/back-office/blog",
-        "/back-office/"
+        "/back-office/",
+        "/back-office/users/"
       ]
     },
     "/_app/about": {
@@ -338,6 +353,10 @@ export const routeTree = rootRoute.addChildren({
     "/back-office/blog/": {
       "filePath": "back-office/blog/index.tsx",
       "parent": "/back-office/blog"
+    },
+    "/back-office/users/": {
+      "filePath": "back-office/users/index.tsx",
+      "parent": "/back-office"
     },
     "/_app/blog/posts/$postId": {
       "filePath": "_app/blog/posts/$postId.tsx",
