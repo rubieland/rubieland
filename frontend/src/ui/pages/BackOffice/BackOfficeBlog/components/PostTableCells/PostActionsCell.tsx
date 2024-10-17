@@ -1,12 +1,12 @@
 import useDeletePostModal from '@/ui/pages/BackOffice/hooks/useDeletePostModal';
-import DeletePostModal from '../Modal/DeletePostModal';
+import DeletePostModal from '@/ui/components/Modal/DeletePostModal';
+import CustomButton from '@/ui/components/Button/CustomButton';
+import PenSquare from '@/ui/components/Icons/PenSquare';
 import { useNavigate } from '@tanstack/react-router';
-import CustomButton from '../Button/CustomButton';
 import { useTranslation } from 'react-i18next';
+import Bin from '@/ui/components/Icons/Bin';
 import colors from '@/assets/styles/colors';
-import PenSquare from '../Icons/PenSquare';
 import './styles/PostActionsCell.scss';
-import Bin from '../Icons/Bin';
 import { useRef } from 'react';
 
 interface PostActionsCellProps {
