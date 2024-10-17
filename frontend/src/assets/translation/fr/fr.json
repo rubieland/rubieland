@@ -274,6 +274,8 @@
           "email": "Email",
           "phone": "Téléphone",
           "avatar": "Avatar",
+          "avatarAlt": "Avatar de l'utilisateur",
+          "noAvatar": "Pas d'avatar",
           "actions": "Actions"
         }
       },
