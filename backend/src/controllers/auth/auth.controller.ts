@@ -1,5 +1,4 @@
 import { NextFunction, Request, Response } from 'express';
-import User from '../../models/User.model';
 import { trimData } from '../../utils/string.utils';
 import { UserData, UserRole } from '../../models/types/User.types';
 import i18n from '../../config/i18n';
@@ -13,6 +12,7 @@ import { DataContext } from '../../validation/types/validation.types';
 import { generateTokens } from '../../utils/token.utils';
 import { env } from '../../loaders/env.loader';
 import jwt from 'jsonwebtoken';
+import User from '../../models/User.model';
 
 const { NODE_ENV, COOKIE_MAX_AGE, JWT_REFRESH_SECRET } = env;
 const context: DataContext = DataContext.USER;

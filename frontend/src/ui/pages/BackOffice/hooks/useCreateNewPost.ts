@@ -4,6 +4,7 @@ import { QueryKeysEnum } from '@/enums/queryKeys';
 import { queryClient } from '@/api/reactQuery';
 import { useTranslation } from 'react-i18next';
 import { AxiosError } from 'axios';
+import DOMPurify from 'dompurify';
 import { toast } from 'sonner';
 
 const useCreateNewPost = () => {
@@ -35,8 +36,11 @@ const useCreateNewPost = () => {
     const loadingToastId = toast.loading(
       t('form.post.loading.postCreationLoading'),
     );
+    const sanitizedContent = DOMPurify.sanitize(data.content);
+    const postBody = { ...data, content: sanitizedContent };
+
     try {
-      const response = await createPost(data);
+      const response = await createPost(postBody);
 
       toast.dismiss(loadingToastId);
       return response;

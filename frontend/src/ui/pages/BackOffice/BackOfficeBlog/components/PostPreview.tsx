@@ -7,6 +7,7 @@ import { UseFormReturn } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import PostTabsHeader from './PostTabsHeader';
 import '../styles/PostPreview.scss';
+import DOMPurify from 'dompurify';
 
 const imageSources = [
   { media: '(min-width: 500px)', srcSet: defaultImgMedium },
@@ -21,6 +22,8 @@ const PostPreview = ({ formMethods }: PostPreviewProps) => {
   const { getValues } = formMethods;
   const { title, content, picture } = getValues();
   const now = new Date();
+
+  const sanitizedContent = DOMPurify.sanitize(content);
 
   const imgSrc = picture
     ? typeof picture === 'string'
@@ -50,9 +53,11 @@ const PostPreview = ({ formMethods }: PostPreviewProps) => {
               )}
             </div>
           </header>
-          <p className="post-details-content">
-            {content || t('form.post.content')}
-          </p>
+          {!content && <p>{t('form.post.content')}</p>}
+          <div
+            className="post-details-content"
+            dangerouslySetInnerHTML={{ __html: sanitizedContent }}
+          />
         </article>
       </div>
     </section>

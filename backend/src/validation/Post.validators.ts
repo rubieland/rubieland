@@ -37,7 +37,7 @@ export const checkPostData = async (data: Omit<PostData, 'picture'>) => {
     if (key in postDataLengths) {
       const fieldKey = key as PostField;
 
-      if (typeof value === 'string') {
+      if (typeof value === 'string' && fieldKey !== 'content') {
         // check forbidden characters
         if (hasForbiddenChars(value)) {
           errors.push(

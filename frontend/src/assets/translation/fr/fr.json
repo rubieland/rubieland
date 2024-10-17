@@ -79,6 +79,10 @@
     "content": "Cette page n'existe pas."
   },
 
+  "textEditor": {
+    "defaultPlaceholder": "Commencez à écrire ici..."
+  },
+
   "form": {
     "errors": {
       "requiredField": "Ce champ est obligatoire",
@@ -205,7 +209,7 @@
       "allPosts": "Tous les articles",
       "postCard": {
         "date": "{{ date, medium }}",
-        "readMore": "Lire la suite"
+        "tag": "Actualités"
       },
       "postDetailsPage": {
         "updatedOn": "Mis à jour le {{ date, mediumWithTime }}",

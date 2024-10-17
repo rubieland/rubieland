@@ -7,7 +7,7 @@
     transform 0.3s ease-in-out;
   @include flex-start-y-stretch;
   @include box-shadow-bottom;
-  background-color: $grey10;
+  background-color: $white;
   border-radius: 0.5rem;
   overflow: hidden;
   cursor: pointer;
@@ -15,7 +15,7 @@
 
   &:hover {
     transform: translateY(-5px);
-    background-color: $white;
+    background-color: $grey10;
   }
 }
 
@@ -36,31 +36,28 @@
 
   .post-card-title {
     font-size: clamp(1rem, 1.5vw + 0.5rem, 1.25rem);
-  }
-
-  .post-card-excerpt {
-    font-size: clamp(0.8rem, 1.2vw + 0.5rem, 1rem);
     @include flex-start-y-stretch;
     color: $grey80;
     flex: 1;
   }
 
   .post-card-footer {
-    justify-content: space-between;
+    @include flex-center-between;
     margin-top: 0.5rem;
-    display: flex;
 
     .post-card-date {
-      font-size: clamp(0.8rem, 1vw + 0.5rem, 1rem);
+      font-size: clamp(0.6rem, 0.8vw + 0.5rem, 0.825rem);
       font-style: italic;
       color: $grey70;
     }
 
-    .post-card-read-more {
-      font-size: clamp(0.8rem, 1vw + 0.5rem, 1rem);
-      text-decoration: none;
-      font-weight: bold;
-      color: $primary;
+    .post-card-tag {
+      font-size: clamp(0.6rem, 0.8vw + 0.5rem, 0.825rem);
+      background-color: $lightBlue;
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.5rem;
+      font-weight: 600;
+      color: $black;
     }
   }
 }

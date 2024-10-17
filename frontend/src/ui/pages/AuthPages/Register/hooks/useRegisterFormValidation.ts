@@ -18,7 +18,9 @@ export const RegisterFormSchema = z
       .min(2, {
         message: i18n.t('form.errors.inputMinLength', { minLength: 2 }),
       })
-      .max(30, { message: i18n.t('form.errors.inputMaxLength', { max: 30 }) })
+      .max(30, {
+        message: i18n.t('form.errors.inputMaxLength', { maxLength: 30 }),
+      })
       .refine((value) => nameRegex.test(value), {
         message: i18n.t('form.errors.invalidName'),
       }),
@@ -27,14 +29,18 @@ export const RegisterFormSchema = z
       .min(2, {
         message: i18n.t('form.errors.inputMinLength', { minLength: 2 }),
       })
-      .max(30, { message: i18n.t('form.errors.inputMaxLength', { max: 30 }) })
+      .max(30, {
+        message: i18n.t('form.errors.inputMaxLength', { maxLength: 30 }),
+      })
       .refine((value) => nameRegex.test(value), {
         message: i18n.t('form.errors.invalidName'),
       }),
     email: z
       .string()
       .min(1, { message: i18n.t('form.errors.requiredField') })
-      .max(60, { message: i18n.t('form.errors.inputMaxLength', { max: 60 }) })
+      .max(60, {
+        message: i18n.t('form.errors.inputMaxLength', { maxLength: 60 }),
+      })
       .email({ message: i18n.t('form.errors.invalidEmailFormat') }),
     password: z
       .string()

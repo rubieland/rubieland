@@ -79,6 +79,10 @@
     "content": "This page does not exist."
   },
 
+  "textEditor": {
+    "defaultPlaceholder": "Start writing here..."
+  },
+
   "form": {
     "errors": {
       "requiredField": "This field is required",
@@ -205,7 +209,7 @@
       "allPosts": "All posts",
       "postCard": {
         "date": "{{ date, medium }}",
-        "readMore": "Read more"
+        "tag": "News"
       },
       "postDetailsPage": {
         "updatedOn": "Updated on {{ date, mediumWithTime }}",
