@@ -5,7 +5,7 @@ const BackOfficeDashboardPage = () => {
   const { t } = useTranslation();
 
   return (
-    <section className="bo-dashboard-section">
+    <section className="back-office-section">
       <h2>{t('pages.backOffice.dashboard.title')}</h2>
     </section>
   );

@@ -3,11 +3,7 @@ interface UserFirstNameCellProps {
 }
 
 const UserFirstNameCell = ({ firstName }: UserFirstNameCellProps) => {
-  return (
-    <div>
-      <span>{firstName}</span>
-    </div>
-  );
+  return <span className="table-cell-content">{firstName}</span>;
 };
 
 export default UserFirstNameCell;

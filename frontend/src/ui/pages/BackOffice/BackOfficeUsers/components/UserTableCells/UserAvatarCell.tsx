@@ -3,11 +3,7 @@ interface UserAvatarCellProps {
 }
 
 const UserAvatarCell = ({ avatar }: UserAvatarCellProps) => {
-  return (
-    <div>
-      <p>{avatar}</p>
-    </div>
-  );
+  return <span className="table-cell-content">{avatar}</span>;
 };
 
 export default UserAvatarCell;

@@ -3,11 +3,7 @@ interface UserEmailCellProps {
 }
 
 const UserEmailCell = ({ email }: UserEmailCellProps) => {
-  return (
-    <div>
-      <span>{email}</span>
-    </div>
-  );
+  return <span className="table-cell-content">{email}</span>;
 };
 
 export default UserEmailCell;

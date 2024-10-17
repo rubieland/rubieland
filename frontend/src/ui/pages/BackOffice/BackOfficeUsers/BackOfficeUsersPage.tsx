@@ -17,7 +17,7 @@ const BackOfficeUsersPage = () => {
   if (isLoading) return <PageLoader isLoading={isLoading} />;
 
   return (
-    <section className="bo-users-section">
+    <section className="back-office-section">
       <h2>{t('title')}</h2>
       <DataTable columns={columns} data={users ?? []} />
     </section>

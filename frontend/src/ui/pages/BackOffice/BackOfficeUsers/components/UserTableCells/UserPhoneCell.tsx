@@ -3,11 +3,7 @@ interface UserPhoneCellProps {
 }
 
 const UserPhoneCell = ({ phone }: UserPhoneCellProps) => {
-  return (
-    <div>
-      <span>{phone}</span>
-    </div>
-  );
+  return <span className="table-cell-content">{phone}</span>;
 };
 
 export default UserPhoneCell;
