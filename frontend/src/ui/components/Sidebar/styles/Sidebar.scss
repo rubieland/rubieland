@@ -137,13 +137,35 @@
         border-radius: 0.5rem;
       }
     }
+
+    .sidebar-logout-button {
+      transition:
+        background-color 0.3s ease,
+        color 0.3s ease;
+      p {
+        transition: color 0.3s ease;
+        color: $red;
+      }
+
+      svg path {
+        transition: stroke 0.3s ease;
+        stroke: $red;
+      }
+
+      &:hover {
+        transition: background-color 0.3s ease;
+        background-color: $errorBg;
+
+        p {
+          transition: color 0.3s ease;
+          color: $errorText;
+        }
+
+        svg path {
+          transition: stroke 0.3s ease;
+          stroke: $errorText;
+        }
+      }
+    }
   }
 }
-
-// ----- responsive ----- \\
-
-// @include respond-to('medium') {
-//   .sidebar {
-//     top: $app-header-height;
-//   }
-// }
