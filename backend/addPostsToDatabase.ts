@@ -4,8 +4,7 @@ import { readFile } from 'fs/promises';
 import Post from './src/models/Post.model';
 dotenv.config();
 
-const { NODE_ENV, DEV_DB_URI, PROD_DB_URI } = process.env;
-const MONGO_URI = NODE_ENV === 'development' ? DEV_DB_URI : PROD_DB_URI;
+const { DB_URI } = process.env;
 
 // function to load and insert posts
 async function insertPosts() {
@@ -32,9 +31,9 @@ async function insertPosts() {
 // main function to handle the connection and data insertion
 async function main() {
   try {
-    if (!MONGO_URI) throw new Error('MONGO_URI env variable is undefined');
+    if (!DB_URI) throw new Error('DB_URI env variable is undefined');
 
-    await mongoose.connect(MONGO_URI, {});
+    await mongoose.connect(DB_URI, {});
     console.log('Connection to database successful!');
 
     // call the function to insert the posts

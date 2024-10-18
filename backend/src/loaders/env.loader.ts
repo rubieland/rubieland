@@ -3,10 +3,8 @@ dotenv.config();
 
 const requiredEnvVariables = [
   'PORT',
-  'CLIENT_HOST',
-  'CLIENT_PORT',
-  'DEV_DB_URI',
-  'PROD_DB_URI',
+  'CLIENT_URL',
+  'DB_URI',
   'NODE_ENV',
   'UPLOADS_DIR',
   'JWT_SECRET',
