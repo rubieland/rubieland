@@ -89,7 +89,7 @@
       "inputMaxLength": "This field  must not contain more than {{maxLength}} characters",
       "inputMinLength": "This field  must contain at least {{minLength}} characters",
       "invalidEmailFormat": "Please enter a valid email address (example@example.com)",
-      "minBirthDate": "The required age is {{min}} years old minimum",
+      "minBirthDate": "The age cannot be under {{min}} years old",
       "maxBirthDate": "The age cannot exceed {{max}} years old",
       "birthDateInFuture": "The birthdate cannot be in the future",
       "invalidFileType": "Invalid file. Only files of type {{types}} are allowed",
@@ -112,7 +112,6 @@
       "emailPlaceholder": "example@example.com",
       "password": "Password",
       "confirmPassword": "Confirm password",
-      "birthDate": "Birth date",
       "phoneLabel": "Phone",
       "phonePlaceholder": "ex: +44 7500 123456"
     },
@@ -250,7 +249,8 @@
         "headerTitle": "Back office",
         "links": {
           "dashboard": "Dashboard",
-          "blog": "Blog"
+          "blog": "Blog",
+          "users": "Users"
         }
       },
       "tables": {
@@ -267,6 +267,16 @@
           "updatedAtDate": "{{ date, shortestWithTime }}",
           "actions": "Actions",
           "noPosts": "No post created yet."
+        },
+        "users": {
+          "lastName": "Last name",
+          "firstName": "First name",
+          "email": "Email",
+          "phone": "Phone",
+          "avatar": "Avatar",
+          "avatarAlt": "User avatar",
+          "noAvatar": "No avatar",
+          "actions": "Actions"
         }
       },
       "dashboard": {
@@ -277,6 +287,9 @@
         "title": "My blog posts",
         "createPost": "Write a post",
         "updatePost": "Edit post"
+      },
+      "users": {
+        "title": "Users"
       }
     }
   }

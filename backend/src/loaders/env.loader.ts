@@ -9,6 +9,7 @@ const requiredEnvVariables = [
   'DEV_DB_URI',
   'PROD_DB_URI',
   'NODE_ENV',
+  'UPLOADS_DIR',
   'JWT_SECRET',
   'JWT_REFRESH_SECRET',
   'ACCESS_TOKEN_EXPIRATION',

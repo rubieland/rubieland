@@ -36,6 +36,7 @@
    DEV_DB_URI # development mongodb uri
    PROD_DB_URI # production mongodb uri
    NODE_ENV # development or production
+   UPLOADS_DIR # the directory where the uploads will be stored
    JWT_SECRET # the secret key for the jwt.sign
    JWT_REFRESH_SECRET # the secret key for the jwt.sign for the refresh token
    ACCESS_TOKEN_EXPIRATION # expiration of the access token
@@ -92,7 +93,7 @@
 
    ### Avatars and pictures
 
-   💡You will find in **/backend/src/uploads/mock** a copy of the pictures used for the data in **/data/{foo}.json** if needed.
+   💡You will find in **/backend/uploads/mock** a copy of the pictures used for the data in **/data/{foo}.json** if needed.
 
     <br>
 

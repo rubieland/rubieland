@@ -28,6 +28,9 @@ const useRegister = () => {
       // update the users list received from api after successful register
       await queryClient.invalidateQueries({ queryKey: [QueryKeysEnum.USERS] });
 
+      // display success toast
+      toast.success(t('auth.success.registerSuccess'));
+
       // redirect to login page after successful register
       navigate({ from: '/register', to: '/login' });
     },

@@ -10,15 +10,14 @@ import {
   getMissingOrEmptyFieldsErrorMessage,
 } from '../../utils/validation.utils';
 import { checkPostData } from '../../validation/Post.validators';
-import { fileURLToPath } from 'url';
 import path from 'path';
 import { deleteFile as deletePicture } from '../../utils/file.utils';
 import DOMPurify from 'dompurify';
 import { JSDOM } from 'jsdom';
+import { env } from '../../loaders/env.loader';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const postsPicturesDir = path.join(__dirname, '../../uploads/blog/pictures');
+const { UPLOADS_DIR } = env;
+const postsPicturesDir = path.resolve(UPLOADS_DIR, 'blog/pictures');
 const context: DataContext = DataContext.POST;
 
 // create a new window object to use DOMPurify to sanitize blog post content as it contains HTML

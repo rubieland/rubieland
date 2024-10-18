@@ -2,7 +2,7 @@
   "compilerOptions": {
     "outDir": "dist", // Specifies the output directory for the compiled files.
     "target": "ES2021", // Sets the JavaScript version for emitted JavaScript and includes compatible library declarations.
-    "module": "ESNext", // Specifies the module code generation method.
+    "module": "CommonJS", // Specifies the module code generation method.
     "moduleResolution": "node", // Determines how modules are resolved. 'node' mimics Node.js module resolution.
     "esModuleInterop": true, // Enables interoperability between CommonJS and ES Modules.
     "forceConsistentCasingInFileNames": true, // Ensures that file names are case-sensitive.

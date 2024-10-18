@@ -89,7 +89,7 @@
       "inputMaxLength": "Ce champ ne peut contenir que {{maxLength}} caractères maximum",
       "inputMinLength": "Ce champ doit contenir au moins {{minLength}} caractères",
       "invalidEmailFormat": "Veuillez saisir une adresse e-mail valide (exemple@exemple.com)",
-      "minBirthDate": "L'âge requis est de {{min}} ans minimum",
+      "minBirthDate": "L'âge ne peut pas être inférieur à {{min}} ans",
       "maxBirthDate": "L'âge ne peut pas excéder {{max}} ans",
       "birthDateInFuture": "La date de naissance ne peut pas être dans le futur",
       "invalidFileType": "Fichier invalide. Seuls les fichiers de type {{types}} sont acceptés",
@@ -112,7 +112,6 @@
       "emailPlaceholder": "exemple@exemple.com",
       "password": "Mot de passe",
       "confirmPassword": "Confirmer le mot de passe",
-      "birthDate": "Date de naissance",
       "phoneLabel": "Téléphone",
       "phonePlaceholder": "ex: +33 7 12 34 56 78"
     },
@@ -250,7 +249,8 @@
         "headerTitle": "Back office",
         "links": {
           "dashboard": "Dashboard",
-          "blog": "Blog"
+          "blog": "Blog",
+          "users": "Utilisateurs"
         }
       },
       "tables": {
@@ -267,6 +267,16 @@
           "updatedAtDate": "{{ date, shortestWithTime }}",
           "actions": "Actions",
           "noPosts": "Aucun article n'a été créé pour le moment."
+        },
+        "users": {
+          "lastName": "Nom de famille",
+          "firstName": "Prénom",
+          "email": "Email",
+          "phone": "Téléphone",
+          "avatar": "Avatar",
+          "avatarAlt": "Avatar de l'utilisateur",
+          "noAvatar": "Pas d'avatar",
+          "actions": "Actions"
         }
       },
       "dashboard": {
@@ -277,6 +287,9 @@
         "title": "Mes articles de blog",
         "createPost": "Écrire un article",
         "updatePost": "Modifier l'article"
+      },
+      "users": {
+        "title": "Utilisateurs"
       }
     }
   }

@@ -7,7 +7,6 @@ export type User = {
   email: string;
   firstName: string;
   lastName: string;
-  birthDate: string;
   avatar: string | null;
   phone: string;
   role: UserRole;
@@ -31,7 +30,6 @@ export const convertUserDtoToEntity = (dto: UserDto): User => {
     email: dto.email,
     firstName: dto.firstName,
     lastName: dto.lastName,
-    birthDate: dto.birthDate,
     avatar: dto.avatar,
     phone: dto.phone,
     role: dto.role,
