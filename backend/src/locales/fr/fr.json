@@ -12,22 +12,22 @@
       "saveFailed": "Une erreur est survenue lors de la sauvegarde des données. Veuillez réessayer",
       "deleteFileFailed": "Le fichier n'a pas pu être supprimé",
       "resourceDoesNotExist": "Cette ressource n'existe pas ou n'existe plus",
-      "usersFound_zero": "Aucun utilisateur trouvé",
       "userDoesNotExist": "Cet utilisateur n'existe pas ou n'existe plus",
-      "postsFound_zero": "Aucun article de blog trouvé",
       "postDoesNotExist": "Cet article de blog n'existe pas ou n'existe plus",
-      "prestationsFound_zero": "Aucune prestation trouvée",
       "prestationDoesNotExist": "Cette prestation n'existe pas ou n'existe plus",
-      "dogsFound_zero": "Aucun chien trouvé",
       "dogDoesNotExist": "Cet chien n'existe pas ou n'existe plus"
     },
     "success": {
+      "usersFound_zero": "Aucun utilisateur trouvé",
       "usersFound_one": "{{count}} utilisateur trouvé",
       "usersFound_other": "{{count}} utilisateurs trouvés",
+      "postsFound_zero": "Aucun article de blog trouvé",
       "postsFound_one": "{{count}} article de blog trouvé",
       "postsFound_other": "{{count}} articles de blog trouvés",
+      "prestationsFound_zero": "Aucune prestation trouvée",
       "prestationsFound_one": "{{count}} prestation trouvée",
       "prestationsFound_other": "{{count}} prestations trouvées",
+      "dogsFound_zero": "Aucun chien trouvé",
       "dogsFound_one": "{{count}} chien trouvé",
       "dogsFound_other": "{{count}} chiens trouvés"
     }

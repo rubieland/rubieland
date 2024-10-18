@@ -37,6 +37,9 @@ export const loadExpress = async ({ server }: { server: Express }) => {
     );
 
     // routers
+    server.get('/', (req, res) => {
+      res.status(200).json({ message: 'Hello World' });
+    });
     server.use('/auth', authRouter);
     server.use('/profile', profileRouter);
     server.use('/back-office', backOfficeRouter);
