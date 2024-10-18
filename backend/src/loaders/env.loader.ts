@@ -2,8 +2,7 @@ import * as dotenv from 'dotenv';
 dotenv.config();
 
 const requiredEnvVariables = [
-  'APP_HOST',
-  'APP_PORT',
+  'PORT',
   'CLIENT_HOST',
   'CLIENT_PORT',
   'DEV_DB_URI',

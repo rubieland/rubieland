@@ -113,6 +113,6 @@ If everything is fine, you should see these messages in console :
 
 - i18next initialized successfully!
 - Connection to database successful!
-- Server is running on <strong><u>http://{APP_HOSTNAME}:{APP_PORT}</u></strong>
+- Server is running on port {APP_PORT}</u></strong>
 
 If so, that means that the server is working fine. You can now set up the frontend app and you'll be ready to go!
