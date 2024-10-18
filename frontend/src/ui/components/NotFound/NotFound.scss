@@ -1,0 +1,14 @@
+@import '../../../assets/styles/mixins';
+
+.not-found-container {
+  @include flex-center-y;
+  flex-direction: column;
+  align-self: center;
+  padding: 1.5rem;
+  width: 100%;
+  gap: 2rem;
+}
+
+.back-home-btn {
+  max-width: 20rem;
+}

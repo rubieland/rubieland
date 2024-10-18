@@ -1,0 +1,22 @@
+[
+  {
+    "firstName": "admin",
+    "lastName": "admin",
+    "email": "admin@admin.com",
+    "password": "Admin44!",
+    "phone": "+33765776577",
+    "avatar": "female_avatar.png",
+    "role": "admin",
+    "dogsIds": []
+  },
+  {
+    "firstName": "john",
+    "lastName": "doe",
+    "email": "johndoe@johndoe.com",
+    "password": "Johndoe44!",
+    "phone": "+33765776575",
+    "avatar": "male_avatar.png",
+    "role": "user",
+    "dogsIds": []
+  }
+]

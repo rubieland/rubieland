@@ -1,0 +1,11 @@
+@import '../../../assets/styles/mixins';
+
+.layout-container {
+  @include flex-column;
+  min-height: 100dvh;
+}
+
+.layout-content {
+  display: flex;
+  flex: 1;
+}

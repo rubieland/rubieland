@@ -1,0 +1,176 @@
+{
+  "common": {
+    "error": {
+      "400": "Bad Request",
+      "401": "Unauthorized",
+      "403": "Forbidden",
+      "404": "Not Found",
+      "415": "Unsupported Media Type",
+      "500": "Internal server error",
+      "unknown": "An unexpected error occured",
+      "permissionDenied": "You do not have permission to access this resource",
+      "saveFailed": "An error occurred while saving the data. Please try again",
+      "deleteFileFailed": "The file has not been deleted",
+      "resourceDoesNotExist": "This resource does not exist",
+      "usersFound_zero": "No user was found",
+      "userDoesNotExist": "This user does not exist or does not exist anymore",
+      "postsFound_zero": "No blog post was found",
+      "postDoesNotExist": "This blog post does not exist or does not exist anymore",
+      "prestationsFound_zero": "No prestation was found",
+      "prestationDoesNotExist": "This prestation does not exist or does not exist anymore",
+      "dogsFound_zero": "No dog was found",
+      "dogDoesNotExist": "This dog does not exist or does not exist anymore"
+    },
+    "success": {
+      "usersFound_one": "{{count}} user found",
+      "usersFound_other": "{{count}} users found",
+      "postsFound_one": "{{count}} blog post found",
+      "postsFound_other": "{{count}} blog posts found",
+      "prestationsFound_one": "{{count}} prestation found",
+      "prestationsFound_other": "{{count}} prestations found",
+      "dogsFound_one": "{{count}} dog found",
+      "dogsFound_other": "{{count}} dogs found"
+    }
+  },
+  "validation": {
+    "fields": {
+      "user": {
+        "firstName": "First name",
+        "lastName": "Last name",
+        "email": "Email",
+        "password": "Password",
+        "currentPassword": "Current password",
+        "confirmPassword": "Confirm password",
+        "newPassword": "New password",
+        "confirmNewPassword": "Confirm new password",
+        "phone": "Phone number",
+        "avatar": "Avatar"
+      },
+      "post": {
+        "title": "Title of the post",
+        "content": "Content of the post",
+        "isPublished": "Publish this post ?"
+      },
+      "prestation": {
+        "title": "Title of the prestation",
+        "description": "Description of the prestation",
+        "price": "Price of the prestation",
+        "isAvailable": "Availability"
+      },
+      "dog": {
+        "gender": "Gender",
+        "name": "Name",
+        "bio": "Bio",
+        "birthDate": "Birth date",
+        "breed": "Breed",
+        "picture": "Picture",
+        "age": "Age"
+      }
+    },
+    "rules": {
+      "user": {
+        "email": "please enter a valid email address (example@example.com)",
+        "firstName": "it can only contain letters, hyphens, spaces and apostrophes",
+        "lastName": "it can only contain letters, hyphens, spaces and apostrophes",
+        "password": "it must contain at least: 1 lowercase, 1 uppercase, 1 number and 1 special character ",
+        "phone": "Please enter a phone number in the international format: +XX 0000000000 (replace XX with the country code)",
+        "currentPasswordDontMatch": "the current password you entered is incorrect",
+        "passwordsDontMatch": "passwords don't match",
+        "newPasswordsDontMatch": "the password you entered in the field Confirm new password does not match with the password you entered in the field New password"
+      },
+      "post": {
+        "isPublished": "it must be of type Boolean, and so, be either true or false"
+      },
+      "prestation": {
+        "priceNotNumeric": "it must be a number",
+        "isAvailable": "it must be of type Boolean, and so, be either true or false"
+      },
+      "dog": {
+        "gender": "it can only be either \"male\" or \"female\"",
+        "birthDateInvalidFormat": "expected format: YYYY-MM-DD"
+      }
+    },
+    "messages": {
+      "required": "The field {{field}} is required",
+      "invalid": "The field {{field}} is invalid: {{rule}}",
+      "minLength": "The field {{field}} must contain at least {{minLength}} characters",
+      "maxLength": "The field {{field}} must not contain more than {{maxLength}} characters",
+      "min": "The field {{field}} cannot be lower than {{min}}",
+      "max": "The field {{field}} cannot be higher than {{max}}",
+      "hasForbiddenChars": "The field {{field}} must not contain any of the following special characters: <, >, {, }, ^, ~, |, \\",
+      "isNaN": "The field {{field}} must be a number",
+      "invalidDateFormat": "Date format for the {{field}} is invalid: {{rule}}",
+      "futureDate": "Date for the field {{field}} is invalid: it cannot be in the future",
+      "tooOld": "Date for the field {{field}} is invalid: it cannot be more than {{min}} years before the current date",
+      "default": "Please check the information entered for field {{field}}"
+    }
+  },
+  "auth": {
+    "success": {
+      "register": "Registration successful!",
+      "login": "Login successful! Welcome {{firstName}}!",
+      "logout": "Logout successful!"
+    },
+    "error": {
+      "registerFailed": "Registration failed",
+      "userExistsInBase": "An account with this email already exists. Please enter a new email",
+      "invalidCredentials": "Invalid credentials",
+      "internalServerError": "Internal server error",
+      "unauthorized": "Access denied. Please log in",
+      "forbidden": "Access denied. Please log in again",
+      "comparePasswordFailed": "An error occurred while comparing passwords. Please try again",
+      "refreshTokenMissing": "Refresh token is missing",
+      "invalidRefreshToken": "Refresh token is invalid",
+      "refreshTokenExpired": "Refresh token expired. Please log in again",
+      "invalidToken": "Invalid token",
+      "tokenExpired": "Token expired"
+    }
+  },
+  "uploads": {
+    "error": {
+      "fileTooLarge": "File too large. Max: {{limit}}MB",
+      "oneFileLimit": "You must send only one file",
+      "wrongFileType": "Invalid file. Only files of type {{types}} are allowed",
+      "unexpectedFile": "An unexpected file was uploaded. Please use only the designated upload fields."
+    }
+  },
+  "profile": {
+    "success": {
+      "profileUpdateSuccess": "Your profile has been modified successfully!",
+      "deleteAccountSuccess": "Your account has been deleted successfully!"
+    }
+  },
+  "blog": {
+    "success": {
+      "postCreationSuccess": "Post created successfully!",
+      "postUpdateSuccess": "Post updated successfully!",
+      "postDeleteSuccess": "Post deleted successfully!"
+    },
+    "error": {
+      "postCreationFailed": "Blog post creation failed",
+      "postUpdateFailed": "Blog post update failed"
+    }
+  },
+  "prestation": {
+    "success": {
+      "prestationCreationSuccess": "Prestation created successfully!",
+      "prestationUpdateSuccess": "Prestation updated successfully!",
+      "prestationDeleteSuccess": "Prestation deleted successfully!"
+    },
+    "error": {
+      "prestationCreationFailed": "Prestation creation failed",
+      "prestationUpdateFailed": "Prestation update failed"
+    }
+  },
+  "dog": {
+    "success": {
+      "dogCreationSuccess": "Your dog has been successfully created!",
+      "dogUpdateSuccess": "Your dog's information has been successfully updated!",
+      "dogDeleteSuccess": "Your dog has been successfully deleted!"
+    },
+    "error": {
+      "dogCreationFailed": "Failed to create your dog",
+      "dogUpdateFailed": "Failed to update your dog's information"
+    }
+  }
+}

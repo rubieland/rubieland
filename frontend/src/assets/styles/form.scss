@@ -1,0 +1,206 @@
+@import './placeholders';
+@import './mixins';
+
+form {
+  @include flex-center-column;
+  max-width: 40rem;
+  row-gap: 1rem;
+}
+
+.form-input {
+  width: min(100%, 36rem);
+  @include flex-column;
+  position: relative;
+  gap: 0.125rem;
+}
+
+.input-icon {
+  position: absolute;
+  cursor: pointer;
+  right: 0.5rem;
+  top: 0.75rem;
+}
+
+.checkbox-input {
+  width: min(100%, 36rem);
+  @include flex-center-y;
+  gap: 1.5rem;
+}
+
+.input-error-message {
+  font-family: $primary-font-stack;
+  width: min(100%, 36rem);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: $red;
+}
+
+.input,
+.textarea,
+.select {
+  @extend %input-base;
+
+  &::placeholder {
+    color: $grey50;
+  }
+
+  &-error {
+    border-color: $red;
+
+    &:focus {
+      border-color: $red;
+    }
+  }
+}
+
+.textarea {
+  @extend %input-base;
+  resize: none;
+}
+
+.checkbox {
+  @extend %checkbox;
+}
+
+.select,
+.date-picker,
+.file-input {
+  cursor: pointer;
+}
+
+// ----- file inputs styles ----- \\
+
+.file-input {
+  @include flex-center-column;
+  text-align: center;
+  width: 100%;
+  gap: 0.5rem;
+}
+
+// ----- edit blog post picture input styles ----- \\
+
+.edit-post-picture-input-container {
+  font-family: $secondary-font-stack;
+  width: min(100%, 36rem);
+  @include flex-column;
+  gap: 0.125rem;
+
+  .edit-post-picture-input {
+    @include edit-picture-input;
+
+    .edit-post-picture-figure {
+      transition: background-color ease-in-out 0.3s;
+      @include flex-center-column;
+      border-radius: 0.5rem;
+      @include box(inherit);
+      position: relative;
+      gap: 0.5rem;
+
+      > svg {
+        @include box(50%);
+        opacity: 0.8;
+        z-index: 0;
+        path {
+          transition: stroke ease-in-out 0.3s;
+        }
+      }
+
+      > p {
+        font-size: clamp(0.9rem, 2vw + 0.5rem, 1.1rem);
+        transition: color ease-in-out 0.3s;
+        font-weight: 600;
+        color: $grey60;
+        z-index: 1;
+      }
+
+      > img {
+        transition: filter ease-in-out 0.3s;
+        @include img($br: 0.5rem);
+      }
+
+      &:hover {
+        background-color: $blackTransp80;
+
+        > p {
+          color: $primaryLight;
+        }
+
+        > svg path {
+          stroke: $primaryLight;
+        }
+
+        > img {
+          filter: brightness(0.7);
+        }
+      }
+    }
+  }
+}
+
+// ----- edit avatar input styles ----- \\
+
+.edit-avatar-input-container {
+  @include flex-column;
+  text-align: center;
+  gap: 0.125rem;
+}
+
+.edit-avatar-input {
+  @include edit-picture-input(100%);
+}
+
+.edit-avatar-figure {
+  font-family: $secondary-font-stack;
+  @include flex-center-column;
+  border-radius: 100%;
+  position: relative;
+  @include box(120px);
+
+  > img {
+    @include img($br: 100%);
+  }
+
+  > svg {
+    @include box(50%);
+  }
+}
+
+.edit-avatar-figcaption {
+  transition: all ease-in-out 0.3s;
+  @include flex-center-column;
+  background-color: $black;
+  @include box(inherit);
+  border-radius: 100%;
+  position: absolute;
+  cursor: pointer;
+  opacity: 0;
+  top: 0px;
+
+  &:hover {
+    background-color: $blackTransp80;
+    opacity: 1;
+  }
+
+  > svg {
+    @include box(50%);
+  }
+
+  > p {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: $white;
+  }
+}
+
+// ----- responsive ----- \\
+
+@include respond-to('large') {
+  .edit-avatar-input,
+  .edit-avatar-figure {
+    @include box(150px);
+
+    .edit-avatar-figcaption > p {
+      font-size: 1rem;
+    }
+  }
+}

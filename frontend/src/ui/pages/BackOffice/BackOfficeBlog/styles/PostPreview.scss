@@ -1,0 +1,12 @@
+@import '../../../../../assets/styles/variables';
+@import '../../../../../assets/styles/mixins';
+
+.post-preview-article-container {
+  @include flex-center-column;
+  width: 100%;
+}
+.post-preview-article {
+  width: min(90%, 60rem);
+  @include flex-column;
+  align-self: center;
+}

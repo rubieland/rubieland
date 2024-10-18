@@ -1,0 +1,296 @@
+{
+  "common": {
+    "send": "Send",
+    "edit": "Edit",
+    "delete": "Delete",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "error": "Error",
+    "retry": "Retry",
+    "addPicture": "Add a picture",
+    "goBackToHomepage": "Go back to homepage",
+    "register": "Register",
+    "login": "Log in",
+    "logout": "Log out",
+    "formSending": "Sending...",
+    "preview": "Preview",
+    "genericError": "An error occurred. Please try again later.",
+    "serverError": "A server error occurred. Please try again later.",
+    "deleting": "Deleting...",
+    "updating": "Updating...",
+    "readMore": "Read more"
+  },
+
+  "SEO": {
+    "home": {
+      "title": "Rubieland - Dog daycare in Vendée",
+      "description": "Welcome to Rubieland, the dog daycare in Vendée. Discover my services, my amenities and my commitment."
+    },
+    "about": {
+      "title": "About Rubieland - Dog daycare in Vendée",
+      "description": "Discover the story of Rubieland, a dog daycare in Vendée. Learn more about my mission, my values and my journey."
+    },
+    "blog": {
+      "title": "Rubieland Blog - News from Rubieland daycare, stories and tips for dog care",
+      "description": "Discover practical tips on dog care, news about Rubieland and tips for taking care of your pet."
+    },
+    "register": {
+      "title": "Registration at Rubieland - Sign up and book a place in dog daycare in Vendée",
+      "description": "Create your account on Rubieland to access your personal space and make reservations for your dog(s)."
+    },
+    "login": {
+      "title": "Login to Rubieland - Access your personal space and book a place in dog daycare in Vendée",
+      "description": "Log in to your Rubieland account to access your personal space and make reservations for your dog(s)."
+    },
+    "profile": {
+      "title": "Rubieland user profile - Manage your personal information and your dog daycare reservations in Vendée",
+      "description": "Access your Rubieland personal space to view your reservations, modify your information, manage your account and the profile(s) of your dog(s)."
+    }
+  },
+
+  "aria-labels": {
+    "app-logo": "Rubieland logo (link to the home page)",
+    "burger-btn": "Toggle menu",
+    "facebook-icon": "Link to the Facebook page",
+    "instagram-icon": "Link to the Instagram page",
+    "close-modal": "Close modal",
+    "auth-links": "Links to the authentication pages",
+    "sidebar-toggle-btn": "Toggle sidebar",
+    "linkTo": "Link to {{page}}"
+  },
+
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "blog": "Blog",
+    "register": "Register",
+    "login": "Log in",
+    "profile": "Profile",
+    "backOffice": "Back office"
+  },
+
+  "footer": {
+    "copyright": "©{{year}} Rubieland. All rights reserved",
+    "socialMedia": "Follow me on my social media"
+  },
+
+  "notFound": {
+    "title": "Error 404: Page not found",
+    "content": "This page does not exist."
+  },
+
+  "textEditor": {
+    "defaultPlaceholder": "Start writing here..."
+  },
+
+  "form": {
+    "errors": {
+      "requiredField": "This field is required",
+      "inputMaxLength": "This field  must not contain more than {{maxLength}} characters",
+      "inputMinLength": "This field  must contain at least {{minLength}} characters",
+      "invalidEmailFormat": "Please enter a valid email address (example@example.com)",
+      "minBirthDate": "The age cannot be under {{min}} years old",
+      "maxBirthDate": "The age cannot exceed {{max}} years old",
+      "birthDateInFuture": "The birthdate cannot be in the future",
+      "invalidFileType": "Invalid file. Only files of type {{types}} are allowed",
+      "fileTooLarge": "File too large. Max: {{limit}}MB",
+      "oneFileLimit": "You must send only one file",
+      "passwordsDontMatch": "The passwords don't match",
+      "invalidName": "Ths field can only contain letters, hyphens, spaces and apostrophes",
+      "invalidPhone": "Please enter a phone number in the international format: +XX 0000000000 (replace XX with the country code)",
+      "minLowercase": "The password must contain at least 1 lowercase",
+      "minUppercase": "The password must contain at least 1 uppercase",
+      "minNumbers": "The password must contain at least 1 number",
+      "minSymbols": "The password must contain at least 1 special character",
+      "hasForbiddenChars": "This field must not contain any of the following special characters: <, >, {, }, ^, ~, |, \\"
+    },
+
+    "user": {
+      "firstName": "First name",
+      "lastName": "Last name",
+      "emailLabel": "Email",
+      "emailPlaceholder": "example@example.com",
+      "password": "Password",
+      "confirmPassword": "Confirm password",
+      "phoneLabel": "Phone",
+      "phonePlaceholder": "ex: +44 7500 123456"
+    },
+
+    "post": {
+      "title": "Title of the post",
+      "content": "Content of the post",
+      "picture": "Image of the post",
+      "isPublished": "Publish the post",
+      "loading": {
+        "postCreationLoading": "Creating the post...",
+        "postDeletionLoading": "Deleting the post...",
+        "postUpdateLoading": "Updating the post..."
+      },
+      "errors": {
+        "postCreationFailed": "An error occurred while creating the post",
+        "postDeletionFailed": "An error occurred while deleting the post",
+        "postUpdateFailed": "An error occurred while updating the post",
+        "postNotFound": "Post not found"
+      },
+      "success": {
+        "postCreationSuccess": "Post created successfully!",
+        "postDeletionSuccess": "Post deleted successfully!",
+        "postUpdateSuccess": "Post updated successfully!"
+      },
+      "confirmation": {
+        "confirmPostDelete": "Are you sure you want to delete this post? <strong>This action cannot be undone.</strong>"
+      }
+    }
+  },
+
+  "auth": {
+    "loading": {
+      "registerLoading": "Creating your account...",
+      "loginLoading": "Logging in...",
+      "logoutLoading": "Logging out..."
+    },
+    "success": {
+      "registerSuccess": "Registration successful!",
+      "loginSuccess": "You are logged in!",
+      "logoutSuccess": "Successfully logged out!"
+    },
+    "error": {
+      "accountAlreadyExists": "An account with this email already exists. Please enter a new email",
+      "registerFailed": "Registration failed",
+      "invalidCredentials": "Invalid credentials",
+      "loginFailed": "Log in failed",
+      "logoutFailed": "An error occured while logging out"
+    }
+  },
+
+  "pages": {
+    "home": {
+      "heroImage": {
+        "heroImageTitle": "His favorite daycare",
+        "heroImageText": "The adventure starts here!",
+        "heroImageCTA": "Discover Rubieland",
+        "heroImageImgAlt": "A black labrador retriever having its tongue hanging out"
+      },
+      "presentation": {
+        "title": "Welcome to Rubieland",
+        "firstDesc": "At Rubieland, your furry friend will find more than just a daycare - they'll find a second home. Whether it's for half a day or a full day, I'm here to provide services focused on your dog's happiness and well-being. Everything here is designed to offer them a fun and safe environment where they can thrive with confidence.",
+        "secondDesc": "Every dog is unique, which is why I focus on personalized care, with activities tailored to their needs and preferences. Trust me to take care of your beloved companion with all the love and attention they deserve. Here, they'll be pampered just like at home!",
+        "imageAlt": "A smiling dog in a garden"
+      }
+    },
+    "about": {
+      "title": "About Rubieland",
+      "sections": {
+        "aboutRubieland": {
+          "title": "What is Rubieland?",
+          "content": "Rubieland is a dog daycare that offers a safe and entertaining environment for your companions."
+        },
+        "amenities": {
+          "title": "Facility Details",
+          "content": "My amenities include a large outdoor play area, a comfortable rest room, and 24/7 surveillance service."
+        },
+        "location": {
+          "title": "Where is Rubieland?",
+          "content": "Rubieland is located in a peaceful area near the city, easily accessible by car."
+        },
+        "prestations": {
+          "title": "Services and Rates",
+          "content": {
+            "fullDay": "Full-day daycare: 30€",
+            "halfDay": "Half-day daycare: 18€"
+          }
+        }
+      }
+    },
+    "blog": {
+      "title": "Blog",
+      "emptyBlogText": "No post published yet.",
+      "allPosts": "All posts",
+      "postCard": {
+        "date": "{{ date, medium }}",
+        "tag": "News"
+      },
+      "postDetailsPage": {
+        "updatedOn": "Updated on {{ date, mediumWithTime }}",
+        "backToBlog": "Go back to blog"
+      }
+    },
+    "profile": {
+      "profileSection": {
+        "title": "My profile",
+        "personalInfo": "Personal information",
+        "accountInfo": "Account information"
+      },
+      "settingsSection": {
+        "title": "Settings",
+        "language": "Language"
+      }
+    },
+    "login": {
+      "notRegisteredYetBlock": {
+        "title": "No account yet?",
+        "linkTitle": "Create your account"
+      },
+      "loginFormBlock": {
+        "title": "Log in"
+      }
+    },
+    "register": {
+      "alreadyRegisteredBlock": {
+        "title": "Already have an account?",
+        "linkTitle": "Log in"
+      },
+      "registerFormBlock": {
+        "title": "Create your account"
+      }
+    },
+    "backOffice": {
+      "backOfficeSidebar": {
+        "headerTitle": "Back office",
+        "links": {
+          "dashboard": "Dashboard",
+          "blog": "Blog",
+          "users": "Users"
+        }
+      },
+      "tables": {
+        "posts": {
+          "title": "Title",
+          "content": "Content",
+          "status": "Status",
+          "picture": "Image",
+          "pictureAlt": "Post image",
+          "updatedAt": "Updated on",
+          "noImage": "No image",
+          "published": "Published",
+          "unpublished": "Unpublished",
+          "updatedAtDate": "{{ date, shortestWithTime }}",
+          "actions": "Actions",
+          "noPosts": "No post created yet."
+        },
+        "users": {
+          "lastName": "Last name",
+          "firstName": "First name",
+          "email": "Email",
+          "phone": "Phone",
+          "avatar": "Avatar",
+          "avatarAlt": "User avatar",
+          "noAvatar": "No avatar",
+          "actions": "Actions"
+        }
+      },
+      "dashboard": {
+        "title": "Dashboard",
+        "welcome": "Welcome {{firstName}} {{lastName}} !"
+      },
+      "blog": {
+        "title": "My blog posts",
+        "createPost": "Write a post",
+        "updatePost": "Edit post"
+      },
+      "users": {
+        "title": "Users"
+      }
+    }
+  }
+}

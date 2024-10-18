@@ -1,0 +1,176 @@
+{
+  "common": {
+    "error": {
+      "400": "Bad Request",
+      "401": "Unauthorized",
+      "403": "Forbidden",
+      "404": "Not Found",
+      "415": "Unsupported Media Type",
+      "500": "Internal server error",
+      "unknown": "Une erreur inconnue est survenue",
+      "permissionDenied": "Vous n'avez pas l'autorisation d'accéder à cette ressource",
+      "saveFailed": "Une erreur est survenue lors de la sauvegarde des données. Veuillez réessayer",
+      "deleteFileFailed": "Le fichier n'a pas pu être supprimé",
+      "resourceDoesNotExist": "Cette ressource n'existe pas ou n'existe plus",
+      "usersFound_zero": "Aucun utilisateur trouvé",
+      "userDoesNotExist": "Cet utilisateur n'existe pas ou n'existe plus",
+      "postsFound_zero": "Aucun article de blog trouvé",
+      "postDoesNotExist": "Cet article de blog n'existe pas ou n'existe plus",
+      "prestationsFound_zero": "Aucune prestation trouvée",
+      "prestationDoesNotExist": "Cette prestation n'existe pas ou n'existe plus",
+      "dogsFound_zero": "Aucun chien trouvé",
+      "dogDoesNotExist": "Cet chien n'existe pas ou n'existe plus"
+    },
+    "success": {
+      "usersFound_one": "{{count}} utilisateur trouvé",
+      "usersFound_other": "{{count}} utilisateurs trouvés",
+      "postsFound_one": "{{count}} article de blog trouvé",
+      "postsFound_other": "{{count}} articles de blog trouvés",
+      "prestationsFound_one": "{{count}} prestation trouvée",
+      "prestationsFound_other": "{{count}} prestations trouvées",
+      "dogsFound_one": "{{count}} chien trouvé",
+      "dogsFound_other": "{{count}} chiens trouvés"
+    }
+  },
+  "validation": {
+    "fields": {
+      "user": {
+        "firstName": "Prénom",
+        "lastName": "Nom de famille",
+        "email": "E-mail",
+        "password": "Mot de passe",
+        "currentPassword": "Mot de passe actuel",
+        "confirmPassword": "Confirmer le mot de passe",
+        "newPassword": "Nouveau mot de passe",
+        "confirmNewPassword": "Confirmer le nouveau mot de passe",
+        "phone": "N° de téléphone",
+        "avatar": "Avatar"
+      },
+      "post": {
+        "title": "Titre de l'article",
+        "content": "Contenu de l'article",
+        "isPublished": "Publier cet article ?"
+      },
+      "prestation": {
+        "title": "Titre de la prestation",
+        "description": "Description de la prestation",
+        "price": "Prix de la prestation",
+        "isAvailable": "Disponibilité"
+      },
+      "dog": {
+        "gender": "Sexe",
+        "name": "Nom",
+        "bio": "Bio",
+        "birthDate": "Date de naissance",
+        "breed": "Race",
+        "picture": "Photo",
+        "age": "Age"
+      }
+    },
+    "rules": {
+      "user": {
+        "email": "veuillez saisir une adresse e-mail valide (exemple@exemple.com)",
+        "firstName": "il ne peut contenir que des lettres, traits d'union, espaces et apostrophes",
+        "lastName": "il ne peut contenir que des lettres, traits d'union, espaces et apostrophes",
+        "password": "il doit contenir au moins: 1 minuscule, 1 majuscule, 1 chiffre, 1 caractère spécial",
+        "phone": "veuillez entrer un numéro de téléphone au format international : +XX 0000000000 (remplacez XX par le code du pays)",
+        "currentPasswordDontMatch": "le mot de passe actuel saisi est incorrect",
+        "passwordsDontMatch": "les mots de passe ne correspondent pas",
+        "newPasswordsDontMatch": "le mot de passe saisi dans Confirmer le nouveau mot de passe ne correspond pas avec le mot de passe saisi dans le champ Nouveau mot de passe"
+      },
+      "post": {
+        "isPublished": "il doit être de type Boolean, et donc être soit true, soit false"
+      },
+      "prestation": {
+        "priceNotNumeric": "il doit être un nombre",
+        "isAvailable": "il doit être de type Boolean, et donc être soit true, soit false"
+      },
+      "dog": {
+        "gender": "il ne peut qu'être soit \"mâle\" soit \"femelle\"",
+        "birthDateInvalidFormat": "format attendu: AAAA-MM-JJ"
+      }
+    },
+    "messages": {
+      "required": "Le champ {{field}} est requis",
+      "invalid": "Le champ {{field}} est invalide: {{rule}}",
+      "minLength": "Le champ {{field}} doit contenir {{minLength}} caractères minimum",
+      "maxLength": "Le champ {{field}} ne peut contenir que {{maxLength}} caractères maximum",
+      "min": "Le champ {{field}} ne peut pas être inférieur à {{min}}",
+      "max": "Le champ {{field}} ne peut pas être supérieur à {{max}}",
+      "hasForbiddenChars": "Le champ {{field}} ne doit contenir aucun des caractères suivants: <, >, {, }, ^, ~, |, \\",
+      "isNaN": "Le champ {{field}} doit être un nombre",
+      "invalidDateFormat": "Le format de la date pour le champ {{field}} est invalide: {{rule}}",
+      "futureDate": "La date pour le champ {{field}} est invalide: elle ne peut pas être dans le futur",
+      "tooOld": "La date pour le champ {{field}} est invalide: elle ne peut pas être plus de {{min}} ans avant la date actuelle",
+      "default": "Veuillez vérifier les informations saisies pour le champ {{field}}"
+    }
+  },
+  "auth": {
+    "success": {
+      "register": "Inscription réussie !",
+      "login": "Connexion réussie ! Bienvenue {{firstName}} !",
+      "logout": "Déconnexion réussie !"
+    },
+    "error": {
+      "registerFailed": "La création de compte a échouée",
+      "userExistsInBase": "Un compte avec cet email existe déjà. Veuillez entrer un nouvel email",
+      "invalidCredentials": "Identifiants incorrects",
+      "internalServerError": "Erreur interne du serveur",
+      "unauthorized": "Accès refusé. Veuillez vous connecter",
+      "forbidden": "Accès refusé. Veuillez vous reconnecter",
+      "comparePasswordFailed": "Une erreur est survenue lors de la comparaison des mots de passe. Veuillez réessayer",
+      "refreshTokenMissing": "Refresh token manquant",
+      "invalidRefreshToken": "Refresh token invalide",
+      "refreshTokenExpired": "Refresh token expiré. Veuillez vous reconnecter",
+      "invalidToken": "Token invalide",
+      "tokenExpired": "Token expiré"
+    }
+  },
+  "uploads": {
+    "error": {
+      "fileTooLarge": "Fichier trop lourd. Max: {{limit}}MB",
+      "oneFileLimit": "Vous ne devez envoyer qu'un fichier",
+      "wrongFileType": "Fichier invalide. Seuls les fichiers de type {{types}} sont acceptés",
+      "unexpectedFile": "Un fichier non prévu a été téléchargé. Veuillez n'utiliser que les champs de téléchargement prévus."
+    }
+  },
+  "profile": {
+    "success": {
+      "profileUpdateSuccess": "Votre profil a été modifié avec succès !",
+      "deleteAccountSuccess": "Votre compte a été supprimé avec succès !"
+    }
+  },
+  "blog": {
+    "success": {
+      "postCreationSuccess": "Post créé avec succès !",
+      "postUpdateSuccess": "Post modifié avec succès!",
+      "postDeleteSuccess": "Post supprimé avec succès !"
+    },
+    "error": {
+      "postCreationFailed": "La création de l'article a échouée",
+      "postUpdateFailed": "La mise à jour de l'article a échouée"
+    }
+  },
+  "prestation": {
+    "success": {
+      "prestationCreationSuccess": "Prestation créée avec succès !",
+      "prestationUpdateSuccess": "Prestation modifiée avec succès !",
+      "prestationDeleteSuccess": "Prestation supprimée avec succès !"
+    },
+    "error": {
+      "prestationCreationFailed": "La création de la prestation a échouée",
+      "prestationUpdateFailed": "La mise à jour de la prestation a échouée"
+    }
+  },
+  "dog": {
+    "success": {
+      "dogCreationSuccess": "Votre chien a été créé avec succès !",
+      "dogUpdateSuccess": "Les informations de votre chien ont été mises à jour avec succès !",
+      "dogDeleteSuccess": "Votre chien a été supprimé avec succès !"
+    },
+    "error": {
+      "dogCreationFailed": "La création de votre chien a échouée",
+      "dogUpdateFailed": "La mise à jour des informations de votre chien a échouée"
+    }
+  }
+}

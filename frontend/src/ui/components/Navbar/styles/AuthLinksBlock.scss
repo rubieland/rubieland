@@ -1,0 +1,37 @@
+@import '../../../../assets/styles/variables';
+@import '../../../../assets/styles/mixins';
+
+.navbar-auth-links-container {
+  @include flex-center-column;
+  width: 100%;
+
+  &::before {
+    background-color: $black;
+    @include box(3rem, 1.5px);
+    margin: 0.5rem;
+    content: '';
+  }
+}
+
+// ----- responsive ----- \\
+
+@include respond-to('large') {
+  .navbar-auth-links-container {
+    flex-direction: row;
+    width: auto;
+    gap: 1rem;
+
+    &::before {
+      @include box(1.5px, 1.5rem);
+    }
+  }
+
+  .navbar-auth-link {
+    a {
+      border: 1px solid $black;
+      border-radius: 0.25rem;
+      display: inline-block;
+      color: $black;
+    }
+  }
+}

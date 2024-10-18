@@ -1,0 +1,296 @@
+{
+  "common": {
+    "send": "Envoyer",
+    "edit": "Modifier",
+    "delete": "Supprimer",
+    "cancel": "Annuler",
+    "confirm": "Confirmer",
+    "error": "Erreur",
+    "retry": "Réessayer",
+    "addPicture": "Ajouter une image",
+    "goBackToHomepage": "Revenir à l'accueil",
+    "register": "M'inscrire",
+    "login": "Me connecter",
+    "logout": "Me déconnecter",
+    "formSending": "Envoi en cours...",
+    "preview": "Prévisualisation",
+    "genericError": "Une erreur inattendue est survenue. Veuillez réessayer plus tard.",
+    "serverError": "Une erreur serveur est survenue. Veuillez réessayer plus tard.",
+    "deleting": "Suppression en cours...",
+    "updating": "Modification en cours...",
+    "readMore": "En savoir plus"
+  },
+
+  "SEO": {
+    "home": {
+      "title": "Rubieland - Garderie pour chiens en Vendée",
+      "description": "Bienvenue à Rubieland, la garderie pour chiens en Vendée. Découvrez mes services, mes installations et mon engagement."
+    },
+    "about": {
+      "title": "À propos de Rubieland - Garderie canine en Vendée",
+      "description": "Découvrez l'histoire de Rubieland, une garderie pour chiens en Vendée. Apprenez-en plus sur ma mission, mes valeurs et mon parcours."
+    },
+    "blog": {
+      "title": "Blog Rubieland - Actualités de la garderie Rubieland, histoires et conseils pour la garde de chiens",
+      "description": "Découvrez des conseils pratiques sur la garde de chiens, des actualités sur Rubieland et des astuces pour prendre soin de votre animal."
+    },
+    "register": {
+      "title": "Inscription à Rubieland - Inscrivez-vous et réservez une place en garderie canine en Vendée",
+      "description": "Créez votre compte sur Rubieland pour accéder à votre espace personnel et effectuer des réservations pour votre ou vos chien(s)."
+    },
+    "login": {
+      "title": "Connexion à Rubieland - Accédez à votre espace personnel et réservez une place en garderie canine en Vendée",
+      "description": "Connectez-vous à votre compte Rubieland pour accéder à votre espace personnel et effectuer des réservations pour pour votre ou vos chien(s)."
+    },
+    "profile": {
+      "title": "Profil utilisateur Rubieland - Gérez vos informations personnelles et vos réservations de garde canine en Vendée",
+      "description": "Accédez à votre espace personnel Rubieland pour consulter vos réservations, modifier vos informations, gérer votre compte et le(s) profil(s) de votre ou vos chien(s)."
+    }
+  },
+
+  "aria-labels": {
+    "app-logo": "Logo de Rubieland (lien vers la page d'accueil)",
+    "burger-btn": "Ouvrir/Fermer le menu",
+    "facebook-icon": "Lien vers la page Facebook",
+    "instagram-icon": "Lien vers la page Instagram",
+    "close-modal": "Fermer la modale",
+    "auth-links": "Liens vers les pages d'authentification",
+    "sidebar-toggle-btn": "Ouvrir/Fermer la barre latérale",
+    "linkTo": "Lien vers {{page}}"
+  },
+
+  "nav": {
+    "home": "Accueil",
+    "about": "À propos",
+    "blog": "Blog",
+    "register": "M'inscrire",
+    "login": "Me connecter",
+    "profile": "Profil",
+    "backOffice": "Back office"
+  },
+
+  "footer": {
+    "copyright": "©{{year}} Rubieland. Tous droits réservés",
+    "socialMedia": "Suivez-moi sur mes réseaux sociaux"
+  },
+
+  "notFound": {
+    "title": "Erreur 404: Page introuvable",
+    "content": "Cette page n'existe pas."
+  },
+
+  "textEditor": {
+    "defaultPlaceholder": "Commencez à écrire ici..."
+  },
+
+  "form": {
+    "errors": {
+      "requiredField": "Ce champ est obligatoire",
+      "inputMaxLength": "Ce champ ne peut contenir que {{maxLength}} caractères maximum",
+      "inputMinLength": "Ce champ doit contenir au moins {{minLength}} caractères",
+      "invalidEmailFormat": "Veuillez saisir une adresse e-mail valide (exemple@exemple.com)",
+      "minBirthDate": "L'âge ne peut pas être inférieur à {{min}} ans",
+      "maxBirthDate": "L'âge ne peut pas excéder {{max}} ans",
+      "birthDateInFuture": "La date de naissance ne peut pas être dans le futur",
+      "invalidFileType": "Fichier invalide. Seuls les fichiers de type {{types}} sont acceptés",
+      "fileTooLarge": "Fichier trop lourd. Max: {{limit}}MB",
+      "oneFileLimit": "Vous ne devez envoyer qu'un fichier",
+      "passwordsDontMatch": "Les mots de passe ne correspondent pas",
+      "invalidName": "Ce champ ne peut contenir que des lettres, traits d'union, espaces et apostrophes",
+      "invalidPhone": "Veuillez entrer un numéro de téléphone au format international : +XX 0000000000 (remplacez XX par le code du pays)",
+      "minLowercase": "Le mot de passe doit contenir au moins 1 minuscule",
+      "minUppercase": "Le mot de passe doit contenir au moins 1 majuscule",
+      "minNumbers": "Le mot de passe doit contenir au moins 1 chiffre",
+      "minSymbols": "Le mot de passe doit contenir au moins 1 caractère spécial",
+      "hasForbiddenChars": "Ce champ ne doit contenir aucun des caractères suivants: <, >, {, }, ^, ~, |, \\"
+    },
+
+    "user": {
+      "firstName": "Prénom",
+      "lastName": "Nom de famille",
+      "emailLabel": "Email",
+      "emailPlaceholder": "exemple@exemple.com",
+      "password": "Mot de passe",
+      "confirmPassword": "Confirmer le mot de passe",
+      "phoneLabel": "Téléphone",
+      "phonePlaceholder": "ex: +33 7 12 34 56 78"
+    },
+
+    "post": {
+      "title": "Titre de l'article",
+      "content": "Contenu de l'article",
+      "picture": "Image de l'article",
+      "isPublished": "Publier l'article",
+      "loading": {
+        "postCreationLoading": "Création de l'article en cours...",
+        "postDeletionLoading": "Suppression de l'article en cours...",
+        "postUpdateLoading": "Modification de l'article en cours..."
+      },
+      "errors": {
+        "postCreationFailed": "Une erreur est survenue lors de la création de l'article",
+        "postDeletionFailed": "Une erreur est survenue lors de la suppression de l'article",
+        "postUpdateFailed": "Une erreur est survenue lors de la modification de l'article",
+        "postNotFound": "L'article n'a pas été trouvé"
+      },
+      "success": {
+        "postCreationSuccess": "L'article a bien été créé !",
+        "postDeletionSuccess": "L'article a bien été supprimé !",
+        "postUpdateSuccess": "L'article a bien été modifié !"
+      },
+      "confirmation": {
+        "confirmPostDelete": "Êtes-vous sûr(e) de vouloir supprimer cet article ? <strong>Cette action est irréversible.</strong>"
+      }
+    }
+  },
+
+  "auth": {
+    "loading": {
+      "registerLoading": "Inscription en cours...",
+      "loginLoading": "Connexion en cours...",
+      "logoutLoading": "Déconnexion en cours..."
+    },
+    "success": {
+      "registerSuccess": "Inscription réussie !",
+      "loginSuccess": "Vous êtes connecté(e) !",
+      "logoutSuccess": "Vous êtes déconnecté(e) !"
+    },
+    "error": {
+      "accountAlreadyExists": "Un compte avec cet email existe déjà. Veuillez entrer un nouvel email",
+      "registerFailed": "La création de compte a échouée",
+      "invalidCredentials": "Identifiants incorrects",
+      "loginFailed": "La connexion a échouée",
+      "logoutFailed": "Une erreur est survenue lors de la déconnexion"
+    }
+  },
+
+  "pages": {
+    "home": {
+      "heroImage": {
+        "heroImageTitle": "Sa garderie préférée",
+        "heroImageText": "L'aventure commence ici !",
+        "heroImageCTA": "Découvrir Rubieland",
+        "heroImageImgAlt": "Un labrador retriever noir ayant la langue pendante"
+      },
+      "presentation": {
+        "title": "Bienvenue à Rubieland !",
+        "firstDesc": "Chez Rubieland, votre fidèle compagnon à quatre pattes trouvera bien plus qu'une simple garderie : il y trouvera une seconde maison. Que ce soit pour une demi-journée ou toute une journée, je veille à offrir des services dédiés au bonheur et au bien-être de vos chiens. Ici, tout est pensé pour leur offrir un environnement à la fois amusant et sécurisé, où ils pourront s'épanouir en toute confiance.",
+        "secondDesc": "Chaque chien est unique, et c'est pour cela que je privilégie un accompagnement personnalisé, avec des activités adaptées à leurs besoins et à leurs envies. Faites-moi confiance pour prendre soin de votre compagnon avec toute l'affection et l'attention qu'il mérite. Ici, il sera chouchouté comme à la maison !",
+        "imageAlt": "Un chien souriant dans un jardin"
+      }
+    },
+    "about": {
+      "title": "À propos de Rubieland",
+      "sections": {
+        "aboutRubieland": {
+          "title": "Rubieland, c'est quoi ?",
+          "content": "Rubieland est une garderie pour chiens qui offre un environnement sécurisé et divertissant pour vos compagnons."
+        },
+        "amenities": {
+          "title": "Détail des aménagements",
+          "content": "Mes installations incluent un vaste espace de jeux extérieur, une salle de repos confortable, et un service de surveillance 24/7."
+        },
+        "location": {
+          "title": "Où se trouve Rubieland ?",
+          "content": " Rubieland est situé dans un endroit paisible à proximité de la ville, accessible facilement en voiture."
+        },
+        "prestations": {
+          "title": "Prestations et tarifs",
+          "content": {
+            "fullDay": "Garderie à la journée: 30€",
+            "halfDay": "Garderie à la demi-journée: 18€"
+          }
+        }
+      }
+    },
+    "blog": {
+      "title": "Blog",
+      "emptyBlogText": "Aucun article n'a été publié pour le moment.",
+      "allPosts": "Tous les articles",
+      "postCard": {
+        "date": "{{ date, medium }}",
+        "tag": "Actualités"
+      },
+      "postDetailsPage": {
+        "updatedOn": "Mis à jour le {{ date, mediumWithTime }}",
+        "backToBlog": "Revenir au blog"
+      }
+    },
+    "profile": {
+      "profileSection": {
+        "title": "Mon profil",
+        "personalInfo": "Informations personnelles",
+        "accountInfo": "Informations de compte"
+      },
+      "settingsSection": {
+        "title": "Paramètres",
+        "language": "Langue"
+      }
+    },
+    "login": {
+      "notRegisteredYetBlock": {
+        "title": "Pas encore de compte ?",
+        "linkTitle": "Créez votre compte"
+      },
+      "loginFormBlock": {
+        "title": "Connectez-vous"
+      }
+    },
+    "register": {
+      "alreadyRegisteredBlock": {
+        "title": "Vous avez déjà un compte ?",
+        "linkTitle": "Connectez-vous"
+      },
+      "registerFormBlock": {
+        "title": "Créez votre compte"
+      }
+    },
+    "backOffice": {
+      "backOfficeSidebar": {
+        "headerTitle": "Back office",
+        "links": {
+          "dashboard": "Dashboard",
+          "blog": "Blog",
+          "users": "Utilisateurs"
+        }
+      },
+      "tables": {
+        "posts": {
+          "title": "Titre",
+          "content": "Contenu",
+          "status": "Statut",
+          "picture": "Image",
+          "pictureAlt": "Image de l'article",
+          "updatedAt": "Mis à jour le",
+          "noImage": "Pas d'image",
+          "published": "Publié",
+          "unpublished": "Non publié",
+          "updatedAtDate": "{{ date, shortestWithTime }}",
+          "actions": "Actions",
+          "noPosts": "Aucun article n'a été créé pour le moment."
+        },
+        "users": {
+          "lastName": "Nom de famille",
+          "firstName": "Prénom",
+          "email": "Email",
+          "phone": "Téléphone",
+          "avatar": "Avatar",
+          "avatarAlt": "Avatar de l'utilisateur",
+          "noAvatar": "Pas d'avatar",
+          "actions": "Actions"
+        }
+      },
+      "dashboard": {
+        "title": "Dashboard",
+        "welcome": "Bienvenue {{firstName}} {{lastName}} !"
+      },
+      "blog": {
+        "title": "Mes articles de blog",
+        "createPost": "Écrire un article",
+        "updatePost": "Modifier l'article"
+      },
+      "users": {
+        "title": "Utilisateurs"
+      }
+    }
+  }
+}

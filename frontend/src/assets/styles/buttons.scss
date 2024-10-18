@@ -1,0 +1,58 @@
+@import './placeholders';
+@import './mixins';
+
+.btn {
+  @extend %btn-base;
+
+  &-primary {
+    @extend %btn-primary;
+
+    &-outlined {
+      @include btn-styles(transparent, $primary, $primary);
+
+      &:hover {
+        @include btn-styles($primary, $white);
+      }
+    }
+  }
+
+  &-secondary {
+    @extend %btn-secondary;
+
+    &-outlined {
+      @include btn-styles(transparent, $black, $black);
+
+      &:hover {
+        @include btn-styles($black, $white);
+      }
+    }
+  }
+
+  &-disabled {
+    @extend %btn-disabled;
+  }
+
+  &-success {
+    @extend %btn-success;
+
+    &-outlined {
+      @include btn-styles(transparent, $green, $green);
+
+      &:hover {
+        @include btn-styles($green, $black);
+      }
+    }
+  }
+
+  &-error {
+    @extend %btn-error;
+
+    &-outlined {
+      @include btn-styles(transparent, $red, $red, $red, $red);
+
+      &:hover {
+        @include btn-styles($red, $white);
+      }
+    }
+  }
+}

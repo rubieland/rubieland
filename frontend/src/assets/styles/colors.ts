@@ -1,0 +1,27 @@
+const colors = {
+  primary: '#5a3d8a',
+  primaryLight: '#ede7f5',
+  white: '#ffffff',
+  black: '#151515',
+  blackTransp80: 'rgba(0, 0, 0, 0.8)',
+  blackTransp50: 'rgba(0, 0, 0, 0.5)',
+  red: '#ef5350',
+  $errorBg: '#f8d7da',
+  $errorText: '#721c24',
+  $green: '#66bb6a',
+  $successBg: '#d4edda',
+  $successText: '#124d1f',
+  lightBlue: '#D2E0FB',
+  lightPink: '#ffe6e6',
+  grey10: '#f5f5f5',
+  grey20: '#eeeeee',
+  grey30: '#e0e0e0',
+  grey40: '#bdbdbd',
+  grey50: '#9e9e9e',
+  grey60: '#757575',
+  grey70: '#616161',
+  grey80: '#424242',
+  grey90: '#212121',
+};
+
+export default colors;

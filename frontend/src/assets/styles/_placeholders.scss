@@ -1,0 +1,44 @@
+@import './mixins';
+
+// ----- buttons ----- \\
+
+%btn-base {
+  @include btn-base;
+}
+
+%btn-primary {
+  @include btn-styles($primary, $primaryLight);
+}
+
+%btn-secondary {
+  @include btn-styles($black, $white);
+}
+
+%btn-disabled {
+  @include btn-styles($grey30, $grey50);
+  &:hover {
+    opacity: 1;
+  }
+}
+
+%btn-success {
+  @include btn-styles($successBg, $successText);
+}
+
+%btn-error {
+  @include btn-styles($errorBg, $errorText);
+}
+
+// ----- form inputs ----- \\
+
+%input-base {
+  @include input-base;
+}
+
+%checkbox {
+  @include checkbox;
+}
+
+%edit-picture-input {
+  @include edit-picture-input;
+}

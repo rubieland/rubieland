@@ -1,0 +1,20 @@
+[
+  {
+    "title": "Toilettage complet",
+    "description": "Un service de toilettage complet pour votre chien (shampooing, coupe, brossage, séchage...)",
+    "price": 12,
+    "isAvailable": false
+  },
+  {
+    "title": "Garde à la demie-journée",
+    "description": "Vous devez vous absenter quelques heures et vous avez peur que votre chien ne s'ennuie lors de votre absence ? Ne vous en faîtes plus ! De nombreux aménagements, jouets et autres surprises l'attendent à Rubieland !",
+    "price": 15,
+    "isAvailable": true
+  },
+  {
+    "title": "Garde à la journée",
+    "description": "Vous devez vous absenter toute la journée et vous avez peur que votre chien ne s'ennuie lors de votre absence ? Ne vous en faîtes plus ! De nombreux aménagements, jouets et autres surprises l'attendent à Rubieland !",
+    "price": 25,
+    "isAvailable": true
+  }
+]

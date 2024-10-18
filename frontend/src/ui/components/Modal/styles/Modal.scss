@@ -1,0 +1,108 @@
+@import '../../../../assets//styles/variables';
+@import '../../../../assets//styles/mixins';
+
+dialog[open] {
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+  animation: zoomIn 0.15s forwards;
+  @include flex-center-column;
+  background-color: $white;
+  @include box(50%, 25%);
+  border-radius: 0.5rem;
+  justify-self: center;
+  @include box-shadow;
+  align-self: center;
+  overflow-x: hidden;
+  min-height: 15rem;
+  min-width: 20rem;
+  overflow-y: auto;
+  position: fixed;
+  z-index: 1000;
+  border: none;
+
+  &::backdrop {
+    transition: background-color 0.3s ease;
+    background-color: $blackTransp50;
+  }
+}
+
+.modal-close-btn {
+  transition: opacity 0.3s ease;
+  @include flex-center;
+  position: absolute;
+  cursor: pointer;
+  right: 0.5rem;
+  top: 1rem;
+
+  &:hover {
+    opacity: 0.5;
+  }
+}
+
+.modal-header {
+  padding: 1rem 1rem 0;
+  color: $black;
+
+  > h3 {
+    width: calc(100% - 1rem);
+    font-size: 1rem;
+  }
+}
+
+.modal-content {
+  @include flex-center-column;
+  padding: 2rem;
+  flex: 1;
+}
+
+.modal-footer {
+  @include flex-column;
+  padding: 0 1rem 1rem;
+  width: 100%;
+  gap: 1rem;
+
+  > button {
+    height: 2.5rem;
+  }
+}
+
+// zoom in animation keyframes when modal opens
+@keyframes zoomIn {
+  0% {
+    opacity: 0;
+    transform: scale(1.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+// ----- responsive ----- \\
+
+@include respond-to('small') {
+  .modal-footer {
+    justify-content: space-between;
+    flex-direction: row;
+
+    > button {
+      max-width: 12rem;
+    }
+  }
+}
+
+@include respond-to('medium') {
+  .modal-close-btn {
+    top: 1.15rem;
+  }
+
+  .modal-header > h3 {
+    font-size: 1.15rem;
+    width: 100%;
+  }
+
+  .modal-footer {
+    justify-content: flex-end;
+  }
+}

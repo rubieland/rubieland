@@ -1,0 +1,28 @@
+@import '../../../../assets/styles/variables';
+@import '../../../../assets/styles/mixins';
+
+.empty-blog-section {
+  @include flex-column;
+  gap: 1rem;
+}
+
+.empty-blog-illustration {
+  align-self: center;
+  @include box(300px);
+
+  img {
+    @include box(100%);
+  }
+}
+
+// ----- responsive ----- \\
+
+@include respond-to('small') {
+  .empty-blog-section {
+    align-items: center;
+  }
+
+  .empty-blog-illustration {
+    @include box(500px);
+  }
+}

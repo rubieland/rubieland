@@ -1,0 +1,25 @@
+@import '../../../../assets//styles/variables';
+@import '../../../../assets//styles/mixins';
+
+.auth-page-main-container {
+  @include flex-center-column;
+  background-color: $white;
+  @include box-shadow;
+  margin: 2rem auto;
+  width: 100%;
+
+  .separator-container {
+    width: 100%;
+  }
+}
+
+// ----- responsive ----- \\
+
+@include respond-to('medium') {
+  .auth-page-main-container {
+    display: flex;
+    align-self: center;
+    border-radius: 0.75rem;
+    max-width: 40rem;
+  }
+}

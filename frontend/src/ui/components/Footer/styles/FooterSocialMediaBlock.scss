@@ -1,0 +1,32 @@
+@import '../../../../assets/styles/variables';
+@import '../../../../assets/styles/mixins';
+
+.footer-social-media-container {
+  @include flex-center-x;
+  flex-direction: column;
+  height: auto;
+  gap: 1rem;
+}
+
+.footer-social-media-title {
+  font-size: 1.1rem;
+  text-align: center;
+  font-weight: 600;
+}
+
+.footer-social-media-icons-container {
+  @include flex-center-x;
+  gap: 1rem;
+}
+
+.footer-social-media-icon {
+  transition: transform 0.2s ease-in-out;
+
+  &:hover {
+    transform: translateY(-8px);
+  }
+
+  &:not(:hover) {
+    transform: translateY(0);
+  }
+}

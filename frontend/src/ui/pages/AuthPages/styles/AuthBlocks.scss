@@ -1,0 +1,27 @@
+@import '../../../../assets/styles/variables';
+@import '../../../../assets/styles/mixins';
+
+.auth-link-container {
+  @include flex-center-column;
+  max-width: 40rem;
+  padding: 2rem;
+  width: 100%;
+  gap: 5px;
+
+  > p {
+    color: $primary;
+  }
+  > .auth-link {
+    font-weight: 700;
+    font-size: 1rem;
+    color: $primary;
+  }
+}
+
+// ----- responsive ----- \\
+
+@include respond-to('medium') {
+  .auth-link-container {
+    flex-direction: row;
+  }
+}
