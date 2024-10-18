@@ -2,7 +2,6 @@ import { Request, Response, NextFunction } from 'express';
 import i18n from '../../config/i18n';
 import { trimData } from '../../utils/string.utils';
 import { deleteFile as deletePicture } from '../../utils/file.utils';
-import { fileURLToPath } from 'url';
 import path from 'path';
 import Dog from '../../models/Dog.model';
 import { DogData, DogDocument } from '../../models/types/Dog.types';
@@ -15,11 +14,10 @@ import { DataContext } from '../../validation/types/validation.types';
 import { Types } from 'mongoose';
 import { checkDogData } from '../../validation/Dog.validators';
 import User from '../../models/User.model';
+import { env } from '../../loaders/env.loader';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const picturesDir = path.join(__dirname, '../../uploads/dog/pictures');
-
+const { UPLOADS_DIR } = env;
+const picturesDir = path.resolve(UPLOADS_DIR, 'dog/pictures');
 const context: DataContext = DataContext.DOG;
 
 export const getMyDogs = async (

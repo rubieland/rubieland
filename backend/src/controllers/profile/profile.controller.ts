@@ -4,13 +4,12 @@ import { trimData } from '../../utils/string.utils';
 import { UserData, UserDocument } from '../../models/types/User.types';
 import { checkUserData } from '../../validation/User.validators';
 import { deleteFile as deleteAvatar } from '../../utils/file.utils';
-import { fileURLToPath } from 'url';
 import path from 'path';
 import User from '../../models/User.model';
+import { env } from '../../loaders/env.loader';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const avatarsDir = path.join(__dirname, '../../uploads/user/avatars');
+const { UPLOADS_DIR } = env;
+const avatarsDir = path.resolve(UPLOADS_DIR, 'user/avatars');
 
 export const getProfile = async (
   req: Request,
