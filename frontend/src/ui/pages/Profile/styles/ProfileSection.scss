@@ -25,7 +25,8 @@
           border-radius: 50%;
 
           img {
-            @include img($br: 50%);
+            @include img;
+            border-radius: 50%;
           }
         }
         .username {
