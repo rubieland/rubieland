@@ -28,13 +28,14 @@ const ProfilePage = () => {
         <title>{t('SEO.profile.title')}</title>
         <meta name="description" content={t('SEO.profile.description')} />
       </Helmet>
-      <ProfileSection user={user} />
+
+      <ProfileSection existingProfileData={user} />
       <SettingsSection />
       <div className="logout-button">
         <CustomButton
           icon={<LogoutIcon width={16} height={16} />}
-          onClick={handleLogout}
           title={t('common.logout')}
+          onClick={handleLogout}
           iconPosition="right"
           style="error"
           outlined

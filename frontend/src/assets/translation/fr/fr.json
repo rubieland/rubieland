@@ -5,6 +5,7 @@
     "delete": "Supprimer",
     "cancel": "Annuler",
     "confirm": "Confirmer",
+    "validate": "Valider",
     "error": "Erreur",
     "retry": "Réessayer",
     "addPicture": "Ajouter une image",
@@ -112,8 +113,25 @@
       "emailPlaceholder": "exemple@exemple.com",
       "password": "Mot de passe",
       "confirmPassword": "Confirmer le mot de passe",
+      "currentPassword": "Mot de passe actuel",
+      "newPassword": "Nouveau mot de passe",
+      "confirmNewPassword": "Confirmer le nouveau mot de passe",
       "phoneLabel": "Téléphone",
-      "phonePlaceholder": "ex: +33 7 12 34 56 78"
+      "phonePlaceholder": "ex: +33 7 12 34 56 78",
+      "avatarLabel": "Avatar",
+
+      "loading": {
+        "userUpdateLoading": "Mise à jour de vos informations en cours..."
+      },
+      "success": {
+        "userUpdateSuccess": "Vos informations ont bien été mises à jour !"
+      },
+      "errors": {
+        "userUpdateFailed": "Une erreur est survenue lors de la modification de vos informations",
+        "userNotFound": "Utilisateur non trouvé",
+        "userExistsInBase": "Un utilisateur avec cet email existe déjà",
+        "wrongCurrentPassword": "Le mot de passe actuel est incorrect"
+      }
     },
 
     "post": {

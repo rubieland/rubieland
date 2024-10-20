@@ -1,18 +1,19 @@
-import { API_BLOG_PICTURES_PATH, API_URL } from '@/core/envConfig';
-import defaultAvatar from '@/assets/images/default_avatar.jpg';
+import useUpdateMyProfile from '../hooks/useUpdateMyProfile';
+import PageLoader from '@/ui/components/Loader/PageLoader';
+import UpdateProfileForm from './UpdateProfileForm';
 import { User } from '@/models/user/user.entity';
 import { useTranslation } from 'react-i18next';
 import '../styles/ProfileSection.scss';
 
 interface ProfileSectionProps {
-  user: User;
+  existingProfileData: User | null;
 }
 
-const ProfileSection = ({ user }: ProfileSectionProps) => {
+const ProfileSection = ({ existingProfileData }: ProfileSectionProps) => {
   const { t } = useTranslation();
-  const avatar = user?.avatar
-    ? `${API_URL}/${API_BLOG_PICTURES_PATH}/${user?.avatar}`
-    : defaultAvatar;
+  const { onSubmit, isPending } = useUpdateMyProfile();
+
+  if (isPending) return <PageLoader isLoading={isPending} />;
 
   return (
     <div className="profile-section-main-container">
@@ -20,22 +21,12 @@ const ProfileSection = ({ user }: ProfileSectionProps) => {
       <div className="profile-section-content">
         <section className="personal-info-section">
           <article className="personal-info-content">
-            <div className="avatar">
-              <img src={avatar} alt="avatar" loading="lazy" />
-            </div>
-            <div className="username">
-              <p>{`${user.firstName} ${user.lastName}`}</p>
-            </div>
+            <UpdateProfileForm
+              onSubmit={onSubmit}
+              existingProfileData={existingProfileData}
+            />
           </article>
         </section>
-
-        {/* <section className="account-info-section">
-          <article className="account-info-content">
-            <div className="email">
-              <p>{user.email}</p>
-            </div>
-          </article>
-        </section> */}
       </div>
     </div>
   );

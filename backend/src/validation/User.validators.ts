@@ -178,6 +178,8 @@ export const checkUserData = async (
     }
   }
 
+  // TODO: handle password change separately and send 401 status code if currentPassword is invalid
+
   // check currentPassword
   if ('currentPassword' in data && data.currentPassword != null) {
     const isMatch = await userInBase?.comparePassword(data.currentPassword);

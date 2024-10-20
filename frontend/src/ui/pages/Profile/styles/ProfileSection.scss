@@ -10,13 +10,16 @@
 
   .profile-section-content {
     @include flex-column;
+    width: 100%;
 
     .personal-info-section {
       @include flex-center-column;
+      width: 100%;
 
       .personal-info-content {
         @include flex-center-column;
         padding: 1rem 0;
+        width: 100%;
         gap: 1rem;
 
         .avatar {
@@ -51,6 +54,6 @@
   .profile-section-main-container {
     align-items: center;
     max-width: 36rem;
-    width: 50%;
+    width: 80%;
   }
 }

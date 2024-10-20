@@ -5,6 +5,7 @@
     "delete": "Delete",
     "cancel": "Cancel",
     "confirm": "Confirm",
+    "validate": "Validate",
     "error": "Error",
     "retry": "Retry",
     "addPicture": "Add a picture",
@@ -112,8 +113,25 @@
       "emailPlaceholder": "example@example.com",
       "password": "Password",
       "confirmPassword": "Confirm password",
+      "currentPassword": "Current password",
+      "newPassword": "New password",
+      "confirmNewPassword": "Confirm new password",
       "phoneLabel": "Phone",
-      "phonePlaceholder": "ex: +44 7500 123456"
+      "phonePlaceholder": "ex: +44 7500 123456",
+      "avatarLabel": "Avatar",
+
+      "loading": {
+        "userUpdateLoading": "Updating your information..."
+      },
+      "success": {
+        "userUpdateSuccess": "Your information has been updated successfully!"
+      },
+      "errors": {
+        "userUpdateFailed": "An error occurred while updating your information",
+        "userNotFound": "User not found",
+        "userExistsInBase": "A user with this email already exists",
+        "wrongCurrentPassword": "The current password is incorrect"
+      }
     },
 
     "post": {
