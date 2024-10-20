@@ -29,12 +29,9 @@
    💡 You will find in **/backend/.env.sample** all the env variables you need to create. Or, refer to the list below:
 
    ```pl
-   APP_HOST # e.g. localhost
-   APP_PORT # e.g. 9000
-   CLIENT_HOST # e.g. localhost
-   CLIENT_PORT # e.g. 5173
-   DEV_DB_URI # development mongodb uri
-   PROD_DB_URI # production mongodb uri
+   PORT # e.g. 9000
+   CLIENT_URL # http://localhost:5173
+   DB_URI # mongodb uri
    NODE_ENV # development or production
    UPLOADS_DIR # the directory where the uploads will be stored
    JWT_SECRET # the secret key for the jwt.sign
@@ -113,6 +110,6 @@ If everything is fine, you should see these messages in console :
 
 - i18next initialized successfully!
 - Connection to database successful!
-- Server is running on <strong><u>http://{APP_HOSTNAME}:{APP_PORT}</u></strong>
+- Server is running on port {PORT}</u></strong>
 
 If so, that means that the server is working fine. You can now set up the frontend app and you'll be ready to go!

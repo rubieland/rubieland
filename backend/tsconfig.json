@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "outDir": "dist", // Specifies the output directory for the compiled files.
+    "outDir": "./dist", // Specifies the output directory for the compiled files.
     "target": "ES2021", // Sets the JavaScript version for emitted JavaScript and includes compatible library declarations.
     "module": "CommonJS", // Specifies the module code generation method.
     "moduleResolution": "node", // Determines how modules are resolved. 'node' mimics Node.js module resolution.
@@ -12,7 +12,8 @@
     "declaration": true, // Generates corresponding '.d.ts' files.
     "declarationMap": true, // Generates a map file for each corresponding '.d.ts' file.
     "sourceMap": true, // Generates source maps for the emitted JavaScript files.
-    "noEmitOnError": true // Disable emitting files if any type checking errors are reported.
+    "noEmitOnError": true, // Disable emitting files if any type checking errors are reported.
+    "types": ["node", "jest"] // Specifies the types that should be included in the compilation.
   },
   "include": [
     "src/**/*.ts", // Includes TypeScript files in the 'src' directory and its subdirectories.

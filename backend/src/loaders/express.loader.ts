@@ -16,7 +16,7 @@ import {
 import cookieParser from 'cookie-parser';
 
 // destructure env to get env variables
-const { CLIENT_HOST, CLIENT_PORT, UPLOADS_DIR } = env;
+const { CLIENT_URL, UPLOADS_DIR } = env;
 
 export const loadExpress = async ({ server }: { server: Express }) => {
   try {
@@ -31,12 +31,15 @@ export const loadExpress = async ({ server }: { server: Express }) => {
     server.use(express.urlencoded({ extended: false }));
     server.use(
       cors({
-        origin: `http://${CLIENT_HOST ?? 'localhost'}:${CLIENT_PORT ?? 5173}`,
+        origin: CLIENT_URL,
         credentials: true,
       }),
     );
 
     // routers
+    server.get('/', (req, res) => {
+      res.status(200).json({ message: 'Hello World' });
+    });
     server.use('/auth', authRouter);
     server.use('/profile', profileRouter);
     server.use('/back-office', backOfficeRouter);
