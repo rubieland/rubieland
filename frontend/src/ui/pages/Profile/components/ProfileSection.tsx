@@ -28,6 +28,7 @@ const ProfileSection = ({ existingProfileData }: ProfileSectionProps) => {
       <div className="profile-section-content">
         <section className="personal-info-section">
           <article className="personal-info-content">
+            <Separator />
             <h3 className="section-title">
               {t('pages.profile.profileSection.personalInfo')}
             </h3>
