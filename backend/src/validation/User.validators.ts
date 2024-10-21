@@ -1,5 +1,10 @@
 import validator, { StrongPasswordOptions } from 'validator';
-import { UserDocument, UserField, UserData } from '../models/types/User.types';
+import {
+  UserDocument,
+  UserField,
+  UserData,
+  UpdatePasswordData,
+} from '../models/types/User.types';
 import {
   checkFieldFormat,
   checkMaxLength,
@@ -71,10 +76,7 @@ export const checkConfirmPassword = (
  *  refactor to avoid code repetition
  */
 
-export const checkUserData = async (
-  data: UserData,
-  userInBase?: UserDocument,
-) => {
+export const checkUserData = async (data: UserData) => {
   const errors: string[] = [];
   const context: DataContext = DataContext.USER;
 
@@ -178,29 +180,35 @@ export const checkUserData = async (
     }
   }
 
-  // TODO: handle password change separately and send 401 status code if currentPassword is invalid
+  return errors;
+};
 
-  // check currentPassword
-  if ('currentPassword' in data && data.currentPassword != null) {
-    const isMatch = await userInBase?.comparePassword(data.currentPassword);
-    if (!isMatch) {
-      errors.push(
-        getValidationErrorMessage({
-          context,
-          field: 'currentPassword',
-          rule: 'currentPasswordDontMatch',
-          reason: Reason.INVALID,
-        }),
-      );
-    }
+export const validatePasswordUpdate = async (
+  data: UpdatePasswordData,
+  userInBase: UserDocument,
+) => {
+  const { currentPassword, newPassword, confirmNewPassword } = data;
+  const context: DataContext = DataContext.USER;
+  const errors: string[] = [];
+
+  // check if currentPassword matches the password in database
+  const isMatch = await userInBase.comparePassword(currentPassword);
+  if (!isMatch) {
+    errors.push(
+      getValidationErrorMessage({
+        context,
+        field: 'currentPassword',
+        rule: 'currentPasswordDontMatch',
+        reason: Reason.INVALID,
+      }),
+    );
+
+    // return 401 Unauthorized if current password is incorrect
+    return { errors, status: 401 };
   }
 
-  // check newPassword
-  if (
-    'newPassword' in data &&
-    data.newPassword != null &&
-    !checkPassword(data.newPassword)
-  ) {
+  // check if newPassword is valid
+  if (!checkPassword(newPassword)) {
     errors.push(
       getValidationErrorMessage({
         context,
@@ -211,24 +219,21 @@ export const checkUserData = async (
     );
   }
 
-  // check confirmNewPassword
-  if (
-    'newPassword' in data &&
-    data.newPassword != null &&
-    'confirmNewPassword' in data &&
-    data.confirmNewPassword != null
-  ) {
-    if (!checkConfirmPassword(data.newPassword, data.confirmNewPassword)) {
-      errors.push(
-        getValidationErrorMessage({
-          context,
-          field: 'confirmNewPassword',
-          rule: 'newPasswordsDontMatch',
-          reason: Reason.INVALID,
-        }),
-      );
-    }
+  // check if confirmNewPassword matches newPassword
+  if (newPassword !== confirmNewPassword) {
+    errors.push(
+      getValidationErrorMessage({
+        context,
+        field: 'confirmNewPassword',
+        rule: 'newPasswordsDontMatch',
+        reason: Reason.INVALID,
+      }),
+    );
   }
 
-  return errors;
+  if (errors.length > 0) {
+    return { errors, status: 400 };
+  }
+
+  return { errors: [], status: 200 };
 };

@@ -121,16 +121,19 @@
       "avatarLabel": "Avatar",
 
       "loading": {
-        "userUpdateLoading": "Mise à jour de vos informations en cours..."
+        "userUpdateLoading": "Mise à jour de vos informations en cours...",
+        "passwordUpdateLoading": "Modification du mot de passe en cours..."
       },
       "success": {
-        "userUpdateSuccess": "Vos informations ont bien été mises à jour !"
+        "userUpdateSuccess": "Vos informations ont bien été mises à jour !",
+        "passwordUpdateSuccess": "Votre mot de passe a bien été modifié !"
       },
       "errors": {
         "userUpdateFailed": "Une erreur est survenue lors de la modification de vos informations",
         "userNotFound": "Utilisateur non trouvé",
         "userExistsInBase": "Un utilisateur avec cet email existe déjà",
-        "wrongCurrentPassword": "Le mot de passe actuel est incorrect"
+        "wrongCurrentPassword": "Le mot de passe actuel est incorrect",
+        "updatePasswordFailed": "Une erreur est survenue lors de la modification du mot de passe"
       }
     },
 
@@ -237,7 +240,7 @@
       "profileSection": {
         "title": "Mon profil",
         "personalInfo": "Informations personnelles",
-        "accountInfo": "Informations de compte"
+        "updatePassword": "Modifier le mot de passe"
       },
       "settingsSection": {
         "title": "Paramètres",

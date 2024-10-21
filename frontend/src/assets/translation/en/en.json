@@ -121,16 +121,19 @@
       "avatarLabel": "Avatar",
 
       "loading": {
-        "userUpdateLoading": "Updating your information..."
+        "userUpdateLoading": "Updating your information...",
+        "passwordUpdateLoading": "Updating your password..."
       },
       "success": {
-        "userUpdateSuccess": "Your information has been updated successfully!"
+        "userUpdateSuccess": "Your information has been updated successfully!",
+        "passwordUpdateSuccess": "Password updated successfully!"
       },
       "errors": {
         "userUpdateFailed": "An error occurred while updating your information",
         "userNotFound": "User not found",
         "userExistsInBase": "A user with this email already exists",
-        "wrongCurrentPassword": "The current password is incorrect"
+        "wrongCurrentPassword": "The current password is incorrect",
+        "updatePasswordFailed": "An error occurred while updating the password"
       }
     },
 
@@ -237,7 +240,7 @@
       "profileSection": {
         "title": "My profile",
         "personalInfo": "Personal information",
-        "accountInfo": "Account information"
+        "updatePassword": "Update password"
       },
       "settingsSection": {
         "title": "Settings",

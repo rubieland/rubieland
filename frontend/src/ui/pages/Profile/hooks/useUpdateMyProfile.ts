@@ -1,7 +1,9 @@
-import { UpdateProfileBody } from '@/models/user/user.entity';
 import { useUpdateProfile } from '@/api/user/updateProfile';
-import { useTranslation } from 'react-i18next';
 import { AxiosError } from 'axios';
+import { QueryKeysEnum } from '@/enums/queryKeys';
+import { useTranslation } from 'react-i18next';
+import { queryClient } from '@/api/reactQuery';
+import { UpdateProfileBody } from '@/models/user/user.entity';
 import { toast } from 'sonner';
 
 export const useUpdateMyProfile = () => {
@@ -12,8 +14,6 @@ export const useUpdateMyProfile = () => {
       switch (error.response?.status) {
         case 400:
           return toast.error(t('form.user.errors.userUpdateFailed'));
-        case 401:
-          return toast.error(t('form.user.errors.wrongCurrentPassword'));
         case 404:
           return toast.error(t('form.user.errors.userNotFound'));
         case 409:
@@ -30,8 +30,17 @@ export const useUpdateMyProfile = () => {
 
   const { mutateAsync: updateMyProfile, isPending } = useUpdateProfile({
     onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: [QueryKeysEnum.USERS],
+      });
+
+      await queryClient.invalidateQueries({
+        queryKey: [QueryKeysEnum.MY_PROFILE],
+      });
+
       toast.success(t('form.user.success.userUpdateSuccess'));
     },
+
     onError: handleUpdateMyProfileError,
   });
 
@@ -41,7 +50,6 @@ export const useUpdateMyProfile = () => {
     );
 
     try {
-      console.log(newData);
       const response = await updateMyProfile({ newData });
       toast.dismiss(loadingToastId);
 

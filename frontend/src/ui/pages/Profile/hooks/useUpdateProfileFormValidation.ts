@@ -11,91 +11,58 @@ import {
   maxAvatarFileSize,
 } from '@/core/fileUploadConfig';
 
-export const UpdateProfileFormSchema = z
-  .object({
-    firstName: z
-      .string()
-      .min(2, {
-        message: i18n.t('form.errors.inputMinLength', { minLength: 2 }),
-      })
-      .max(30, {
-        message: i18n.t('form.errors.inputMaxLength', { maxLength: 30 }),
-      })
-      .refine((value) => nameRegex.test(value), {
-        message: i18n.t('form.errors.invalidName'),
-      }),
-    lastName: z
-      .string()
-      .min(2, {
-        message: i18n.t('form.errors.inputMinLength', { minLength: 2 }),
-      })
-      .max(30, {
-        message: i18n.t('form.errors.inputMaxLength', { maxLength: 30 }),
-      })
-      .refine((value) => nameRegex.test(value), {
-        message: i18n.t('form.errors.invalidName'),
-      }),
-    email: z
-      .string()
-      .min(1, { message: i18n.t('form.errors.requiredField') })
-      .max(60, {
-        message: i18n.t('form.errors.inputMaxLength', { maxLength: 60 }),
-      })
-      .email({ message: i18n.t('form.errors.invalidEmailFormat') }),
-    avatar: z.union([
-      z
-        .instanceof(File)
-        .refine((file) => acceptedMimeTypes.includes(file.type), {
-          message: i18n.t('form.errors.invalidFileType', {
-            types: acceptedMimeTypesString,
-          }),
-        })
-        .refine((file) => file.size <= maxAvatarFileSize, {
-          message: i18n.t('form.errors.fileTooLarge', { limit: 3 }),
+export const UpdateProfileFormSchema = z.object({
+  firstName: z
+    .string()
+    .min(2, {
+      message: i18n.t('form.errors.inputMinLength', { minLength: 2 }),
+    })
+    .max(30, {
+      message: i18n.t('form.errors.inputMaxLength', { maxLength: 30 }),
+    })
+    .refine((value) => nameRegex.test(value), {
+      message: i18n.t('form.errors.invalidName'),
+    }),
+  lastName: z
+    .string()
+    .min(2, {
+      message: i18n.t('form.errors.inputMinLength', { minLength: 2 }),
+    })
+    .max(30, {
+      message: i18n.t('form.errors.inputMaxLength', { maxLength: 30 }),
+    })
+    .refine((value) => nameRegex.test(value), {
+      message: i18n.t('form.errors.invalidName'),
+    }),
+  email: z
+    .string()
+    .min(1, { message: i18n.t('form.errors.requiredField') })
+    .max(60, {
+      message: i18n.t('form.errors.inputMaxLength', { maxLength: 60 }),
+    })
+    .email({ message: i18n.t('form.errors.invalidEmailFormat') }),
+  avatar: z.union([
+    z
+      .instanceof(File)
+      .refine((file) => acceptedMimeTypes.includes(file.type), {
+        message: i18n.t('form.errors.invalidFileType', {
+          types: acceptedMimeTypesString,
         }),
-      z.string().nullable(),
-    ]),
-    currentPassword: z.string().optional(),
-    newPassword: z
-      .string()
-      .optional()
-      .refine((value) => !value || value.length >= 8, {
-        message: i18n.t('form.errors.inputMinLength', { minLength: 8 }),
       })
-      .refine((value) => !value || value.length <= 60, {
-        message: i18n.t('form.errors.inputMaxLength', { maxLength: 60 }),
-      })
-      .refine((value) => !value || /[a-z]/.test(value), {
-        message: i18n.t('form.errors.minLowercase'),
-      })
-      .refine((value) => !value || /[A-Z]/.test(value), {
-        message: i18n.t('form.errors.minUppercase'),
-      })
-      .refine((value) => !value || /\d/.test(value), {
-        message: i18n.t('form.errors.minNumbers'),
-      })
-      .refine((value) => !value || /[!@#$%^&*(),.?":{}|<>]/.test(value), {
-        message: i18n.t('form.errors.minSymbols'),
+      .refine((file) => file.size <= maxAvatarFileSize, {
+        message: i18n.t('form.errors.fileTooLarge', { limit: 3 }),
       }),
-    confirmNewPassword: z.string().optional(),
-    phone: z.string().refine(
-      (value) => {
-        return validatePhoneNumber(value);
-      },
-      {
-        message: i18n.t('form.errors.invalidPhone'),
-      },
-    ),
-  })
-  .superRefine(({ confirmNewPassword, newPassword }, ctx) => {
-    if (newPassword && confirmNewPassword !== newPassword) {
-      ctx.addIssue({
-        code: 'custom',
-        message: i18n.t('form.errors.passwordsDontMatch'),
-        path: ['confirmNewPassword'],
-      });
-    }
-  });
+    z.string().nullable(),
+  ]),
+  phone: z.string().refine(
+    (value) => {
+      return validatePhoneNumber(value);
+    },
+    {
+      message: i18n.t('form.errors.invalidPhone'),
+    },
+  ),
+});
 
 export type UpdateProfileFormSchemaFormData = z.infer<
   typeof UpdateProfileFormSchema
@@ -109,9 +76,6 @@ export const useUpdateProfileFormValidation = (
     lastName: existingProfileData?.lastName ?? '',
     email: existingProfileData?.email ?? '',
     avatar: existingProfileData?.avatar ?? '',
-    currentPassword: '',
-    newPassword: '',
-    confirmNewPassword: '',
     phone: existingProfileData?.phone ?? '',
   };
 

@@ -21,9 +21,12 @@ export type LoginBody = Pick<RegisterBody, 'email' | 'password'>;
 
 export type UpdateProfileBody = Omit<User, 'id' | 'role' | 'avatar'> & {
   avatar?: File | string | null;
-  currentPassword?: string;
-  newPassword?: string;
-  confirmNewPassword?: string;
+};
+
+export type UpdatePasswordBody = {
+  currentPassword: string;
+  newPassword: string;
+  confirmNewPassword: string;
 };
 
 export type SessionData = {

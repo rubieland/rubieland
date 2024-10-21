@@ -19,9 +19,12 @@ export interface User {
 export interface UserData extends Omit<User, 'password' | 'dogsIds' | 'role'> {
   password?: string;
   confirmPassword?: string;
-  currentPassword?: string;
-  newPassword?: string;
-  confirmNewPassword?: string;
+}
+
+export interface UpdatePasswordData {
+  currentPassword: string;
+  newPassword: string;
+  confirmNewPassword: string;
 }
 
 export type UserField = keyof Omit<UserData, 'avatar' | 'role' | 'dogsIds'>;
