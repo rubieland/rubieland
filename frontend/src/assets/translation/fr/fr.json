@@ -46,6 +46,10 @@
     "profile": {
       "title": "Profil utilisateur Rubieland - Gérez vos informations personnelles et vos réservations de garde canine en Vendée",
       "description": "Accédez à votre espace personnel Rubieland pour consulter vos réservations, modifier vos informations, gérer votre compte et le(s) profil(s) de votre ou vos chien(s)."
+    },
+    "contact": {
+      "title": "Contactez Rubieland - Garderie pour chiens en Vendée",
+      "description": "Contactez Rubieland pour toute question ou demande de renseignement."
     }
   },
 
@@ -64,6 +68,7 @@
     "home": "Accueil",
     "about": "À propos",
     "blog": "Blog",
+    "contact": "Contact",
     "register": "M'inscrire",
     "login": "Me connecter",
     "profile": "Profil",
@@ -141,6 +146,14 @@
       "confirmation": {
         "confirmAccountDelete": "Êtes-vous sûr(e) de vouloir supprimer votre compte ? <strong>Toutes vos données seront supprimées.</strong>"
       }
+    },
+
+    "contact": {
+      "name": "Votre nom",
+      "email": "Votre email",
+      "message": "Votre message",
+      "submit": "Envoyer mon message",
+      "loading": "Envoi du message en cours..."
     },
 
     "post": {
@@ -244,6 +257,9 @@
         "updatedOn": "Mis à jour le {{ date, mediumWithTime }}",
         "backToBlog": "Revenir au blog"
       }
+    },
+    "contact": {
+      "title": "Contactez-moi"
     },
     "profile": {
       "profileSection": {
