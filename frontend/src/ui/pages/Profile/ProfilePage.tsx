@@ -1,3 +1,4 @@
+import DeleteMyAccountSection from './components/DeleteMyAccountSection';
 import Separator from '@/ui/components/Separator/Separator';
 import SettingsSection from './components/SettingsSection';
 import ProfileSection from './components/ProfileSection';
@@ -26,6 +27,7 @@ const ProfilePage = () => {
       <SettingsSection />
       <Separator />
       <LogoutSection />
+      <DeleteMyAccountSection />
     </div>
   );
 };
