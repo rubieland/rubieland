@@ -5,7 +5,7 @@ const colors = {
   black: '#151515',
   blackTransp80: 'rgba(0, 0, 0, 0.8)',
   blackTransp50: 'rgba(0, 0, 0, 0.5)',
-  red: '#ef5350',
+  red: '#9D3533',
   $errorBg: '#f8d7da',
   $errorText: '#721c24',
   $green: '#66bb6a',
