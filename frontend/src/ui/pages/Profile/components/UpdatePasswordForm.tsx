@@ -3,6 +3,7 @@ import { useUpdatePasswordFormValidation } from '../hooks/useUpdatePasswordFormV
 import usePasswordVisibility from '../../AuthPages/Login/hooks/usePasswordVisibility';
 import { UpdatePasswordBody } from '@/models/user/user.entity';
 import CustomButton from '@/ui/components/Button/CustomButton';
+import { useUserInfo } from '@/stores/SessionStore';
 import { useTranslation } from 'react-i18next';
 import { FormProvider } from 'react-hook-form';
 
@@ -12,6 +13,8 @@ interface UpdatePasswordFormProps {
 
 const UpdatePasswordForm = ({ onSubmit }: UpdatePasswordFormProps) => {
   const { t } = useTranslation();
+  const user = useUserInfo();
+  const username = `${user?.firstName} ${user?.lastName}`;
 
   const {
     toggleConfirmPasswordVisibility,
@@ -29,6 +32,18 @@ const UpdatePasswordForm = ({ onSubmit }: UpdatePasswordFormProps) => {
   return (
     <FormProvider {...form}>
       <form className="update-profile-form">
+        {/* ACCESSIBILITY: this input is hidden and read only, but necessary for accessibility purposes
+        to fix the following warning: [DOM] Password forms should have (optionally hidden) username fields 
+        for accessibility: (More info: https://goo.gl/9p2vKq)
+        */}
+        <input
+          autoComplete="username"
+          value={username}
+          name="username"
+          type="text"
+          readOnly
+          hidden
+        />
         <ControlledTextInput
           togglePasswordVisibility={togglePasswordVisibility}
           placeholder={t('form.user.currentPassword')}
