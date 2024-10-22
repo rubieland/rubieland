@@ -1,18 +1,26 @@
-import { API_BLOG_PICTURES_PATH, API_URL } from '@/core/envConfig';
-import defaultAvatar from '@/assets/images/default_avatar.jpg';
+import useUpdateMyPassword from '../hooks/useUpdateMyPassword';
+import useUpdateMyProfile from '../hooks/useUpdateMyProfile';
+import Separator from '@/ui/components/Separator/Separator';
+import PageLoader from '@/ui/components/Loader/PageLoader';
+import UpdatePasswordForm from './UpdatePasswordForm';
+import UpdateProfileForm from './UpdateProfileForm';
 import { User } from '@/models/user/user.entity';
 import { useTranslation } from 'react-i18next';
 import '../styles/ProfileSection.scss';
 
 interface ProfileSectionProps {
-  user: User;
+  existingProfileData: User | null;
 }
 
-const ProfileSection = ({ user }: ProfileSectionProps) => {
+const ProfileSection = ({ existingProfileData }: ProfileSectionProps) => {
   const { t } = useTranslation();
-  const avatar = user?.avatar
-    ? `${API_URL}/${API_BLOG_PICTURES_PATH}/${user?.avatar}`
-    : defaultAvatar;
+  const { onSubmit: updateMyProfile, isPending: isProfileUpdatePending } =
+    useUpdateMyProfile();
+  const { onSubmit: updateMyPassword, isPending: isPasswordUpdatePending } =
+    useUpdateMyPassword();
+  const isPending = isProfileUpdatePending || isPasswordUpdatePending;
+
+  if (isPending) return <PageLoader isLoading={isPending} />;
 
   return (
     <div className="profile-section-main-container">
@@ -20,22 +28,21 @@ const ProfileSection = ({ user }: ProfileSectionProps) => {
       <div className="profile-section-content">
         <section className="personal-info-section">
           <article className="personal-info-content">
-            <div className="avatar">
-              <img src={avatar} alt="avatar" loading="lazy" />
-            </div>
-            <div className="username">
-              <p>{`${user.firstName} ${user.lastName}`}</p>
-            </div>
+            <Separator />
+            <h3 className="section-title">
+              {t('pages.profile.profileSection.personalInfo')}
+            </h3>
+            <UpdateProfileForm
+              onSubmit={updateMyProfile}
+              existingProfileData={existingProfileData}
+            />
+            <Separator />
+            <h3 className="section-title">
+              {t('pages.profile.profileSection.updatePassword')}
+            </h3>
+            <UpdatePasswordForm onSubmit={updateMyPassword} />
           </article>
         </section>
-
-        {/* <section className="account-info-section">
-          <article className="account-info-content">
-            <div className="email">
-              <p>{user.email}</p>
-            </div>
-          </article>
-        </section> */}
       </div>
     </div>
   );

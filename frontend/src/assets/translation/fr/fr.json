@@ -5,6 +5,7 @@
     "delete": "Supprimer",
     "cancel": "Annuler",
     "confirm": "Confirmer",
+    "validate": "Valider",
     "error": "Erreur",
     "retry": "Réessayer",
     "addPicture": "Ajouter une image",
@@ -112,8 +113,34 @@
       "emailPlaceholder": "exemple@exemple.com",
       "password": "Mot de passe",
       "confirmPassword": "Confirmer le mot de passe",
+      "currentPassword": "Mot de passe actuel",
+      "newPassword": "Nouveau mot de passe",
+      "confirmNewPassword": "Confirmer le nouveau mot de passe",
       "phoneLabel": "Téléphone",
-      "phonePlaceholder": "ex: +33 7 12 34 56 78"
+      "phonePlaceholder": "ex: +33 7 12 34 56 78",
+      "avatarLabel": "Avatar",
+
+      "loading": {
+        "userUpdateLoading": "Mise à jour de vos informations en cours...",
+        "passwordUpdateLoading": "Modification du mot de passe en cours...",
+        "deleteAccountLoading": "Suppression du compte en cours..."
+      },
+      "success": {
+        "userUpdateSuccess": "Vos informations ont bien été mises à jour !",
+        "passwordUpdateSuccess": "Votre mot de passe a bien été modifié !",
+        "deleteAccountSuccess": "Votre compte a bien été supprimé !"
+      },
+      "errors": {
+        "userUpdateFailed": "Une erreur est survenue lors de la modification de vos informations",
+        "userNotFound": "Utilisateur non trouvé",
+        "userExistsInBase": "Un utilisateur avec cet email existe déjà",
+        "wrongCurrentPassword": "Le mot de passe actuel est incorrect",
+        "updatePasswordFailed": "Une erreur est survenue lors de la modification du mot de passe",
+        "deleteAccountFailed": "Une erreur est survenue lors de la suppression de votre compte"
+      },
+      "confirmation": {
+        "confirmAccountDelete": "Êtes-vous sûr(e) de vouloir supprimer votre compte ? <strong>Toutes vos données seront supprimées.</strong>"
+      }
     },
 
     "post": {
@@ -160,6 +187,9 @@
       "invalidCredentials": "Identifiants incorrects",
       "loginFailed": "La connexion a échouée",
       "logoutFailed": "Une erreur est survenue lors de la déconnexion"
+    },
+    "confirmation": {
+      "confirmLogout": "Êtes-vous sûr(e) de vouloir vous déconnecter ?"
     }
   },
 
@@ -219,12 +249,13 @@
       "profileSection": {
         "title": "Mon profil",
         "personalInfo": "Informations personnelles",
-        "accountInfo": "Informations de compte"
+        "updatePassword": "Modifier le mot de passe"
       },
       "settingsSection": {
         "title": "Paramètres",
         "language": "Langue"
-      }
+      },
+      "deleteAccount": "Supprimer mon compte"
     },
     "login": {
       "notRegisteredYetBlock": {

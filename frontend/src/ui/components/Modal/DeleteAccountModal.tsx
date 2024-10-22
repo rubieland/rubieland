@@ -1,19 +1,19 @@
 import GenericModal from './GenericModal';
 import { Trans } from 'react-i18next';
 
-interface DeletePostModalProps {
+interface DeleteAccountModalProps {
   modalRef: React.RefObject<HTMLDialogElement>;
-  onClose: () => void;
   onDelete: () => void;
+  onClose: () => void;
   isOpen: boolean;
 }
 
-const DeletePostModal = ({
-  modalRef,
+const DeleteAccountModal = ({
   onDelete,
+  modalRef,
   onClose,
   isOpen,
-}: DeletePostModalProps) => {
+}: DeleteAccountModalProps) => {
   return (
     <GenericModal
       confirmAction={onDelete}
@@ -23,13 +23,13 @@ const DeletePostModal = ({
     >
       {/* we use <Trans> component from i18next to translate the text inside the span with a part of the text in bold  */}
       <span>
-        <Trans i18nKey="form.post.confirmation.confirmPostDelete">
-          Êtes-vous sûr(e) de vouloir supprimer cet article ?{' '}
-          <strong>Cette action est irréversible.</strong>
+        <Trans i18nKey="form.user.confirmation.confirmAccountDelete">
+          Êtes-vous sûr(e) de vouloir supprimer votre compte ?{' '}
+          <strong>Toutes vos données seront supprimées.</strong>
         </Trans>
       </span>
     </GenericModal>
   );
 };
 
-export default DeletePostModal;
+export default DeleteAccountModal;

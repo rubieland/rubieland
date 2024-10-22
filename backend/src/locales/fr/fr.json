@@ -137,7 +137,13 @@
   "profile": {
     "success": {
       "profileUpdateSuccess": "Votre profil a été modifié avec succès !",
+      "passwordUpdateSuccess": "Votre mot de passe a été modifié avec succès !",
       "deleteAccountSuccess": "Votre compte a été supprimé avec succès !"
+    },
+    "error": {
+      "profileUpdateFailed": "La mise à jour de votre profil a échouée",
+      "passwordUpdateFailed": "La mise à jour de votre mot de passe a échouée",
+      "deleteAccountFailed": "La suppression de votre compte a échouée"
     }
   },
   "blog": {
