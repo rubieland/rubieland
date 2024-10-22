@@ -8,13 +8,17 @@
   padding: 1rem;
   width: 100%;
 
+  h2 {
+    margin-bottom: 1rem;
+  }
+
   .settings-section-content {
     @include flex-column;
     width: 100%;
 
     .language-block {
       @include flex-column;
-      padding: 0.5rem;
+      padding: 1rem;
       gap: 6px;
 
       select {
