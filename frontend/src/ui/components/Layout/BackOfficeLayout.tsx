@@ -14,7 +14,6 @@ const BackOfficeLayout = () => {
   });
 
   // TODO: add submenus for nested routes
-  // TODO: add logout button
 
   const links: LinkType[] = [
     {
