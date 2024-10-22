@@ -1,6 +1,5 @@
 import GenericModal from './GenericModal';
 import { Trans } from 'react-i18next';
-import { useRef } from 'react';
 
 interface DeletePostModalProps {
   modalRef: React.RefObject<HTMLDialogElement>;
@@ -10,11 +9,11 @@ interface DeletePostModalProps {
 }
 
 const DeletePostModal = ({
+  modalRef,
   onDelete,
   onClose,
   isOpen,
 }: DeletePostModalProps) => {
-  const modalRef = useRef<HTMLDialogElement>(null);
   return (
     <GenericModal
       confirmAction={onDelete}
