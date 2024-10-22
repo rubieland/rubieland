@@ -122,18 +122,24 @@
 
       "loading": {
         "userUpdateLoading": "Mise à jour de vos informations en cours...",
-        "passwordUpdateLoading": "Modification du mot de passe en cours..."
+        "passwordUpdateLoading": "Modification du mot de passe en cours...",
+        "deleteAccountLoading": "Suppression du compte en cours..."
       },
       "success": {
         "userUpdateSuccess": "Vos informations ont bien été mises à jour !",
-        "passwordUpdateSuccess": "Votre mot de passe a bien été modifié !"
+        "passwordUpdateSuccess": "Votre mot de passe a bien été modifié !",
+        "deleteAccountSuccess": "Votre compte a bien été supprimé !"
       },
       "errors": {
         "userUpdateFailed": "Une erreur est survenue lors de la modification de vos informations",
         "userNotFound": "Utilisateur non trouvé",
         "userExistsInBase": "Un utilisateur avec cet email existe déjà",
         "wrongCurrentPassword": "Le mot de passe actuel est incorrect",
-        "updatePasswordFailed": "Une erreur est survenue lors de la modification du mot de passe"
+        "updatePasswordFailed": "Une erreur est survenue lors de la modification du mot de passe",
+        "deleteAccountFailed": "Une erreur est survenue lors de la suppression de votre compte"
+      },
+      "confirmation": {
+        "confirmAccountDelete": "Êtes-vous sûr(e) de vouloir supprimer votre compte ? <strong>Toutes vos données seront supprimées.</strong>"
       }
     },
 
@@ -181,6 +187,9 @@
       "invalidCredentials": "Identifiants incorrects",
       "loginFailed": "La connexion a échouée",
       "logoutFailed": "Une erreur est survenue lors de la déconnexion"
+    },
+    "confirmation": {
+      "confirmLogout": "Êtes-vous sûr(e) de vouloir vous déconnecter ?"
     }
   },
 
@@ -245,7 +254,8 @@
       "settingsSection": {
         "title": "Paramètres",
         "language": "Langue"
-      }
+      },
+      "deleteAccount": "Supprimer mon compte"
     },
     "login": {
       "notRegisteredYetBlock": {
