@@ -52,7 +52,6 @@ api.interceptors.request.use(async (config) => {
           error,
         );
 
-        // TODO: add api call to /auth/logout
         resetSession();
         queryClient.removeQueries();
       }
