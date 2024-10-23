@@ -149,11 +149,18 @@
     },
 
     "contact": {
-      "name": "Your name",
+      "fullName": "Your full name",
       "email": "Your email",
+      "subject": "Subject of your message",
       "message": "Your message",
       "submit": "Send my message",
-      "loading": "Sending your message..."
+      "loading": "Sending your message...",
+      "success": {
+        "contactMessageSuccess": "Your message has been sent successfully!"
+      },
+      "errors": {
+        "contactMessageFailed": "An error occurred while sending your message"
+      }
     },
 
     "post": {
