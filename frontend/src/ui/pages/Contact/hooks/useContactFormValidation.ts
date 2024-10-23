@@ -45,10 +45,14 @@ export const ContactFormSchema = z.object({
 export type ContactFormSchemaFormData = z.infer<typeof ContactFormSchema>;
 
 export const useContactFormValidation = (existingUserData: User | null) => {
-  const fullName = `${existingUserData?.firstName} ${existingUserData?.lastName}`;
+  const fullName = existingUserData
+    ? `${existingUserData.firstName} ${existingUserData.lastName}`
+    : '';
+  const email = existingUserData?.email || '';
+
   const values = {
-    fullName: fullName || '',
-    email: existingUserData?.email || '',
+    fullName,
+    email,
     subject: '',
     message: '',
   };
