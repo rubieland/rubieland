@@ -18,7 +18,9 @@ import { Route as AppIndexImport } from './routes/_app/index'
 import { Route as BackOfficeBlogImport } from './routes/back-office/blog'
 import { Route as AppRegisterImport } from './routes/_app/register'
 import { Route as AppProfileImport } from './routes/_app/profile'
+import { Route as AppPrivacyPolicyImport } from './routes/_app/privacy-policy'
 import { Route as AppLoginImport } from './routes/_app/login'
+import { Route as AppLegalNoticeImport } from './routes/_app/legal-notice'
 import { Route as AppContactImport } from './routes/_app/contact'
 import { Route as AppBlogImport } from './routes/_app/blog'
 import { Route as AppAboutImport } from './routes/_app/about'
@@ -67,8 +69,18 @@ const AppProfileRoute = AppProfileImport.update({
   getParentRoute: () => AppRoute,
 } as any)
 
+const AppPrivacyPolicyRoute = AppPrivacyPolicyImport.update({
+  path: '/privacy-policy',
+  getParentRoute: () => AppRoute,
+} as any)
+
 const AppLoginRoute = AppLoginImport.update({
   path: '/login',
+  getParentRoute: () => AppRoute,
+} as any)
+
+const AppLegalNoticeRoute = AppLegalNoticeImport.update({
+  path: '/legal-notice',
   getParentRoute: () => AppRoute,
 } as any)
 
@@ -162,11 +174,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppContactImport
       parentRoute: typeof AppImport
     }
+    '/_app/legal-notice': {
+      id: '/_app/legal-notice'
+      path: '/legal-notice'
+      fullPath: '/legal-notice'
+      preLoaderRoute: typeof AppLegalNoticeImport
+      parentRoute: typeof AppImport
+    }
     '/_app/login': {
       id: '/_app/login'
       path: '/login'
       fullPath: '/login'
       preLoaderRoute: typeof AppLoginImport
+      parentRoute: typeof AppImport
+    }
+    '/_app/privacy-policy': {
+      id: '/_app/privacy-policy'
+      path: '/privacy-policy'
+      fullPath: '/privacy-policy'
+      preLoaderRoute: typeof AppPrivacyPolicyImport
       parentRoute: typeof AppImport
     }
     '/_app/profile': {
@@ -266,7 +292,9 @@ export const routeTree = rootRoute.addChildren({
       AppBlogPostsPostIdRoute,
     }),
     AppContactRoute,
+    AppLegalNoticeRoute,
     AppLoginRoute,
+    AppPrivacyPolicyRoute,
     AppProfileRoute,
     AppRegisterRoute,
     AppIndexRoute,
@@ -301,7 +329,9 @@ export const routeTree = rootRoute.addChildren({
         "/_app/about",
         "/_app/blog",
         "/_app/contact",
+        "/_app/legal-notice",
         "/_app/login",
+        "/_app/privacy-policy",
         "/_app/profile",
         "/_app/register",
         "/_app/"
@@ -331,8 +361,16 @@ export const routeTree = rootRoute.addChildren({
       "filePath": "_app/contact.tsx",
       "parent": "/_app"
     },
+    "/_app/legal-notice": {
+      "filePath": "_app/legal-notice.tsx",
+      "parent": "/_app"
+    },
     "/_app/login": {
       "filePath": "_app/login.tsx",
+      "parent": "/_app"
+    },
+    "/_app/privacy-policy": {
+      "filePath": "_app/privacy-policy.tsx",
       "parent": "/_app"
     },
     "/_app/profile": {
