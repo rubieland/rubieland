@@ -213,6 +213,13 @@
     }
   },
 
+  "legalContent": {
+    "legalNotice": "Legal notice",
+    "privacyPolicy": "Privacy policy",
+    "formSubmitConfirmation": "By submitting this form, you acknowledge that you have read and accepted our ",
+    "and": " and "
+  },
+
   "pages": {
     "home": {
       "heroImage": {

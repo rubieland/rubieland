@@ -214,6 +214,13 @@
     }
   },
 
+  "legalContent": {
+    "legalNotice": "Mentions légales",
+    "privacyPolicy": "Politique de confidentialité",
+    "formSubmitConfirmation": "En envoyant ce formulaire, vous reconnaissez avoir lu et accepté notre ",
+    "and": " et nos "
+  },
+
   "pages": {
     "home": {
       "heroImage": {

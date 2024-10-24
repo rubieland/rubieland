@@ -1,4 +1,5 @@
 import ControlledTextInput from '../../../../components/FormInputs/ControlledFormInputs/ControlledTextInput';
+import LegalContentConfirmation from '@/ui/components/LegalContent/LegalContentConfirmation';
 import { useRegisterFormValidation } from '../hooks/useRegisterFormValidation';
 import usePasswordVisibility from '../../Login/hooks/usePasswordVisibility';
 import CustomButton from '../../../../components/Button/CustomButton';
@@ -76,6 +77,7 @@ const RegisterForm = ({ onSubmit }: RegisterFormProps) => {
           name="confirmPassword"
           type="password"
         />
+        <LegalContentConfirmation />
         <div className="form-input">
           <CustomButton
             onClick={form.handleSubmit(onSubmit)}
