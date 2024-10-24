@@ -39,6 +39,8 @@
    ACCESS_TOKEN_EXPIRATION # expiration of the access token
    REFRESH_TOKEN_EXPIRATION # expiration of the refresh token
    COOKIE_MAX_AGE # time in milliseconds before expiration of the cookie. e.g.: "3600000" = 1 hour (3.600.000 milliseconds)
+   EMAIL_USER # your gmail address => needed for nodemailer, to receive messages coming from the contact form
+   EMAIL_APP_PASSWORD # app password that you can create for the app using this link: https://myaccount.google.com/apppasswords. It is also needed for nodemailer authentication
    ```
 
 <br>
@@ -113,3 +115,49 @@ If everything is fine, you should see these messages in console :
 - Server is running on port {PORT}</u></strong>
 
 If so, that means that the server is working fine. You can now set up the frontend app and you'll be ready to go!
+
+<hr>
+
+### Set up the frontend
+
+1. **Install the dependencies**
+
+   ```bash
+   cd .\frontend\
+   ```
+
+   ```bash
+   npm i
+   ```
+
+   or
+
+   ```bash
+   npm install
+   ```
+
+   <br>
+
+2. **Add your environment variables**
+
+   Create a .env file at the root of **/frontend** folder
+
+   💡 You will find in **/backend/.env.sample** all the env variables you need to create. Or, refer to the list below:
+
+   ```pl
+    VITE_API_URL # your backend url
+    VITE_API_BLOG_PICTURES_PATH # path to the blog pictures folder
+    VITE_API_USERS_AVATARS_PATH # path to the user avatars folder
+   ```
+
+### Run the frontend app
+
+Once the dependencies are installed and the env variables are set, you can start running the app!
+
+💡Make sure you are in **/frontend** and run
+
+```bash
+npm run dev
+```
+
+And now, everything is ready for you to start using **Rubieland!**
