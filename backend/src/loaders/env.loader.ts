@@ -4,6 +4,8 @@ dotenv.config();
 const requiredEnvVariables = [
   'PORT',
   'CLIENT_URL',
+  'EMAIL_USER',
+  'EMAIL_APP_PASSWORD',
   'DB_URI',
   'NODE_ENV',
   'UPLOADS_DIR',

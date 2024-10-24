@@ -46,6 +46,10 @@
     "profile": {
       "title": "Rubieland user profile - Manage your personal information and your dog daycare reservations in Vendée",
       "description": "Access your Rubieland personal space to view your reservations, modify your information, manage your account and the profile(s) of your dog(s)."
+    },
+    "contact": {
+      "title": "Contact Rubieland - Dog daycare in Vendée",
+      "description": "Contact Rubieland for any questions or requests for information."
     }
   },
 
@@ -64,6 +68,7 @@
     "home": "Home",
     "about": "About",
     "blog": "Blog",
+    "contact": "Contact",
     "register": "Register",
     "login": "Log in",
     "profile": "Profile",
@@ -140,6 +145,21 @@
       },
       "confirmation": {
         "confirmAccountDelete": "Are you sure you want to delete your account? <strong>All your data will be deleted.</strong>"
+      }
+    },
+
+    "contact": {
+      "fullName": "Your full name",
+      "email": "Your email",
+      "subject": "Subject of your message",
+      "message": "Your message",
+      "submit": "Send my message",
+      "loading": "Sending your message...",
+      "success": {
+        "contactMessageSuccess": "Your message has been sent successfully!"
+      },
+      "errors": {
+        "contactMessageFailed": "An error occurred while sending your message"
       }
     },
 
@@ -244,6 +264,9 @@
         "updatedOn": "Updated on {{ date, mediumWithTime }}",
         "backToBlog": "Go back to blog"
       }
+    },
+    "contact": {
+      "title": "Contact me"
     },
     "profile": {
       "profileSection": {
