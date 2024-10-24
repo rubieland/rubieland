@@ -21,6 +21,10 @@ const { CLIENT_URL, UPLOADS_DIR } = env;
 
 export const loadExpress = async ({ server }: { server: Express }) => {
   try {
+    // configure pug as view engine
+    server.set('view engine', 'pug');
+    server.set('views', path.join(__dirname, '../views'));
+
     // middlewares
     server.use(i18nextMiddleware(i18n));
     server.use(

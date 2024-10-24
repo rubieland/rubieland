@@ -1,0 +1,28 @@
+doctype html
+html(lang="fr")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Confirmation de réception de votre demande
+    style.
+      p {
+        font-size: 1.1rem;
+      }
+
+  body
+    div(style="max-width: 600px; margin: auto; padding: 20px; background-color: #f4f4f4; font-family: Arial, sans-serif; border-radius: 10px;")
+      h1(style="color: #5a3d8a; text-align: center;") Merci pour votre message, #{fullName}!
+      p Nous avons bien reçu votre demande. Nous tâcherons d'y répondre dès que possible !
+
+      h2(style="color: #5a3d8a;") Récapitulatif de votre demande :
+      p Sujet : 
+        strong #{subject}
+      p Votre message :
+        
+      em(style="display: inline-block; padding: 20px; background-color: #ffffff; border-radius: 10px;") #{message}
+
+      hr
+
+      div
+        p Cordialement,
+        p L'équipe Rubieland
