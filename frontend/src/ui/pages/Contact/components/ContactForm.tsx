@@ -1,5 +1,6 @@
 import ControlledTextInput from '@/ui/components/FormInputs/ControlledFormInputs/ControlledTextInput';
 import ControlledTextarea from '@/ui/components/FormInputs/ControlledFormInputs/ControlledTextarea';
+import LegalContentConfirmation from '@/ui/components/LegalContent/LegalContentConfirmation';
 import { useContactFormValidation } from '../hooks/useContactFormValidation';
 import { ContactMessageBody } from '@/api/contact/postContactMessage';
 import CustomButton from '@/ui/components/Button/CustomButton';
@@ -32,6 +33,7 @@ const ContactForm = ({ onSubmit }: ContactFormProps) => {
         />
         <ControlledTextInput label={t('form.contact.subject')} name="subject" />
         <ControlledTextarea label={t('form.contact.message')} name="message" />
+        <LegalContentConfirmation />
         <div className="form-input">
           <CustomButton
             onClick={form.handleSubmit(onSubmit)}

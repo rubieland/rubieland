@@ -1,4 +1,5 @@
 import ControlledTextInput from '../../../../components/FormInputs/ControlledFormInputs/ControlledTextInput';
+import LegalContentConfirmation from '@/ui/components/LegalContent/LegalContentConfirmation';
 import { useLoginFormValidation } from '../hooks/useLoginFormValidation';
 import CustomButton from '../../../../components/Button/CustomButton';
 import { LoginBody } from '../../../../../models/user/user.entity';
@@ -39,6 +40,7 @@ const LoginForm = ({ onSubmit }: LoginFormProps) => {
           name="password"
           type="password"
         />
+        <LegalContentConfirmation />
         <div className="form-input">
           <CustomButton
             onClick={form.handleSubmit(onSubmit)}

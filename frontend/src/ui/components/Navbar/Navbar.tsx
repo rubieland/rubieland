@@ -11,6 +11,8 @@ const Navbar = memo(() => {
   const isConnected: boolean = useIsConnected();
   const className: string = isOpen ? 'navbar opened' : 'navbar';
 
+  // TODO: add language switcher
+
   const toggleIsOpen = useCallback(() => {
     setIsOpen((prev) => !prev);
   }, []);
