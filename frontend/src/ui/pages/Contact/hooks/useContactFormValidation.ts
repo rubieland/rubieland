@@ -1,4 +1,5 @@
 import { nameRegex } from '../../AuthPages/Register/hooks/useRegisterFormValidation';
+import { forbiddenCharsRegex } from '@/utils/string.utils';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { User } from '@/models/user/user.entity';
 import { useForm } from 'react-hook-form';
@@ -29,8 +30,11 @@ export const ContactFormSchema = z.object({
     .min(5, {
       message: i18n.t('form.errors.inputMinLength', { minLength: 5 }),
     })
-    .max(5000, {
-      message: i18n.t('form.errors.inputMaxLength', { maxLength: 5000 }),
+    .max(100, {
+      message: i18n.t('form.errors.inputMaxLength', { maxLength: 100 }),
+    })
+    .refine((value) => !forbiddenCharsRegex.test(value), {
+      message: i18n.t('form.errors.hasForbiddenChars'),
     }),
   message: z
     .string()
@@ -39,6 +43,9 @@ export const ContactFormSchema = z.object({
     })
     .max(5000, {
       message: i18n.t('form.errors.inputMaxLength', { maxLength: 5000 }),
+    })
+    .refine((value) => !forbiddenCharsRegex.test(value), {
+      message: i18n.t('form.errors.hasForbiddenChars'),
     }),
 });
 
