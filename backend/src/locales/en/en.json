@@ -65,6 +65,12 @@
         "breed": "Breed",
         "picture": "Picture",
         "age": "Age"
+      },
+      "contact": {
+        "fullName": "Your full name",
+        "email": "Your email",
+        "subject": "Subject of your message",
+        "message": "Your message"
       }
     },
     "rules": {
@@ -88,6 +94,10 @@
       "dog": {
         "gender": "it can only be either \"male\" or \"female\"",
         "birthDateInvalidFormat": "expected format: YYYY-MM-DD"
+      },
+      "contact": {
+        "fullName": "it can only contain letters, hyphens, spaces and apostrophes",
+        "email": "please enter a valid email address (example@example.com)"
       }
     },
     "messages": {
@@ -177,6 +187,22 @@
     "error": {
       "dogCreationFailed": "Failed to create your dog",
       "dogUpdateFailed": "Failed to update your dog's information"
+    }
+  },
+  "contact": {
+    "success": {
+      "confirmationEmailSent": "Confirmation email sent: {{infoResponse}}",
+      "notificationEmailSent": "Notification email sent: {{infoResponse}}",
+      "messageSent": "Message received. A confirmation email has been sent."
+    },
+    "error": {
+      "confirmationEmailFailed": "Error sending confirmation email: {{errorMessage}}",
+      "notificationEmailFailed": "Error sending notification email: {{errorMessage}}",
+      "messageNotSent": "Error sending message."
+    },
+    "email": {
+      "confirmationSubject": "Confirmation of receipt of your request",
+      "notificationSubject": "New contact message from {{fullName}}"
     }
   }
 }

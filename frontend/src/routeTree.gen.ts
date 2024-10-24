@@ -19,6 +19,7 @@ import { Route as BackOfficeBlogImport } from './routes/back-office/blog'
 import { Route as AppRegisterImport } from './routes/_app/register'
 import { Route as AppProfileImport } from './routes/_app/profile'
 import { Route as AppLoginImport } from './routes/_app/login'
+import { Route as AppContactImport } from './routes/_app/contact'
 import { Route as AppBlogImport } from './routes/_app/blog'
 import { Route as AppAboutImport } from './routes/_app/about'
 import { Route as BackOfficeUsersIndexImport } from './routes/back-office/users/index'
@@ -68,6 +69,11 @@ const AppProfileRoute = AppProfileImport.update({
 
 const AppLoginRoute = AppLoginImport.update({
   path: '/login',
+  getParentRoute: () => AppRoute,
+} as any)
+
+const AppContactRoute = AppContactImport.update({
+  path: '/contact',
   getParentRoute: () => AppRoute,
 } as any)
 
@@ -147,6 +153,13 @@ declare module '@tanstack/react-router' {
       path: '/blog'
       fullPath: '/blog'
       preLoaderRoute: typeof AppBlogImport
+      parentRoute: typeof AppImport
+    }
+    '/_app/contact': {
+      id: '/_app/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof AppContactImport
       parentRoute: typeof AppImport
     }
     '/_app/login': {
@@ -252,6 +265,7 @@ export const routeTree = rootRoute.addChildren({
       AppBlogIndexRoute,
       AppBlogPostsPostIdRoute,
     }),
+    AppContactRoute,
     AppLoginRoute,
     AppProfileRoute,
     AppRegisterRoute,
@@ -286,6 +300,7 @@ export const routeTree = rootRoute.addChildren({
       "children": [
         "/_app/about",
         "/_app/blog",
+        "/_app/contact",
         "/_app/login",
         "/_app/profile",
         "/_app/register",
@@ -311,6 +326,10 @@ export const routeTree = rootRoute.addChildren({
         "/_app/blog/",
         "/_app/blog/posts/$postId"
       ]
+    },
+    "/_app/contact": {
+      "filePath": "_app/contact.tsx",
+      "parent": "/_app"
     },
     "/_app/login": {
       "filePath": "_app/login.tsx",

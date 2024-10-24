@@ -8,6 +8,7 @@ import blogRouter from '../routers/public/blog.router';
 import profileRouter from '../routers/secured/user/profile.router';
 import prestationsRouter from '../routers/public/prestations.router';
 import backOfficeRouter from '../routers/secured/admin/backOffice.router';
+import contactRouter from '../routers/public/contact.router';
 import { env } from './env.loader';
 import {
   errorHandler,
@@ -20,6 +21,10 @@ const { CLIENT_URL, UPLOADS_DIR } = env;
 
 export const loadExpress = async ({ server }: { server: Express }) => {
   try {
+    // configure pug as view engine
+    server.set('view engine', 'pug');
+    server.set('views', path.join(__dirname, '../views'));
+
     // middlewares
     server.use(i18nextMiddleware(i18n));
     server.use(
@@ -45,6 +50,7 @@ export const loadExpress = async ({ server }: { server: Express }) => {
     server.use('/back-office', backOfficeRouter);
     server.use('/blog', blogRouter);
     server.use('/about', prestationsRouter);
+    server.use('/contact', contactRouter);
 
     // error handlers
     server.use(notFoundHandler);

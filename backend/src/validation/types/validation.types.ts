@@ -18,6 +18,7 @@ export enum DataContext {
   POST = 'post',
   PRESTATION = 'prestation',
   DOG = 'dog',
+  CONTACT = 'contact',
 }
 
 export interface StringDataLengths {
