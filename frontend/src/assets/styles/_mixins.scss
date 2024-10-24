@@ -83,8 +83,8 @@
   @include flex-center;
   font-family: inherit;
   text-align: center;
-  font-size: 0.875rem;
   font-weight: 600;
+  font-size: 1rem;
   cursor: pointer;
   width: 100%;
   gap: 0.5rem;
@@ -99,12 +99,14 @@
 ) {
   background-color: $bg-color;
   border-color: $border-color;
+  color: $text-color;
 
   &:hover {
     opacity: 0.85;
   }
 
   span {
+    @include flex-center-y;
     color: $text-color;
 
     svg {
@@ -138,6 +140,7 @@
 
   &:focus {
     border-color: $primary;
+    outline: none;
   }
 }
 
@@ -148,13 +151,13 @@
   width: 1.5rem;
 }
 
-@mixin edit-picture-input($border-radius: 0.5rem) {
+@mixin edit-picture-input($border-radius: 0.5rem, $height: 200px) {
   transition: all ease-in-out 0.3s;
   border-radius: $border-radius;
   background-color: $grey30;
   text-align: center;
   cursor: pointer;
-  height: 100%;
+  height: $height;
 
   input {
     display: none;
@@ -170,6 +173,19 @@
   border-radius: 4px;
   font-weight: bold;
   color: $color;
+}
+
+// ----- table ----- \\
+
+@mixin table-cell-content {
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+
+  * {
+    text-align: center;
+    width: 100%;
+  }
 }
 
 // ----- separator ----- \\

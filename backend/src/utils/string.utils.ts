@@ -1,5 +1,7 @@
 // capitalize the first letter of a string
 export const capitalize = (str: string) => {
+  if (str.length === 0) return str;
+
   return str.replace(str[0], str[0].toUpperCase());
 };
 
@@ -17,8 +19,10 @@ export const trimData = (data: any) => {
  *
  * @param {string} name - the name to be formatted
  * @return {string} - the formatted name
+ * @example
+ * formatName("john doe") // "John Doe"
+ * formatName("o'connor") // "O'Connor"
  */
-
 export const formatName = (name: string): string => {
   return name
     .toLowerCase()

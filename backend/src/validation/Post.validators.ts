@@ -37,39 +37,41 @@ export const checkPostData = async (data: Omit<PostData, 'picture'>) => {
     if (key in postDataLengths) {
       const fieldKey = key as PostField;
 
-      // check forbidden characters
-      if (typeof value === 'string' && hasForbiddenChars(value)) {
-        errors.push(
-          getValidationErrorMessage({
-            context,
-            field: fieldKey,
-            reason: Reason.HAS_FORBIDDEN_CHARS,
-          }),
-        );
-      }
+      if (typeof value === 'string' && fieldKey !== 'content') {
+        // check forbidden characters
+        if (hasForbiddenChars(value)) {
+          errors.push(
+            getValidationErrorMessage({
+              context,
+              field: fieldKey,
+              reason: Reason.HAS_FORBIDDEN_CHARS,
+            }),
+          );
+        }
 
-      // check maxLengths
-      if (!checkMaxLength(value, postDataLengths[fieldKey].maxLength)) {
-        errors.push(
-          getValidationErrorMessage({
-            context,
-            field: fieldKey,
-            maxLength: postDataLengths[fieldKey].maxLength,
-            reason: Reason.MAXLENGTH,
-          }),
-        );
-      }
+        // check maxLengths
+        if (!checkMaxLength(value, postDataLengths[fieldKey].maxLength)) {
+          errors.push(
+            getValidationErrorMessage({
+              context,
+              field: fieldKey,
+              maxLength: postDataLengths[fieldKey].maxLength,
+              reason: Reason.MAXLENGTH,
+            }),
+          );
+        }
 
-      // check minLengths
-      if (!checkMinLength(value, postDataLengths[fieldKey].minLength)) {
-        errors.push(
-          getValidationErrorMessage({
-            context,
-            field: fieldKey,
-            minLength: postDataLengths[fieldKey].minLength,
-            reason: Reason.MINLENGTH,
-          }),
-        );
+        // check minLengths
+        if (!checkMinLength(value, postDataLengths[fieldKey].minLength)) {
+          errors.push(
+            getValidationErrorMessage({
+              context,
+              field: fieldKey,
+              minLength: postDataLengths[fieldKey].minLength,
+              reason: Reason.MINLENGTH,
+            }),
+          );
+        }
       }
     }
   }

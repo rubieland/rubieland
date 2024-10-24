@@ -12,22 +12,22 @@
       "saveFailed": "Une erreur est survenue lors de la sauvegarde des données. Veuillez réessayer",
       "deleteFileFailed": "Le fichier n'a pas pu être supprimé",
       "resourceDoesNotExist": "Cette ressource n'existe pas ou n'existe plus",
-      "usersFound_zero": "Aucun utilisateur trouvé",
       "userDoesNotExist": "Cet utilisateur n'existe pas ou n'existe plus",
-      "postsFound_zero": "Aucun article de blog trouvé",
       "postDoesNotExist": "Cet article de blog n'existe pas ou n'existe plus",
-      "prestationsFound_zero": "Aucune prestation trouvée",
       "prestationDoesNotExist": "Cette prestation n'existe pas ou n'existe plus",
-      "dogsFound_zero": "Aucun chien trouvé",
       "dogDoesNotExist": "Cet chien n'existe pas ou n'existe plus"
     },
     "success": {
+      "usersFound_zero": "Aucun utilisateur trouvé",
       "usersFound_one": "{{count}} utilisateur trouvé",
       "usersFound_other": "{{count}} utilisateurs trouvés",
+      "postsFound_zero": "Aucun article de blog trouvé",
       "postsFound_one": "{{count}} article de blog trouvé",
       "postsFound_other": "{{count}} articles de blog trouvés",
+      "prestationsFound_zero": "Aucune prestation trouvée",
       "prestationsFound_one": "{{count}} prestation trouvée",
       "prestationsFound_other": "{{count}} prestations trouvées",
+      "dogsFound_zero": "Aucun chien trouvé",
       "dogsFound_one": "{{count}} chien trouvé",
       "dogsFound_other": "{{count}} chiens trouvés"
     }
@@ -65,6 +65,12 @@
         "breed": "Race",
         "picture": "Photo",
         "age": "Age"
+      },
+      "contact": {
+        "fullName": "Votre nom complet",
+        "email": "Votre email",
+        "subject": "Sujet de votre message",
+        "message": "Votre message"
       }
     },
     "rules": {
@@ -88,6 +94,10 @@
       "dog": {
         "gender": "il ne peut qu'être soit \"mâle\" soit \"femelle\"",
         "birthDateInvalidFormat": "format attendu: AAAA-MM-JJ"
+      },
+      "contact": {
+        "fullName": "il ne peut contenir que des lettres, traits d'union, espaces et apostrophes",
+        "email": "veuillez saisir une adresse e-mail valide (exemple@exemple.com)"
       }
     },
     "messages": {
@@ -137,7 +147,13 @@
   "profile": {
     "success": {
       "profileUpdateSuccess": "Votre profil a été modifié avec succès !",
+      "passwordUpdateSuccess": "Votre mot de passe a été modifié avec succès !",
       "deleteAccountSuccess": "Votre compte a été supprimé avec succès !"
+    },
+    "error": {
+      "profileUpdateFailed": "La mise à jour de votre profil a échouée",
+      "passwordUpdateFailed": "La mise à jour de votre mot de passe a échouée",
+      "deleteAccountFailed": "La suppression de votre compte a échouée"
     }
   },
   "blog": {
@@ -171,6 +187,22 @@
     "error": {
       "dogCreationFailed": "La création de votre chien a échouée",
       "dogUpdateFailed": "La mise à jour des informations de votre chien a échouée"
+    }
+  },
+  "contact": {
+    "success": {
+      "confirmationEmailSent": "Email de confirmation envoyé : {{infoResponse}}",
+      "notificationEmailSent": "Email de notification envoyé : {{infoResponse}}",
+      "messageSent": "Message reçu. Un email de confirmation a été envoyé."
+    },
+    "error": {
+      "confirmationEmailFailed": "Erreur lors de l'envoi de l'email de confirmation: {{errorMessage}}",
+      "notificationEmailFailed": "Erreur lors de l'envoi de l'email de notification: {{errorMessage}}",
+      "messageNotSent": "Erreur lors de l'envoi du message."
+    },
+    "email": {
+      "confirmationSubject": "Confirmation de réception de votre demande",
+      "notificationSubject": "Nouveau message de contact de {{fullName}}"
     }
   }
 }

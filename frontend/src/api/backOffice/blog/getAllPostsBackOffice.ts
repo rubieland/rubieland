@@ -26,6 +26,6 @@ export const useGetAllPostsBackOffice = ({
   return useQuery<ExtractFnReturnType<QueryFnType>>({
     ...config,
     queryKey: [QueryKeysEnum.POSTS],
-    queryFn: () => getAllPostsBackOffice(),
+    queryFn: getAllPostsBackOffice,
   });
 };

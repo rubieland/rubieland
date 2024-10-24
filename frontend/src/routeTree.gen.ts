@@ -18,12 +18,17 @@ import { Route as AppIndexImport } from './routes/_app/index'
 import { Route as BackOfficeBlogImport } from './routes/back-office/blog'
 import { Route as AppRegisterImport } from './routes/_app/register'
 import { Route as AppProfileImport } from './routes/_app/profile'
+import { Route as AppPrivacyPolicyImport } from './routes/_app/privacy-policy'
 import { Route as AppLoginImport } from './routes/_app/login'
+import { Route as AppLegalNoticeImport } from './routes/_app/legal-notice'
+import { Route as AppContactImport } from './routes/_app/contact'
 import { Route as AppBlogImport } from './routes/_app/blog'
 import { Route as AppAboutImport } from './routes/_app/about'
+import { Route as BackOfficeUsersIndexImport } from './routes/back-office/users/index'
 import { Route as BackOfficeBlogIndexImport } from './routes/back-office/blog/index'
 import { Route as AppBlogIndexImport } from './routes/_app/blog/index'
 import { Route as BackOfficeBlogCreatePostImport } from './routes/back-office/blog/create-post'
+import { Route as BackOfficeBlogUpdatePostPostIdImport } from './routes/back-office/blog/update-post.$postId'
 import { Route as BackOfficeBlogPostsPostIdImport } from './routes/back-office/blog/posts/$postId'
 import { Route as AppBlogPostsPostIdImport } from './routes/_app/blog/posts/$postId'
 
@@ -64,8 +69,23 @@ const AppProfileRoute = AppProfileImport.update({
   getParentRoute: () => AppRoute,
 } as any)
 
+const AppPrivacyPolicyRoute = AppPrivacyPolicyImport.update({
+  path: '/privacy-policy',
+  getParentRoute: () => AppRoute,
+} as any)
+
 const AppLoginRoute = AppLoginImport.update({
   path: '/login',
+  getParentRoute: () => AppRoute,
+} as any)
+
+const AppLegalNoticeRoute = AppLegalNoticeImport.update({
+  path: '/legal-notice',
+  getParentRoute: () => AppRoute,
+} as any)
+
+const AppContactRoute = AppContactImport.update({
+  path: '/contact',
   getParentRoute: () => AppRoute,
 } as any)
 
@@ -77,6 +97,11 @@ const AppBlogRoute = AppBlogImport.update({
 const AppAboutRoute = AppAboutImport.update({
   path: '/about',
   getParentRoute: () => AppRoute,
+} as any)
+
+const BackOfficeUsersIndexRoute = BackOfficeUsersIndexImport.update({
+  path: '/users/',
+  getParentRoute: () => BackOfficeRoute,
 } as any)
 
 const BackOfficeBlogIndexRoute = BackOfficeBlogIndexImport.update({
@@ -93,6 +118,12 @@ const BackOfficeBlogCreatePostRoute = BackOfficeBlogCreatePostImport.update({
   path: '/create-post',
   getParentRoute: () => BackOfficeBlogRoute,
 } as any)
+
+const BackOfficeBlogUpdatePostPostIdRoute =
+  BackOfficeBlogUpdatePostPostIdImport.update({
+    path: '/update-post/$postId',
+    getParentRoute: () => BackOfficeBlogRoute,
+  } as any)
 
 const BackOfficeBlogPostsPostIdRoute = BackOfficeBlogPostsPostIdImport.update({
   path: '/posts/$postId',
@@ -136,11 +167,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppBlogImport
       parentRoute: typeof AppImport
     }
+    '/_app/contact': {
+      id: '/_app/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof AppContactImport
+      parentRoute: typeof AppImport
+    }
+    '/_app/legal-notice': {
+      id: '/_app/legal-notice'
+      path: '/legal-notice'
+      fullPath: '/legal-notice'
+      preLoaderRoute: typeof AppLegalNoticeImport
+      parentRoute: typeof AppImport
+    }
     '/_app/login': {
       id: '/_app/login'
       path: '/login'
       fullPath: '/login'
       preLoaderRoute: typeof AppLoginImport
+      parentRoute: typeof AppImport
+    }
+    '/_app/privacy-policy': {
+      id: '/_app/privacy-policy'
+      path: '/privacy-policy'
+      fullPath: '/privacy-policy'
+      preLoaderRoute: typeof AppPrivacyPolicyImport
       parentRoute: typeof AppImport
     }
     '/_app/profile': {
@@ -199,6 +251,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BackOfficeBlogIndexImport
       parentRoute: typeof BackOfficeBlogImport
     }
+    '/back-office/users/': {
+      id: '/back-office/users/'
+      path: '/users'
+      fullPath: '/back-office/users'
+      preLoaderRoute: typeof BackOfficeUsersIndexImport
+      parentRoute: typeof BackOfficeImport
+    }
     '/_app/blog/posts/$postId': {
       id: '/_app/blog/posts/$postId'
       path: '/posts/$postId'
@@ -213,6 +272,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BackOfficeBlogPostsPostIdImport
       parentRoute: typeof BackOfficeBlogImport
     }
+    '/back-office/blog/update-post/$postId': {
+      id: '/back-office/blog/update-post/$postId'
+      path: '/update-post/$postId'
+      fullPath: '/back-office/blog/update-post/$postId'
+      preLoaderRoute: typeof BackOfficeBlogUpdatePostPostIdImport
+      parentRoute: typeof BackOfficeBlogImport
+    }
   }
 }
 
@@ -225,7 +291,10 @@ export const routeTree = rootRoute.addChildren({
       AppBlogIndexRoute,
       AppBlogPostsPostIdRoute,
     }),
+    AppContactRoute,
+    AppLegalNoticeRoute,
     AppLoginRoute,
+    AppPrivacyPolicyRoute,
     AppProfileRoute,
     AppRegisterRoute,
     AppIndexRoute,
@@ -235,8 +304,10 @@ export const routeTree = rootRoute.addChildren({
       BackOfficeBlogCreatePostRoute,
       BackOfficeBlogIndexRoute,
       BackOfficeBlogPostsPostIdRoute,
+      BackOfficeBlogUpdatePostPostIdRoute,
     }),
     BackOfficeIndexRoute,
+    BackOfficeUsersIndexRoute,
   }),
 })
 
@@ -257,7 +328,10 @@ export const routeTree = rootRoute.addChildren({
       "children": [
         "/_app/about",
         "/_app/blog",
+        "/_app/contact",
+        "/_app/legal-notice",
         "/_app/login",
+        "/_app/privacy-policy",
         "/_app/profile",
         "/_app/register",
         "/_app/"
@@ -267,7 +341,8 @@ export const routeTree = rootRoute.addChildren({
       "filePath": "back-office.tsx",
       "children": [
         "/back-office/blog",
-        "/back-office/"
+        "/back-office/",
+        "/back-office/users/"
       ]
     },
     "/_app/about": {
@@ -282,8 +357,20 @@ export const routeTree = rootRoute.addChildren({
         "/_app/blog/posts/$postId"
       ]
     },
+    "/_app/contact": {
+      "filePath": "_app/contact.tsx",
+      "parent": "/_app"
+    },
+    "/_app/legal-notice": {
+      "filePath": "_app/legal-notice.tsx",
+      "parent": "/_app"
+    },
     "/_app/login": {
       "filePath": "_app/login.tsx",
+      "parent": "/_app"
+    },
+    "/_app/privacy-policy": {
+      "filePath": "_app/privacy-policy.tsx",
       "parent": "/_app"
     },
     "/_app/profile": {
@@ -300,7 +387,8 @@ export const routeTree = rootRoute.addChildren({
       "children": [
         "/back-office/blog/create-post",
         "/back-office/blog/",
-        "/back-office/blog/posts/$postId"
+        "/back-office/blog/posts/$postId",
+        "/back-office/blog/update-post/$postId"
       ]
     },
     "/_app/": {
@@ -323,12 +411,20 @@ export const routeTree = rootRoute.addChildren({
       "filePath": "back-office/blog/index.tsx",
       "parent": "/back-office/blog"
     },
+    "/back-office/users/": {
+      "filePath": "back-office/users/index.tsx",
+      "parent": "/back-office"
+    },
     "/_app/blog/posts/$postId": {
       "filePath": "_app/blog/posts/$postId.tsx",
       "parent": "/_app/blog"
     },
     "/back-office/blog/posts/$postId": {
       "filePath": "back-office/blog/posts/$postId.tsx",
+      "parent": "/back-office/blog"
+    },
+    "/back-office/blog/update-post/$postId": {
+      "filePath": "back-office/blog/update-post.$postId.tsx",
       "parent": "/back-office/blog"
     }
   }

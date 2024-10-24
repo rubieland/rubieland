@@ -3,7 +3,7 @@ import { isAfter } from 'date-fns';
 export const currentYear = new Date().getFullYear();
 
 /**
- * Check if a given date is at least n years old
+ * check if a given date is at least n years old
  * @param dateToCheck the date string to check, formatted as YYYY-MM-DD
  * @param n the limit number of years dateToCheck must not exceed
  * @returns a boolean indicating if the date is at least n years old
@@ -24,11 +24,23 @@ export const isInFuture = (date: string): boolean => {
   return isAfter(date, new Date().toISOString());
 };
 
+/**
+ * format a date object to a string in YYYY-MM-DD format
+ * @param date - the date object to format
+ * @returns a string representing the date in YYYY-MM-DD format
+ */
 export const formatDateYYYYMMDD = (date: Date) => {
   const dateToISOString = date.toISOString();
   return dateToISOString.split('T')[0];
 };
 
+/**
+ * calculate the minimum date by subtracting a number of years from a given date
+ * and format it to a string in YYYY-MM-DD format
+ * @param date - the date object to calculate from
+ * @param min - the number of years to subtract
+ * @returns a string representing the calculated date in YYYY-MM-DD format
+ */
 export const calculateMinDateYYYYMMDD = (date: Date, min: number) => {
   return new Date(date.setFullYear(date.getFullYear() - min))
     .toISOString()

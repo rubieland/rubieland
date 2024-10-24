@@ -6,11 +6,14 @@ import { useTranslation } from 'react-i18next';
 import Sidebar from '../Sidebar/Sidebar';
 import BookOpen from '../Icons/BookOpen';
 import Header from '../Header/Header';
+import Users from '../Icons/Users';
 
 const BackOfficeLayout = () => {
   const { t } = useTranslation('translation', {
     keyPrefix: 'pages.backOffice',
   });
+
+  // TODO: add submenus for nested routes
 
   const links: LinkType[] = [
     {
@@ -22,6 +25,11 @@ const BackOfficeLayout = () => {
       title: t('backOfficeSidebar.links.blog'),
       to: '/back-office/blog',
       icon: <BookOpen width={24} height={24} stroke={colors.grey80} />,
+    },
+    {
+      title: t('backOfficeSidebar.links.users'),
+      to: '/back-office/users',
+      icon: <Users width={24} height={24} stroke={colors.grey80} />,
     },
   ];
 

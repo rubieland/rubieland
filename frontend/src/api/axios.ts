@@ -45,7 +45,6 @@ api.interceptors.request.use(async (config) => {
         }
         // and we set headers.Authorization with the newly refreshed token
         config.headers.Authorization = `Bearer ${refreshedToken}`;
-        console.log('Token is refreshed');
       } catch (error: unknown) {
         // if an error occurs during refreshing, logout user
         console.error(
@@ -53,7 +52,6 @@ api.interceptors.request.use(async (config) => {
           error,
         );
 
-        // TODO: add api call to /auth/logout
         resetSession();
         queryClient.removeQueries();
       }

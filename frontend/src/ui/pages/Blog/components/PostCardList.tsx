@@ -10,12 +10,14 @@ interface PostCardListProps {
 const PostCardList = ({ posts }: PostCardListProps) => {
   const { t } = useTranslation('translation', { keyPrefix: 'pages.blog' });
 
+  // TODO: add pagination when InfiniteQuery is implemented
+
   return (
     <section className="post-card-list-container">
       <div className="post-card-list">
         {posts.map((post, i) => (
           <PostCard
-            date={t('postCard.date', { date: new Date(post.createdAt) })}
+            date={t('postCard.date', { date: new Date(post.updatedAt) })}
             imageUrl={post.picture}
             content={post.content}
             title={post.title}

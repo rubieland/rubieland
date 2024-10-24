@@ -10,6 +10,7 @@ import PageLoader from '../../components/Loader/PageLoader';
 import { useIsAdmin } from '../../../stores/SessionStore';
 import { useTranslation } from 'react-i18next';
 import './styles/PostDetailsPage.scss';
+import DOMPurify from 'dompurify';
 
 const imageSources = [
   { media: '(min-width: 500px)', srcSet: defaultImgMedium },
@@ -41,16 +42,12 @@ const PostDetailsPage = () => {
 
   // check if the post is published and if the user is admin. If not, redirect user because he should not be able to see the post
   if (!post?.isPublished && !isAdmin) return <Navigate to="/blog" />;
+  const sanitizedContent = DOMPurify.sanitize(post.content);
 
   return (
     <article className="post-details-main-container">
       <header className="post-details-header">
         <h2 className="post-details-title">{post.title}</h2>
-        <p className="post-published-date">
-          {`${t('pages.blog.postDetailsPage.postedOn', {
-            date: new Date(post.createdAt),
-          })}`}
-        </p>
         <p className="post-updated-date">{`${t('pages.blog.postDetailsPage.updatedOn', { date: new Date(post.updatedAt) })}`}</p>
         <div className="post-details-image-container">
           {!post.picture ? (
@@ -69,7 +66,10 @@ const PostDetailsPage = () => {
         </div>
       </header>
 
-      <p className="post-details-content">{post.content}</p>
+      <div
+        className="post-details-content"
+        dangerouslySetInnerHTML={{ __html: sanitizedContent }}
+      />
       <Link to="/blog" className="back-to-blog-link">
         <span>
           <ChevronLeft />

@@ -1,73 +1,57 @@
 import { usePostRegister } from '../../../../../api/auth/postRegister';
 import { RegisterBody } from '../../../../../models/user/user.entity';
-import { useTranslation } from 'react-i18next';
-import { Id, toast } from 'react-toastify';
-import { AxiosError } from 'axios';
-import { useState } from 'react';
-import { queryClient } from '@/api/reactQuery';
+import { useNavigate } from '@tanstack/react-router';
 import { QueryKeysEnum } from '@/enums/queryKeys';
+import { useTranslation } from 'react-i18next';
+import { queryClient } from '@/api/reactQuery';
+import { AxiosError } from 'axios';
+import { toast } from 'sonner';
 
 const useRegister = () => {
   const { t } = useTranslation();
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const [toastId, setToastId] = useState<Id | null>(null);
+  const navigate = useNavigate();
 
-  const handleRegisterError = (error: AxiosError) => {
-    let message;
-    if (error.response && error.response.status === 409) {
-      message = t('auth.error.accountAlreadyExists');
-    } else {
-      message = t('auth.error.registerFailed');
+  const handleRegisterError = (error: unknown) => {
+    if (error instanceof AxiosError) {
+      if (error.response?.status === 409) {
+        return toast.error(t('auth.error.accountAlreadyExists'));
+      }
+      return toast.error(t('auth.error.registerFailed'));
     }
 
-    setErrorMessage(message);
-
-    if (toastId) {
-      toast.update(toastId, {
-        render: message,
-        type: 'error',
-        isLoading: false,
-        autoClose: 3000,
-        pauseOnHover: false,
-        closeOnClick: true,
-        draggable: true,
-      });
-    }
+    console.error('Unexpected error:', error);
+    return toast.error(t('common.genericError'));
   };
 
   const { mutateAsync: registerUser, isPending } = usePostRegister({
-    onMutate: () => {
-      const id = toast.loading(t('common.formSending'));
-      setToastId(id);
-    },
     onSuccess: async () => {
       // update the users list received from api after successful register
       await queryClient.invalidateQueries({ queryKey: [QueryKeysEnum.USERS] });
 
-      if (toastId) {
-        toast.update(toastId, {
-          render: t('auth.success.registerSuccess'),
-          type: 'success',
-          isLoading: false,
-          autoClose: 3000,
-          pauseOnHover: false,
-          closeOnClick: true,
-          draggable: true,
-        });
-      }
+      // display success toast
+      toast.success(t('auth.success.registerSuccess'));
+
+      // redirect to login page after successful register
+      navigate({ from: '/register', to: '/login' });
     },
     onError: handleRegisterError,
-    onSettled: () => {
-      setToastId(null);
-      toast.clearWaitingQueue();
-    },
   });
 
-  const onSubmit = (data: RegisterBody) => {
-    registerUser(data);
+  const onSubmit = async (data: RegisterBody) => {
+    const loadingToastId = toast.loading(t('auth.loading.registerLoading'));
+
+    try {
+      const registerResponse = await registerUser(data);
+
+      toast.dismiss(loadingToastId);
+      return registerResponse;
+    } catch (error) {
+      toast.dismiss(loadingToastId);
+      throw error;
+    }
   };
 
-  return { onSubmit, errorMessage, isPending };
+  return { onSubmit, isPending };
 };
 
 export default useRegister;

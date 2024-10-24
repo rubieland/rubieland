@@ -2,22 +2,28 @@
 @import '../../../../assets/styles/mixins';
 
 .navbar {
-  transition: right 0.7s ease-in-out;
+  transition:
+    transform 0.3s ease-in-out,
+    box-shadow 0.3s ease-in-out;
   @include flex-center-column;
-  @include box-shadow-left;
   background-color: $white;
   padding: 0.5rem 1rem;
   align-items: center;
   min-height: 100dvh;
+  overflow: hidden;
   position: fixed;
-  width: 50dvw;
+  width: 50%;
   z-index: 99;
   right: 0;
   top: 0;
+  transform: translateX(100%);
 
-  &.hidden {
-    transition: right 0.7s ease-in-out;
-    right: -100%;
+  &.opened {
+    transition:
+      transform 0.3s ease-in-out,
+      box-shadow 0.3s ease-in-out;
+    transform: translateX(0);
+    @include box-shadow-left;
   }
 }
 
@@ -53,7 +59,9 @@
     box-shadow: none;
     min-height: 2rem;
     position: sticky;
+    transform: none;
     height: auto;
+    right: auto;
     width: auto;
     gap: 0;
   }

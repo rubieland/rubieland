@@ -1,10 +1,9 @@
 import {
-  useState,
-  createContext,
   PropsWithChildren,
-  Dispatch,
   SetStateAction,
-  useContext,
+  createContext,
+  useState,
+  Dispatch,
 } from 'react';
 
 type NavbarContextType = {
@@ -14,7 +13,7 @@ type NavbarContextType = {
   hideMenu: () => void;
 };
 
-const NavbarContext = createContext<NavbarContextType | null>(null);
+export const NavbarContext = createContext<NavbarContextType | null>(null);
 
 export const NavbarProvider = ({ children }: PropsWithChildren) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -34,14 +33,4 @@ export const NavbarProvider = ({ children }: PropsWithChildren) => {
       {children}
     </NavbarContext.Provider>
   );
-};
-
-export const useNavbarContext = () => {
-  const navbarContext = useContext(NavbarContext);
-
-  if (!navbarContext) {
-    throw new Error('useNavbarContext has to be used within <NavbarProvider>');
-  }
-
-  return navbarContext;
 };

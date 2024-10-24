@@ -1,3 +1,5 @@
+@import './backOffice.scss';
+@import './table.scss';
 @import './form.scss';
 @import './fonts.scss';
 @import './buttons.scss';
@@ -7,8 +9,6 @@
 
 * {
   box-sizing: border-box;
-  text-decoration: none;
-  list-style: none;
   color: $black;
   padding: 0;
   margin: 0;
@@ -19,16 +19,67 @@
   }
 }
 
+.tiptap,
+.post-details-content {
+  * {
+    overflow-wrap: break-word;
+    white-space: normal;
+    max-width: 100%;
+  }
+
+  u {
+    text-decoration: underline;
+  }
+
+  s {
+    text-decoration: line-through;
+  }
+
+  ul {
+    padding-left: 1rem;
+
+    li {
+      list-style-type: disc;
+    }
+  }
+
+  ol {
+    padding-left: 1rem;
+
+    li {
+      list-style-type: decimal;
+    }
+  }
+
+  blockquote {
+    border-left: 2px solid $black;
+    padding-left: 1rem;
+    margin-left: 0;
+  }
+
+  h3 {
+    margin: 1rem 0;
+  }
+
+  p {
+    margin-bottom: 0.5rem;
+  }
+
+  p.is-editor-empty:first-child::before {
+    content: attr(data-placeholder);
+    pointer-events: none;
+    font-size: 0.875rem;
+    font-weight: normal;
+    color: #999;
+    float: left;
+    height: 0;
+  }
+}
+
 body {
   font-family: $primary-font-stack;
   font-size: $default-font-size;
   font-weight: normal;
-}
-
-html,
-body {
-  overflow-x: hidden;
-  max-width: 100%;
 }
 
 h1,

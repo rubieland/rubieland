@@ -10,14 +10,20 @@ import {
   getMissingOrEmptyFieldsErrorMessage,
 } from '../../utils/validation.utils';
 import { checkPostData } from '../../validation/Post.validators';
-import { fileURLToPath } from 'url';
 import path from 'path';
 import { deleteFile as deletePicture } from '../../utils/file.utils';
+import DOMPurify from 'dompurify';
+import { JSDOM } from 'jsdom';
+import { env } from '../../loaders/env.loader';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const postsPicturesDir = path.join(__dirname, '../../uploads/blog/pictures');
+const { UPLOADS_DIR } = env;
+const postsPicturesDir = path.resolve(UPLOADS_DIR, 'blog/pictures');
 const context: DataContext = DataContext.POST;
+
+// create a new window object to use DOMPurify to sanitize blog post content as it contains HTML
+const window = new JSDOM('').window;
+// create a new instance of DOMPurify to sanitize blog post content
+const purify = DOMPurify(window);
 
 export const getAllPosts = async (
   req: Request,
@@ -29,10 +35,11 @@ export const getAllPosts = async (
     const posts: PostDocument[] = await Post.find({});
 
     if (!posts || posts.length === 0) {
-      return res.status(404).json({
-        error: i18n.t('common.error.postsFound_zero', {
+      return res.status(200).json({
+        message: i18n.t('common.success.postsFound_zero', {
           count: 0,
         }),
+        posts: [],
       });
     }
 
@@ -121,9 +128,12 @@ export const createPost = async (
       });
     }
 
+    const sanitizedContent = purify.sanitize(content);
+
     // create new instance of Post with data from req.body
     const newPost = new Post({
       ...postData,
+      content: sanitizedContent,
       isPublished: convertStringToBoolean(postData.isPublished),
       picture: pictureFile?.filename,
     });
@@ -183,18 +193,23 @@ export const updatePost = async (
     }
 
     if (pictureFile) {
-      if (post.picture)
+      if (post.picture) {
         await deletePicture(`${postsPicturesDir}/${post.picture}`).then(
           async () => {
             post.picture = pictureFile?.filename;
           },
         );
+      }
+      post.picture = pictureFile?.filename;
     }
+
+    const sanitizedContent = purify.sanitize(content);
 
     (Object.keys(postData) as (keyof PostData)[]).forEach((key) => {
       if (postData[key] !== undefined) {
         (post[key] as keyof PostData) = postData[key] as keyof PostData;
         post.isPublished = convertStringToBoolean(postData.isPublished);
+        post.content = sanitizedContent;
       }
     });
 

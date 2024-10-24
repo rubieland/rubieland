@@ -37,6 +37,10 @@ const MainLinksBlock = memo(
         title: t('blog'),
         to: '/blog',
       },
+      {
+        title: t('contact'),
+        to: '/contact',
+      },
     ];
 
     return (

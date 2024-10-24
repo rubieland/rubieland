@@ -6,8 +6,7 @@ import Post from './src/models/Post.model';
 import Prestation from './src/models/Prestation.model';
 dotenv.config();
 
-const { NODE_ENV, DEV_DB_URI, PROD_DB_URI } = process.env;
-const MONGO_URI = NODE_ENV === 'development' ? DEV_DB_URI : PROD_DB_URI;
+const { DB_URI } = process.env;
 
 // function to load and insert user data
 async function insertUsers() {
@@ -76,9 +75,9 @@ async function insertPrestations() {
 // main function to handle the connection and data insertion
 async function main() {
   try {
-    if (!MONGO_URI) throw new Error('MONGO_URI env variable is undefined');
+    if (!DB_URI) throw new Error('DB_URI env variable is undefined');
 
-    await mongoose.connect(MONGO_URI, {});
+    await mongoose.connect(DB_URI, {});
     console.log('Connection to database successful!');
 
     // execute all the insertData() functions

@@ -7,7 +7,6 @@ export type User = {
   email: string;
   firstName: string;
   lastName: string;
-  birthDate: string;
   avatar: string | null;
   phone: string;
   role: UserRole;
@@ -20,6 +19,16 @@ export type RegisterBody = Omit<User, 'id' | 'role' | 'avatar'> & {
 
 export type LoginBody = Pick<RegisterBody, 'email' | 'password'>;
 
+export type UpdateProfileBody = Omit<User, 'id' | 'role' | 'avatar'> & {
+  avatar?: File | string | null;
+};
+
+export type UpdatePasswordBody = {
+  currentPassword: string;
+  newPassword: string;
+  confirmNewPassword: string;
+};
+
 export type SessionData = {
   accessToken: string | null | undefined;
   user: User | null;
@@ -31,7 +40,6 @@ export const convertUserDtoToEntity = (dto: UserDto): User => {
     email: dto.email,
     firstName: dto.firstName,
     lastName: dto.lastName,
-    birthDate: dto.birthDate,
     avatar: dto.avatar,
     phone: dto.phone,
     role: dto.role,

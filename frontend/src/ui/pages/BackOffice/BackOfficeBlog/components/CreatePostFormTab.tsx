@@ -1,13 +1,16 @@
-import { CreatePostSchemaFormData } from '../../hooks/useCreatePostFormValidation';
-import CreatePostTabsHeader from './CreatePostTabsHeader';
+import { PostSchemaFormData } from '../../hooks/usePostFormValidation';
+import useCreateNewPost from '../../hooks/useCreateNewPost';
+import { useNavigate } from '@tanstack/react-router';
 import { isFormValid } from '@/utils/form.utils';
 import { UseFormReturn } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import CreatePostForm from './CreatePostForm';
-import '../styles/CreatePostFormTab.scss';
+import PostTabsHeader from './PostTabsHeader';
+import '../styles/PostFormTab.scss';
+import { useEffect } from 'react';
 
 interface CreatePostFormTabProps {
-  formMethods: UseFormReturn<CreatePostSchemaFormData>;
+  formMethods: UseFormReturn<PostSchemaFormData>;
 }
 
 const CreatePostFormTab = ({ formMethods }: CreatePostFormTabProps) => {
@@ -15,19 +18,27 @@ const CreatePostFormTab = ({ formMethods }: CreatePostFormTabProps) => {
     keyPrefix: 'pages.backOffice.blog',
   });
 
-  const { handleSubmit, watch } = formMethods;
+  const navigate = useNavigate();
+
+  const { onSubmit } = useCreateNewPost();
+  const { handleSubmit, watch, formState, reset } = formMethods;
   const watchedValues = watch(['title', 'content']);
   const isFormFilled = isFormValid(watchedValues);
 
-  const onSubmit = (data: CreatePostSchemaFormData) => {
-    console.log('Submit create post form');
-    console.log('Data submitted:  ', data);
-  };
+  const isSubmitSuccessful = formState.isSubmitSuccessful;
+
+  // reset form when the post is successfully created and navigate back to the blog page
+  useEffect(() => {
+    if (isSubmitSuccessful) {
+      reset();
+      navigate({ to: '/back-office/blog' });
+    }
+  }, [isSubmitSuccessful, reset, navigate]);
 
   return (
     <section>
-      <CreatePostTabsHeader title={t('createPost')} />
-      <div className="create-post-tab-form">
+      <PostTabsHeader title={t('createPost')} />
+      <div className="post-tab-form">
         <CreatePostForm
           handleSubmit={handleSubmit}
           isFormFilled={isFormFilled}

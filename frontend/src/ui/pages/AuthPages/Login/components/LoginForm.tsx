@@ -1,7 +1,9 @@
 import ControlledTextInput from '../../../../components/FormInputs/ControlledFormInputs/ControlledTextInput';
+import LegalContentConfirmation from '@/ui/components/LegalContent/LegalContentConfirmation';
 import { useLoginFormValidation } from '../hooks/useLoginFormValidation';
 import CustomButton from '../../../../components/Button/CustomButton';
 import { LoginBody } from '../../../../../models/user/user.entity';
+import usePasswordVisibility from '../hooks/usePasswordVisibility';
 import { addAsterisk } from '../../../../../utils/string.utils';
 import { isFormValid } from '../../../../../utils/form.utils';
 import { FormProvider } from 'react-hook-form';
@@ -13,6 +15,8 @@ interface LoginFormProps {
 
 const LoginForm = ({ onSubmit }: LoginFormProps) => {
   const { t } = useTranslation();
+  const { togglePasswordVisibility, isPasswordVisible } =
+    usePasswordVisibility();
   const form = useLoginFormValidation();
   const watchedValues = form.watch(['email', 'password']);
   const isFormFilled = isFormValid(watchedValues);
@@ -28,12 +32,15 @@ const LoginForm = ({ onSubmit }: LoginFormProps) => {
           type="email"
         />
         <ControlledTextInput
+          togglePasswordVisibility={togglePasswordVisibility}
           placeholder={addAsterisk(t('form.user.password'))}
+          isPasswordVisible={isPasswordVisible}
           label={t('form.user.password')}
           autocomplete="new-password"
           name="password"
           type="password"
         />
+        <LegalContentConfirmation />
         <div className="form-input">
           <CustomButton
             onClick={form.handleSubmit(onSubmit)}

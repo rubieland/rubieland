@@ -9,7 +9,9 @@ import './styles/Navbar.scss';
 const Navbar = memo(() => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const isConnected: boolean = useIsConnected();
-  const className: string = isOpen ? 'navbar' : 'navbar hidden';
+  const className: string = isOpen ? 'navbar opened' : 'navbar';
+
+  // TODO: add language switcher
 
   const toggleIsOpen = useCallback(() => {
     setIsOpen((prev) => !prev);

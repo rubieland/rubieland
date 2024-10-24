@@ -1,21 +1,19 @@
 import fs from 'fs';
 import path from 'path';
-import { fileURLToPath } from 'url';
+import { env } from '../loaders/env.loader';
 
 const fsPromises = fs.promises;
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const { UPLOADS_DIR } = env;
 
 // create destination directory for files to ensure it exists
 export const ensureDirectoryExists = async (
   directoryPath: string,
 ): Promise<void> => {
   try {
-    await fsPromises.mkdir(path.join(__dirname, '../uploads', directoryPath), {
+    await fsPromises.mkdir(path.resolve(UPLOADS_DIR, directoryPath), {
       recursive: true,
     });
   } catch (error: unknown) {
-    // TODO: replace by t()
     throw new Error(`Failed to create directory: ${error}`);
   }
 };
@@ -23,7 +21,6 @@ export const ensureDirectoryExists = async (
 // generate a random name for uploaded files
 export const generateRandomFilename = (originalFilename: string | null) => {
   if (!originalFilename) {
-    // TODO: replace by t()
     throw new Error('Original filename is undefined');
   }
   const fileExtension = originalFilename.split('.').pop();
@@ -40,13 +37,16 @@ export const copyFile = async (
   destinationPath: string,
 ): Promise<string> => {
   const newFilename = generateRandomFilename(file.originalname);
-  const oldpath = file.path;
-  const newpath = path.join(destinationPath, newFilename);
+  const oldPath = file.path;
+  const newDirPath = path.resolve(UPLOADS_DIR, destinationPath);
+  const newFilePath = path.join(newDirPath, newFilename);
+
   try {
-    await fsPromises.copyFile(oldpath, `src/uploads/${newpath}`);
-    return newpath;
+    await ensureDirectoryExists(destinationPath);
+    await fsPromises.copyFile(oldPath, newFilePath);
+
+    return path.join(destinationPath, newFilename);
   } catch (error: unknown) {
-    // TODO: replace by t()
     throw new Error(`Failed to copy file: ${error}`);
   }
 };
@@ -57,7 +57,6 @@ export const copyFiles = async (
   destinationPath: string,
 ): Promise<string[]> => {
   if (!files) {
-    // TODO: replace by t()
     throw new Error('No files to copy');
   }
 
@@ -73,7 +72,9 @@ export const copyFiles = async (
 };
 
 export const deleteFile = async (filePath: string) => {
-  fs.unlink(`${filePath}`, (err) => {
+  const fullFilePath = path.resolve(UPLOADS_DIR, filePath);
+
+  fs.unlink(fullFilePath, (err) => {
     if (err) {
       console.error(`Error deleting file: ${err}`);
     } else {

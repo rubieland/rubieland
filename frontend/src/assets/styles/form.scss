@@ -10,7 +10,15 @@ form {
 .form-input {
   width: min(100%, 36rem);
   @include flex-column;
+  position: relative;
   gap: 0.125rem;
+}
+
+.input-icon {
+  position: absolute;
+  cursor: pointer;
+  right: 0.5rem;
+  top: 0.75rem;
 }
 
 .checkbox-input {
@@ -75,7 +83,6 @@ form {
   font-family: $secondary-font-stack;
   width: min(100%, 36rem);
   @include flex-column;
-  height: 200px;
   gap: 0.125rem;
 
   .edit-post-picture-input {
@@ -139,7 +146,7 @@ form {
 }
 
 .edit-avatar-input {
-  @include edit-picture-input(100%);
+  @include edit-picture-input(50%, 120px);
 }
 
 .edit-avatar-figure {

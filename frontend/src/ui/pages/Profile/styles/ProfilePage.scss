@@ -1,0 +1,30 @@
+@import '../../../../assets/styles/variables.scss';
+@import '../../../../assets/styles/mixins.scss';
+
+.profile-page-main-container {
+  @include flex-center-column;
+  padding: 1.5rem;
+  width: 100%;
+  gap: 1.5rem;
+
+  .action-button-section {
+    width: 100%;
+
+    button span {
+      font-size: 1rem;
+    }
+  }
+}
+
+// ----- responsive ----- \\
+
+@include respond-to('small') {
+  .profile-page-main-container {
+    align-self: center;
+
+    .action-button-section {
+      max-width: 36rem;
+      width: 80%;
+    }
+  }
+}

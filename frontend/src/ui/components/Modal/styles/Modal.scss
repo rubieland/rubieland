@@ -2,13 +2,16 @@
 @import '../../../../assets//styles/mixins';
 
 dialog[open] {
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
   animation: zoomIn 0.15s forwards;
-  box-shadow: 0 5px 10px $black;
   @include flex-center-column;
   background-color: $white;
-  border-radius: 0.25rem;
   @include box(50%, 25%);
+  border-radius: 0.5rem;
   justify-self: center;
+  @include box-shadow;
   align-self: center;
   overflow-x: hidden;
   min-height: 15rem;
@@ -19,11 +22,13 @@ dialog[open] {
   border: none;
 
   &::backdrop {
+    transition: background-color 0.3s ease;
     background-color: $blackTransp50;
   }
 }
 
 .modal-close-btn {
+  transition: opacity 0.3s ease;
   @include flex-center;
   position: absolute;
   cursor: pointer;

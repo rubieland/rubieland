@@ -1,7 +1,7 @@
-import { useTranslation } from 'react-i18next';
-import CustomButton from '../Button/CustomButton';
-import './ErrorComponent.scss';
 import { useNavigate } from '@tanstack/react-router';
+import CustomButton from '../Button/CustomButton';
+import { useTranslation } from 'react-i18next';
+import './ErrorComponent.scss';
 
 interface ErrorComponentProps {
   showRedirectButton?: boolean;
@@ -27,13 +27,17 @@ const ErrorComponent = ({
         <h2>{t('error')}</h2>
         <p>{message}</p>
         {onRetry && (
-          <CustomButton onClick={onRetry} title={t('retry')} style="error" />
+          <CustomButton
+            onClick={onRetry}
+            title={t('retry')}
+            style="secondary"
+          />
         )}
         {showRedirectButton && (
           <CustomButton
             title={t('goBackToHomepage')}
             onClick={navigateToHomepage}
-            style="error"
+            style="secondary"
           />
         )}
       </div>
