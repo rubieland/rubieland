@@ -73,6 +73,12 @@
    tsx .\addDataToDatabase.ts
    ```
 
+   💡You will also find a script to clear the database if needed, that you can execute using:
+
+   ```bash
+   tsx .\clearDatabase.ts
+   ```
+
     <br>
 
    ***
