@@ -12,6 +12,7 @@ import './styles/ProfilePage.scss';
 const ProfilePage = () => {
   const { t } = useTranslation();
   const user = useUserInfo();
+  const isAdmin = user?.role === 'admin';
   const navigate = useNavigate();
 
   if (!user) return navigate({ to: '/login' });
@@ -27,7 +28,7 @@ const ProfilePage = () => {
       <SettingsSection />
       <Separator />
       <LogoutSection />
-      <DeleteMyAccountSection />
+      {!isAdmin && <DeleteMyAccountSection />}
     </div>
   );
 };
