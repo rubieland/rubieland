@@ -3,6 +3,7 @@ import { authMiddleware } from '../../../middlewares/auth/auth.middleware';
 import {
   deleteAccount,
   getProfile,
+  updatePassword,
   updateProfile,
 } from '../../../controllers/profile/profile.controller';
 import { avatarUploader } from '../../../middlewares/uploads/uploadAvatar.middleware';
@@ -20,6 +21,7 @@ const router = Router();
 // user profile
 router.put('/update-profile', authMiddleware, avatarUploader, updateProfile);
 router.delete('/delete-account', authMiddleware, deleteAccount);
+router.put('/update-password', authMiddleware, updatePassword);
 router.get('/', authMiddleware, getProfile);
 
 // users' dogs

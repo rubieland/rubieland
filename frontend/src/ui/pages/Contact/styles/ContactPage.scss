@@ -1,0 +1,21 @@
+@import '../../../../assets/styles/variables';
+@import '../../../../assets/styles/mixins';
+
+.contact-page-main-container {
+  @include flex-column;
+  padding: 2rem 1.5rem;
+  width: 100%;
+  gap: 2rem;
+
+  form {
+    width: 100%;
+  }
+}
+
+// ----- responsive ----- \\
+
+@include respond-to('small') {
+  .contact-page-main-container {
+    align-items: center;
+  }
+}

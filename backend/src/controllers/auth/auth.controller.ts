@@ -1,5 +1,4 @@
 import { NextFunction, Request, Response } from 'express';
-import User from '../../models/User.model';
 import { trimData } from '../../utils/string.utils';
 import { UserData, UserRole } from '../../models/types/User.types';
 import i18n from '../../config/i18n';
@@ -13,6 +12,7 @@ import { DataContext } from '../../validation/types/validation.types';
 import { generateTokens } from '../../utils/token.utils';
 import { env } from '../../loaders/env.loader';
 import jwt from 'jsonwebtoken';
+import User from '../../models/User.model';
 
 const { NODE_ENV, COOKIE_MAX_AGE, JWT_REFRESH_SECRET } = env;
 const context: DataContext = DataContext.USER;
@@ -141,8 +141,7 @@ export const login = async (
     // create an httpOnly refresh token cookie
     res.cookie('refreshToken', refreshToken, {
       secure: NODE_ENV === 'production', // allow receiving cookies from HTTPS domain only (so "true" in production only because localhost uses HTTP, not HTTPS)
-      sameSite: NODE_ENV === 'production' ? 'strict' : 'lax', // "strict" allows receiving cookies only from the same site whereas "lax" does not allow receiving cookie from another site in case of unsafe request like POST or PUT
-      httpOnly: true,
+      sameSite: NODE_ENV === 'production' ? 'none' : 'lax', // "none" allows cookies in all cross-origin requests (requires "Secure"), "lax" only allows cookies in safe GET requests initiated by top-level navigation      httpOnly: true,
       maxAge: Number(COOKIE_MAX_AGE), // 1h
     });
 
@@ -214,7 +213,7 @@ export const refreshToken = async (
     // create a new httpOnly refresh token cookie
     res.cookie('refreshToken', newRefreshToken, {
       secure: NODE_ENV === 'production',
-      sameSite: NODE_ENV === 'production' ? 'strict' : 'lax',
+      sameSite: NODE_ENV === 'production' ? 'none' : 'lax',
       httpOnly: true,
       maxAge: Number(COOKIE_MAX_AGE),
     });

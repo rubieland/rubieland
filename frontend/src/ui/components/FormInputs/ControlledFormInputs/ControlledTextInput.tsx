@@ -43,7 +43,7 @@ const ControlledTextInput = ({
           {withLabel && <label htmlFor={name}>{label}</label>}
           <TextInput
             autocomplete={autocomplete}
-            placeholder={placeholder}
+            placeholder={placeholder || label}
             isRequired={isRequired}
             isInvalid={!!error}
             onChange={onChange}

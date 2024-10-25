@@ -18,18 +18,11 @@ const imageSources = [
   { media: '(min-width: 500px)', srcSet: defaultImgMedium },
 ];
 
-const PostCard = ({
-  imageUrl,
-  content,
-  postId,
-  title,
-  date,
-}: PostCardProps) => {
+const PostCard = ({ imageUrl, postId, title, date }: PostCardProps) => {
   const { t } = useTranslation('translation', {
     keyPrefix: 'pages.blog.postCard',
   });
   const navigate = useNavigate();
-  const excerpt: string = content.slice(0, 100) + '...';
 
   const navigateToPostDetails = () => {
     navigate({ to: `/blog/posts/${postId}` });
@@ -43,10 +36,10 @@ const PostCard = ({
 
   return (
     <article
-      aria-label={`${t('readMore')} - ${title}`}
       onClick={navigateToPostDetails}
       onKeyDown={handleKeyDown}
       className="post-card"
+      aria-label={title}
       tabIndex={0}
       role="link"
     >
@@ -67,10 +60,10 @@ const PostCard = ({
       </div>
       <div className="post-card-content">
         <h3 className="post-card-title">{title}</h3>
-        <p className="post-card-excerpt">{excerpt}</p>
         <footer className="post-card-footer">
           <span className="post-card-date">{date}</span>
-          <span className="post-card-read-more">{t('readMore')}</span>
+          {/* TODO: replace with tags from backend */}
+          <span className="post-card-tag">{t('tag')}</span>
         </footer>
       </div>
     </article>

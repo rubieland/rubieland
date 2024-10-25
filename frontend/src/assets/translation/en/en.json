@@ -5,6 +5,7 @@
     "delete": "Delete",
     "cancel": "Cancel",
     "confirm": "Confirm",
+    "validate": "Validate",
     "error": "Error",
     "retry": "Retry",
     "addPicture": "Add a picture",
@@ -45,6 +46,10 @@
     "profile": {
       "title": "Rubieland user profile - Manage your personal information and your dog daycare reservations in Vendée",
       "description": "Access your Rubieland personal space to view your reservations, modify your information, manage your account and the profile(s) of your dog(s)."
+    },
+    "contact": {
+      "title": "Contact Rubieland - Dog daycare in Vendée",
+      "description": "Contact Rubieland for any questions or requests for information."
     }
   },
 
@@ -63,6 +68,7 @@
     "home": "Home",
     "about": "About",
     "blog": "Blog",
+    "contact": "Contact",
     "register": "Register",
     "login": "Log in",
     "profile": "Profile",
@@ -79,13 +85,17 @@
     "content": "This page does not exist."
   },
 
+  "textEditor": {
+    "defaultPlaceholder": "Start writing here..."
+  },
+
   "form": {
     "errors": {
       "requiredField": "This field is required",
       "inputMaxLength": "This field  must not contain more than {{maxLength}} characters",
       "inputMinLength": "This field  must contain at least {{minLength}} characters",
       "invalidEmailFormat": "Please enter a valid email address (example@example.com)",
-      "minBirthDate": "The required age is {{min}} years old minimum",
+      "minBirthDate": "The age cannot be under {{min}} years old",
       "maxBirthDate": "The age cannot exceed {{max}} years old",
       "birthDateInFuture": "The birthdate cannot be in the future",
       "invalidFileType": "Invalid file. Only files of type {{types}} are allowed",
@@ -108,9 +118,49 @@
       "emailPlaceholder": "example@example.com",
       "password": "Password",
       "confirmPassword": "Confirm password",
-      "birthDate": "Birth date",
+      "currentPassword": "Current password",
+      "newPassword": "New password",
+      "confirmNewPassword": "Confirm new password",
       "phoneLabel": "Phone",
-      "phonePlaceholder": "ex: +44 7500 123456"
+      "phonePlaceholder": "ex: +44 7500 123456",
+      "avatarLabel": "Avatar",
+
+      "loading": {
+        "userUpdateLoading": "Updating your information...",
+        "passwordUpdateLoading": "Updating your password...",
+        "deleteAccountLoading": "Deleting your account..."
+      },
+      "success": {
+        "userUpdateSuccess": "Your information has been updated successfully!",
+        "passwordUpdateSuccess": "Password updated successfully!",
+        "deleteAccountSuccess": "Your account has been deleted successfully!"
+      },
+      "errors": {
+        "userUpdateFailed": "An error occurred while updating your information",
+        "userNotFound": "User not found",
+        "userExistsInBase": "A user with this email already exists",
+        "wrongCurrentPassword": "The current password is incorrect",
+        "updatePasswordFailed": "An error occurred while updating the password",
+        "deleteAccountFailed": "An error occurred while deleting your account"
+      },
+      "confirmation": {
+        "confirmAccountDelete": "Are you sure you want to delete your account? <strong>All your data will be deleted.</strong>"
+      }
+    },
+
+    "contact": {
+      "fullName": "Your full name",
+      "email": "Your email",
+      "subject": "Subject of your message",
+      "message": "Your message",
+      "submit": "Send my message",
+      "loading": "Sending your message...",
+      "success": {
+        "contactMessageSuccess": "Your message has been sent successfully!"
+      },
+      "errors": {
+        "contactMessageFailed": "An error occurred while sending your message"
+      }
     },
 
     "post": {
@@ -157,7 +207,17 @@
       "invalidCredentials": "Invalid credentials",
       "loginFailed": "Log in failed",
       "logoutFailed": "An error occured while logging out"
+    },
+    "confirmation": {
+      "confirmLogout": "Are you sure you want to log out?"
     }
+  },
+
+  "legalContent": {
+    "legalNotice": "Legal notice",
+    "privacyPolicy": "Privacy policy",
+    "formSubmitConfirmation": "By submitting this form, you acknowledge that you have read and accepted our ",
+    "and": " and "
   },
 
   "pages": {
@@ -205,24 +265,27 @@
       "allPosts": "All posts",
       "postCard": {
         "date": "{{ date, medium }}",
-        "readMore": "Read more"
+        "tag": "News"
       },
       "postDetailsPage": {
-        "postedOn": "Posted on {{ date, medium }}",
         "updatedOn": "Updated on {{ date, mediumWithTime }}",
         "backToBlog": "Go back to blog"
       }
+    },
+    "contact": {
+      "title": "Contact me"
     },
     "profile": {
       "profileSection": {
         "title": "My profile",
         "personalInfo": "Personal information",
-        "accountInfo": "Account information"
+        "updatePassword": "Update password"
       },
       "settingsSection": {
         "title": "Settings",
         "language": "Language"
-      }
+      },
+      "deleteAccount": "Delete my account"
     },
     "login": {
       "notRegisteredYetBlock": {
@@ -247,7 +310,8 @@
         "headerTitle": "Back office",
         "links": {
           "dashboard": "Dashboard",
-          "blog": "Blog"
+          "blog": "Blog",
+          "users": "Users"
         }
       },
       "tables": {
@@ -257,15 +321,23 @@
           "status": "Status",
           "picture": "Image",
           "pictureAlt": "Post image",
-          "createdAt": "Created on",
           "updatedAt": "Updated on",
           "noImage": "No image",
           "published": "Published",
           "unpublished": "Unpublished",
-          "createdAtDate": "{{ date, shortestWithTime }}",
           "updatedAtDate": "{{ date, shortestWithTime }}",
           "actions": "Actions",
           "noPosts": "No post created yet."
+        },
+        "users": {
+          "lastName": "Last name",
+          "firstName": "First name",
+          "email": "Email",
+          "phone": "Phone",
+          "avatar": "Avatar",
+          "avatarAlt": "User avatar",
+          "noAvatar": "No avatar",
+          "actions": "Actions"
         }
       },
       "dashboard": {
@@ -276,6 +348,9 @@
         "title": "My blog posts",
         "createPost": "Write a post",
         "updatePost": "Edit post"
+      },
+      "users": {
+        "title": "Users"
       }
     }
   }

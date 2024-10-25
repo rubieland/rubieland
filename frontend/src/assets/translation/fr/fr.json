@@ -5,6 +5,7 @@
     "delete": "Supprimer",
     "cancel": "Annuler",
     "confirm": "Confirmer",
+    "validate": "Valider",
     "error": "Erreur",
     "retry": "Réessayer",
     "addPicture": "Ajouter une image",
@@ -45,6 +46,10 @@
     "profile": {
       "title": "Profil utilisateur Rubieland - Gérez vos informations personnelles et vos réservations de garde canine en Vendée",
       "description": "Accédez à votre espace personnel Rubieland pour consulter vos réservations, modifier vos informations, gérer votre compte et le(s) profil(s) de votre ou vos chien(s)."
+    },
+    "contact": {
+      "title": "Contactez Rubieland - Garderie pour chiens en Vendée",
+      "description": "Contactez Rubieland pour toute question ou demande de renseignement."
     }
   },
 
@@ -63,6 +68,7 @@
     "home": "Accueil",
     "about": "À propos",
     "blog": "Blog",
+    "contact": "Contact",
     "register": "M'inscrire",
     "login": "Me connecter",
     "profile": "Profil",
@@ -79,13 +85,17 @@
     "content": "Cette page n'existe pas."
   },
 
+  "textEditor": {
+    "defaultPlaceholder": "Commencez à écrire ici..."
+  },
+
   "form": {
     "errors": {
       "requiredField": "Ce champ est obligatoire",
       "inputMaxLength": "Ce champ ne peut contenir que {{maxLength}} caractères maximum",
       "inputMinLength": "Ce champ doit contenir au moins {{minLength}} caractères",
       "invalidEmailFormat": "Veuillez saisir une adresse e-mail valide (exemple@exemple.com)",
-      "minBirthDate": "L'âge requis est de {{min}} ans minimum",
+      "minBirthDate": "L'âge ne peut pas être inférieur à {{min}} ans",
       "maxBirthDate": "L'âge ne peut pas excéder {{max}} ans",
       "birthDateInFuture": "La date de naissance ne peut pas être dans le futur",
       "invalidFileType": "Fichier invalide. Seuls les fichiers de type {{types}} sont acceptés",
@@ -108,9 +118,50 @@
       "emailPlaceholder": "exemple@exemple.com",
       "password": "Mot de passe",
       "confirmPassword": "Confirmer le mot de passe",
-      "birthDate": "Date de naissance",
+      "currentPassword": "Mot de passe actuel",
+      "newPassword": "Nouveau mot de passe",
+      "confirmNewPassword": "Confirmer le nouveau mot de passe",
       "phoneLabel": "Téléphone",
-      "phonePlaceholder": "ex: +33 7 12 34 56 78"
+      "phonePlaceholder": "ex: +33 7 12 34 56 78",
+      "avatarLabel": "Avatar",
+
+      "loading": {
+        "userUpdateLoading": "Mise à jour de vos informations en cours...",
+        "passwordUpdateLoading": "Modification du mot de passe en cours...",
+        "deleteAccountLoading": "Suppression du compte en cours..."
+      },
+      "success": {
+        "userUpdateSuccess": "Vos informations ont bien été mises à jour !",
+        "passwordUpdateSuccess": "Votre mot de passe a bien été modifié !",
+        "deleteAccountSuccess": "Votre compte a bien été supprimé !"
+      },
+      "errors": {
+        "userUpdateFailed": "Une erreur est survenue lors de la modification de vos informations",
+        "userNotFound": "Utilisateur non trouvé",
+        "userExistsInBase": "Un utilisateur avec cet email existe déjà",
+        "wrongCurrentPassword": "Le mot de passe actuel est incorrect",
+        "updatePasswordFailed": "Une erreur est survenue lors de la modification du mot de passe",
+        "deleteAccountFailed": "Une erreur est survenue lors de la suppression de votre compte"
+      },
+      "confirmation": {
+        "confirmAccountDelete": "Êtes-vous sûr(e) de vouloir supprimer votre compte ? <strong>Toutes vos données seront supprimées.</strong>"
+      }
+    },
+
+    "contact": {
+      "fullName": "Votre nom complet",
+      "email": "Votre email",
+      "subject": "Sujet de votre message",
+      "message": "Votre message",
+      "submit": "Envoyer mon message",
+      "loading": "Envoi du message en cours...",
+
+      "success": {
+        "contactMessageSuccess": "Votre message a bien été envoyé !"
+      },
+      "errors": {
+        "contactMessageFailed": "Une erreur est survenue lors de l'envoi de votre message"
+      }
     },
 
     "post": {
@@ -157,7 +208,17 @@
       "invalidCredentials": "Identifiants incorrects",
       "loginFailed": "La connexion a échouée",
       "logoutFailed": "Une erreur est survenue lors de la déconnexion"
+    },
+    "confirmation": {
+      "confirmLogout": "Êtes-vous sûr(e) de vouloir vous déconnecter ?"
     }
+  },
+
+  "legalContent": {
+    "legalNotice": "Mentions légales",
+    "privacyPolicy": "Politique de confidentialité",
+    "formSubmitConfirmation": "En envoyant ce formulaire, vous reconnaissez avoir lu et accepté notre ",
+    "and": " et nos "
   },
 
   "pages": {
@@ -166,7 +227,7 @@
         "heroImageTitle": "Sa garderie préférée",
         "heroImageText": "L'aventure commence ici !",
         "heroImageCTA": "Découvrir Rubieland",
-        "heroImageImageAlt": "Un labrador retriever noir ayant la langue pendante"
+        "heroImageImgAlt": "Un labrador retriever noir ayant la langue pendante"
       },
       "presentation": {
         "title": "Bienvenue à Rubieland !",
@@ -205,24 +266,27 @@
       "allPosts": "Tous les articles",
       "postCard": {
         "date": "{{ date, medium }}",
-        "readMore": "Lire la suite"
+        "tag": "Actualités"
       },
       "postDetailsPage": {
-        "postedOn": "Publié le {{ date, medium }}",
         "updatedOn": "Mis à jour le {{ date, mediumWithTime }}",
         "backToBlog": "Revenir au blog"
       }
+    },
+    "contact": {
+      "title": "Contactez-moi"
     },
     "profile": {
       "profileSection": {
         "title": "Mon profil",
         "personalInfo": "Informations personnelles",
-        "accountInfo": "Informations de compte"
+        "updatePassword": "Modifier le mot de passe"
       },
       "settingsSection": {
         "title": "Paramètres",
         "language": "Langue"
-      }
+      },
+      "deleteAccount": "Supprimer mon compte"
     },
     "login": {
       "notRegisteredYetBlock": {
@@ -247,7 +311,8 @@
         "headerTitle": "Back office",
         "links": {
           "dashboard": "Dashboard",
-          "blog": "Blog"
+          "blog": "Blog",
+          "users": "Utilisateurs"
         }
       },
       "tables": {
@@ -257,15 +322,23 @@
           "status": "Statut",
           "picture": "Image",
           "pictureAlt": "Image de l'article",
-          "createdAt": "Créé le",
           "updatedAt": "Mis à jour le",
           "noImage": "Pas d'image",
           "published": "Publié",
           "unpublished": "Non publié",
-          "createdAtDate": "{{ date, shortestWithTime }}",
           "updatedAtDate": "{{ date, shortestWithTime }}",
           "actions": "Actions",
           "noPosts": "Aucun article n'a été créé pour le moment."
+        },
+        "users": {
+          "lastName": "Nom de famille",
+          "firstName": "Prénom",
+          "email": "Email",
+          "phone": "Téléphone",
+          "avatar": "Avatar",
+          "avatarAlt": "Avatar de l'utilisateur",
+          "noAvatar": "Pas d'avatar",
+          "actions": "Actions"
         }
       },
       "dashboard": {
@@ -276,6 +349,9 @@
         "title": "Mes articles de blog",
         "createPost": "Écrire un article",
         "updatePost": "Modifier l'article"
+      },
+      "users": {
+        "title": "Utilisateurs"
       }
     }
   }

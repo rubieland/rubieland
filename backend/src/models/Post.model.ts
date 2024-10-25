@@ -76,14 +76,6 @@ const postSchema = new Schema<PostDocument>(
           reason: Reason.MINLENGTH,
         }),
       ],
-      validate: [
-        (v: string) => !forbiddenCharsRegex.test(v),
-        getValidationErrorMessage({
-          context,
-          field: 'content',
-          reason: Reason.HAS_FORBIDDEN_CHARS,
-        }),
-      ],
     },
     isPublished: {
       type: Boolean,

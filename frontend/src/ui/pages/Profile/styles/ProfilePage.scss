@@ -3,11 +3,11 @@
 
 .profile-page-main-container {
   @include flex-center-column;
-  padding: 1rem;
+  padding: 1.5rem;
   width: 100%;
   gap: 1.5rem;
 
-  .logout-button {
+  .action-button-section {
     width: 100%;
 
     button span {
@@ -17,14 +17,14 @@
 }
 
 // ----- responsive ----- \\
+
 @include respond-to('small') {
   .profile-page-main-container {
     align-self: center;
 
-    .logout-button {
-      padding-top: 1rem;
+    .action-button-section {
       max-width: 36rem;
-      width: 50%;
+      width: 80%;
     }
   }
 }

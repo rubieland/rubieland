@@ -1,0 +1,25 @@
+doctype html
+html(lang="fr")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Nouveau message de contact
+    style.
+      p {
+        font-size: 1.1rem;
+      }
+    
+  body
+    div(style="max-width: 600px; margin: auto; padding: 20px; background-color: #f4f4f4; font-family: Arial, sans-serif; border-radius: 10px;")
+      h1(style="color: #5a3d8a; text-align: center;") Nouveau message de contact
+      p
+        | Nom complet : 
+        strong #{fullName}
+      p
+        | Email : 
+        strong #{email}
+      p Sujet : 
+        strong #{subject}
+      p Message :
+        
+      em(style="display: inline-block; padding: 20px; background-color: #ffffff; border-radius: 10px;") #{message}

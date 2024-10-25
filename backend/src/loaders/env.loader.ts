@@ -2,13 +2,13 @@ import * as dotenv from 'dotenv';
 dotenv.config();
 
 const requiredEnvVariables = [
-  'APP_HOST',
-  'APP_PORT',
-  'CLIENT_HOST',
-  'CLIENT_PORT',
-  'DEV_DB_URI',
-  'PROD_DB_URI',
+  'PORT',
+  'CLIENT_URL',
+  'EMAIL_USER',
+  'EMAIL_APP_PASSWORD',
+  'DB_URI',
   'NODE_ENV',
+  'UPLOADS_DIR',
   'JWT_SECRET',
   'JWT_REFRESH_SECRET',
   'ACCESS_TOKEN_EXPIRATION',

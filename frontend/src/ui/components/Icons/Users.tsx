@@ -1,28 +1,26 @@
 import { SVGProps } from 'react';
 
-const Users = (props: SVGProps<SVGSVGElement>) => (
+const Users = ({
+  width = '1em',
+  height = '1em',
+  fill = 'none',
+  stroke = 'currentColor',
+  ...props
+}: SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width={props.width || 25}
-    height={props.width || 25}
-    fill="none"
-    viewBox="0 -0.5 25 25"
+    width={width}
+    height={height}
+    fill={fill}
+    viewBox="0 0 24 24"
     {...props}
   >
     <path
-      stroke="#000"
+      stroke={stroke}
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.5}
-      d="M12.5 7.333a2.333 2.333 0 1 1-4.666 0 2.333 2.333 0 0 1 4.666 0ZM14.833 15.733c0 1.8-2.089 3.267-4.667 3.267S5.5 17.537 5.5 15.733c0-1.804 2.089-3.266 4.667-3.266s4.666 1.462 4.666 3.266ZM17.439 9.511a1.4 1.4 0 1 1-2.8 0 1.4 1.4 0 0 1 2.8 0Z"
-      clipRule="evenodd"
-    />
-    <path
-      stroke="#000"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth={1.5}
-      d="M16.7 18.067a2.6 2.6 0 0 0 2.8-2.334 2.6 2.6 0 0 0-2.8-2.333"
+      strokeWidth={2}
+      d="M13 20v-2a5 5 0 0 0-10 0v2h10Zm0 0h8v-1c0-2.945-2.239-5-5-5-1.413 0-2.69.626-3.6 1.631M11 7a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm7 2a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z"
     />
   </svg>
 );

@@ -17,7 +17,7 @@ const PostCardList = ({ posts }: PostCardListProps) => {
       <div className="post-card-list">
         {posts.map((post, i) => (
           <PostCard
-            date={t('postCard.date', { date: new Date(post.createdAt) })}
+            date={t('postCard.date', { date: new Date(post.updatedAt) })}
             imageUrl={post.picture}
             content={post.content}
             title={post.title}

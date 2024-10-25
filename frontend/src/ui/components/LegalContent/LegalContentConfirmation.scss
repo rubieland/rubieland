@@ -1,0 +1,13 @@
+@import '../../../assets/styles/variables';
+@import '../../../assets/styles/mixins';
+
+.legal-content-confirm-message {
+  font-size: 0.875rem;
+  font-style: italic;
+
+  a {
+    text-decoration: underline;
+    font-weight: 600;
+    color: $primary;
+  }
+}

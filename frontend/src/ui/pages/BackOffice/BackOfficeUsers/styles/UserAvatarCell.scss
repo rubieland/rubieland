@@ -1,0 +1,17 @@
+@import '../../../../../assets/styles/variables';
+@import '../../../../../assets/styles/mixins';
+
+.user-avatar-cell {
+  @include flex-center;
+  overflow: hidden;
+
+  img {
+    @include box(50px, 50px);
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .noImage {
+    text-align: center;
+  }
+}

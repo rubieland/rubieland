@@ -5,7 +5,7 @@ import { loadDatabaseConnection } from './src/loaders/db.loader';
 import { env } from './src/loaders/env.loader';
 
 // destructure env to get env variables
-const { APP_PORT, APP_HOST } = env;
+const { PORT } = env;
 
 const server = express();
 
@@ -19,9 +19,8 @@ const startServer = async () => {
 
     // start server
     server
-      .listen(APP_PORT, () => {
-        const link = `http://${APP_HOST ?? 'localhost'}:${APP_PORT ?? 9000}`;
-        console.log(`Server is running on ${link}`);
+      .listen(PORT, () => {
+        console.log(`Server is running on port ${PORT ?? '9000'}`);
       })
       .on('error', (error: Error) => {
         console.error(`An error occured when starting server: ${error}`);

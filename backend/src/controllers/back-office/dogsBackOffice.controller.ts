@@ -12,9 +12,12 @@ export const getAllDogs = async (
     const dogs: DogDocument[] | null = await Dog.find({});
 
     if (!dogs || dogs.length === 0) {
-      return res
-        .status(404)
-        .json({ error: i18n.t('common.error.dogsFound_zero', { count: 0 }) });
+      return res.status(200).json({
+        message: i18n.t('common.success.dogsFound_zero', {
+          count: 0,
+        }),
+        dogs: [],
+      });
     }
 
     const message =

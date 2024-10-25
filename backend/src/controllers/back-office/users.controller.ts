@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
-import User from '../../models/User.model';
 import i18n from '../../config/i18n';
 import { UserDocument } from '../../models/types/User.types';
+import User from '../../models/User.model';
 
 export const getAllUsers = async (
   req: Request,
@@ -16,9 +16,12 @@ export const getAllUsers = async (
     );
 
     if (!users || users.length === 0) {
-      return res
-        .status(404)
-        .json({ error: i18n.t('common.error.usersFound_zero', { count: 0 }) });
+      return res.status(200).json({
+        message: i18n.t('common.success.usersFound_zero', {
+          count: 0,
+        }),
+        users: [],
+      });
     }
 
     const message =

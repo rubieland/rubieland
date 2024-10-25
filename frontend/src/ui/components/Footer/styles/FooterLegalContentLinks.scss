@@ -1,0 +1,22 @@
+@import '../../../../assets/styles/variables';
+@import '../../../../assets/styles/mixins';
+
+.footer-legal-content-links {
+  @include flex-center-column;
+  height: auto;
+  gap: 1rem;
+
+  a {
+    text-decoration: underline;
+    font-weight: 600;
+    color: $primary;
+  }
+}
+
+// ----- responsive ----- \\
+
+@include respond-to('small') {
+  .footer-legal-content-links {
+    flex-direction: row;
+  }
+}

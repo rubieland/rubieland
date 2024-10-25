@@ -1,6 +1,6 @@
 export enum QueryKeysEnum {
   USERS = 'users',
-  USER = 'user',
+  MY_PROFILE = 'myProfile',
   POSTS = 'posts',
   POST_DETAILS = 'postDetails',
 }
