@@ -155,6 +155,7 @@
       "message": "Your message",
       "submit": "Send my message",
       "loading": "Sending your message...",
+
       "success": {
         "contactMessageSuccess": "Your message has been sent successfully!"
       },
@@ -340,9 +341,17 @@
           "actions": "Actions"
         }
       },
+      "charts": {
+        "users": {
+          "usersCreation": {
+            "title": "Users creations by month",
+            "dataLabel": "Number of users created"
+          }
+        }
+      },
       "dashboard": {
         "title": "Dashboard",
-        "welcome": "Welcome {{firstName}} {{lastName}} !"
+        "welcome": "Welcome {{firstName}} {{lastName}} 👋 !"
       },
       "blog": {
         "title": "My blog posts",
