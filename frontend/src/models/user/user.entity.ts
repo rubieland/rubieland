@@ -14,14 +14,20 @@ export type User = {
   updatedAt: Date;
 };
 
-export type RegisterBody = Omit<User, 'id' | 'role' | 'avatar'> & {
+export type RegisterBody = Omit<
+  User,
+  'id' | 'role' | 'avatar' | 'createdAt' | 'updatedAt'
+> & {
   password: string;
   confirmPassword: string;
 };
 
 export type LoginBody = Pick<RegisterBody, 'email' | 'password'>;
 
-export type UpdateProfileBody = Omit<User, 'id' | 'role' | 'avatar'> & {
+export type UpdateProfileBody = Omit<
+  User,
+  'id' | 'role' | 'avatar' | 'createdAt' | 'updatedAt'
+> & {
   avatar?: File | string | null;
 };
 
