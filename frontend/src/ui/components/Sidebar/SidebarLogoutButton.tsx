@@ -56,7 +56,6 @@ const SidebarLogoutButton = memo(
           className={className}
           onClick={handleClick}
           tabIndex={0}
-          role="link"
         >
           <LogoutIcon width={24} height={24} stroke={colors.red} />
           <p>{t('common.logout')}</p>

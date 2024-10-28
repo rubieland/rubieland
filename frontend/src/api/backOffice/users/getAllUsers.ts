@@ -8,8 +8,6 @@ export const getAllUsers = async (): Promise<User[]> => {
   const response = await api.get(`/back-office/users/all`);
   const users = response.data.users;
 
-  console.log(users);
-
   return users.map(convertUserDtoToEntity);
 };
 

@@ -341,9 +341,17 @@
           "actions": "Actions"
         }
       },
+      "charts": {
+        "users": {
+          "usersCreation": {
+            "title": "Nombre d'utilisateurs créés par mois",
+            "dataLabel": "Nombre d'utilisateurs créés"
+          }
+        }
+      },
       "dashboard": {
         "title": "Dashboard",
-        "welcome": "Bienvenue {{firstName}} {{lastName}} !"
+        "welcome": "Bienvenue {{firstName}} {{lastName}} 👋 !"
       },
       "blog": {
         "title": "Mes articles de blog",

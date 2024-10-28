@@ -10,6 +10,8 @@ export type User = {
   avatar: string | null;
   phone: string;
   role: UserRole;
+  createdAt: Date;
+  updatedAt: Date;
 };
 
 export type RegisterBody = Omit<User, 'id' | 'role' | 'avatar'> & {
@@ -43,5 +45,7 @@ export const convertUserDtoToEntity = (dto: UserDto): User => {
     avatar: dto.avatar,
     phone: dto.phone,
     role: dto.role,
+    createdAt: dto.createdAt,
+    updatedAt: dto.updatedAt,
   };
 };

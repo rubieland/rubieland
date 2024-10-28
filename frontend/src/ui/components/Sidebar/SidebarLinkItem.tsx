@@ -45,7 +45,6 @@ const SidebarLinkItem = memo(
         className={className}
         onClick={handleClick}
         tabIndex={0}
-        role="link"
       >
         {link.icon}
         <p>{link.title}</p>
