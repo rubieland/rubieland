@@ -143,6 +143,7 @@ export const login = async (
       secure: NODE_ENV === 'production', // allow receiving cookies from HTTPS domain only (so "true" in production only because localhost uses HTTP, not HTTPS)
       sameSite: NODE_ENV === 'production' ? 'none' : 'lax', // "none" allows cookies in all cross-origin requests (requires "Secure"), "lax" only allows cookies in safe GET requests initiated by top-level navigation      httpOnly: true,
       maxAge: Number(COOKIE_MAX_AGE), // 1h
+      httpOnly: true,
     });
 
     res.status(200).json({
@@ -231,7 +232,12 @@ export const refreshToken = async (
 export const logout = (req: Request, res: Response) => {
   try {
     // delete refresh token cookie
-    res.clearCookie('refreshToken');
+    res.clearCookie('refreshToken', {
+      httpOnly: true,
+      secure: NODE_ENV === 'production',
+      sameSite: NODE_ENV === 'production' ? 'none' : 'lax',
+    });
+
     res.status(200).json({ message: i18n.t('auth.success.logout') });
   } catch (error) {
     console.error('Error during logout:', error);
